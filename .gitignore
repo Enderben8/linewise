@@ -1,0 +1,38 @@
+# The original app's APK: large, and contains secrets. Never commit it.
+*.apk
+*.aab
+
+# Signing keys and secrets
+*.jks
+*.keystore
+*.p8
+*.p12
+*.pem
+.env
+.env.*
+!.env.example
+google-services.json
+service-account*.json
+
+# Dependencies and build output
+node_modules/
+functions/node_modules/
+functions/lib/
+android/
+ios/
+.expo/
+dist/
+web-build/
+coverage/
+
+# Firebase emulator data and logs
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
