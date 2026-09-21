@@ -12,7 +12,7 @@ import {
   accuracyOf,
   initialFirstLetter,
   isFinished,
-  typeLetter,
+  typeLetters,
 } from '../../src/games/firstLetter';
 import { MaskedLines } from '../../src/games/MaskedLines';
 import { buildUnits } from '../../src/games/setup';
@@ -44,9 +44,9 @@ export default function Demo() {
   const done = isFinished(state, total);
 
   const onType = (text: string) => {
-    const step = typeLetter(state, text, tokenized.all);
+    const step = typeLetters(state, text, tokenized.all);
     if (!step) return;
-    if (!step.correct)
+    if (step.anyWrong)
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
     setState(step.state);
   };
@@ -82,7 +82,7 @@ export default function Demo() {
           autoCorrect={false}
           spellCheck={false}
           autoCapitalize="none"
-          maxLength={2}
+          maxLength={40}
           style={{
             borderWidth: 1,
             borderColor: palette.border,

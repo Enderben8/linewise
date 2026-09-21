@@ -24,6 +24,8 @@ export function TextEditor({ initial, existingTags, saveLabel, onSave, editingEx
   const { t } = useTranslation();
   const { palette } = useTheme();
   const [title, setTitle] = useState(initial.title);
+  // Until the user edits the title, it follows the first line of the text.
+  const [titleEdited, setTitleEdited] = useState(initial.title.trim() !== '');
   const [author, setAuthor] = useState(initial.author);
   const [language, setLanguage] = useState(initial.language);
   const [type, setType] = useState<BodyType>(initial.type);
@@ -63,7 +65,7 @@ export function TextEditor({ initial, existingTags, saveLabel, onSave, editingEx
         value={body}
         onChangeText={(text) => {
           setBody(text);
-          if (!title.trim() && !initial.title) setTitle(guessTitle(text));
+          if (!titleEdited) setTitle(guessTitle(text));
         }}
         placeholder={t('editor.bodyPlaceholder')}
         multiline
@@ -83,7 +85,15 @@ export function TextEditor({ initial, existingTags, saveLabel, onSave, editingEx
         </AppText>
       ) : null}
 
-      <Field testID="title-input" label={t('editor.title')} value={title} onChangeText={setTitle} />
+      <Field
+        testID="title-input"
+        label={t('editor.title')}
+        value={title}
+        onChangeText={(v) => {
+          setTitleEdited(true);
+          setTitle(v);
+        }}
+      />
       {submitted && errors.includes('TITLE_REQUIRED') ? (
         <AppText color={palette.danger}>{t('editor.errors.titleRequired')}</AppText>
       ) : null}

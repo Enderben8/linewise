@@ -5,7 +5,9 @@ import {
   firstLetterMatches,
   initialFirstLetter,
   isFinished,
+  splitLetters,
   typeLetter,
+  typeLetters,
 } from './firstLetter';
 import { buildQuestions } from './multipleChoice';
 import { buildRounds, correctPositions, scrambleItems, scrambleOrder } from './scramble';
@@ -152,5 +154,27 @@ describe('fill in the blank', () => {
     expect(opts.filter((o) => o.toLowerCase() === 'sweet')).toHaveLength(1);
     expect(new Set(opts.map((o) => o.toLowerCase())).size).toBe(4);
     expect(blankOptions('a', ['a'], 1)).toEqual(['a']);
+  });
+});
+
+describe('first letter with batched input', () => {
+  it('splits typed text into letters, keeping combining marks with their letter', () => {
+    expect(splitLetters('ab c')).toEqual(['a', 'b', 'c']);
+    expect(splitLetters('कि')).toEqual(['कि']);
+    expect(splitLetters('  ')).toEqual([]);
+  });
+
+  it('applies every letter that arrives in one change event', () => {
+    const tokens = tok('Twinkle twinkle little star how');
+    const step = typeLetters(initialFirstLetter, 'ttlsx', tokens)!;
+    expect(step.state.marks).toEqual(['ok', 'ok', 'ok', 'ok', 'wrong']);
+    expect(step.anyWrong).toBe(true);
+    expect(typeLetters(initialFirstLetter, '   ', tokens)).toBeNull();
+  });
+
+  it('stops at the end of the text instead of overrunning', () => {
+    const step = typeLetters(initialFirstLetter, 'abcdef', tok('a b c'))!;
+    expect(step.state.marks).toHaveLength(3);
+    expect(step.state.index).toBe(3);
   });
 });

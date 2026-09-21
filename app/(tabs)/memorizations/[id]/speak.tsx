@@ -47,6 +47,9 @@ function Body({ setup }: { setup: GameSetup }) {
     },
   });
 
+  // A problem found before starting, or one the engine reports while starting.
+  const issue = gate.issue ?? rec.issue;
+
   const begin = async () => {
     setHeardNothing(false);
     if (!(await gate.check())) return;
@@ -77,9 +80,11 @@ function Body({ setup }: { setup: GameSetup }) {
   return (
     <View style={{ gap: spacing.lg }}>
       <AppText muted>{t('speak.help', { count: setup.selectionWords })}</AppText>
-      {gate.issue ? <SpeechIssueCard issue={gate.issue} lang={setup.lang} onRetry={begin} /> : null}
-      {heardNothing ? <AppText color={palette.warning}>{t('speak.heardNothing')}</AppText> : null}
-      {rec.error && !rec.listening ? (
+      {issue ? <SpeechIssueCard issue={issue} lang={setup.lang} onRetry={begin} /> : null}
+      {heardNothing && !rec.error ? (
+        <AppText color={palette.warning}>{t('speak.heardNothing')}</AppText>
+      ) : null}
+      {rec.error && !rec.issue && !rec.listening ? (
         <AppText color={palette.danger}>{t('speak.error', { code: rec.error })}</AppText>
       ) : null}
 

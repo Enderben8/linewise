@@ -32,7 +32,10 @@ function buildPieces(setup: GameSetup, mode: Mode): Piece[] {
     return out;
   }
   for (const unit of setup.units) {
-    const parts = mode === 'phrase' ? phrases(unitAsChunk(unit)) : sentences(unitAsChunk(unit));
+    const chunk = unitAsChunk(unit);
+    let parts = mode === 'phrase' ? phrases(chunk) : sentences(chunk);
+    // Text with no commas or line breaks has one phrase; fall back to sentences so there is something to reveal.
+    if (mode === 'phrase' && parts.length < 2) parts = sentences(chunk);
     parts.forEach((text, i) => out.push({ text, breakBefore: i === 0 && out.length > 0 }));
   }
   return out;

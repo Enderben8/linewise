@@ -8,7 +8,7 @@ import {
   accuracyOf,
   initialFirstLetter,
   isFinished,
-  typeLetter,
+  typeLetters,
   type FirstLetterState,
 } from '../../../../src/games/firstLetter';
 import { GameGate } from '../../../../src/games/GameGate';
@@ -29,9 +29,9 @@ function Body({ setup }: { setup: GameSetup }) {
   const total = tokenized.all.length;
 
   const onType = (text: string) => {
-    const step = typeLetter(state, text, tokenized.all);
+    const step = typeLetters(state, text, tokenized.all);
     if (!step) return;
-    if (!step.correct)
+    if (step.anyWrong)
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
     setState(step.state);
     if (isFinished(step.state, total)) {
@@ -83,7 +83,7 @@ function Body({ setup }: { setup: GameSetup }) {
         autoCapitalize="none"
         autoComplete="off"
         importantForAutofill="no"
-        maxLength={2}
+        maxLength={40}
         style={{
           borderWidth: 1,
           borderColor: palette.border,

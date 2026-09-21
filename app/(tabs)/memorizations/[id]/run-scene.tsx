@@ -7,7 +7,7 @@ import { spacing, useTheme } from '../../../../src/components/theme';
 import { AppText, Button, Card, Chip, Row } from '../../../../src/components/ui';
 import { setVoiceOverrides } from '../../../../src/db/repo';
 import { align, scoreAlignment, words, type AlignItem } from '../../../../src/engine';
-import { useRecognizer } from '../../../../src/features/speech/recognition';
+import { issueFromError, useRecognizer } from '../../../../src/features/speech/recognition';
 import { SpeechIssueCard, useSpeechGate } from '../../../../src/features/speech/SpeechGate';
 import { defaultVoiceFor } from '../../../../src/features/speech/locales';
 import { speakAsync, stopSpeaking, voicesFor } from '../../../../src/features/speech/tts';
@@ -72,6 +72,16 @@ function Body({ setup }: { setup: GameSetup }) {
     lang: setup.lang,
     continuous: false,
     onEnd: (text) => pendingTranscript.current?.(text),
+    onError: (code) => {
+      // A missing language pack or permission ends the scene and shows what to fix.
+      if (issueFromError(code)) {
+        runId.current++;
+        stopSpeaking();
+        pendingDecision.current?.(false);
+        setRunning(false);
+        setPrompt('idle');
+      }
+    },
   });
 
   useEffect(() => {
@@ -214,8 +224,8 @@ function Body({ setup }: { setup: GameSetup }) {
     return (
       <View style={{ gap: spacing.lg }}>
         <AppText muted>{t('scene.help')}</AppText>
-        {gate.issue ? (
-          <SpeechIssueCard issue={gate.issue} lang={setup.lang} onRetry={play} />
+        {(gate.issue ?? rec.issue) ? (
+          <SpeechIssueCard issue={(gate.issue ?? rec.issue)!} lang={setup.lang} onRetry={play} />
         ) : null}
         <View style={{ gap: spacing.xs }}>
           <AppText variant="label" muted>

@@ -53,14 +53,34 @@ export interface RecognizerState {
   error: string | null;
 }
 
+/**
+ * Maps an error the speech engine reports while listening to something the user can fix.
+ * Returns null for errors that are just a bad take (no speech, aborted...).
+ */
+export function issueFromError(code: string | null): SpeechProblem | null {
+  switch (code) {
+    case 'language-not-supported':
+      return 'language-missing';
+    case 'not-allowed':
+      return 'permission-blocked';
+    case 'service-not-allowed':
+      return 'unavailable';
+    case 'network':
+      return 'no-on-device';
+    default:
+      return null;
+  }
+}
+
 export interface RecognizerOptions {
   lang: string;
   continuous: boolean;
   onEnd?: (transcript: string) => void;
+  onError?: (code: string) => void;
 }
 
 /** Wraps expo-speech-recognition: accumulates final results and reports the full transcript when it stops. */
-export function useRecognizer({ lang, continuous, onEnd }: RecognizerOptions) {
+export function useRecognizer({ lang, continuous, onEnd, onError }: RecognizerOptions) {
   const [state, setState] = useState<RecognizerState>({
     listening: false,
     transcript: '',
@@ -69,9 +89,11 @@ export function useRecognizer({ lang, continuous, onEnd }: RecognizerOptions) {
   const finals = useRef<string[]>([]);
   const interim = useRef('');
   const onEndRef = useRef(onEnd);
+  const onErrorRef = useRef(onError);
   useEffect(() => {
     onEndRef.current = onEnd;
-  }, [onEnd]);
+    onErrorRef.current = onError;
+  }, [onEnd, onError]);
 
   // Leaving the screen aborts listening without scoring a half-finished attempt.
   useEffect(
@@ -96,6 +118,7 @@ export function useRecognizer({ lang, continuous, onEnd }: RecognizerOptions) {
   });
   useSpeechRecognitionEvent('error', (event) => {
     setState((s) => ({ ...s, error: event.error }));
+    onErrorRef.current?.(event.error);
   });
   useSpeechRecognitionEvent('end', () => {
     const transcript = full();
@@ -124,5 +147,5 @@ export function useRecognizer({ lang, continuous, onEnd }: RecognizerOptions) {
   const stop = useCallback(() => ExpoSpeechRecognitionModule.stop(), []);
   const abort = useCallback(() => ExpoSpeechRecognitionModule.abort(), []);
 
-  return { ...state, start, stop, abort };
+  return { ...state, issue: issueFromError(state.error), start, stop, abort };
 }

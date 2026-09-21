@@ -17,3 +17,22 @@ describe('speech locales', () => {
     expect(sameLanguage('fr-FR', 'en')).toBe(false);
   });
 });
+
+describe('speech engine errors', () => {
+  jest.mock('expo-speech-recognition', () => ({
+    ExpoSpeechRecognitionModule: {},
+    useSpeechRecognitionEvent: () => {},
+  }));
+
+  it('turns fixable engine errors into guidance and ignores bad takes', () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { issueFromError } = require('./recognition') as typeof import('./recognition');
+    expect(issueFromError('language-not-supported')).toBe('language-missing');
+    expect(issueFromError('not-allowed')).toBe('permission-blocked');
+    expect(issueFromError('service-not-allowed')).toBe('unavailable');
+    expect(issueFromError('network')).toBe('no-on-device');
+    expect(issueFromError('no-speech')).toBeNull();
+    expect(issueFromError('aborted')).toBeNull();
+    expect(issueFromError(null)).toBeNull();
+  });
+});
