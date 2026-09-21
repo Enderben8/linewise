@@ -1,0 +1,5 @@
+# Keep LF line endings everywhere (CI and Prettier expect LF; avoids CRLF churn on Windows).
+* text=auto eol=lf
+*.png binary
+*.jks binary
+*.apk binary
