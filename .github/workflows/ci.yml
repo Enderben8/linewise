@@ -1,7 +1,9 @@
 name: CI
 
 on:
+  # Branches only: a version tag runs the same checks inside the release workflow.
   push:
+    branches: ['**']
   pull_request:
 
 permissions:
@@ -12,9 +14,9 @@ jobs:
     name: Typecheck, lint, test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 24
           cache: npm
