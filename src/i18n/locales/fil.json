@@ -1,0 +1,542 @@
+{
+  "common": {
+    "back": "Bumalik",
+    "cancel": "Kanselahin",
+    "delete": "Burahin",
+    "loading": "Naglo-load…",
+    "next": "Susunod",
+    "no": "Hindi",
+    "pause": "I-pause",
+    "play": "I-play",
+    "save": "I-save",
+    "yes": "Oo"
+  },
+  "errors": {
+    "databaseTitle": "Hindi mabuksan ang data ng app"
+  },
+  "tabs": {
+    "memorizations": "Kabisaduhin",
+    "add": "Magdagdag",
+    "settings": "Mga Setting"
+  },
+  "status": {
+    "new": "Bago",
+    "due": "Balik-aral ngayon",
+    "inDays": "Susunod na balik-aral sa {{count}} araw",
+    "done": "Tapos na ang plano"
+  },
+  "list": {
+    "search": "Maghanap ng pamagat, may-akda o tag",
+    "allTags": "Lahat",
+    "emptyTitle": "Wala pang kakabisaduhin",
+    "emptyBody": "Magdagdag ng tula, talumpati, talata o iskrip. Nananatili ang lahat sa iyong telepono.",
+    "addFirst": "Idagdag ang una mong teksto",
+    "noMatches": "Walang tekstong tumutugma sa hinahanap mo",
+    "backupNudgeTitle": "Oras na para mag-backup",
+    "backupNudgeBody": "Isang buwan na ang lumipas. Sa backup na file, maibabalik mo ang iyong mga teksto at progreso kapag nawala o na-reset ang teleponong ito.",
+    "backupNow": "Mag-backup ngayon"
+  },
+  "add": {
+    "title": "Magdagdag ng teksto",
+    "editTitle": "Bagong teksto",
+    "cameraTitle": "I-scan ang teksto",
+    "intro": "Piliin kung paano mo ilalagay ang iyong teksto. Puwede mo itong hatiin sa mga bahagi at ayusin sa susunod na screen.",
+    "typeTitle": "I-type o i-paste",
+    "typeBody": "Isulat mismo ang teksto o i-paste mula sa kahit saan.",
+    "fileTitle": "Mag-import ng file",
+    "fileBody": "Pumili ng .txt o .md na file mula sa iyong telepono.",
+    "cameraOptionTitle": "I-scan gamit ang camera o larawan",
+    "cameraOptionBody": "Basahin ang nakalimbag na teksto sa isang pahina. Sa iyong telepono ginagawa ang pagkilala.",
+    "shareHint": "Tip: sa kahit anong ibang app, i-share ang teksto sa Linewise at bubukas ito rito, handa nang i-save.",
+    "fileTooLargeTitle": "Masyadong malaki ang file",
+    "fileTooLargeBody": "Pumili ng mas maliit na text file. Hanggang 100 KB ang puwedeng laki ng teksto.",
+    "fileErrorTitle": "Hindi mabasa ang file"
+  },
+  "editor": {
+    "body": "Teksto",
+    "bodyPlaceholder": "I-paste o i-type ang teksto. Mag-iwan ng blangkong linya sa pagitan ng mga bahagi.",
+    "size": "{{used}} KB sa {{max}} KB",
+    "title": "Pamagat",
+    "author": "May-akda (opsyonal)",
+    "type": "Uri ng teksto",
+    "typeText": "Teksto",
+    "typeScript": "Iskrip",
+    "scriptHelp": "Isulat ang pangalan ng bawat tauhan sa MALALAKING TITIK sa sarili nitong linya, at ang mga linya nila sa ilalim. Ilagay ang mga direksyon sa entablado sa loob ng (panaklong) o [bracket].",
+    "scriptHelpNoCase": "Walang malalaking titik ang wikang ito, kaya tapusin na lang ang pangalan ng bawat tauhan sa tutuldok.",
+    "language": "Wika ng teksto",
+    "tags": "Mga tag",
+    "tagsHint": "Paghiwalayin ang mga tag gamit ang kuwit",
+    "scriptWarnings": "Suriin ang iyong iskrip",
+    "issues": {
+      "SPEAKER_NO_DIALOGUE": "Linya {{line}}: walang mga linyang kasunod ang pangalan ng tauhan.",
+      "LOOKS_LIKE_SPEAKER": "Linya {{line}}: mukhang pangalan ng tauhan ito pero hindi nakasulat sa malalaking titik."
+    },
+    "editWarning": "Kapag binago ang mga salita, mare-reset ang mga pinili mo sa Punan ang Patlang, at mamarkahang luma na ang mga naunang recording.",
+    "previewTitle": "Preview, mga bahagi: {{count}}",
+    "previewEmpty": "Lalabas dito ang mga bahagi habang nagta-type ka. Ang blangkong linya ay nagsisimula ng bagong bahagi.",
+    "previewMore": "+{{count}} pa",
+    "chunkN": "Bahagi {{n}}",
+    "create": "I-save ang teksto",
+    "save": "I-save ang mga pagbabago",
+    "errors": {
+      "titleRequired": "Bigyan ng pamagat ang teksto.",
+      "bodyRequired": "Magdagdag ng teksto na kakabisaduhin.",
+      "bodyTooLarge": "Lampas sa limitasyong {{max}} KB ang tekstong ito. Hatiin ito sa ilang teksto."
+    }
+  },
+  "detail": {
+    "notFound": "Wala na ang tekstong ito",
+    "ringsHelp": "Panlabas na singsing: gaano mo na ito kabisado. Panloob na singsing: progreso sa iyong plano ng balik-aral.",
+    "fullText": "Buong teksto",
+    "edit": "I-edit",
+    "stats": "Estadistika",
+    "reminders": "Mga paalala",
+    "noChunks": "Walang bahaging maisasanay ang tekstong ito.",
+    "whatToPractise": "Ano ang sasanayin",
+    "share": "I-share ang teksto",
+    "delete": "Burahin ang tekstong ito",
+    "deleteTitle": "Burahin ang tekstong ito?",
+    "deleteBody": "Buburahin sa teleponong ito ang “{{title}}”, ang progreso, mga sesyon at mga recording nito. Hindi na ito mababawi."
+  },
+  "selection": {
+    "all": "Buong teksto",
+    "one": "Isang bahagi",
+    "range": "Saklaw",
+    "chunk": "Bahagi",
+    "from": "Mula sa bahagi",
+    "to": "Hanggang bahagi",
+    "speaker": "Isang tauhan lang ang sanayin",
+    "everyone": "Lahat"
+  },
+  "groups": {
+    "practice": "Pagsasanay",
+    "practiceHelp": "Matutunan ang mga salita. Walang marka.",
+    "solidify": "Patatagin",
+    "solidifyHelp": "Ikintal ito sa mga ginabayang laro.",
+    "evaluate": "Suriin",
+    "evaluateHelp": "Subukin ang sarili nang walang tulong."
+  },
+  "games": {
+    "nothingToPractise": "Walang maisasanay dito",
+    "nothingToPractiseBody": "Walang salita ang mga napiling bahagi para sa pagpiling ito. Bumalik at baguhin ang pinili.",
+    "chunkOne": "bahagi {{n}}",
+    "chunkRange": "mga bahagi {{from}}–{{to}}",
+    "tap-to-reveal": {
+      "name": "I-tap para Ibunyag",
+      "blurb": "Ibunyag ang isang parirala, pangungusap o salita bawat beses"
+    },
+    "slider": {
+      "name": "Slider",
+      "blurb": "Itago ang mas marami pang salita"
+    },
+    "listen": {
+      "name": "Making",
+      "blurb": "Pakinggan itong binabasa at sumabay sa screen"
+    },
+    "my-recordings": {
+      "name": "Aking mga Recording",
+      "blurb": "I-record ang sarili mong binabasa ito"
+    },
+    "first-letter": {
+      "name": "Unang Titik",
+      "blurb": "I-type ang unang titik ng bawat salita"
+    },
+    "fill-in-the-blank": {
+      "name": "Punan ang Patlang",
+      "blurb": "Piliin ang mga nawawalang salita"
+    },
+    "sentence-scramble": {
+      "name": "Ayusin ang mga Pangungusap",
+      "blurb": "Ibalik sa tamang ayos ang mga pinaghalong pangungusap"
+    },
+    "type-it": {
+      "name": "I-type Ito",
+      "blurb": "I-type ang buong teksto nang walang tingin"
+    },
+    "multiple-choice": {
+      "name": "Maramihang Pagpipilian",
+      "blurb": "Piliin kung ano ang sunod"
+    },
+    "speak": {
+      "name": "Magsalita",
+      "blurb": "Bigkasin nang malakas at makakuha ng marka"
+    },
+    "run-scene": {
+      "name": "Isadula ang Eksena",
+      "blurb": "Gampanan ang papel mo habang binabasa ng app ang iba"
+    }
+  },
+  "result": {
+    "great": "Magaling!",
+    "keepGoing": "Ituloy mo lang, malapit ka na.",
+    "accuracy": "Katumpakan",
+    "coverage": "Bahagi ng tekstong nasaklaw",
+    "weightedHelp": "Ang iyong marka ay ang katumpakan na minultiply sa bahagi ng buong teksto na iyong sinanay.",
+    "practiceOnly": "Pagsasanay lang ito. Ang unang larong may marka lang sa araw ng balik-aral ang nagpapausad ng iyong plano.",
+    "advanced": "Pasado! Ang susunod mong balik-aral ay sa {{date}}.",
+    "planDone": "Pasado! Natapos mo na ang plano ng balik-aral para sa tekstong ito.",
+    "retry": "Hindi pa umaabot sa {{pass}}%. Puwede kang sumubok ulit bukas, at nakakatulong pa rin ang pagsasanay ngayon.",
+    "playAgain": "Laruin muli",
+    "backToText": "Bumalik sa teksto"
+  },
+  "diff": {
+    "missed": "Nalaktawan",
+    "wrong": "Maling salita",
+    "extra": "Sobra"
+  },
+  "tap": {
+    "mode": {
+      "phrase": "Mga parirala",
+      "sentence": "Mga pangungusap",
+      "word": "Mga salita"
+    },
+    "speak": "Basahin nang malakas",
+    "start": "I-tap para ibunyag ang unang bahagi",
+    "revealNext": "Ibunyag ang susunod",
+    "undo": "I-undo",
+    "reset": "Magsimula muli",
+    "progress": "{{shown}} sa {{total}} ang naibunyag",
+    "done": "Iyon na ang lahat. Subukan ulit mula sa simula."
+  },
+  "slider": {
+    "hidden": "Mga nakatagong salita",
+    "label": "Porsiyento ng mga nakatagong salita",
+    "guided": "Ginabayang pagbasa",
+    "recall": "Buong pag-alala",
+    "reshuffle": "Pumili ng ibang salita",
+    "tapHint": "I-tap ang nakatagong salita para silipin ito."
+  },
+  "listen": {
+    "previous": "Nakaraang linya",
+    "next": "Susunod na linya",
+    "back10": "Umatras ng 10 segundo",
+    "forward10": "Umabante ng 10 segundo",
+    "repeat": "Ulitin",
+    "sourceVoice": "Boses",
+    "sourceRecording": "Aking recording",
+    "recordingHelp": "Pinapatugtog ang na-save mong recording. Patuloy itong tumutugtog kahit patay ang screen."
+  },
+  "firstLetter": {
+    "help": "I-type ang unang titik ng bawat naka-highlight na salita. Ang maling titik ay magvi-vibrate, ipapakita ang salita at didiretso sa susunod.",
+    "placeholder": "Mag-type ng titik",
+    "progress": "{{done}} sa {{total}} salita"
+  },
+  "fill": {
+    "chooseHelp": "I-tap ang mga salita para piliin kung alin ang itatago. Na-save ang pinili mo para sa tekstong ito.",
+    "auto": "Itago ang {{percent}}%",
+    "clear": "Burahin",
+    "count": "Mga nakatagong salita: {{count}}",
+    "start": "Simulan",
+    "progress": "Patlang {{done}} sa {{total}}"
+  },
+  "scramble": {
+    "help": "I-drag ang hawakan, o gamitin ang mga arrow, para ilagay ang mga pangungusap sa tamang ayos. Pagkatapos ay i-tap ang Tapos na.",
+    "round": "Round {{n}} sa {{total}}",
+    "drag": "I-drag para muling ayusin",
+    "up": "Ilipat pataas",
+    "down": "Ilipat pababa",
+    "done": "Tapos na",
+    "score": "Nasa tamang lugar: {{correct}} sa {{total}}",
+    "correctOrder": "Ito ang tamang ayos:",
+    "next": "Susunod na round",
+    "finish": "Tingnan ang resulta",
+    "tooShort": "Kulang para paghaluin",
+    "tooShortBody": "Wala pang dalawang pangungusap o parirala ang pinili. Pumili ng mas maraming bahagi."
+  },
+  "typeIt": {
+    "help": "I-type ang teksto nang walang tingin. Mga salitang aalalahanin: {{count}}.",
+    "placeholder": "Simulan ang pag-type…",
+    "done": "Suriin ang sagot ko",
+    "review": "Ang tinype mo"
+  },
+  "choice": {
+    "progress": "Tanong {{n}} sa {{total}}",
+    "askPhrase": "Ano ang sunod?",
+    "askWord": "Anong salita ang sunod?",
+    "next": "Susunod",
+    "finish": "Tingnan ang resulta",
+    "tooShort": "Kulang ang teksto para sa mga tanong",
+    "tooShortBody": "Pumili ng mas maraming bahagi, o magdagdag ng teksto."
+  },
+  "speak": {
+    "help": "Bigkasin nang malakas ang teksto nang walang tingin. Mga salitang aalalahanin: {{count}}. Sa iyong telepono ginagawa ang pagkilala.",
+    "start": "Simulan ang pagsasalita",
+    "listening": "Nakikinig…",
+    "waiting": "Magsalita kapag handa ka na",
+    "done": "Tapos na ako",
+    "heardNothing": "Wala akong narinig. Subukan ulit nang mas malapit sa mikropono.",
+    "error": "Huminto ang pagkilala ng boses ({{code}}). Subukan ulit.",
+    "review": "Ang narinig ko"
+  },
+  "speechIssue": {
+    "openSettings": "Buksan ang mga setting ng app",
+    "openTtsSettings": "Buksan ang mga setting ng boses",
+    "downloadPack": "I-download ang speech pack",
+    "retry": "Suriin muli",
+    "permission": {
+      "title": "Kailangan ang mikropono",
+      "body": "Kailangan ng Linewise ang mikropono para marinig kang bumibigkas. Payagan ito kapag tinanong, at subukan ulit."
+    },
+    "permission-blocked": {
+      "title": "Patay ang mikropono",
+      "body": "Tinanggihan ang access sa mikropono. Buksan ang mga setting ng app, piliin ang Mga Pahintulot, payagan ang Mikropono, at bumalik dito."
+    },
+    "unavailable": {
+      "title": "Walang nahanap na speech recognizer",
+      "body": "Walang serbisyo ng speech recognition ang teleponong ito. I-install o i-enable ang “Speech Recognition & Synthesis” ng Google sa mga setting ng telepono, at suriin muli."
+    },
+    "no-on-device": {
+      "title": "Hindi suportado ang offline na pagkilala",
+      "body": "Ang pagkilalang tumatakbo lang sa iyong telepono ang ginagamit ng Linewise, at hindi ito kaya ng teleponong ito. Kadalasang kaya ito ng mas bagong Android na may updated na Google app."
+    },
+    "language-missing": {
+      "title": "Hindi pa na-download ang language pack",
+      "body": "Wala pa sa iyong telepono ang offline speech pack para sa wikang ito. I-download ito nang isang beses, at suriin muli."
+    },
+    "no-voice": {
+      "title": "Walang boses para sa wikang ito",
+      "body": "Walang text-to-speech na boses ang iyong telepono para sa wikang ito. Buksan ang mga setting ng boses, piliin ang speech engine mo at i-install ang voice data."
+    }
+  },
+  "scene": {
+    "help": "Piliin ang iyong papel. Binabasa ng app nang malakas ang ibang papel at mga direksyon sa entablado, at pinakikinggan ang mga linya mo.",
+    "yourRole": "Ang iyong papel",
+    "narrate": "Basahin nang malakas ang mga direksyon sa entablado",
+    "voices": "Mga boses para sa ibang papel",
+    "narrator": "Tagapagsalaysay",
+    "defaultVoice": "Default na boses",
+    "test": "Subukan",
+    "noVoices": "Walang nahanap na boses para sa wikang ito. Gagamitin ang default na boses ng telepono.",
+    "noRoles": "Walang tauhan ang tekstong ito. Isulat ang mga pangalan sa malalaking titik at gawin itong iskrip.",
+    "start": "Simulan ang eksena",
+    "progress": "Linya {{n}} sa {{total}}",
+    "yourLine": "Ang linya mo. Sabihin ito nang walang tingin.",
+    "hint": "Ipakita ang linya",
+    "heardNothing": "Hindi ko narinig ang linya mo.",
+    "retry": "Subukan ulit",
+    "skip": "Laktawan",
+    "stop": "Ihinto",
+    "review": "Ang mga linya mo"
+  },
+  "recordings": {
+    "help": "I-record ang sarili mong binabasa ang tekstong ito. Puwede kang magtabi ng hanggang {{max}} recording na hanggang 10 minuto bawat isa.",
+    "defaultName": "Take",
+    "record": "I-record",
+    "stop": "Ihinto at i-save",
+    "empty": "Wala pang recording",
+    "rename": "Palitan ang pangalan",
+    "useInListen": "Gamitin sa Making",
+    "usedInListen": "Ginagamit sa Making",
+    "outOfDate": "Na-record bago huling nabago ang teksto, kaya baka hindi na tugma sa mga salita.",
+    "fullTitle": "Naabot na ang limitasyon ng recording",
+    "fullBody": "Burahin ang lumang recording para magkaroon ng puwang para sa bago.",
+    "limitReachedTitle": "Naabot ang sampung minuto",
+    "limitReachedBody": "Huminto at na-save ang recording.",
+    "deleteTitle": "Burahin ang recording na ito?",
+    "permissionTitle": "Kailangan ang mikropono",
+    "permissionBody": "Payagan ang access sa mikropono para makapag-record."
+  },
+  "stats": {
+    "total": "Mga sesyong may marka ngayong buwan: {{count}}",
+    "tapHint": "I-tap ang isang bar para makita ang araw na iyon.",
+    "noSessions": "Walang sesyong may marka sa araw na iyon."
+  },
+  "target": {
+    "title": "Target na petsa",
+    "help": "Pumili ng petsang gusto mong kabisado mo na ito. Ang mga balik-aral mo ay ipinapagitna para ang huli ay pumatak sa araw na iyon.",
+    "current": "Kasalukuyang target: {{date}}",
+    "inDays": "Mga araw mula ngayon: {{count}}",
+    "preview": "Ang iskedyul mo",
+    "firstReview": "Susunod na balik-aral",
+    "reviewN": "Balik-aral {{n}}",
+    "planComplete": "Wala nang ii-iskedyul. Tapos mo na ang plano.",
+    "save": "I-save ang target na petsa",
+    "clear": "Alisin ang target na petsa"
+  },
+  "reminders": {
+    "title": "Mga paalala",
+    "next": "Susunod na balik-aral: {{date}}",
+    "none": "Wala pang naka-iskedyul na balik-aral. Maglaro ng larong may marka para simulan ang plano mo.",
+    "on": "Naka-on ang mga paalala. Makakatanggap ka ng notification sa mga araw ng balik-aral.",
+    "off": "Naka-off ang mga paalala.",
+    "enable": "I-on ang mga paalala"
+  },
+  "notifications": {
+    "channel": "Mga paalala ng balik-aral",
+    "reviewTitle": "Oras na para mag-balik-aral",
+    "reviewBody": "Dapat balikan ngayon ang “{{title}}”.",
+    "backupTitle": "I-backup ang Linewise",
+    "backupBody": "Mag-save ng backup na file para maibalik mo ang iyong mga teksto at progreso sa ibang pagkakataon."
+  },
+  "voices": {
+    "title": "Mga boses",
+    "help": "Piliin ang boses na magbabasa ng bawat wika nang malakas. Ito ang mga boses na naka-install sa iyong telepono.",
+    "systemDefault": "Default ng telepono",
+    "systemDefaultHelp": "Gamitin ang boses na pipiliin ng iyong telepono.",
+    "use": "Gamitin",
+    "selected": "Napili",
+    "enhanced": "Pinahusay",
+    "sample": "Kumusta, ganito ang tunog ko.",
+    "noneTitle": "Walang boses para sa wikang ito",
+    "noneBody": "Buksan ang mga setting ng boses, piliin ang speech engine mo at i-install ang voice data para sa wikang ito. Pagkatapos ay bumalik at i-refresh.",
+    "refresh": "I-refresh",
+    "downloadHelp": "Gusto ng ibang punto o mas magandang kalidad? Mag-install ng mas maraming boses sa mga setting ng boses ng iyong telepono."
+  },
+  "backup": {
+    "title": "Backup at pagbabalik",
+    "exportTitle": "Mag-backup",
+    "exportBody": "Sine-save ang iyong mga teksto, progreso, sesyon at setting sa isang file. Ipadala ito sa Files, Google Drive, o saanmang ligtas na lugar.",
+    "noRecordings": "Hindi kasama ang mga recording para maliit ang file.",
+    "last": "Huling backup: {{date}}",
+    "never": "Hindi ka pa nakapag-backup.",
+    "now": "Mag-backup ngayon",
+    "shareTitle": "I-save ang iyong Linewise backup",
+    "sharingUnavailable": "Hindi available ang pag-share sa teleponong ito.",
+    "exportFailed": "Hindi nagawa ang backup: {{error}}",
+    "restoreTitle": "Ibalik",
+    "restoreBody": "Pumili ng Linewise backup na file. Makikita mo kung ano ang laman nito bago magbago ang anuman.",
+    "choose": "Pumili ng backup na file",
+    "readFailed": "Hindi mabasa ang file.",
+    "invalid": "Hindi ito Linewise backup na file.",
+    "unknownVersion": "Ang backup na ito ay ginawa ng ibang bersyon ng Linewise (bersyon {{version}}) at hindi mababasa.",
+    "contains": "Ang backup na ito ay naglalaman ng",
+    "containsBody": "Mga teksto: {{texts}} · Mga sesyon: {{sessions}} · Na-save noong {{date}}",
+    "merge": "Isama sa aking data",
+    "mergeHelp": "Pinananatili ang lahat sa teleponong ito. Para sa tekstong nasa parehong panig, mananaig ang mas bagong pag-edit.",
+    "replace": "Palitan ang lahat ng data ko",
+    "replaceTitle": "Palitan ang lahat?",
+    "replaceBody": "Buburahin sa teleponong ito ang mga tekstong wala sa backup, kasama ang mga recording nila.",
+    "restored": "Naibalik na. Mga teksto sa teleponong ito: {{count}}.",
+    "merged": "Naisama na. Idinagdag: {{added}}, in-update: {{updated}}, pinanatili: {{kept}}.",
+    "monthly": "Buwanang paalala sa backup",
+    "monthlyHelp": "Ipinapaalala minsan sa isang buwan na mag-save ng backup."
+  },
+  "camera": {
+    "help": "Itutok ang camera sa nakalimbag na teksto, o pumili ng larawan. Sa iyong telepono ginagawa ang pagkilala; walang ina-upload.",
+    "script": "Sistema ng pagsulat",
+    "scripts": {
+      "Latin": "Latin",
+      "Chinese": "Tsino",
+      "Devanagari": "Devanagari",
+      "Japanese": "Hapones",
+      "Korean": "Koreano"
+    },
+    "unsupported": "Hindi pa suportado ang pag-scan ng Arabic at Hebrew. Puwede mong i-type o i-paste ang mga tekstong iyon.",
+    "permissionBody": "Kailangan ng Linewise ang camera para mag-scan ng pahina.",
+    "allow": "Payagan ang camera",
+    "capture": "Kumuha ng litrato at basahin",
+    "gallery": "Pumili ng larawan",
+    "nothingFound": "Walang nakitang teksto. Subukan ang mas malinaw na larawan at mas maliwanag na ilaw.",
+    "failed": "Nabigo ang pagkilala ng teksto: {{error}}",
+    "reviewHelp": "Suriin ang teksto at ayusin ang mga mali bago magpatuloy.",
+    "use": "Gamitin ang tekstong ito",
+    "retake": "I-scan muli",
+    "privacy": "Sa iyong telepono binabasa ang mga larawan at hindi sine-save ng Linewise."
+  },
+  "settings": {
+    "language": "Wika ng app",
+    "system": "Kapareho ng telepono",
+    "restartNote": "Isara at buksan muli ang Linewise para mapalitan ang direksyon ng layout.",
+    "defaultLanguage": "Wika para sa mga bagong teksto",
+    "fontSize": "Laki ng teksto",
+    "fontPreview": "Ang mabilis na kayumangging soro ay tumatalon sa ibabaw ng tamad na aso.",
+    "speech": "Pagsasalita",
+    "speechRate": "Bilis ng pagsasalita",
+    "testSpeech": "Subukan ang bilis",
+    "testSentence": "Ganito kabilis akong magbabasa.",
+    "voices": "Pumili ng mga boses",
+    "reviews": "Mga balik-aral",
+    "notifications": "Mga paalala ng balik-aral",
+    "notificationsHelp": "Isang notification sa mga araw na may balik-aral.",
+    "notificationsBlockedTitle": "Naka-off ang mga notification",
+    "notificationsBlockedBody": "Payagan ang mga notification ng Linewise sa mga setting ng telepono para makatanggap ng mga paalala.",
+    "resetSolidify": "I-reset ang mga marka sa Patatagin sa bawat interval",
+    "resetSolidifyHelp": "Magsimulang muli ang mga marka sa Patatagin tuwing lilipat ka sa bagong interval ng balik-aral.",
+    "data": "Ang iyong data",
+    "backup": "Backup at pagbabalik",
+    "offlineNote": "Nananatili ang lahat sa teleponong ito. Walang account ang Linewise at hindi ito kailanman kumokonekta sa internet.",
+    "about": "Tungkol dito",
+    "faq": "Mga tanong at sagot",
+    "report": "Mag-ulat ng problema",
+    "reportNote": "Bubuksan ang GitHub sa iyong browser. Ang Linewise mismo ay hindi gumagawa ng anumang koneksyon sa network.",
+    "replayIntro": "Panoorin muli ang pagpapakilala"
+  },
+  "faq": {
+    "title": "Mga tanong at sagot",
+    "items": {
+      "offline": {
+        "q": "Kailangan ba ng Linewise ang internet?",
+        "a": "Hindi. Lahat ay tumatakbo sa iyong telepono, at hindi man lang humihingi ng pahintulot sa internet ang app. Gumagana ito sa airplane mode."
+      },
+      "chunks": {
+        "q": "Paano ko hahatiin ang teksto sa mga bahagi?",
+        "a": "Mag-iwan ng blangkong linya sa pagitan ng mga bahagi kapag nagdadagdag o nag-e-edit ng teksto. Pinapanatili ang mga simpleng pagpapalit ng linya sa loob ng bahagi, na bagay sa mga tula at liriko."
+      },
+      "script": {
+        "q": "Paano ako magdadagdag ng dula o iskrip?",
+        "a": "Piliin ang “Iskrip” bilang uri ng teksto. Isulat ang pangalan ng bawat tauhan sa MALALAKING TITIK sa sarili nitong linya, at ang mga linya nila sa ilalim. Ang mga direksyon sa entablado ay nasa loob ng (panaklong) o [bracket]."
+      },
+      "review": {
+        "q": "Paano gumagana ang mga balik-aral?",
+        "a": "Pagkatapos ng una mong larong may marka, ang mga balik-aral ay may pagitang 1, 2, 4, 7, 14, 30 at 60 araw. Sa araw ng balik-aral, ang una mong larong Patatagin o Suriin ang binibilang. Kumuha ng 80% o higit pa para lumipat sa susunod na interval; kung hindi, subukan ulit bukas."
+      },
+      "target": {
+        "q": "Ano ang target na petsa?",
+        "a": "Ito ang araw na gusto mong kabisado mo na ang teksto. Pinaiikli o pinahahaba ng Linewise ang mga pagitan ng balik-aral para ang huling balik-aral ay pumatak sa araw na iyon."
+      },
+      "score": {
+        "q": "Paano kinukuwenta ang marka ko?",
+        "a": "Katumpakan na minultiply sa saklaw. Ang saklaw ay ang bahagi ng buong teksto na sinanay mo sa larong iyon, kaya ang buong takbo sa buong teksto ang pinakamataas ang marka."
+      },
+      "speech": {
+        "q": "Hindi gumagana ang Magsalita at Isadula ang Eksena. Bakit?",
+        "a": "Kailangan nila ang mikropono, isang speech recognizer sa device at ang offline speech pack ng iyong wika. Sasabihin sa iyo ng Linewise kung alin ang kulang at paano ito aayusin."
+      },
+      "voices": {
+        "q": "Paano ako makakakuha ng mas magandang boses?",
+        "a": "Buksan ang Mga Setting, pagkatapos ay Pumili ng mga boses, pagkatapos ay Buksan ang mga setting ng boses. Piliin ang speech engine mo at mag-install ng dagdag na boses o mas mataas na kalidad ng voice data."
+      },
+      "backup": {
+        "q": "Paano ko ililipat ang data ko sa bagong telepono?",
+        "a": "Gamitin ang Mga Setting, pagkatapos ay Backup at pagbabalik. I-save ang backup na file sa lugar na maaabot mo mula sa bagong telepono, at ibalik ito doon."
+      },
+      "recordings": {
+        "q": "Bakit nawawala ang mga recording ko pagkatapos ibalik?",
+        "a": "Hindi kasama sa mga backup ang mga recording para maliit ang file. I-record muli ang mga ito sa bagong telepono."
+      },
+      "share": {
+        "q": "Puwede ba akong magdagdag ng teksto mula sa ibang app?",
+        "a": "Oo. Pumili ng teksto sa kahit anong app, piliin ang Share, at piliin ang Linewise. Bubukas ang screen na Magdagdag na nakalagay na ang teksto."
+      },
+      "camera": {
+        "q": "Bakit hindi ako makapag-scan ng Arabic o Hebrew?",
+        "a": "Hindi pa kasama ang mga wikang iyon sa on-device na pagkilala ng teksto na ginagamit ng Linewise. Puwede mo na lang silang i-type o i-paste."
+      }
+    }
+  },
+  "onboarding": {
+    "welcome": "Maligayang pagdating sa Linewise",
+    "tagline": "Kabisaduhin ang mga tula, talumpati, talata at iskrip.",
+    "goalQuestion": "Ano ang gusto mong kabisaduhin?",
+    "goals": {
+      "poem": "Isang tula",
+      "speech": "Isang talumpati",
+      "script": "Isang iskrip",
+      "verse": "Isang talata o panalangin",
+      "other": "Iba pa"
+    },
+    "reminderQuestion": "Gusto mo ba ng paalala sa mga araw ng balik-aral?",
+    "reminderBody": "Ang mga may-pagitang balik-aral ang nagpapatagal ng alaala. Nakakatulong ang banayad na paalala para hindi ka makalimot.",
+    "tryDemo": "Subukan ang isang-minutong demo",
+    "offline": "Walang account. Walang internet. Hindi umaalis sa telepono mo ang iyong mga teksto."
+  },
+  "demo": {
+    "title": "Subukan ang Unang Titik",
+    "help": "I-type ang unang titik ng bawat naka-highlight na salita, nang walang tingin. Ayos lang kung hindi mo pa ito kabisado.",
+    "doneBody": "Ganyan gumagana ang bawat laro. Pumili ng isa, maglaro, at ise-set para sa iyo ang mga balik-aral.",
+    "score": "Nakakuha ka ng {{percent}}%",
+    "save": "I-save ang tulang ito sa aking listahan",
+    "skip": "Magpatuloy nang hindi nagse-save",
+    "skipDemo": "Laktawan ang demo"
+  }
+}

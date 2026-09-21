@@ -1,0 +1,542 @@
+{
+  "common": {
+    "back": "Terug",
+    "cancel": "Annuleren",
+    "delete": "Verwijderen",
+    "loading": "Laden…",
+    "next": "Volgende",
+    "no": "Nee",
+    "pause": "Pauzeren",
+    "play": "Afspelen",
+    "save": "Opslaan",
+    "yes": "Ja"
+  },
+  "errors": {
+    "databaseTitle": "De gegevens van de app konden niet worden geopend"
+  },
+  "tabs": {
+    "memorizations": "Leren",
+    "add": "Toevoegen",
+    "settings": "Instellingen"
+  },
+  "status": {
+    "new": "Nieuw",
+    "due": "Vandaag herhalen",
+    "inDays": "Volgende herhaling over {{count}} d",
+    "done": "Plan voltooid"
+  },
+  "list": {
+    "search": "Zoek op titel, auteur of tag",
+    "allTags": "Alle",
+    "emptyTitle": "Nog niets om uit je hoofd te leren",
+    "emptyBody": "Voeg een gedicht, toespraak, vers of script toe. Alles blijft op je telefoon.",
+    "addFirst": "Voeg je eerste tekst toe",
+    "noMatches": "Geen teksten gevonden voor je zoekopdracht",
+    "backupNudgeTitle": "Tijd voor een back-up",
+    "backupNudgeBody": "Er is een maand verstreken. Met een back-upbestand kun je je teksten en voortgang herstellen als je deze telefoon kwijtraakt of reset.",
+    "backupNow": "Nu back-up maken"
+  },
+  "add": {
+    "title": "Tekst toevoegen",
+    "editTitle": "Nieuwe tekst",
+    "cameraTitle": "Tekst scannen",
+    "intro": "Kies hoe je je tekst binnenhaalt. Op het volgende scherm kun je hem in stukken verdelen en bijwerken.",
+    "typeTitle": "Typen of plakken",
+    "typeBody": "Schrijf de tekst zelf of plak hem van ergens anders.",
+    "fileTitle": "Bestand importeren",
+    "fileBody": "Kies een .txt- of .md-bestand van je telefoon.",
+    "cameraOptionTitle": "Scannen met camera of foto",
+    "cameraOptionBody": "Lees gedrukte tekst van een pagina. De herkenning gebeurt op je telefoon.",
+    "shareHint": "Tip: deel in een andere app tekst met Linewise en hij opent hier, klaar om op te slaan.",
+    "fileTooLargeTitle": "Dat bestand is te groot",
+    "fileTooLargeBody": "Kies een kleiner tekstbestand. Teksten mogen tot 100 KB groot zijn.",
+    "fileErrorTitle": "Het bestand kon niet worden gelezen"
+  },
+  "editor": {
+    "body": "Tekst",
+    "bodyPlaceholder": "Plak of typ de tekst. Laat een lege regel tussen stukken.",
+    "size": "{{used}} KB van {{max}} KB",
+    "title": "Titel",
+    "author": "Auteur (optioneel)",
+    "type": "Soort tekst",
+    "typeText": "Tekst",
+    "typeScript": "Script",
+    "scriptHelp": "Zet de naam van elke spreker in HOOFDLETTERS op een eigen regel, met de regels eronder. Zet regieaanwijzingen tussen (haakjes) of [blokhaken].",
+    "scriptHelpNoCase": "Deze taal heeft geen hoofdletters. Eindig de naam van elke spreker in plaats daarvan met een dubbele punt.",
+    "language": "Taal van de tekst",
+    "tags": "Tags",
+    "tagsHint": "Scheid tags met komma's",
+    "scriptWarnings": "Controleer je script",
+    "issues": {
+      "SPEAKER_NO_DIALOGUE": "Regel {{line}}: na een sprekersnaam staan geen regels.",
+      "LOOKS_LIKE_SPEAKER": "Regel {{line}}: dit lijkt een sprekersnaam, maar staat niet in hoofdletters."
+    },
+    "editWarning": "Als je de woorden wijzigt, worden je keuzes bij Invullen gereset en worden oudere opnames als verouderd gemarkeerd.",
+    "previewTitle": "Voorbeeld, stukken: {{count}}",
+    "previewEmpty": "Stukken verschijnen hier terwijl je typt. Een lege regel begint een nieuw stuk.",
+    "previewMore": "+{{count}} meer",
+    "chunkN": "Stuk {{n}}",
+    "create": "Tekst opslaan",
+    "save": "Wijzigingen opslaan",
+    "errors": {
+      "titleRequired": "Geef de tekst een titel.",
+      "bodyRequired": "Voeg tekst toe om te leren.",
+      "bodyTooLarge": "Deze tekst overschrijdt de limiet van {{max}} KB. Verdeel hem over meerdere teksten."
+    }
+  },
+  "detail": {
+    "notFound": "Deze tekst bestaat niet meer",
+    "ringsHelp": "Buitenste ring: hoe goed je hem kent. Binnenste ring: voortgang in je herhaalplan.",
+    "fullText": "Volledige tekst",
+    "edit": "Bewerken",
+    "stats": "Statistieken",
+    "reminders": "Herinneringen",
+    "noChunks": "Deze tekst heeft geen stukken om te oefenen.",
+    "whatToPractise": "Wat oefenen",
+    "share": "Tekst delen",
+    "delete": "Deze tekst verwijderen",
+    "deleteTitle": "Deze tekst verwijderen?",
+    "deleteBody": "“{{title}}”, de voortgang, sessies en opnames worden van deze telefoon verwijderd. Dit kan niet ongedaan worden gemaakt."
+  },
+  "selection": {
+    "all": "Hele tekst",
+    "one": "Eén stuk",
+    "range": "Bereik",
+    "chunk": "Stuk",
+    "from": "Vanaf stuk",
+    "to": "Tot stuk",
+    "speaker": "Eén spreker oefenen",
+    "everyone": "Iedereen"
+  },
+  "groups": {
+    "practice": "Oefenen",
+    "practiceHelp": "Leer de woorden. Zonder score.",
+    "solidify": "Verstevigen",
+    "solidifyHelp": "Prent het in met begeleide spellen.",
+    "evaluate": "Toetsen",
+    "evaluateHelp": "Test jezelf zonder hulp."
+  },
+  "games": {
+    "nothingToPractise": "Hier valt niets te oefenen",
+    "nothingToPractiseBody": "De gekozen stukken bevatten geen woorden voor deze keuze. Ga terug en pas de selectie aan.",
+    "chunkOne": "stuk {{n}}",
+    "chunkRange": "stukken {{from}}–{{to}}",
+    "tap-to-reveal": {
+      "name": "Tik om te onthullen",
+      "blurb": "Onthul telkens één zinsdeel, zin of woord"
+    },
+    "slider": {
+      "name": "Schuifregelaar",
+      "blurb": "Verberg steeds meer woorden"
+    },
+    "listen": {
+      "name": "Luisteren",
+      "blurb": "Hoor de tekst voorgelezen en lees mee"
+    },
+    "my-recordings": {
+      "name": "Mijn opnames",
+      "blurb": "Neem jezelf op terwijl je voorleest"
+    },
+    "first-letter": {
+      "name": "Eerste letter",
+      "blurb": "Typ de eerste letter van elk woord"
+    },
+    "fill-in-the-blank": {
+      "name": "Invullen",
+      "blurb": "Kies de ontbrekende woorden"
+    },
+    "sentence-scramble": {
+      "name": "Zinnen ordenen",
+      "blurb": "Zet door elkaar gehusselde zinnen op volgorde"
+    },
+    "type-it": {
+      "name": "Uittypen",
+      "blurb": "Typ de hele tekst uit je hoofd"
+    },
+    "multiple-choice": {
+      "name": "Meerkeuze",
+      "blurb": "Kies wat er hierna komt"
+    },
+    "speak": {
+      "name": "Spreken",
+      "blurb": "Draag het hardop voor en krijg een score"
+    },
+    "run-scene": {
+      "name": "Scène spelen",
+      "blurb": "Speel je rol terwijl de app de anderen voorleest"
+    }
+  },
+  "result": {
+    "great": "Goed gedaan!",
+    "keepGoing": "Ga zo door, je komt er.",
+    "accuracy": "Nauwkeurigheid",
+    "coverage": "Gedekt deel van de tekst",
+    "weightedHelp": "Je score is de nauwkeurigheid maal het deel van de hele tekst dat je hebt geoefend.",
+    "practiceOnly": "Dit was oefenen. Alleen het eerste spel met score op een herhaaldag brengt je plan vooruit.",
+    "advanced": "Geslaagd! Je volgende herhaling is op {{date}}.",
+    "planDone": "Geslaagd! Je hebt je herhaalplan voor deze tekst voltooid.",
+    "retry": "Nog geen {{pass}}%. Je kunt het morgen opnieuw proberen, en het oefenen van vandaag helpt nog steeds.",
+    "playAgain": "Opnieuw spelen",
+    "backToText": "Terug naar de tekst"
+  },
+  "diff": {
+    "missed": "Gemist",
+    "wrong": "Verkeerd woord",
+    "extra": "Extra"
+  },
+  "tap": {
+    "mode": {
+      "phrase": "Zinsdelen",
+      "sentence": "Zinnen",
+      "word": "Woorden"
+    },
+    "speak": "Hardop voorlezen",
+    "start": "Tik om het eerste deel te onthullen",
+    "revealNext": "Volgende onthullen",
+    "undo": "Ongedaan maken",
+    "reset": "Opnieuw beginnen",
+    "progress": "{{shown}} van {{total}} onthuld",
+    "done": "Dat was alles. Probeer het opnieuw vanaf het begin."
+  },
+  "slider": {
+    "hidden": "Verborgen woorden",
+    "label": "Percentage verborgen woorden",
+    "guided": "Begeleid lezen",
+    "recall": "Volledig onthouden",
+    "reshuffle": "Andere woorden kiezen",
+    "tapHint": "Tik op een verborgen woord om even te kijken."
+  },
+  "listen": {
+    "previous": "Vorige regel",
+    "next": "Volgende regel",
+    "back10": "10 seconden terug",
+    "forward10": "10 seconden vooruit",
+    "repeat": "Herhalen",
+    "sourceVoice": "Stem",
+    "sourceRecording": "Mijn opname",
+    "recordingHelp": "Je opgeslagen opname wordt afgespeeld. Hij blijft spelen met het scherm uit."
+  },
+  "firstLetter": {
+    "help": "Typ de eerste letter van elk gemarkeerd woord. Een verkeerde letter trilt, toont het woord en gaat verder.",
+    "placeholder": "Typ een letter",
+    "progress": "{{done}} van {{total}} woorden"
+  },
+  "fill": {
+    "chooseHelp": "Tik op woorden om te kiezen welke worden verborgen. Je keuze wordt voor deze tekst opgeslagen.",
+    "auto": "{{percent}}% verbergen",
+    "clear": "Wissen",
+    "count": "Verborgen woorden: {{count}}",
+    "start": "Start",
+    "progress": "Open plek {{done}} van {{total}}"
+  },
+  "scramble": {
+    "help": "Sleep aan de greep, of gebruik de pijltjes, om de zinnen in de juiste volgorde te zetten. Tik daarna op Klaar.",
+    "round": "Ronde {{n}} van {{total}}",
+    "drag": "Slepen om te herschikken",
+    "up": "Omhoog",
+    "down": "Omlaag",
+    "done": "Klaar",
+    "score": "Op de juiste plek: {{correct}} van {{total}}",
+    "correctOrder": "De juiste volgorde was:",
+    "next": "Volgende ronde",
+    "finish": "Resultaat bekijken",
+    "tooShort": "Te weinig om te husselen",
+    "tooShortBody": "Deze selectie heeft minder dan twee zinnen of zinsdelen. Kies meer stukken."
+  },
+  "typeIt": {
+    "help": "Typ de tekst uit je hoofd. Te onthouden woorden: {{count}}.",
+    "placeholder": "Begin met typen…",
+    "done": "Mijn antwoord controleren",
+    "review": "Wat je hebt getypt"
+  },
+  "choice": {
+    "progress": "Vraag {{n}} van {{total}}",
+    "askPhrase": "Wat komt hierna?",
+    "askWord": "Welk woord komt hierna?",
+    "next": "Volgende",
+    "finish": "Resultaat bekijken",
+    "tooShort": "Te weinig tekst voor vragen",
+    "tooShortBody": "Kies meer stukken of voeg meer tekst toe."
+  },
+  "speak": {
+    "help": "Draag de tekst hardop uit je hoofd voor. Te onthouden woorden: {{count}}. De herkenning gebeurt op je telefoon.",
+    "start": "Beginnen met spreken",
+    "listening": "Aan het luisteren…",
+    "waiting": "Begin te spreken wanneer je klaar bent",
+    "done": "Ik ben klaar",
+    "heardNothing": "Ik hoorde niets. Probeer het opnieuw, iets dichter bij de microfoon.",
+    "error": "De spraakherkenning is gestopt ({{code}}). Probeer het opnieuw.",
+    "review": "Wat ik hoorde"
+  },
+  "speechIssue": {
+    "openSettings": "App-instellingen openen",
+    "openTtsSettings": "Spraakinstellingen openen",
+    "downloadPack": "Spraakpakket downloaden",
+    "retry": "Opnieuw controleren",
+    "permission": {
+      "title": "Microfoon nodig",
+      "body": "Linewise heeft de microfoon nodig om je te horen voordragen. Sta het toe als erom gevraagd wordt en probeer het opnieuw."
+    },
+    "permission-blocked": {
+      "title": "De microfoon staat uit",
+      "body": "Toegang tot de microfoon is geweigerd. Open de app-instellingen, kies Rechten, sta Microfoon toe en kom terug."
+    },
+    "unavailable": {
+      "title": "Geen spraakherkenning gevonden",
+      "body": "Deze telefoon heeft geen spraakherkenningsdienst. Installeer of activeer “Spraakherkenning en -synthese” van Google in de instellingen van je telefoon en controleer opnieuw."
+    },
+    "no-on-device": {
+      "title": "Offline herkenning wordt niet ondersteund",
+      "body": "Linewise gebruikt alleen herkenning die op je telefoon draait, en deze telefoon kan dat niet. Nieuwere Android-versies met een bijgewerkte Google-app kunnen dat meestal wel."
+    },
+    "language-missing": {
+      "title": "Taalpakket niet gedownload",
+      "body": "Het offline spraakpakket voor deze taal staat nog niet op je telefoon. Download het één keer en controleer opnieuw."
+    },
+    "no-voice": {
+      "title": "Geen stem voor deze taal",
+      "body": "Je telefoon heeft geen tekst-naar-spraakstem voor deze taal. Open de spraakinstellingen, kies je spraakengine en installeer de stemgegevens."
+    }
+  },
+  "scene": {
+    "help": "Kies je rol. De app leest de andere rollen en regieaanwijzingen hardop voor en luistert naar jouw regels.",
+    "yourRole": "Jouw rol",
+    "narrate": "Regieaanwijzingen hardop voorlezen",
+    "voices": "Stemmen voor de andere rollen",
+    "narrator": "Verteller",
+    "defaultVoice": "Standaardstem",
+    "test": "Testen",
+    "noVoices": "Geen stemmen gevonden voor deze taal. De standaardstem van de telefoon wordt gebruikt.",
+    "noRoles": "Deze tekst heeft geen sprekers. Zet sprekersnamen in hoofdletters en maak er een script van.",
+    "start": "Scène starten",
+    "progress": "Regel {{n}} van {{total}}",
+    "yourLine": "Jouw regel. Zeg hem uit je hoofd.",
+    "hint": "Regel tonen",
+    "heardNothing": "Ik hoorde je regel niet.",
+    "retry": "Opnieuw proberen",
+    "skip": "Overslaan",
+    "stop": "Stoppen",
+    "review": "Jouw regels"
+  },
+  "recordings": {
+    "help": "Neem jezelf op terwijl je deze tekst voorleest. Je kunt maximaal {{max}} opnames van elk maximaal 10 minuten bewaren.",
+    "defaultName": "Opname",
+    "record": "Opnemen",
+    "stop": "Stoppen en opslaan",
+    "empty": "Nog geen opnames",
+    "rename": "Hernoemen",
+    "useInListen": "Gebruiken in Luisteren",
+    "usedInListen": "Gebruikt in Luisteren",
+    "outOfDate": "Opgenomen voordat de tekst voor het laatst is gewijzigd, dus hij komt mogelijk niet meer overeen met de woorden.",
+    "fullTitle": "Opnamelimiet bereikt",
+    "fullBody": "Verwijder een oude opname om ruimte te maken voor een nieuwe.",
+    "limitReachedTitle": "Tien minuten bereikt",
+    "limitReachedBody": "De opname is gestopt en opgeslagen.",
+    "deleteTitle": "Deze opname verwijderen?",
+    "permissionTitle": "Microfoon nodig",
+    "permissionBody": "Sta toegang tot de microfoon toe om op te nemen."
+  },
+  "stats": {
+    "total": "Sessies met score deze maand: {{count}}",
+    "tapHint": "Tik op een balk om die dag te bekijken.",
+    "noSessions": "Geen sessies met score op die dag."
+  },
+  "target": {
+    "title": "Streefdatum",
+    "help": "Kies een datum waarop je de tekst wilt kennen. Je herhalingen worden zo gespreid dat de laatste op die dag valt.",
+    "current": "Huidig doel: {{date}}",
+    "inDays": "Dagen vanaf vandaag: {{count}}",
+    "preview": "Je schema",
+    "firstReview": "Volgende herhaling",
+    "reviewN": "Herhaling {{n}}",
+    "planComplete": "Er valt niets meer te plannen. Je hebt het plan voltooid.",
+    "save": "Streefdatum opslaan",
+    "clear": "Streefdatum verwijderen"
+  },
+  "reminders": {
+    "title": "Herinneringen",
+    "next": "Volgende herhaling: {{date}}",
+    "none": "Er is nog geen herhaling gepland. Speel een spel met score om je plan te starten.",
+    "on": "Herinneringen staan aan. Op herhaaldagen krijg je een melding.",
+    "off": "Herinneringen staan uit.",
+    "enable": "Herinneringen aanzetten"
+  },
+  "notifications": {
+    "channel": "Herhaalherinneringen",
+    "reviewTitle": "Tijd om te herhalen",
+    "reviewBody": "“{{title}}” staat vandaag gepland voor herhaling.",
+    "backupTitle": "Maak een back-up van Linewise",
+    "backupBody": "Sla een back-upbestand op zodat je je teksten en voortgang later kunt herstellen."
+  },
+  "voices": {
+    "title": "Stemmen",
+    "help": "Kies de stem die elke taal hardop voorleest. Dit zijn de stemmen die op je telefoon staan.",
+    "systemDefault": "Standaard van de telefoon",
+    "systemDefaultHelp": "Gebruikt de stem die je telefoon kiest.",
+    "use": "Gebruiken",
+    "selected": "Geselecteerd",
+    "enhanced": "Verbeterd",
+    "sample": "Hallo, zo klink ik.",
+    "noneTitle": "Geen stemmen voor deze taal",
+    "noneBody": "Open de spraakinstellingen, kies je spraakengine en installeer de stemgegevens voor deze taal. Kom daarna terug en vernieuw.",
+    "refresh": "Vernieuwen",
+    "downloadHelp": "Wil je een ander accent of betere kwaliteit? Installeer meer stemmen in de spraakinstellingen van je telefoon."
+  },
+  "backup": {
+    "title": "Back-up en herstel",
+    "exportTitle": "Back-up maken",
+    "exportBody": "Slaat je teksten, voortgang, sessies en instellingen op in één bestand. Stuur het naar Bestanden, Google Drive of een andere veilige plek.",
+    "noRecordings": "Opnames zijn niet inbegrepen, om het bestand klein te houden.",
+    "last": "Laatste back-up: {{date}}",
+    "never": "Je hebt nog geen back-up gemaakt.",
+    "now": "Nu back-up maken",
+    "shareTitle": "Sla je Linewise-back-up op",
+    "sharingUnavailable": "Delen is niet beschikbaar op deze telefoon.",
+    "exportFailed": "De back-up kon niet worden gemaakt: {{error}}",
+    "restoreTitle": "Herstellen",
+    "restoreBody": "Kies een Linewise-back-upbestand. Je ziet wat erin zit voordat er iets verandert.",
+    "choose": "Back-upbestand kiezen",
+    "readFailed": "Het bestand kon niet worden gelezen.",
+    "invalid": "Dat is geen Linewise-back-upbestand.",
+    "unknownVersion": "Deze back-up is gemaakt met een andere versie van Linewise (versie {{version}}) en kan niet worden gelezen.",
+    "contains": "Deze back-up bevat",
+    "containsBody": "Teksten: {{texts}} · Sessies: {{sessions}} · Opgeslagen op {{date}}",
+    "merge": "Samenvoegen met mijn gegevens",
+    "mergeHelp": "Behoudt alles op deze telefoon. Bij teksten die aan beide kanten bestaan, wint de nieuwste bewerking.",
+    "replace": "Al mijn gegevens vervangen",
+    "replaceTitle": "Alles vervangen?",
+    "replaceBody": "Teksten die niet in de back-up staan, worden met hun opnames van deze telefoon verwijderd.",
+    "restored": "Hersteld. Teksten op deze telefoon: {{count}}.",
+    "merged": "Samengevoegd. Toegevoegd: {{added}}, bijgewerkt: {{updated}}, behouden: {{kept}}.",
+    "monthly": "Maandelijkse back-upherinnering",
+    "monthlyHelp": "Herinnert je er één keer per maand aan een back-up op te slaan."
+  },
+  "camera": {
+    "help": "Richt de camera op gedrukte tekst of kies een foto. De herkenning gebeurt op je telefoon; er wordt niets geüpload.",
+    "script": "Schriftsysteem",
+    "scripts": {
+      "Latin": "Latijns",
+      "Chinese": "Chinees",
+      "Devanagari": "Devanagari",
+      "Japanese": "Japans",
+      "Korean": "Koreaans"
+    },
+    "unsupported": "Het scannen van Arabisch en Hebreeuws wordt nog niet ondersteund. Je kunt die teksten typen of plakken.",
+    "permissionBody": "Linewise heeft de camera nodig om een pagina te scannen.",
+    "allow": "Camera toestaan",
+    "capture": "Foto maken en lezen",
+    "gallery": "Foto kiezen",
+    "nothingFound": "Er is geen tekst gevonden. Probeer een scherpere foto met beter licht.",
+    "failed": "Tekstherkenning mislukt: {{error}}",
+    "reviewHelp": "Controleer de tekst en verbeter fouten voordat je verdergaat.",
+    "use": "Deze tekst gebruiken",
+    "retake": "Opnieuw scannen",
+    "privacy": "Foto's worden op je telefoon gelezen en niet door Linewise bewaard."
+  },
+  "settings": {
+    "language": "Taal van de app",
+    "system": "Zoals de telefoon",
+    "restartNote": "Sluit Linewise en open het opnieuw om de lay-outrichting te wisselen.",
+    "defaultLanguage": "Taal voor nieuwe teksten",
+    "fontSize": "Tekstgrootte",
+    "fontPreview": "Pa's wijze lynx bezag vroom het fikse aquaduct.",
+    "speech": "Spraak",
+    "speechRate": "Spreeksnelheid",
+    "testSpeech": "Snelheid testen",
+    "testSentence": "Zo snel ga ik voorlezen.",
+    "voices": "Stemmen kiezen",
+    "reviews": "Herhalingen",
+    "notifications": "Herhaalherinneringen",
+    "notificationsHelp": "Een melding op dagen dat een herhaling gepland staat.",
+    "notificationsBlockedTitle": "Meldingen staan uit",
+    "notificationsBlockedBody": "Sta meldingen voor Linewise toe in de instellingen van je telefoon om herinneringen te krijgen.",
+    "resetSolidify": "Verstevigen-scores bij elk interval resetten",
+    "resetSolidifyHelp": "Begin de Verstevigen-scores opnieuw elke keer dat je naar een nieuw herhaalinterval gaat.",
+    "data": "Je gegevens",
+    "backup": "Back-up en herstel",
+    "offlineNote": "Alles blijft op deze telefoon. Linewise heeft geen accounts en maakt nooit verbinding met internet.",
+    "about": "Over",
+    "faq": "Vragen en antwoorden",
+    "report": "Een probleem melden",
+    "reportNote": "Opent GitHub in je browser. Linewise zelf maakt geen netwerkverbindingen.",
+    "replayIntro": "Introductie opnieuw bekijken"
+  },
+  "faq": {
+    "title": "Vragen en antwoorden",
+    "items": {
+      "offline": {
+        "q": "Heeft Linewise internet nodig?",
+        "a": "Nee. Alles draait op je telefoon en de app vraagt niet eens om internetrechten. Hij werkt in vliegtuigmodus."
+      },
+      "chunks": {
+        "q": "Hoe verdeel ik een tekst in stukken?",
+        "a": "Laat een lege regel tussen stukken wanneer je de tekst toevoegt of bewerkt. Gewone regeleinden binnen een stuk blijven behouden, wat past bij gedichten en liedteksten."
+      },
+      "script": {
+        "q": "Hoe voeg ik een toneelstuk of script toe?",
+        "a": "Kies “Script” als soort tekst. Zet de naam van elke spreker in HOOFDLETTERS op een eigen regel, met de regels eronder. Regieaanwijzingen komen tussen (haakjes) of [blokhaken]."
+      },
+      "review": {
+        "q": "Hoe werken herhalingen?",
+        "a": "Na je eerste spel met score liggen herhalingen 1, 2, 4, 7, 14, 30 en 60 dagen uit elkaar. Op een herhaaldag telt je eerste Verstevigen- of Toetsen-spel. Haal je 80% of meer, dan ga je naar het volgende interval; anders probeer je het morgen opnieuw."
+      },
+      "target": {
+        "q": "Wat is een streefdatum?",
+        "a": "Dat is de dag waarop je de tekst wilt kennen. Linewise perst of rekt je herhaalintervallen zodat de laatste herhaling op die dag valt."
+      },
+      "score": {
+        "q": "Hoe wordt mijn score berekend?",
+        "a": "Nauwkeurigheid maal dekking. Dekking is het deel van de hele tekst dat je in dat spel hebt geoefend, dus een ronde met de hele tekst levert het meeste op."
+      },
+      "speech": {
+        "q": "Spreken en Scène spelen werken niet. Waarom?",
+        "a": "Ze hebben de microfoon nodig, een spraakherkenner op het apparaat en het offline spraakpakket voor jouw taal. Linewise vertelt je wat ontbreekt en hoe je het oplost."
+      },
+      "voices": {
+        "q": "Hoe krijg ik een betere stem?",
+        "a": "Open Instellingen, dan Stemmen kiezen, dan Spraakinstellingen openen. Kies je spraakengine en installeer extra stemmen of stemgegevens van hogere kwaliteit."
+      },
+      "backup": {
+        "q": "Hoe zet ik mijn gegevens over naar een nieuwe telefoon?",
+        "a": "Gebruik Instellingen, dan Back-up en herstel. Sla het back-upbestand op een plek op die je vanaf de nieuwe telefoon kunt bereiken en herstel het daar."
+      },
+      "recordings": {
+        "q": "Waarom ontbreken mijn opnames na een herstel?",
+        "a": "Back-ups bevatten geen opnames, om het bestand klein te houden. Neem ze opnieuw op met de nieuwe telefoon."
+      },
+      "share": {
+        "q": "Kan ik tekst uit een andere app toevoegen?",
+        "a": "Ja. Selecteer tekst in een willekeurige app, kies Delen en kies Linewise. Het scherm Toevoegen opent met de tekst al ingevuld."
+      },
+      "camera": {
+        "q": "Waarom kan ik geen Arabisch of Hebreeuws scannen?",
+        "a": "De tekstherkenning op het apparaat die Linewise gebruikt, bevat die talen nog niet. Je kunt ze typen of plakken."
+      }
+    }
+  },
+  "onboarding": {
+    "welcome": "Welkom bij Linewise",
+    "tagline": "Leer gedichten, toespraken, verzen en scripts uit je hoofd.",
+    "goalQuestion": "Wat wil je uit je hoofd leren?",
+    "goals": {
+      "poem": "Een gedicht",
+      "speech": "Een toespraak",
+      "script": "Een script",
+      "verse": "Een vers of gebed",
+      "other": "Iets anders"
+    },
+    "reminderQuestion": "Wil je een seintje op herhaaldagen?",
+    "reminderBody": "Gespreide herhaling zorgt dat herinneringen blijven hangen. Een zachte herinnering helpt je om door te zetten.",
+    "tryDemo": "Probeer een demo van een minuut",
+    "offline": "Geen account. Geen internet. Je teksten verlaten nooit je telefoon."
+  },
+  "demo": {
+    "title": "Probeer Eerste letter",
+    "help": "Typ uit je hoofd de eerste letter van elk gemarkeerd woord. Geen zorgen als je de tekst nog niet kent.",
+    "doneBody": "Zo werkt elk spel. Kies er een, speel, en je herhalingen worden voor je gepland.",
+    "score": "Je hebt {{percent}}% gehaald",
+    "save": "Dit gedicht opslaan in mijn lijst",
+    "skip": "Doorgaan zonder opslaan",
+    "skipDemo": "Demo overslaan"
+  }
+}

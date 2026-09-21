@@ -1,0 +1,542 @@
+{
+  "common": {
+    "back": "返回",
+    "cancel": "取消",
+    "delete": "删除",
+    "loading": "加载中…",
+    "next": "下一步",
+    "no": "否",
+    "pause": "暂停",
+    "play": "播放",
+    "save": "保存",
+    "yes": "是"
+  },
+  "errors": {
+    "databaseTitle": "无法打开应用数据"
+  },
+  "tabs": {
+    "memorizations": "背诵",
+    "add": "添加",
+    "settings": "设置"
+  },
+  "status": {
+    "new": "新",
+    "due": "今天复习",
+    "inDays": "{{count}} 天后复习",
+    "done": "计划已完成"
+  },
+  "list": {
+    "search": "搜索标题、作者或标签",
+    "allTags": "全部",
+    "emptyTitle": "还没有要背诵的内容",
+    "emptyBody": "添加一首诗、一篇演讲、一段经文或一个剧本。所有内容都保存在你的手机上。",
+    "addFirst": "添加你的第一篇文本",
+    "noMatches": "没有与搜索匹配的文本",
+    "backupNudgeTitle": "该备份了",
+    "backupNudgeBody": "已经过去一个月了。有了备份文件，即使丢失或重置这部手机，你也能恢复文本和进度。",
+    "backupNow": "立即备份"
+  },
+  "add": {
+    "title": "添加文本",
+    "editTitle": "新文本",
+    "cameraTitle": "扫描文字",
+    "intro": "选择导入文本的方式。在下一个界面中，你可以把它分成段落并进行修改。",
+    "typeTitle": "输入或粘贴",
+    "typeBody": "自己输入文本，或从任何地方粘贴。",
+    "fileTitle": "导入文件",
+    "fileBody": "从手机中选择 .txt 或 .md 文件。",
+    "cameraOptionTitle": "用相机或照片扫描",
+    "cameraOptionBody": "读取页面上的印刷文字。识别在你的手机上完成。",
+    "shareHint": "提示：在任何其他应用中把文字分享给 Linewise，它会在这里打开，随时可以保存。",
+    "fileTooLargeTitle": "文件太大",
+    "fileTooLargeBody": "请选择更小的文本文件。文本最大为 100 KB。",
+    "fileErrorTitle": "无法读取该文件"
+  },
+  "editor": {
+    "body": "文本",
+    "bodyPlaceholder": "粘贴或输入文本。段落之间空一行。",
+    "size": "{{used}} KB / {{max}} KB",
+    "title": "标题",
+    "author": "作者（可选）",
+    "type": "文本类型",
+    "typeText": "文本",
+    "typeScript": "剧本",
+    "scriptHelp": "把每个角色的名字用大写字母单独写在一行，台词写在下面。舞台提示放在（括号）或[方括号]中。",
+    "scriptHelpNoCase": "这种语言没有大写字母，请在每个角色名字后加上冒号。",
+    "language": "文本语言",
+    "tags": "标签",
+    "tagsHint": "用逗号分隔标签",
+    "scriptWarnings": "请检查你的剧本",
+    "issues": {
+      "SPEAKER_NO_DIALOGUE": "第 {{line}} 行：角色名字后面没有台词。",
+      "LOOKS_LIKE_SPEAKER": "第 {{line}} 行：这看起来像角色名字，但不是大写。"
+    },
+    "editWarning": "修改文字会重置你在“填空”中的选择，并把较早的录音标记为已过期。",
+    "previewTitle": "预览，段落数：{{count}}",
+    "previewEmpty": "输入时段落会显示在这里。空行表示新的段落开始。",
+    "previewMore": "另有 {{count}} 段",
+    "chunkN": "第 {{n}} 段",
+    "create": "保存文本",
+    "save": "保存更改",
+    "errors": {
+      "titleRequired": "请给文本起个标题。",
+      "bodyRequired": "请添加要背诵的文本。",
+      "bodyTooLarge": "这篇文本超过了 {{max}} KB 的限制。请拆分成多篇文本。"
+    }
+  },
+  "detail": {
+    "notFound": "这篇文本已不存在",
+    "ringsHelp": "外圈：你的熟练程度。内圈：复习计划的进度。",
+    "fullText": "全文",
+    "edit": "编辑",
+    "stats": "统计",
+    "reminders": "提醒",
+    "noChunks": "这篇文本没有可练习的段落。",
+    "whatToPractise": "练习内容",
+    "share": "分享文本",
+    "delete": "删除这篇文本",
+    "deleteTitle": "删除这篇文本？",
+    "deleteBody": "“{{title}}”及其进度、练习记录和录音将从这部手机中删除，且无法撤销。"
+  },
+  "selection": {
+    "all": "整篇文本",
+    "one": "单个段落",
+    "range": "范围",
+    "chunk": "段落",
+    "from": "从第几段",
+    "to": "到第几段",
+    "speaker": "只练习一个角色",
+    "everyone": "所有人"
+  },
+  "groups": {
+    "practice": "练习",
+    "practiceHelp": "学习词句，不计分。",
+    "solidify": "巩固",
+    "solidifyHelp": "通过引导式游戏牢记内容。",
+    "evaluate": "测评",
+    "evaluateHelp": "无提示地检验自己。"
+  },
+  "games": {
+    "nothingToPractise": "这里没有可练习的内容",
+    "nothingToPractiseBody": "所选段落中没有适用于此选项的词。请返回并更改选择。",
+    "chunkOne": "第 {{n}} 段",
+    "chunkRange": "第 {{from}}–{{to}} 段",
+    "tap-to-reveal": {
+      "name": "点击揭示",
+      "blurb": "每次揭示一个短语、句子或词"
+    },
+    "slider": {
+      "name": "滑块",
+      "blurb": "逐步隐藏更多的词"
+    },
+    "listen": {
+      "name": "聆听",
+      "blurb": "听朗读并跟着看"
+    },
+    "my-recordings": {
+      "name": "我的录音",
+      "blurb": "录下自己朗读的声音"
+    },
+    "first-letter": {
+      "name": "首字母",
+      "blurb": "输入每个词的第一个字母"
+    },
+    "fill-in-the-blank": {
+      "name": "填空",
+      "blurb": "选出缺失的词"
+    },
+    "sentence-scramble": {
+      "name": "句子排序",
+      "blurb": "把打乱的句子排回正确顺序"
+    },
+    "type-it": {
+      "name": "默写",
+      "blurb": "凭记忆输入整篇文本"
+    },
+    "multiple-choice": {
+      "name": "选择题",
+      "blurb": "选出接下来的内容"
+    },
+    "speak": {
+      "name": "背诵",
+      "blurb": "大声背诵并获得评分"
+    },
+    "run-scene": {
+      "name": "排演场景",
+      "blurb": "演好自己的角色，其他角色由应用朗读"
+    }
+  },
+  "result": {
+    "great": "太棒了！",
+    "keepGoing": "继续加油，你快成功了。",
+    "accuracy": "准确率",
+    "coverage": "覆盖的文本比例",
+    "weightedHelp": "你的得分等于准确率乘以你练习的部分占整篇文本的比例。",
+    "practiceOnly": "这次只是练习。只有复习日的第一场计分游戏才会推进你的计划。",
+    "advanced": "通过！你的下次复习是 {{date}}。",
+    "planDone": "通过！你已完成这篇文本的复习计划。",
+    "retry": "还没到 {{pass}}%。你可以明天再试，今天的练习同样有帮助。",
+    "playAgain": "再玩一次",
+    "backToText": "返回文本"
+  },
+  "diff": {
+    "missed": "漏掉",
+    "wrong": "错词",
+    "extra": "多余"
+  },
+  "tap": {
+    "mode": {
+      "phrase": "短语",
+      "sentence": "句子",
+      "word": "词"
+    },
+    "speak": "朗读",
+    "start": "点击以揭示第一部分",
+    "revealNext": "揭示下一个",
+    "undo": "撤销",
+    "reset": "重新开始",
+    "progress": "已揭示 {{shown}} / {{total}}",
+    "done": "全部结束。从头再试一次吧。"
+  },
+  "slider": {
+    "hidden": "隐藏的词",
+    "label": "隐藏词的百分比",
+    "guided": "引导阅读",
+    "recall": "完全回忆",
+    "reshuffle": "换一批词",
+    "tapHint": "点击隐藏的词可以偷看一眼。"
+  },
+  "listen": {
+    "previous": "上一行",
+    "next": "下一行",
+    "back10": "后退 10 秒",
+    "forward10": "快进 10 秒",
+    "repeat": "循环",
+    "sourceVoice": "语音",
+    "sourceRecording": "我的录音",
+    "recordingHelp": "正在播放你保存的录音。关闭屏幕后也会继续播放。"
+  },
+  "firstLetter": {
+    "help": "输入每个高亮词的第一个字母。输错时会震动、显示该词并继续。",
+    "placeholder": "输入一个字母",
+    "progress": "{{done}} / {{total}} 个词"
+  },
+  "fill": {
+    "chooseHelp": "点击词来选择要隐藏的词。你的选择会为这篇文本保存。",
+    "auto": "隐藏 {{percent}}%",
+    "clear": "清除",
+    "count": "隐藏的词：{{count}}",
+    "start": "开始",
+    "progress": "第 {{done}} / {{total}} 个空"
+  },
+  "scramble": {
+    "help": "拖动手柄或使用箭头，把句子排成正确顺序，然后点“完成”。",
+    "round": "第 {{n}} / {{total}} 轮",
+    "drag": "拖动以重新排序",
+    "up": "上移",
+    "down": "下移",
+    "done": "完成",
+    "score": "位置正确：{{correct}} / {{total}}",
+    "correctOrder": "正确的顺序是：",
+    "next": "下一轮",
+    "finish": "查看结果",
+    "tooShort": "内容不足以打乱",
+    "tooShortBody": "所选内容少于两个句子或短语。请选择更多段落。"
+  },
+  "typeIt": {
+    "help": "凭记忆输入这篇文本。需要回忆的词数：{{count}}。",
+    "placeholder": "开始输入…",
+    "done": "检查我的答案",
+    "review": "你输入的内容"
+  },
+  "choice": {
+    "progress": "第 {{n}} / {{total}} 题",
+    "askPhrase": "接下来是什么？",
+    "askWord": "接下来是哪个词？",
+    "next": "下一题",
+    "finish": "查看结果",
+    "tooShort": "文本不足以出题",
+    "tooShortBody": "请选择更多段落，或添加更多文本。"
+  },
+  "speak": {
+    "help": "凭记忆大声背诵这篇文本。需要回忆的词数：{{count}}。识别在你的手机上完成。",
+    "start": "开始说话",
+    "listening": "正在聆听…",
+    "waiting": "准备好了就开始说吧",
+    "done": "我说完了",
+    "heardNothing": "我没听到声音。请靠近麦克风再试一次。",
+    "error": "语音识别已停止（{{code}}）。请重试。",
+    "review": "我听到的内容"
+  },
+  "speechIssue": {
+    "openSettings": "打开应用设置",
+    "openTtsSettings": "打开语音设置",
+    "downloadPack": "下载语音包",
+    "retry": "重新检查",
+    "permission": {
+      "title": "需要麦克风",
+      "body": "Linewise 需要使用麦克风来听你背诵。请在提示时允许，然后重试。"
+    },
+    "permission-blocked": {
+      "title": "麦克风已关闭",
+      "body": "麦克风权限被拒绝。请打开应用设置，选择“权限”，允许“麦克风”，然后返回。"
+    },
+    "unavailable": {
+      "title": "未找到语音识别服务",
+      "body": "这部手机没有语音识别服务。请在手机设置中安装或启用 Google 的“语音识别和合成”，然后重新检查。"
+    },
+    "no-on-device": {
+      "title": "不支持离线识别",
+      "body": "Linewise 只使用在你手机上运行的识别功能，而这部手机做不到。较新的 Android 版本配合最新的 Google 应用通常可以。"
+    },
+    "language-missing": {
+      "title": "尚未下载语言包",
+      "body": "你的手机上还没有这种语言的离线语音包。请先下载一次，然后重新检查。"
+    },
+    "no-voice": {
+      "title": "没有这种语言的语音",
+      "body": "你的手机没有这种语言的文字转语音声音。请打开语音设置，选择语音引擎并安装语音数据。"
+    }
+  },
+  "scene": {
+    "help": "选择你的角色。应用会朗读其他角色和舞台提示，并聆听你的台词。",
+    "yourRole": "你的角色",
+    "narrate": "朗读舞台提示",
+    "voices": "其他角色的声音",
+    "narrator": "旁白",
+    "defaultVoice": "默认声音",
+    "test": "试听",
+    "noVoices": "没有找到这种语言的声音，将使用手机的默认声音。",
+    "noRoles": "这篇文本没有角色。请把角色名字写成大写，并将其设为剧本。",
+    "start": "开始场景",
+    "progress": "第 {{n}} / {{total}} 行",
+    "yourLine": "轮到你的台词了，请凭记忆说出来。",
+    "hint": "显示台词",
+    "heardNothing": "我没听到你的台词。",
+    "retry": "再试一次",
+    "skip": "跳过",
+    "stop": "停止",
+    "review": "你的台词"
+  },
+  "recordings": {
+    "help": "录下你朗读这篇文本的声音。最多可保留 {{max}} 段录音，每段最长 10 分钟。",
+    "defaultName": "录音",
+    "record": "录音",
+    "stop": "停止并保存",
+    "empty": "还没有录音",
+    "rename": "重命名",
+    "useInListen": "用于聆听",
+    "usedInListen": "已用于聆听",
+    "outOfDate": "这段录音早于文本的最近一次修改，可能与现在的文字不一致。",
+    "fullTitle": "已达到录音上限",
+    "fullBody": "请删除一段旧录音，为新的录音腾出空间。",
+    "limitReachedTitle": "已达到十分钟",
+    "limitReachedBody": "录音已停止并保存。",
+    "deleteTitle": "删除这段录音？",
+    "permissionTitle": "需要麦克风",
+    "permissionBody": "请允许使用麦克风以进行录音。"
+  },
+  "stats": {
+    "total": "本月计分场次：{{count}}",
+    "tapHint": "点击柱形查看当天。",
+    "noSessions": "当天没有计分场次。"
+  },
+  "target": {
+    "title": "目标日期",
+    "help": "选择你希望在哪天之前记熟。复习会被合理安排，让最后一次复习落在那一天。",
+    "current": "当前目标：{{date}}",
+    "inDays": "距今天数：{{count}}",
+    "preview": "你的日程",
+    "firstReview": "下次复习",
+    "reviewN": "第 {{n}} 次复习",
+    "planComplete": "没有需要安排的内容了。你已完成计划。",
+    "save": "保存目标日期",
+    "clear": "移除目标日期"
+  },
+  "reminders": {
+    "title": "提醒",
+    "next": "下次复习：{{date}}",
+    "none": "尚未安排复习。玩一场计分游戏来开始你的计划。",
+    "on": "提醒已开启。复习日你会收到通知。",
+    "off": "提醒已关闭。",
+    "enable": "开启提醒"
+  },
+  "notifications": {
+    "channel": "复习提醒",
+    "reviewTitle": "该复习了",
+    "reviewBody": "“{{title}}”今天需要复习。",
+    "backupTitle": "备份 Linewise",
+    "backupBody": "保存一个备份文件，以便日后恢复你的文本和进度。"
+  },
+  "voices": {
+    "title": "语音",
+    "help": "选择朗读每种语言的声音。这些是你手机上已安装的声音。",
+    "systemDefault": "手机默认",
+    "systemDefaultHelp": "使用手机选择的声音。",
+    "use": "使用",
+    "selected": "已选择",
+    "enhanced": "增强",
+    "sample": "你好，这就是我的声音。",
+    "noneTitle": "没有这种语言的声音",
+    "noneBody": "请打开语音设置，选择语音引擎并安装这种语言的语音数据，然后回来刷新。",
+    "refresh": "刷新",
+    "downloadHelp": "想要其他口音或更好的音质？请在手机的语音设置中安装更多声音。"
+  },
+  "backup": {
+    "title": "备份与恢复",
+    "exportTitle": "备份",
+    "exportBody": "把你的文本、进度、练习记录和设置保存到一个文件中。可发送到“文件”、Google Drive 或任何安全的地方。",
+    "noRecordings": "为了让文件更小，备份不包含录音。",
+    "last": "上次备份：{{date}}",
+    "never": "你还没有备份过。",
+    "now": "立即备份",
+    "shareTitle": "保存你的 Linewise 备份",
+    "sharingUnavailable": "这部手机不支持分享。",
+    "exportFailed": "无法创建备份：{{error}}",
+    "restoreTitle": "恢复",
+    "restoreBody": "选择一个 Linewise 备份文件。在任何内容改变之前，你会先看到其中包含什么。",
+    "choose": "选择备份文件",
+    "readFailed": "无法读取该文件。",
+    "invalid": "这不是 Linewise 备份文件。",
+    "unknownVersion": "此备份由另一版本的 Linewise（版本 {{version}}）创建，无法读取。",
+    "contains": "此备份包含",
+    "containsBody": "文本：{{texts}} · 练习记录：{{sessions}} · 保存于 {{date}}",
+    "merge": "与我的数据合并",
+    "mergeHelp": "保留这部手机上的所有内容。两边都有的文本以较新的编辑为准。",
+    "replace": "替换我的所有数据",
+    "replaceTitle": "全部替换？",
+    "replaceBody": "备份中没有的文本将连同其录音一起从这部手机中删除。",
+    "restored": "已恢复。这部手机上的文本：{{count}}。",
+    "merged": "已合并。新增 {{added}}，更新 {{updated}}，保留 {{kept}}。",
+    "monthly": "每月备份提醒",
+    "monthlyHelp": "每月提醒你保存一次备份。"
+  },
+  "camera": {
+    "help": "把相机对准印刷文字，或选择一张照片。识别在你的手机上完成，不会上传任何内容。",
+    "script": "文字系统",
+    "scripts": {
+      "Latin": "拉丁文",
+      "Chinese": "中文",
+      "Devanagari": "天城文",
+      "Japanese": "日文",
+      "Korean": "韩文"
+    },
+    "unsupported": "暂不支持扫描阿拉伯语和希伯来语。你可以直接输入或粘贴这些文本。",
+    "permissionBody": "Linewise 需要使用相机来扫描页面。",
+    "allow": "允许使用相机",
+    "capture": "拍照并识别",
+    "gallery": "选择照片",
+    "nothingFound": "没有找到文字。请换一张更清晰、光线更好的照片。",
+    "failed": "文字识别失败：{{error}}",
+    "reviewHelp": "继续之前，请检查文字并更正错误。",
+    "use": "使用这段文字",
+    "retake": "重新扫描",
+    "privacy": "照片在你的手机上读取，Linewise 不会保存。"
+  },
+  "settings": {
+    "language": "应用语言",
+    "system": "跟随手机",
+    "restartNote": "请关闭并重新打开 Linewise，以切换布局方向。",
+    "defaultLanguage": "新文本的语言",
+    "fontSize": "文字大小",
+    "fontPreview": "敏捷的棕色狐狸跳过了懒狗。",
+    "speech": "语音",
+    "speechRate": "语速",
+    "testSpeech": "试听语速",
+    "testSentence": "我会用这样的速度朗读。",
+    "voices": "选择声音",
+    "reviews": "复习",
+    "notifications": "复习提醒",
+    "notificationsHelp": "在需要复习的日子发送通知。",
+    "notificationsBlockedTitle": "通知已关闭",
+    "notificationsBlockedBody": "请在手机设置中允许 Linewise 的通知，以接收提醒。",
+    "resetSolidify": "每个间隔重置“巩固”得分",
+    "resetSolidifyHelp": "每次进入新的复习间隔时，重新开始计算“巩固”得分。",
+    "data": "你的数据",
+    "backup": "备份与恢复",
+    "offlineNote": "所有内容都保存在这部手机上。Linewise 没有账号，也从不连接互联网。",
+    "about": "关于",
+    "faq": "常见问题",
+    "report": "报告问题",
+    "reportNote": "会在浏览器中打开 GitHub。Linewise 本身不进行任何网络连接。",
+    "replayIntro": "重新观看介绍"
+  },
+  "faq": {
+    "title": "常见问题",
+    "items": {
+      "offline": {
+        "q": "Linewise 需要联网吗？",
+        "a": "不需要。一切都在你的手机上运行，应用甚至不申请联网权限。它在飞行模式下也能使用。"
+      },
+      "chunks": {
+        "q": "如何把文本分成段落？",
+        "a": "添加或编辑文本时，在段落之间空一行。段落内部的单个换行会被保留，很适合诗歌和歌词。"
+      },
+      "script": {
+        "q": "如何添加戏剧或剧本？",
+        "a": "把文本类型选为“剧本”。把每个角色的名字单独写在一行（有大写的语言用大写字母，没有大写的语言在名字后加冒号），台词写在下面。舞台提示放在（括号）或[方括号]中。"
+      },
+      "review": {
+        "q": "复习是如何运作的？",
+        "a": "完成第一场计分游戏后，复习间隔依次为 1、2、4、7、14、30 和 60 天。在复习日，你玩的第一场“巩固”或“测评”游戏会被计入。得分达到 80% 或以上就进入下一个间隔，否则明天再试。"
+      },
+      "target": {
+        "q": "什么是目标日期？",
+        "a": "就是你希望记熟这篇文本的日子。Linewise 会压缩或拉长复习间隔，让最后一次复习落在那一天。"
+      },
+      "score": {
+        "q": "我的得分是怎么算的？",
+        "a": "准确率乘以覆盖率。覆盖率是你在该游戏中练习的部分占整篇文本的比例，所以完整练习整篇文本得分最高。"
+      },
+      "speech": {
+        "q": "“背诵”和“排演场景”不能用，为什么？",
+        "a": "它们需要麦克风、设备端语音识别，以及你所用语言的离线语音包。Linewise 会告诉你缺少什么以及如何解决。"
+      },
+      "voices": {
+        "q": "如何获得更好的声音？",
+        "a": "打开“设置”，再点“选择声音”，然后点“打开语音设置”。选择你的语音引擎，并安装额外的声音或更高质量的语音数据。"
+      },
+      "backup": {
+        "q": "如何把数据转移到新手机？",
+        "a": "使用“设置”中的“备份与恢复”。把备份文件保存在新手机能访问的地方，然后在新手机上恢复。"
+      },
+      "recordings": {
+        "q": "恢复后为什么我的录音不见了？",
+        "a": "为了让文件更小，备份不包含录音。请在新手机上重新录制。"
+      },
+      "share": {
+        "q": "可以从其他应用添加文本吗？",
+        "a": "可以。在任何应用中选中文字，点“分享”，再选择 Linewise。“添加”界面会打开，并已填好文本。"
+      },
+      "camera": {
+        "q": "为什么不能扫描阿拉伯语或希伯来语？",
+        "a": "Linewise 使用的设备端文字识别目前还不包含这些语言。你可以直接输入或粘贴。"
+      }
+    }
+  },
+  "onboarding": {
+    "welcome": "欢迎使用 Linewise",
+    "tagline": "把诗歌、演讲、经文和剧本熟记于心。",
+    "goalQuestion": "你想背诵什么？",
+    "goals": {
+      "poem": "一首诗",
+      "speech": "一篇演讲",
+      "script": "一个剧本",
+      "verse": "一段经文或祷词",
+      "other": "其他内容"
+    },
+    "reminderQuestion": "复习日需要提醒你吗？",
+    "reminderBody": "间隔复习是让记忆持久的关键。温和的提醒能帮助你坚持下来。",
+    "tryDemo": "试试一分钟演示",
+    "offline": "无需账号，无需联网。你的文本永远不会离开你的手机。"
+  },
+  "demo": {
+    "title": "试试“首字母”",
+    "help": "凭记忆输入每个高亮词的第一个字母。如果你还没背熟也没关系。",
+    "doneBody": "每个游戏都是这样玩的。选一个来玩，你的复习就会自动安排好。",
+    "score": "你得了 {{percent}}%",
+    "save": "把这首诗保存到我的列表",
+    "skip": "不保存，继续",
+    "skipDemo": "跳过演示"
+  }
+}

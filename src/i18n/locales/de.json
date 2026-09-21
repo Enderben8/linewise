@@ -1,0 +1,542 @@
+{
+  "common": {
+    "back": "Zurück",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "loading": "Wird geladen …",
+    "next": "Weiter",
+    "no": "Nein",
+    "pause": "Pause",
+    "play": "Abspielen",
+    "save": "Speichern",
+    "yes": "Ja"
+  },
+  "errors": {
+    "databaseTitle": "Die Daten der App konnten nicht geöffnet werden"
+  },
+  "tabs": {
+    "memorizations": "Lernen",
+    "add": "Hinzufügen",
+    "settings": "Einstellungen"
+  },
+  "status": {
+    "new": "Neu",
+    "due": "Heute wiederholen",
+    "inDays": "Nächste Wiederholung in {{count}} T",
+    "done": "Plan abgeschlossen"
+  },
+  "list": {
+    "search": "Titel, Autor oder Tag suchen",
+    "allTags": "Alle",
+    "emptyTitle": "Noch nichts zum Auswendiglernen",
+    "emptyBody": "Füge ein Gedicht, eine Rede, einen Vers oder ein Skript hinzu. Alles bleibt auf deinem Handy.",
+    "addFirst": "Ersten Text hinzufügen",
+    "noMatches": "Kein Text passt zu deiner Suche",
+    "backupNudgeTitle": "Zeit für eine Sicherung",
+    "backupNudgeBody": "Es ist ein Monat vergangen. Mit einer Sicherungsdatei kannst du deine Texte und deinen Fortschritt wiederherstellen, falls du dieses Handy verlierst oder zurücksetzt.",
+    "backupNow": "Jetzt sichern"
+  },
+  "add": {
+    "title": "Text hinzufügen",
+    "editTitle": "Neuer Text",
+    "cameraTitle": "Text scannen",
+    "intro": "Wähle, wie du deinen Text einbringst. Auf dem nächsten Bildschirm kannst du ihn in Abschnitte teilen und nachbessern.",
+    "typeTitle": "Eintippen oder einfügen",
+    "typeBody": "Schreibe den Text selbst oder füge ihn von irgendwoher ein.",
+    "fileTitle": "Datei importieren",
+    "fileBody": "Wähle eine .txt- oder .md-Datei von deinem Handy.",
+    "cameraOptionTitle": "Mit Kamera oder Foto scannen",
+    "cameraOptionBody": "Lies gedruckten Text von einer Seite ab. Die Erkennung läuft auf deinem Handy.",
+    "shareHint": "Tipp: Teile in einer beliebigen anderen App Text mit Linewise, dann öffnet er sich hier und ist bereit zum Speichern.",
+    "fileTooLargeTitle": "Die Datei ist zu groß",
+    "fileTooLargeBody": "Wähle eine kleinere Textdatei. Texte dürfen bis zu 100 KB groß sein.",
+    "fileErrorTitle": "Die Datei konnte nicht gelesen werden"
+  },
+  "editor": {
+    "body": "Text",
+    "bodyPlaceholder": "Text einfügen oder eintippen. Lass zwischen Abschnitten eine Leerzeile.",
+    "size": "{{used}} KB von {{max}} KB",
+    "title": "Titel",
+    "author": "Autor (optional)",
+    "type": "Art des Textes",
+    "typeText": "Text",
+    "typeScript": "Skript",
+    "scriptHelp": "Schreibe den Namen jeder Figur in GROSSBUCHSTABEN in eine eigene Zeile, darunter ihre Zeilen. Regieanweisungen kommen in (runde) oder [eckige] Klammern.",
+    "scriptHelpNoCase": "Diese Sprache hat keine Großbuchstaben. Beende stattdessen den Namen jeder Figur mit einem Doppelpunkt.",
+    "language": "Sprache des Textes",
+    "tags": "Tags",
+    "tagsHint": "Tags durch Kommas trennen",
+    "scriptWarnings": "Prüfe dein Skript",
+    "issues": {
+      "SPEAKER_NO_DIALOGUE": "Zeile {{line}}: Auf einen Sprechernamen folgt kein Text.",
+      "LOOKS_LIKE_SPEAKER": "Zeile {{line}}: Das sieht wie ein Sprechername aus, ist aber nicht in Großbuchstaben."
+    },
+    "editWarning": "Wenn du die Wörter änderst, werden deine Lückentext-Auswahlen zurückgesetzt und ältere Aufnahmen als veraltet markiert.",
+    "previewTitle": "Vorschau, Abschnitte: {{count}}",
+    "previewEmpty": "Abschnitte erscheinen hier, während du schreibst. Eine Leerzeile beginnt einen neuen Abschnitt.",
+    "previewMore": "+{{count}} weitere",
+    "chunkN": "Abschnitt {{n}}",
+    "create": "Text speichern",
+    "save": "Änderungen speichern",
+    "errors": {
+      "titleRequired": "Gib dem Text einen Titel.",
+      "bodyRequired": "Füge Text zum Auswendiglernen hinzu.",
+      "bodyTooLarge": "Dieser Text überschreitet das Limit von {{max}} KB. Teile ihn in mehrere Texte auf."
+    }
+  },
+  "detail": {
+    "notFound": "Dieser Text existiert nicht mehr",
+    "ringsHelp": "Äußerer Ring: wie gut du ihn kannst. Innerer Ring: Fortschritt in deinem Wiederholungsplan.",
+    "fullText": "Gesamter Text",
+    "edit": "Bearbeiten",
+    "stats": "Statistik",
+    "reminders": "Erinnerungen",
+    "noChunks": "Dieser Text hat keine Abschnitte zum Üben.",
+    "whatToPractise": "Was üben",
+    "share": "Text teilen",
+    "delete": "Diesen Text löschen",
+    "deleteTitle": "Diesen Text löschen?",
+    "deleteBody": "„{{title}}“, sein Fortschritt, seine Sitzungen und Aufnahmen werden von diesem Handy gelöscht. Das lässt sich nicht rückgängig machen."
+  },
+  "selection": {
+    "all": "Ganzer Text",
+    "one": "Ein Abschnitt",
+    "range": "Bereich",
+    "chunk": "Abschnitt",
+    "from": "Ab Abschnitt",
+    "to": "Bis Abschnitt",
+    "speaker": "Nur eine Figur üben",
+    "everyone": "Alle"
+  },
+  "groups": {
+    "practice": "Üben",
+    "practiceHelp": "Lerne die Wörter. Ohne Wertung.",
+    "solidify": "Festigen",
+    "solidifyHelp": "Präge es dir mit geführten Spielen ein.",
+    "evaluate": "Prüfen",
+    "evaluateHelp": "Teste dich ohne Hilfe."
+  },
+  "games": {
+    "nothingToPractise": "Hier gibt es nichts zu üben",
+    "nothingToPractiseBody": "Die gewählten Abschnitte enthalten keine Wörter für diese Auswahl. Geh zurück und ändere die Auswahl.",
+    "chunkOne": "Abschnitt {{n}}",
+    "chunkRange": "Abschnitte {{from}}–{{to}}",
+    "tap-to-reveal": {
+      "name": "Antippen zum Aufdecken",
+      "blurb": "Decke eine Wendung, einen Satz oder ein Wort nach dem anderen auf"
+    },
+    "slider": {
+      "name": "Schieberegler",
+      "blurb": "Blende immer mehr Wörter aus"
+    },
+    "listen": {
+      "name": "Zuhören",
+      "blurb": "Höre es vorgelesen und lies mit"
+    },
+    "my-recordings": {
+      "name": "Meine Aufnahmen",
+      "blurb": "Nimm dich beim Lesen auf"
+    },
+    "first-letter": {
+      "name": "Erster Buchstabe",
+      "blurb": "Tippe den ersten Buchstaben jedes Wortes"
+    },
+    "fill-in-the-blank": {
+      "name": "Lückentext",
+      "blurb": "Wähle die fehlenden Wörter"
+    },
+    "sentence-scramble": {
+      "name": "Sätze ordnen",
+      "blurb": "Bringe durchgemischte Sätze in die richtige Reihenfolge"
+    },
+    "type-it": {
+      "name": "Abtippen",
+      "blurb": "Tippe den ganzen Text aus dem Gedächtnis"
+    },
+    "multiple-choice": {
+      "name": "Multiple Choice",
+      "blurb": "Wähle, was als Nächstes kommt"
+    },
+    "speak": {
+      "name": "Sprechen",
+      "blurb": "Trage es laut vor und lass dich bewerten"
+    },
+    "run-scene": {
+      "name": "Szene spielen",
+      "blurb": "Spiele deine Rolle, während die App die anderen liest"
+    }
+  },
+  "result": {
+    "great": "Gut gemacht!",
+    "keepGoing": "Weiter so, du bist auf dem Weg.",
+    "accuracy": "Genauigkeit",
+    "coverage": "Abgedeckter Anteil des Textes",
+    "weightedHelp": "Dein Ergebnis ist die Genauigkeit mal dem Anteil des gesamten Textes, den du geübt hast.",
+    "practiceOnly": "Das war Übung. Nur das erste bewertete Spiel an einem Wiederholungstag bringt deinen Plan voran.",
+    "advanced": "Bestanden! Deine nächste Wiederholung ist am {{date}}.",
+    "planDone": "Bestanden! Du hast deinen Wiederholungsplan für diesen Text abgeschlossen.",
+    "retry": "Noch nicht {{pass}} %. Du kannst es morgen erneut versuchen, und das heutige Üben hilft trotzdem.",
+    "playAgain": "Nochmal spielen",
+    "backToText": "Zurück zum Text"
+  },
+  "diff": {
+    "missed": "Vergessen",
+    "wrong": "Falsches Wort",
+    "extra": "Zu viel"
+  },
+  "tap": {
+    "mode": {
+      "phrase": "Wendungen",
+      "sentence": "Sätze",
+      "word": "Wörter"
+    },
+    "speak": "Laut vorlesen",
+    "start": "Tippe, um den ersten Teil aufzudecken",
+    "revealNext": "Nächstes aufdecken",
+    "undo": "Rückgängig",
+    "reset": "Von vorn beginnen",
+    "progress": "{{shown}} von {{total}} aufgedeckt",
+    "done": "Das war alles. Versuche es noch einmal von vorn."
+  },
+  "slider": {
+    "hidden": "Ausgeblendete Wörter",
+    "label": "Prozent der ausgeblendeten Wörter",
+    "guided": "Geführtes Lesen",
+    "recall": "Freies Erinnern",
+    "reshuffle": "Andere Wörter wählen",
+    "tapHint": "Tippe auf ein ausgeblendetes Wort, um kurz nachzusehen."
+  },
+  "listen": {
+    "previous": "Vorherige Zeile",
+    "next": "Nächste Zeile",
+    "back10": "10 Sekunden zurück",
+    "forward10": "10 Sekunden vor",
+    "repeat": "Wiederholen",
+    "sourceVoice": "Stimme",
+    "sourceRecording": "Meine Aufnahme",
+    "recordingHelp": "Deine gespeicherte Aufnahme wird abgespielt. Sie läuft auch bei ausgeschaltetem Bildschirm weiter."
+  },
+  "firstLetter": {
+    "help": "Tippe den ersten Buchstaben jedes markierten Wortes. Ein falscher Buchstabe vibriert, zeigt das Wort und geht weiter.",
+    "placeholder": "Buchstaben tippen",
+    "progress": "{{done}} von {{total}} Wörtern"
+  },
+  "fill": {
+    "chooseHelp": "Tippe auf Wörter, um zu wählen, welche ausgeblendet werden. Deine Auswahl wird für diesen Text gespeichert.",
+    "auto": "{{percent}} % ausblenden",
+    "clear": "Leeren",
+    "count": "Ausgeblendete Wörter: {{count}}",
+    "start": "Start",
+    "progress": "Lücke {{done}} von {{total}}"
+  },
+  "scramble": {
+    "help": "Ziehe am Griff oder nutze die Pfeile, um die Sätze in die richtige Reihenfolge zu bringen. Tippe dann auf Fertig.",
+    "round": "Runde {{n}} von {{total}}",
+    "drag": "Zum Umsortieren ziehen",
+    "up": "Nach oben",
+    "down": "Nach unten",
+    "done": "Fertig",
+    "score": "An der richtigen Stelle: {{correct}} von {{total}}",
+    "correctOrder": "Die richtige Reihenfolge war:",
+    "next": "Nächste Runde",
+    "finish": "Ergebnis ansehen",
+    "tooShort": "Zu wenig zum Durchmischen",
+    "tooShortBody": "Diese Auswahl hat weniger als zwei Sätze oder Wendungen. Wähle mehr Abschnitte."
+  },
+  "typeIt": {
+    "help": "Tippe den Text aus dem Gedächtnis. Zu merkende Wörter: {{count}}.",
+    "placeholder": "Fang an zu tippen …",
+    "done": "Meine Antwort prüfen",
+    "review": "Was du getippt hast"
+  },
+  "choice": {
+    "progress": "Frage {{n}} von {{total}}",
+    "askPhrase": "Was kommt als Nächstes?",
+    "askWord": "Welches Wort kommt als Nächstes?",
+    "next": "Weiter",
+    "finish": "Ergebnis ansehen",
+    "tooShort": "Zu wenig Text für Fragen",
+    "tooShortBody": "Wähle mehr Abschnitte oder füge mehr Text hinzu."
+  },
+  "speak": {
+    "help": "Trage den Text laut aus dem Gedächtnis vor. Zu merkende Wörter: {{count}}. Die Erkennung läuft auf deinem Handy.",
+    "start": "Sprechen beginnen",
+    "listening": "Ich höre zu …",
+    "waiting": "Sprich, sobald du bereit bist",
+    "done": "Ich bin fertig",
+    "heardNothing": "Ich habe nichts gehört. Versuche es noch einmal etwas näher am Mikrofon.",
+    "error": "Die Spracherkennung wurde beendet ({{code}}). Versuche es erneut.",
+    "review": "Was ich gehört habe"
+  },
+  "speechIssue": {
+    "openSettings": "App-Einstellungen öffnen",
+    "openTtsSettings": "Spracheinstellungen öffnen",
+    "downloadPack": "Sprachpaket herunterladen",
+    "retry": "Erneut prüfen",
+    "permission": {
+      "title": "Mikrofon erforderlich",
+      "body": "Linewise braucht das Mikrofon, um dich vortragen zu hören. Erlaube es, wenn du gefragt wirst, und versuche es dann erneut."
+    },
+    "permission-blocked": {
+      "title": "Das Mikrofon ist ausgeschaltet",
+      "body": "Der Mikrofonzugriff wurde verweigert. Öffne die App-Einstellungen, wähle Berechtigungen, erlaube das Mikrofon und komm zurück."
+    },
+    "unavailable": {
+      "title": "Keine Spracherkennung gefunden",
+      "body": "Dieses Handy hat keinen Spracherkennungsdienst. Installiere oder aktiviere „Spracherkennung und -ausgabe“ von Google in den Handy-Einstellungen und prüfe dann erneut."
+    },
+    "no-on-device": {
+      "title": "Offline-Erkennung wird nicht unterstützt",
+      "body": "Linewise nutzt nur Erkennung, die auf deinem Handy läuft, und dieses Handy kann das nicht. Neuere Android-Versionen mit aktueller Google-App können es meist."
+    },
+    "language-missing": {
+      "title": "Sprachpaket nicht heruntergeladen",
+      "body": "Das Offline-Sprachpaket für diese Sprache ist noch nicht auf deinem Handy. Lade es einmal herunter und prüfe dann erneut."
+    },
+    "no-voice": {
+      "title": "Keine Stimme für diese Sprache",
+      "body": "Dein Handy hat keine Sprachausgabe-Stimme für diese Sprache. Öffne die Spracheinstellungen, wähle deine Sprach-Engine und installiere die Sprachdaten."
+    }
+  },
+  "scene": {
+    "help": "Wähle deine Rolle. Die App liest die anderen Rollen und Regieanweisungen laut vor und hört auf deine Zeilen.",
+    "yourRole": "Deine Rolle",
+    "narrate": "Regieanweisungen laut vorlesen",
+    "voices": "Stimmen für die anderen Rollen",
+    "narrator": "Erzähler",
+    "defaultVoice": "Standardstimme",
+    "test": "Testen",
+    "noVoices": "Für diese Sprache wurden keine Stimmen gefunden. Es wird die Standardstimme des Handys verwendet.",
+    "noRoles": "Dieser Text hat keine Sprecher. Schreibe Sprechernamen in Großbuchstaben und mache ihn zum Skript.",
+    "start": "Szene starten",
+    "progress": "Zeile {{n}} von {{total}}",
+    "yourLine": "Deine Zeile. Sag sie aus dem Gedächtnis.",
+    "hint": "Zeile zeigen",
+    "heardNothing": "Ich habe deine Zeile nicht gehört.",
+    "retry": "Nochmal versuchen",
+    "skip": "Überspringen",
+    "stop": "Stopp",
+    "review": "Deine Zeilen"
+  },
+  "recordings": {
+    "help": "Nimm dich beim Lesen dieses Textes auf. Du kannst bis zu {{max}} Aufnahmen von je höchstens 10 Minuten behalten.",
+    "defaultName": "Aufnahme",
+    "record": "Aufnehmen",
+    "stop": "Stoppen und speichern",
+    "empty": "Noch keine Aufnahmen",
+    "rename": "Umbenennen",
+    "useInListen": "In Zuhören verwenden",
+    "usedInListen": "Wird in Zuhören verwendet",
+    "outOfDate": "Aufgenommen, bevor der Text zuletzt geändert wurde, sie passt daher eventuell nicht mehr zu den Wörtern.",
+    "fullTitle": "Aufnahmelimit erreicht",
+    "fullBody": "Lösche eine alte Aufnahme, um Platz für eine neue zu schaffen.",
+    "limitReachedTitle": "Zehn Minuten erreicht",
+    "limitReachedBody": "Die Aufnahme wurde beendet und gespeichert.",
+    "deleteTitle": "Diese Aufnahme löschen?",
+    "permissionTitle": "Mikrofon erforderlich",
+    "permissionBody": "Erlaube den Mikrofonzugriff, um aufzunehmen."
+  },
+  "stats": {
+    "total": "Bewertete Sitzungen in diesem Monat: {{count}}",
+    "tapHint": "Tippe auf einen Balken, um diesen Tag zu sehen.",
+    "noSessions": "An diesem Tag keine bewerteten Sitzungen."
+  },
+  "target": {
+    "title": "Zieldatum",
+    "help": "Wähle ein Datum, bis zu dem du den Text können willst. Deine Wiederholungen werden so verteilt, dass die letzte auf diesen Tag fällt.",
+    "current": "Aktuelles Ziel: {{date}}",
+    "inDays": "Tage ab heute: {{count}}",
+    "preview": "Dein Zeitplan",
+    "firstReview": "Nächste Wiederholung",
+    "reviewN": "Wiederholung {{n}}",
+    "planComplete": "Nichts mehr zu planen. Du hast den Plan abgeschlossen.",
+    "save": "Zieldatum speichern",
+    "clear": "Zieldatum entfernen"
+  },
+  "reminders": {
+    "title": "Erinnerungen",
+    "next": "Nächste Wiederholung: {{date}}",
+    "none": "Es ist noch keine Wiederholung geplant. Spiele ein bewertetes Spiel, um deinen Plan zu starten.",
+    "on": "Erinnerungen sind aktiviert. An Wiederholungstagen bekommst du eine Benachrichtigung.",
+    "off": "Erinnerungen sind aus.",
+    "enable": "Erinnerungen aktivieren"
+  },
+  "notifications": {
+    "channel": "Wiederholungserinnerungen",
+    "reviewTitle": "Zeit zum Wiederholen",
+    "reviewBody": "„{{title}}“ ist heute zur Wiederholung fällig.",
+    "backupTitle": "Linewise sichern",
+    "backupBody": "Speichere eine Sicherungsdatei, damit du deine Texte und deinen Fortschritt später wiederherstellen kannst."
+  },
+  "voices": {
+    "title": "Stimmen",
+    "help": "Wähle die Stimme, die jede Sprache vorliest. Das sind die auf deinem Handy installierten Stimmen.",
+    "systemDefault": "Handy-Standard",
+    "systemDefaultHelp": "Verwendet die Stimme, die dein Handy auswählt.",
+    "use": "Verwenden",
+    "selected": "Ausgewählt",
+    "enhanced": "Verbessert",
+    "sample": "Hallo, so klinge ich.",
+    "noneTitle": "Keine Stimmen für diese Sprache",
+    "noneBody": "Öffne die Spracheinstellungen, wähle deine Sprach-Engine und installiere die Sprachdaten für diese Sprache. Komm dann zurück und aktualisiere.",
+    "refresh": "Aktualisieren",
+    "downloadHelp": "Du möchtest einen anderen Akzent oder bessere Qualität? Installiere weitere Stimmen in den Spracheinstellungen deines Handys."
+  },
+  "backup": {
+    "title": "Sichern und wiederherstellen",
+    "exportTitle": "Sichern",
+    "exportBody": "Speichert deine Texte, deinen Fortschritt, deine Sitzungen und Einstellungen in einer Datei. Schicke sie an Dateien, Google Drive oder einen anderen sicheren Ort.",
+    "noRecordings": "Aufnahmen sind nicht enthalten, damit die Datei klein bleibt.",
+    "last": "Letzte Sicherung: {{date}}",
+    "never": "Du hast noch keine Sicherung erstellt.",
+    "now": "Jetzt sichern",
+    "shareTitle": "Deine Linewise-Sicherung speichern",
+    "sharingUnavailable": "Teilen ist auf diesem Handy nicht verfügbar.",
+    "exportFailed": "Die Sicherung konnte nicht erstellt werden: {{error}}",
+    "restoreTitle": "Wiederherstellen",
+    "restoreBody": "Wähle eine Linewise-Sicherungsdatei. Du siehst, was sie enthält, bevor sich etwas ändert.",
+    "choose": "Sicherungsdatei wählen",
+    "readFailed": "Die Datei konnte nicht gelesen werden.",
+    "invalid": "Das ist keine Linewise-Sicherungsdatei.",
+    "unknownVersion": "Diese Sicherung stammt aus einer anderen Version von Linewise (Version {{version}}) und kann nicht gelesen werden.",
+    "contains": "Diese Sicherung enthält",
+    "containsBody": "Texte: {{texts}} · Sitzungen: {{sessions}} · Gespeichert am {{date}}",
+    "merge": "Mit meinen Daten zusammenführen",
+    "mergeHelp": "Behält alles auf diesem Handy. Bei Texten, die auf beiden Seiten existieren, gewinnt die neuere Bearbeitung.",
+    "replace": "Alle meine Daten ersetzen",
+    "replaceTitle": "Alles ersetzen?",
+    "replaceBody": "Texte, die nicht in der Sicherung enthalten sind, werden samt ihren Aufnahmen von diesem Handy gelöscht.",
+    "restored": "Wiederhergestellt. Texte auf diesem Handy: {{count}}.",
+    "merged": "Zusammengeführt. Hinzugefügt: {{added}}, aktualisiert: {{updated}}, behalten: {{kept}}.",
+    "monthly": "Monatliche Sicherungserinnerung",
+    "monthlyHelp": "Erinnert dich einmal im Monat daran, eine Sicherung zu speichern."
+  },
+  "camera": {
+    "help": "Richte die Kamera auf gedruckten Text oder wähle ein Foto. Die Erkennung läuft auf deinem Handy; nichts wird hochgeladen.",
+    "script": "Schriftsystem",
+    "scripts": {
+      "Latin": "Lateinisch",
+      "Chinese": "Chinesisch",
+      "Devanagari": "Devanagari",
+      "Japanese": "Japanisch",
+      "Korean": "Koreanisch"
+    },
+    "unsupported": "Das Scannen von Arabisch und Hebräisch wird noch nicht unterstützt. Du kannst diese Texte eintippen oder einfügen.",
+    "permissionBody": "Linewise braucht die Kamera, um eine Seite zu scannen.",
+    "allow": "Kamera erlauben",
+    "capture": "Foto aufnehmen und lesen",
+    "gallery": "Foto auswählen",
+    "nothingFound": "Es wurde kein Text gefunden. Versuche ein schärferes Foto bei besserem Licht.",
+    "failed": "Die Texterkennung ist fehlgeschlagen: {{error}}",
+    "reviewHelp": "Prüfe den Text und korrigiere Fehler, bevor du fortfährst.",
+    "use": "Diesen Text verwenden",
+    "retake": "Erneut scannen",
+    "privacy": "Fotos werden auf deinem Handy gelesen und von Linewise nicht gespeichert."
+  },
+  "settings": {
+    "language": "App-Sprache",
+    "system": "Wie das Handy",
+    "restartNote": "Schließe Linewise und öffne es erneut, um die Layoutrichtung zu wechseln.",
+    "defaultLanguage": "Sprache für neue Texte",
+    "fontSize": "Textgröße",
+    "fontPreview": "Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich.",
+    "speech": "Sprache",
+    "speechRate": "Sprechgeschwindigkeit",
+    "testSpeech": "Geschwindigkeit testen",
+    "testSentence": "So schnell werde ich lesen.",
+    "voices": "Stimmen wählen",
+    "reviews": "Wiederholungen",
+    "notifications": "Wiederholungserinnerungen",
+    "notificationsHelp": "Eine Benachrichtigung an Tagen, an denen eine Wiederholung fällig ist.",
+    "notificationsBlockedTitle": "Benachrichtigungen sind aus",
+    "notificationsBlockedBody": "Erlaube Benachrichtigungen für Linewise in den Handy-Einstellungen, um Erinnerungen zu erhalten.",
+    "resetSolidify": "Festigen-Ergebnisse bei jedem Intervall zurücksetzen",
+    "resetSolidifyHelp": "Beginne die Festigen-Ergebnisse neu, sobald du in ein neues Wiederholungsintervall wechselst.",
+    "data": "Deine Daten",
+    "backup": "Sichern und wiederherstellen",
+    "offlineNote": "Alles bleibt auf diesem Handy. Linewise hat keine Konten und verbindet sich nie mit dem Internet.",
+    "about": "Über",
+    "faq": "Fragen und Antworten",
+    "report": "Problem melden",
+    "reportNote": "Öffnet GitHub im Browser. Linewise selbst stellt keine Netzwerkverbindungen her.",
+    "replayIntro": "Einführung erneut ansehen"
+  },
+  "faq": {
+    "title": "Fragen und Antworten",
+    "items": {
+      "offline": {
+        "q": "Braucht Linewise Internet?",
+        "a": "Nein. Alles läuft auf deinem Handy, und die App fragt nicht einmal nach der Internet-Berechtigung. Sie funktioniert im Flugmodus."
+      },
+      "chunks": {
+        "q": "Wie teile ich einen Text in Abschnitte?",
+        "a": "Lass beim Hinzufügen oder Bearbeiten des Textes zwischen den Abschnitten eine Leerzeile. Einfache Zeilenumbrüche innerhalb eines Abschnitts bleiben erhalten, was für Gedichte und Liedtexte passt."
+      },
+      "script": {
+        "q": "Wie füge ich ein Theaterstück oder Skript hinzu?",
+        "a": "Wähle „Skript“ als Art des Textes. Schreibe den Namen jeder Figur in GROSSBUCHSTABEN in eine eigene Zeile, darunter ihre Zeilen. Regieanweisungen kommen in (runde) oder [eckige] Klammern."
+      },
+      "review": {
+        "q": "Wie funktionieren Wiederholungen?",
+        "a": "Nach deinem ersten bewerteten Spiel liegen die Wiederholungen 1, 2, 4, 7, 14, 30 und 60 Tage auseinander. An einem Wiederholungstag zählt dein erstes Festigen- oder Prüfen-Spiel. Mit 80 % oder mehr geht es zum nächsten Intervall; sonst versuche es morgen erneut."
+      },
+      "target": {
+        "q": "Was ist ein Zieldatum?",
+        "a": "Es ist der Tag, bis zu dem du den Text können willst. Linewise staucht oder streckt deine Wiederholungsabstände, sodass die letzte Wiederholung auf diesen Tag fällt."
+      },
+      "score": {
+        "q": "Wie wird mein Ergebnis berechnet?",
+        "a": "Genauigkeit mal Abdeckung. Die Abdeckung ist der Anteil des gesamten Textes, den du in diesem Spiel geübt hast, daher erzielt ein Durchgang mit dem ganzen Text das beste Ergebnis."
+      },
+      "speech": {
+        "q": "Sprechen und Szene spielen funktionieren nicht. Warum?",
+        "a": "Sie brauchen das Mikrofon, eine Spracherkennung auf dem Gerät und das Offline-Sprachpaket deiner Sprache. Linewise sagt dir, was fehlt und wie du es behebst."
+      },
+      "voices": {
+        "q": "Wie bekomme ich eine bessere Stimme?",
+        "a": "Öffne Einstellungen, dann Stimmen wählen, dann Spracheinstellungen öffnen. Wähle deine Sprach-Engine und installiere zusätzliche Stimmen oder Sprachdaten höherer Qualität."
+      },
+      "backup": {
+        "q": "Wie übertrage ich meine Daten auf ein neues Handy?",
+        "a": "Nutze Einstellungen, dann Sichern und wiederherstellen. Speichere die Sicherungsdatei an einem Ort, den du vom neuen Handy erreichst, und stelle sie dort wieder her."
+      },
+      "recordings": {
+        "q": "Warum fehlen meine Aufnahmen nach einer Wiederherstellung?",
+        "a": "Sicherungen enthalten keine Aufnahmen, damit die Datei klein bleibt. Nimm sie auf dem neuen Handy erneut auf."
+      },
+      "share": {
+        "q": "Kann ich Text aus einer anderen App hinzufügen?",
+        "a": "Ja. Markiere Text in einer beliebigen App, wähle Teilen und dann Linewise. Der Bildschirm Hinzufügen öffnet sich mit dem ausgefüllten Text."
+      },
+      "camera": {
+        "q": "Warum kann ich kein Arabisch oder Hebräisch scannen?",
+        "a": "Die Texterkennung auf dem Gerät, die Linewise nutzt, enthält diese Sprachen noch nicht. Du kannst sie stattdessen eintippen oder einfügen."
+      }
+    }
+  },
+  "onboarding": {
+    "welcome": "Willkommen bei Linewise",
+    "tagline": "Lerne Gedichte, Reden, Verse und Skripte auswendig.",
+    "goalQuestion": "Was möchtest du auswendig lernen?",
+    "goals": {
+      "poem": "Ein Gedicht",
+      "speech": "Eine Rede",
+      "script": "Ein Skript",
+      "verse": "Einen Vers oder ein Gebet",
+      "other": "Etwas anderes"
+    },
+    "reminderQuestion": "Möchtest du an Wiederholungstagen erinnert werden?",
+    "reminderBody": "Verteilte Wiederholungen sorgen dafür, dass Erinnerungen bleiben. Eine sanfte Erinnerung hilft dir, dranzubleiben.",
+    "tryDemo": "Eine einminütige Demo ausprobieren",
+    "offline": "Kein Konto. Kein Internet. Deine Texte verlassen nie dein Handy."
+  },
+  "demo": {
+    "title": "Probiere Erster Buchstabe",
+    "help": "Tippe aus dem Gedächtnis den ersten Buchstaben jedes markierten Wortes. Keine Sorge, wenn du den Text noch nicht kennst.",
+    "doneBody": "So funktioniert jedes Spiel. Wähle eins, spiele, und deine Wiederholungen werden für dich geplant.",
+    "score": "Du hast {{percent}} % erreicht",
+    "save": "Dieses Gedicht in meiner Liste speichern",
+    "skip": "Ohne Speichern fortfahren",
+    "skipDemo": "Demo überspringen"
+  }
+}

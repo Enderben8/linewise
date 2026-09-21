@@ -1,0 +1,542 @@
+{
+  "common": {
+    "back": "Atrás",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "loading": "Cargando…",
+    "next": "Siguiente",
+    "no": "No",
+    "pause": "Pausa",
+    "play": "Reproducir",
+    "save": "Guardar",
+    "yes": "Sí"
+  },
+  "errors": {
+    "databaseTitle": "No se pudieron abrir los datos de la app"
+  },
+  "tabs": {
+    "memorizations": "Memorizar",
+    "add": "Añadir",
+    "settings": "Ajustes"
+  },
+  "status": {
+    "new": "Nuevo",
+    "due": "Repaso hoy",
+    "inDays": "Próximo repaso en {{count}} d",
+    "done": "Plan completado"
+  },
+  "list": {
+    "search": "Buscar por título, autor o etiqueta",
+    "allTags": "Todas",
+    "emptyTitle": "Aún no hay nada que memorizar",
+    "emptyBody": "Añade un poema, un discurso, un versículo o un guion. Todo se queda en tu teléfono.",
+    "addFirst": "Añade tu primer texto",
+    "noMatches": "Ningún texto coincide con tu búsqueda",
+    "backupNudgeTitle": "Es hora de una copia de seguridad",
+    "backupNudgeBody": "Ha pasado un mes. Un archivo de copia te permite recuperar tus textos y tu progreso si pierdes o reinicias este teléfono.",
+    "backupNow": "Hacer copia ahora"
+  },
+  "add": {
+    "title": "Añadir un texto",
+    "editTitle": "Texto nuevo",
+    "cameraTitle": "Escanear texto",
+    "intro": "Elige cómo traer tu texto. Podrás dividirlo en fragmentos y retocarlo en la pantalla siguiente.",
+    "typeTitle": "Escribir o pegar",
+    "typeBody": "Escribe el texto tú mismo o pégalo desde cualquier sitio.",
+    "fileTitle": "Importar un archivo",
+    "fileBody": "Elige un archivo .txt o .md de tu teléfono.",
+    "cameraOptionTitle": "Escanear con la cámara o una foto",
+    "cameraOptionBody": "Lee texto impreso de una página. El reconocimiento se hace en tu teléfono.",
+    "shareHint": "Consejo: en cualquier otra app, comparte texto con Linewise y se abrirá aquí, listo para guardar.",
+    "fileTooLargeTitle": "El archivo es demasiado grande",
+    "fileTooLargeBody": "Elige un archivo de texto más pequeño. Los textos pueden tener hasta 100 KB.",
+    "fileErrorTitle": "No se pudo leer el archivo"
+  },
+  "editor": {
+    "body": "Texto",
+    "bodyPlaceholder": "Pega o escribe el texto. Deja una línea en blanco entre fragmentos.",
+    "size": "{{used}} KB de {{max}} KB",
+    "title": "Título",
+    "author": "Autor (opcional)",
+    "type": "Tipo de texto",
+    "typeText": "Texto",
+    "typeScript": "Guion",
+    "scriptHelp": "Escribe el nombre de cada personaje en MAYÚSCULAS en su propia línea, con sus frases debajo. Pon las acotaciones entre (paréntesis) o [corchetes].",
+    "scriptHelpNoCase": "Este idioma no tiene mayúsculas, así que termina el nombre de cada personaje con dos puntos.",
+    "language": "Idioma del texto",
+    "tags": "Etiquetas",
+    "tagsHint": "Separa las etiquetas con comas",
+    "scriptWarnings": "Revisa tu guion",
+    "issues": {
+      "SPEAKER_NO_DIALOGUE": "Línea {{line}}: un nombre de personaje no tiene frases debajo.",
+      "LOOKS_LIKE_SPEAKER": "Línea {{line}}: parece un nombre de personaje, pero no está en mayúsculas."
+    },
+    "editWarning": "Si cambias las palabras, se reinician tus elecciones de Completar huecos y las grabaciones antiguas se marcarán como desactualizadas.",
+    "previewTitle": "Vista previa, fragmentos: {{count}}",
+    "previewEmpty": "Los fragmentos aparecen aquí mientras escribes. Una línea en blanco empieza un fragmento nuevo.",
+    "previewMore": "+{{count}} más",
+    "chunkN": "Fragmento {{n}}",
+    "create": "Guardar texto",
+    "save": "Guardar cambios",
+    "errors": {
+      "titleRequired": "Ponle un título al texto.",
+      "bodyRequired": "Añade algo de texto para memorizar.",
+      "bodyTooLarge": "Este texto supera el límite de {{max}} KB. Divídelo en varios textos."
+    }
+  },
+  "detail": {
+    "notFound": "Este texto ya no existe",
+    "ringsHelp": "Anillo exterior: cuánto lo sabes. Anillo interior: progreso en tu plan de repasos.",
+    "fullText": "Texto completo",
+    "edit": "Editar",
+    "stats": "Estadísticas",
+    "reminders": "Recordatorios",
+    "noChunks": "Este texto no tiene fragmentos que practicar.",
+    "whatToPractise": "Qué practicar",
+    "share": "Compartir texto",
+    "delete": "Eliminar este texto",
+    "deleteTitle": "¿Eliminar este texto?",
+    "deleteBody": "«{{title}}», su progreso, sesiones y grabaciones se borrarán de este teléfono. No se puede deshacer."
+  },
+  "selection": {
+    "all": "Todo el texto",
+    "one": "Un fragmento",
+    "range": "Un rango",
+    "chunk": "Fragmento",
+    "from": "Desde el fragmento",
+    "to": "Hasta el fragmento",
+    "speaker": "Practicar un solo personaje",
+    "everyone": "Todos"
+  },
+  "groups": {
+    "practice": "Práctica",
+    "practiceHelp": "Aprende las palabras. Sin puntuación.",
+    "solidify": "Afianzar",
+    "solidifyHelp": "Fíjalo con juegos guiados.",
+    "evaluate": "Evaluar",
+    "evaluateHelp": "Ponte a prueba sin ayuda."
+  },
+  "games": {
+    "nothingToPractise": "Aquí no hay nada que practicar",
+    "nothingToPractiseBody": "Los fragmentos elegidos no tienen palabras para esta opción. Vuelve y cambia la selección.",
+    "chunkOne": "fragmento {{n}}",
+    "chunkRange": "fragmentos {{from}}–{{to}}",
+    "tap-to-reveal": {
+      "name": "Toca para revelar",
+      "blurb": "Revela una frase, oración o palabra cada vez"
+    },
+    "slider": {
+      "name": "Deslizador",
+      "blurb": "Oculta cada vez más palabras"
+    },
+    "listen": {
+      "name": "Escuchar",
+      "blurb": "Escúchalo en voz alta y síguelo en pantalla"
+    },
+    "my-recordings": {
+      "name": "Mis grabaciones",
+      "blurb": "Grábate leyéndolo"
+    },
+    "first-letter": {
+      "name": "Primera letra",
+      "blurb": "Escribe la primera letra de cada palabra"
+    },
+    "fill-in-the-blank": {
+      "name": "Completar huecos",
+      "blurb": "Elige las palabras que faltan"
+    },
+    "sentence-scramble": {
+      "name": "Oraciones desordenadas",
+      "blurb": "Pon en orden las oraciones mezcladas"
+    },
+    "type-it": {
+      "name": "Escríbelo",
+      "blurb": "Escribe todo el texto de memoria"
+    },
+    "multiple-choice": {
+      "name": "Opción múltiple",
+      "blurb": "Elige lo que viene después"
+    },
+    "speak": {
+      "name": "Hablar",
+      "blurb": "Recítalo en voz alta y obtén tu puntuación"
+    },
+    "run-scene": {
+      "name": "Ensayar escena",
+      "blurb": "Interpreta tu papel mientras la app lee los demás"
+    }
+  },
+  "result": {
+    "great": "¡Muy bien!",
+    "keepGoing": "Sigue así, ya casi lo tienes.",
+    "accuracy": "Precisión",
+    "coverage": "Parte del texto cubierta",
+    "weightedHelp": "Tu puntuación es la precisión multiplicada por la parte del texto completo que practicaste.",
+    "practiceOnly": "Esto fue práctica. Solo el primer juego con puntuación de un día de repaso hace avanzar tu plan.",
+    "advanced": "¡Aprobado! Tu próximo repaso es el {{date}}.",
+    "planDone": "¡Aprobado! Has terminado tu plan de repasos para este texto.",
+    "retry": "Aún no llegas al {{pass}}%. Puedes intentarlo mañana; la práctica de hoy también ayuda.",
+    "playAgain": "Jugar otra vez",
+    "backToText": "Volver al texto"
+  },
+  "diff": {
+    "missed": "Omitida",
+    "wrong": "Palabra incorrecta",
+    "extra": "Sobra"
+  },
+  "tap": {
+    "mode": {
+      "phrase": "Frases",
+      "sentence": "Oraciones",
+      "word": "Palabras"
+    },
+    "speak": "Leer en voz alta",
+    "start": "Toca para revelar la primera parte",
+    "revealNext": "Revelar siguiente",
+    "undo": "Deshacer",
+    "reset": "Empezar de nuevo",
+    "progress": "{{shown}} de {{total}} reveladas",
+    "done": "Eso es todo. Vuelve a intentarlo desde el principio."
+  },
+  "slider": {
+    "hidden": "Palabras ocultas",
+    "label": "Porcentaje de palabras ocultas",
+    "guided": "Lectura guiada",
+    "recall": "Recuerdo total",
+    "reshuffle": "Elegir otras palabras",
+    "tapHint": "Toca una palabra oculta para verla un momento."
+  },
+  "listen": {
+    "previous": "Línea anterior",
+    "next": "Línea siguiente",
+    "back10": "Retroceder 10 segundos",
+    "forward10": "Avanzar 10 segundos",
+    "repeat": "Repetir",
+    "sourceVoice": "Voz",
+    "sourceRecording": "Mi grabación",
+    "recordingHelp": "Reproduciendo tu grabación guardada. Sigue sonando con la pantalla apagada."
+  },
+  "firstLetter": {
+    "help": "Escribe la primera letra de cada palabra resaltada. Si fallas, vibra, muestra la palabra y sigue.",
+    "placeholder": "Escribe una letra",
+    "progress": "{{done}} de {{total}} palabras"
+  },
+  "fill": {
+    "chooseHelp": "Toca palabras para elegir cuáles se ocultan. Tu elección se guarda para este texto.",
+    "auto": "Ocultar {{percent}}%",
+    "clear": "Borrar",
+    "count": "Palabras ocultas: {{count}}",
+    "start": "Empezar",
+    "progress": "Hueco {{done}} de {{total}}"
+  },
+  "scramble": {
+    "help": "Arrastra el asa, o usa las flechas, para poner las oraciones en el orden correcto. Luego toca Listo.",
+    "round": "Ronda {{n}} de {{total}}",
+    "drag": "Arrastrar para reordenar",
+    "up": "Subir",
+    "down": "Bajar",
+    "done": "Listo",
+    "score": "En su sitio: {{correct}} de {{total}}",
+    "correctOrder": "El orden correcto era:",
+    "next": "Siguiente ronda",
+    "finish": "Ver resultado",
+    "tooShort": "No hay suficiente para desordenar",
+    "tooShortBody": "Esta selección tiene menos de dos oraciones o frases. Elige más fragmentos."
+  },
+  "typeIt": {
+    "help": "Escribe el texto de memoria. Palabras por recordar: {{count}}.",
+    "placeholder": "Empieza a escribir…",
+    "done": "Comprobar mi respuesta",
+    "review": "Lo que escribiste"
+  },
+  "choice": {
+    "progress": "Pregunta {{n}} de {{total}}",
+    "askPhrase": "¿Qué viene después?",
+    "askWord": "¿Qué palabra viene después?",
+    "next": "Siguiente",
+    "finish": "Ver resultado",
+    "tooShort": "No hay texto suficiente para las preguntas",
+    "tooShortBody": "Elige más fragmentos o añade más texto."
+  },
+  "speak": {
+    "help": "Recita el texto en voz alta de memoria. Palabras por recordar: {{count}}. El reconocimiento se hace en tu teléfono.",
+    "start": "Empezar a hablar",
+    "listening": "Escuchando…",
+    "waiting": "Empieza a hablar cuando quieras",
+    "done": "He terminado",
+    "heardNothing": "No oí nada. Inténtalo de nuevo un poco más cerca del micrófono.",
+    "error": "El reconocimiento de voz se detuvo ({{code}}). Inténtalo de nuevo.",
+    "review": "Lo que oí"
+  },
+  "speechIssue": {
+    "openSettings": "Abrir ajustes de la app",
+    "openTtsSettings": "Abrir ajustes de voz",
+    "downloadPack": "Descargar el paquete de voz",
+    "retry": "Comprobar de nuevo",
+    "permission": {
+      "title": "Se necesita el micrófono",
+      "body": "Linewise necesita el micrófono para oírte recitar. Permítelo cuando te lo pida y vuelve a intentarlo."
+    },
+    "permission-blocked": {
+      "title": "El micrófono está desactivado",
+      "body": "Se denegó el acceso al micrófono. Abre los ajustes de la app, elige Permisos, permite Micrófono y vuelve."
+    },
+    "unavailable": {
+      "title": "No hay reconocedor de voz",
+      "body": "Este teléfono no tiene un servicio de reconocimiento de voz. Instala o activa «Servicios de voz de Google» en los ajustes del teléfono y vuelve a comprobar."
+    },
+    "no-on-device": {
+      "title": "El reconocimiento sin conexión no es compatible",
+      "body": "Linewise solo usa reconocimiento que funciona en tu teléfono, y este no puede hacerlo. Las versiones recientes de Android con la app de Google actualizada suelen poder."
+    },
+    "language-missing": {
+      "title": "Paquete de idioma sin descargar",
+      "body": "El paquete de voz sin conexión para este idioma aún no está en tu teléfono. Descárgalo una vez y vuelve a comprobar."
+    },
+    "no-voice": {
+      "title": "No hay voz para este idioma",
+      "body": "Tu teléfono no tiene una voz de síntesis para este idioma. Abre los ajustes de voz, elige tu motor de voz e instala los datos de voz."
+    }
+  },
+  "scene": {
+    "help": "Elige tu papel. La app lee en voz alta los demás papeles y las acotaciones, y escucha tus frases.",
+    "yourRole": "Tu papel",
+    "narrate": "Leer las acotaciones en voz alta",
+    "voices": "Voces de los demás papeles",
+    "narrator": "Narrador",
+    "defaultVoice": "Voz predeterminada",
+    "test": "Probar",
+    "noVoices": "No se encontraron voces para este idioma. Se usará la voz predeterminada del teléfono.",
+    "noRoles": "Este texto no tiene personajes. Marca los nombres en mayúsculas y conviértelo en guion.",
+    "start": "Empezar la escena",
+    "progress": "Frase {{n}} de {{total}}",
+    "yourLine": "Tu frase. Dila de memoria.",
+    "hint": "Mostrar frase",
+    "heardNothing": "No oí tu frase.",
+    "retry": "Intentar de nuevo",
+    "skip": "Saltar",
+    "stop": "Detener",
+    "review": "Tus frases"
+  },
+  "recordings": {
+    "help": "Grábate leyendo este texto. Puedes guardar hasta {{max}} grabaciones de hasta 10 minutos cada una.",
+    "defaultName": "Toma",
+    "record": "Grabar",
+    "stop": "Parar y guardar",
+    "empty": "Aún no hay grabaciones",
+    "rename": "Renombrar",
+    "useInListen": "Usar en Escuchar",
+    "usedInListen": "Se usa en Escuchar",
+    "outOfDate": "Grabada antes del último cambio del texto, así que puede no coincidir con las palabras.",
+    "fullTitle": "Límite de grabaciones alcanzado",
+    "fullBody": "Elimina una grabación antigua para hacer sitio a una nueva.",
+    "limitReachedTitle": "Diez minutos alcanzados",
+    "limitReachedBody": "La grabación se detuvo y se guardó.",
+    "deleteTitle": "¿Eliminar esta grabación?",
+    "permissionTitle": "Se necesita el micrófono",
+    "permissionBody": "Permite el acceso al micrófono para grabar."
+  },
+  "stats": {
+    "total": "Sesiones puntuadas este mes: {{count}}",
+    "tapHint": "Toca una barra para ver ese día.",
+    "noSessions": "No hay sesiones puntuadas ese día."
+  },
+  "target": {
+    "title": "Fecha objetivo",
+    "help": "Elige la fecha para la que quieres saberlo. Tus repasos se espacian para que el último caiga ese día.",
+    "current": "Objetivo actual: {{date}}",
+    "inDays": "Días desde hoy: {{count}}",
+    "preview": "Tu calendario",
+    "firstReview": "Próximo repaso",
+    "reviewN": "Repaso {{n}}",
+    "planComplete": "No queda nada por programar. Has terminado el plan.",
+    "save": "Guardar fecha objetivo",
+    "clear": "Quitar fecha objetivo"
+  },
+  "reminders": {
+    "title": "Recordatorios",
+    "next": "Próximo repaso: {{date}}",
+    "none": "Aún no hay ningún repaso programado. Juega un juego con puntuación para empezar tu plan.",
+    "on": "Los recordatorios están activados. Recibirás una notificación los días de repaso.",
+    "off": "Los recordatorios están desactivados.",
+    "enable": "Activar recordatorios"
+  },
+  "notifications": {
+    "channel": "Recordatorios de repaso",
+    "reviewTitle": "Hora de repasar",
+    "reviewBody": "«{{title}}» toca repasarse hoy.",
+    "backupTitle": "Haz una copia de Linewise",
+    "backupBody": "Guarda un archivo de copia para poder recuperar tus textos y tu progreso más adelante."
+  },
+  "voices": {
+    "title": "Voces",
+    "help": "Elige la voz que lee cada idioma en voz alta. Son las voces instaladas en tu teléfono.",
+    "systemDefault": "Predeterminada del teléfono",
+    "systemDefaultHelp": "Usa la voz que elija tu teléfono.",
+    "use": "Usar",
+    "selected": "Seleccionada",
+    "enhanced": "Mejorada",
+    "sample": "Hola, así es como sueno.",
+    "noneTitle": "No hay voces para este idioma",
+    "noneBody": "Abre los ajustes de voz, elige tu motor de voz e instala los datos de voz de este idioma. Después vuelve y actualiza.",
+    "refresh": "Actualizar",
+    "downloadHelp": "¿Quieres otro acento o mejor calidad? Instala más voces en los ajustes de voz de tu teléfono."
+  },
+  "backup": {
+    "title": "Copia y restauración",
+    "exportTitle": "Copia de seguridad",
+    "exportBody": "Guarda tus textos, progreso, sesiones y ajustes en un solo archivo. Envíalo a Archivos, Google Drive o donde lo guardes de forma segura.",
+    "noRecordings": "Las grabaciones no se incluyen, para que el archivo sea pequeño.",
+    "last": "Última copia: {{date}}",
+    "never": "Aún no has hecho ninguna copia.",
+    "now": "Hacer copia ahora",
+    "shareTitle": "Guarda tu copia de Linewise",
+    "sharingUnavailable": "Compartir no está disponible en este teléfono.",
+    "exportFailed": "No se pudo crear la copia: {{error}}",
+    "restoreTitle": "Restaurar",
+    "restoreBody": "Elige un archivo de copia de Linewise. Verás qué contiene antes de que cambie nada.",
+    "choose": "Elegir un archivo de copia",
+    "readFailed": "No se pudo leer el archivo.",
+    "invalid": "Ese no es un archivo de copia de Linewise.",
+    "unknownVersion": "Esta copia la hizo otra versión de Linewise (versión {{version}}) y no se puede leer.",
+    "contains": "Esta copia contiene",
+    "containsBody": "Textos: {{texts}} · Sesiones: {{sessions}} · Guardada el {{date}}",
+    "merge": "Combinar con mis datos",
+    "mergeHelp": "Conserva todo lo que hay en este teléfono. Si un texto existe en ambos, gana la edición más reciente.",
+    "replace": "Reemplazar todos mis datos",
+    "replaceTitle": "¿Reemplazar todo?",
+    "replaceBody": "Los textos que no estén en la copia se eliminarán de este teléfono, junto con sus grabaciones.",
+    "restored": "Restaurado. Textos en este teléfono: {{count}}.",
+    "merged": "Combinado. Añadidos {{added}}, actualizados {{updated}}, conservados {{kept}}.",
+    "monthly": "Recordatorio mensual de copia",
+    "monthlyHelp": "Te recuerda una vez al mes que guardes una copia."
+  },
+  "camera": {
+    "help": "Apunta la cámara a texto impreso o elige una foto. El reconocimiento se hace en tu teléfono; no se sube nada.",
+    "script": "Sistema de escritura",
+    "scripts": {
+      "Latin": "Latino",
+      "Chinese": "Chino",
+      "Devanagari": "Devanagari",
+      "Japanese": "Japonés",
+      "Korean": "Coreano"
+    },
+    "unsupported": "Aún no se puede escanear árabe ni hebreo. Puedes escribir o pegar esos textos.",
+    "permissionBody": "Linewise necesita la cámara para escanear una página.",
+    "allow": "Permitir cámara",
+    "capture": "Hacer foto y leerla",
+    "gallery": "Elegir una foto",
+    "nothingFound": "No se encontró texto. Prueba con una foto más nítida y mejor luz.",
+    "failed": "Falló el reconocimiento de texto: {{error}}",
+    "reviewHelp": "Revisa el texto y corrige los errores antes de continuar.",
+    "use": "Usar este texto",
+    "retake": "Escanear de nuevo",
+    "privacy": "Las fotos se leen en tu teléfono y Linewise no las guarda."
+  },
+  "settings": {
+    "language": "Idioma de la app",
+    "system": "Igual que el teléfono",
+    "restartNote": "Cierra y vuelve a abrir Linewise para cambiar la dirección del diseño.",
+    "defaultLanguage": "Idioma de los textos nuevos",
+    "fontSize": "Tamaño del texto",
+    "fontPreview": "El veloz murciélago hindú comía feliz cardillo y kiwi.",
+    "speech": "Voz",
+    "speechRate": "Velocidad al hablar",
+    "testSpeech": "Probar la velocidad",
+    "testSentence": "Así de rápido voy a leer.",
+    "voices": "Elegir voces",
+    "reviews": "Repasos",
+    "notifications": "Recordatorios de repaso",
+    "notificationsHelp": "Una notificación los días en que toca repasar.",
+    "notificationsBlockedTitle": "Las notificaciones están desactivadas",
+    "notificationsBlockedBody": "Permite las notificaciones de Linewise en los ajustes del teléfono para recibir recordatorios.",
+    "resetSolidify": "Reiniciar las puntuaciones de Afianzar en cada intervalo",
+    "resetSolidifyHelp": "Empieza de cero las puntuaciones de Afianzar cada vez que pasas a un nuevo intervalo.",
+    "data": "Tus datos",
+    "backup": "Copia y restauración",
+    "offlineNote": "Todo se queda en este teléfono. Linewise no tiene cuentas y nunca se conecta a internet.",
+    "about": "Acerca de",
+    "faq": "Preguntas y respuestas",
+    "report": "Informar de un problema",
+    "reportNote": "Abre GitHub en tu navegador. Linewise en sí no hace conexiones de red.",
+    "replayIntro": "Ver de nuevo la introducción"
+  },
+  "faq": {
+    "title": "Preguntas y respuestas",
+    "items": {
+      "offline": {
+        "q": "¿Linewise necesita internet?",
+        "a": "No. Todo funciona en tu teléfono y la app ni siquiera pide permiso de internet. Funciona en modo avión."
+      },
+      "chunks": {
+        "q": "¿Cómo divido un texto en fragmentos?",
+        "a": "Deja una línea en blanco entre fragmentos al añadir o editar el texto. Los saltos de línea simples dentro de un fragmento se conservan, lo que va bien para poemas y letras."
+      },
+      "script": {
+        "q": "¿Cómo añado una obra o un guion?",
+        "a": "Elige «Guion» como tipo de texto. Escribe el nombre de cada personaje en MAYÚSCULAS en su propia línea, con sus frases debajo. Las acotaciones van entre (paréntesis) o [corchetes]."
+      },
+      "review": {
+        "q": "¿Cómo funcionan los repasos?",
+        "a": "Tras tu primer juego con puntuación, los repasos se espacian 1, 2, 4, 7, 14, 30 y 60 días. En un día de repaso cuenta tu primer juego de Afianzar o Evaluar. Si sacas un 80 % o más pasas al siguiente intervalo; si no, inténtalo de nuevo mañana."
+      },
+      "target": {
+        "q": "¿Qué es una fecha objetivo?",
+        "a": "Es el día para el que quieres saber el texto. Linewise comprime o estira los intervalos para que el último repaso caiga ese día."
+      },
+      "score": {
+        "q": "¿Cómo se calcula mi puntuación?",
+        "a": "Precisión multiplicada por cobertura. La cobertura es la parte del texto completo que practicaste en ese juego, así que una ronda con todo el texto puntúa más."
+      },
+      "speech": {
+        "q": "Hablar y Ensayar escena no funcionan. ¿Por qué?",
+        "a": "Necesitan el micrófono, un reconocedor de voz en el dispositivo y el paquete de voz sin conexión de tu idioma. Linewise te dice cuál falta y cómo arreglarlo."
+      },
+      "voices": {
+        "q": "¿Cómo consigo una voz mejor?",
+        "a": "Abre Ajustes, luego Elegir voces y después Abrir ajustes de voz. Elige tu motor de voz e instala voces adicionales o datos de voz de mayor calidad."
+      },
+      "backup": {
+        "q": "¿Cómo paso mis datos a un teléfono nuevo?",
+        "a": "Usa Ajustes y luego Copia y restauración. Guarda el archivo de copia donde puedas alcanzarlo desde el teléfono nuevo y restáuralo allí."
+      },
+      "recordings": {
+        "q": "¿Por qué faltan mis grabaciones tras restaurar?",
+        "a": "Las copias no incluyen grabaciones, para que el archivo sea pequeño. Vuelve a grabarlas en el teléfono nuevo."
+      },
+      "share": {
+        "q": "¿Puedo añadir texto desde otra app?",
+        "a": "Sí. Selecciona texto en cualquier app, elige Compartir y escoge Linewise. Se abrirá la pantalla Añadir con el texto ya puesto."
+      },
+      "camera": {
+        "q": "¿Por qué no puedo escanear árabe ni hebreo?",
+        "a": "El reconocimiento de texto en el dispositivo que usa Linewise aún no incluye esos idiomas. Puedes escribirlos o pegarlos."
+      }
+    }
+  },
+  "onboarding": {
+    "welcome": "Te damos la bienvenida a Linewise",
+    "tagline": "Aprende de memoria poemas, discursos, versículos y guiones.",
+    "goalQuestion": "¿Qué quieres memorizar?",
+    "goals": {
+      "poem": "Un poema",
+      "speech": "Un discurso",
+      "script": "Un guion",
+      "verse": "Un versículo o una oración",
+      "other": "Otra cosa"
+    },
+    "reminderQuestion": "¿Quieres un aviso los días de repaso?",
+    "reminderBody": "Los repasos espaciados son lo que hace que los recuerdos duren. Un recordatorio amable te ayuda a no faltar.",
+    "tryDemo": "Prueba una demo de un minuto",
+    "offline": "Sin cuenta. Sin internet. Tus textos nunca salen de tu teléfono."
+  },
+  "demo": {
+    "title": "Prueba Primera letra",
+    "help": "Escribe la primera letra de cada palabra resaltada, de memoria. No te preocupes si todavía no te lo sabes.",
+    "doneBody": "Así funciona cada juego. Elige uno, juega y tus repasos se programan solos.",
+    "score": "Has sacado un {{percent}} %",
+    "save": "Guardar este poema en mi lista",
+    "skip": "Continuar sin guardar",
+    "skipDemo": "Saltar la demo"
+  }
+}

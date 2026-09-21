@@ -20,8 +20,11 @@ android/
 ios/
 .expo/
 dist/
+dist-check/
 web-build/
 coverage/
+expo-env.d.ts
+*.log
 
 
 # OS and editor

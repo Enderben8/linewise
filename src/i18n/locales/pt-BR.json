@@ -1,0 +1,542 @@
+{
+  "common": {
+    "back": "Voltar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "loading": "Carregando…",
+    "next": "Avançar",
+    "no": "Não",
+    "pause": "Pausar",
+    "play": "Reproduzir",
+    "save": "Salvar",
+    "yes": "Sim"
+  },
+  "errors": {
+    "databaseTitle": "Não foi possível abrir os dados do app"
+  },
+  "tabs": {
+    "memorizations": "Memorizar",
+    "add": "Adicionar",
+    "settings": "Ajustes"
+  },
+  "status": {
+    "new": "Novo",
+    "due": "Revisar hoje",
+    "inDays": "Próxima revisão em {{count}} d",
+    "done": "Plano concluído"
+  },
+  "list": {
+    "search": "Buscar título, autor ou tag",
+    "allTags": "Todas",
+    "emptyTitle": "Nada para memorizar ainda",
+    "emptyBody": "Adicione um poema, um discurso, um versículo ou um roteiro. Tudo fica no seu celular.",
+    "addFirst": "Adicione seu primeiro texto",
+    "noMatches": "Nenhum texto corresponde à sua busca",
+    "backupNudgeTitle": "Hora de fazer um backup",
+    "backupNudgeBody": "Já se passou um mês. Um arquivo de backup permite restaurar seus textos e seu progresso se você perder ou redefinir este celular.",
+    "backupNow": "Fazer backup agora"
+  },
+  "add": {
+    "title": "Adicionar um texto",
+    "editTitle": "Novo texto",
+    "cameraTitle": "Escanear texto",
+    "intro": "Escolha como trazer o seu texto. Você poderá dividi-lo em trechos e ajustá-lo na próxima tela.",
+    "typeTitle": "Digitar ou colar",
+    "typeBody": "Escreva o texto você mesmo ou cole de qualquer lugar.",
+    "fileTitle": "Importar um arquivo",
+    "fileBody": "Escolha um arquivo .txt ou .md do seu celular.",
+    "cameraOptionTitle": "Escanear com a câmera ou uma foto",
+    "cameraOptionBody": "Leia texto impresso de uma página. O reconhecimento acontece no seu celular.",
+    "shareHint": "Dica: em qualquer outro app, compartilhe texto com o Linewise e ele abre aqui, pronto para salvar.",
+    "fileTooLargeTitle": "Esse arquivo é grande demais",
+    "fileTooLargeBody": "Escolha um arquivo de texto menor. Os textos podem ter até 100 KB.",
+    "fileErrorTitle": "Não foi possível ler o arquivo"
+  },
+  "editor": {
+    "body": "Texto",
+    "bodyPlaceholder": "Cole ou digite o texto. Deixe uma linha em branco entre os trechos.",
+    "size": "{{used}} KB de {{max}} KB",
+    "title": "Título",
+    "author": "Autor (opcional)",
+    "type": "Tipo de texto",
+    "typeText": "Texto",
+    "typeScript": "Roteiro",
+    "scriptHelp": "Escreva o nome de cada personagem em LETRAS MAIÚSCULAS numa linha própria, com as falas embaixo. Coloque as rubricas entre (parênteses) ou [colchetes].",
+    "scriptHelpNoCase": "Este idioma não tem letras maiúsculas, então termine o nome de cada personagem com dois-pontos.",
+    "language": "Idioma do texto",
+    "tags": "Tags",
+    "tagsHint": "Separe as tags com vírgulas",
+    "scriptWarnings": "Confira seu roteiro",
+    "issues": {
+      "SPEAKER_NO_DIALOGUE": "Linha {{line}}: o nome de um personagem não tem falas depois dele.",
+      "LOOKS_LIKE_SPEAKER": "Linha {{line}}: parece o nome de um personagem, mas não está em letras maiúsculas."
+    },
+    "editWarning": "Alterar as palavras redefine suas escolhas em Preencher a Lacuna, e gravações mais antigas serão marcadas como desatualizadas.",
+    "previewTitle": "Prévia, trechos: {{count}}",
+    "previewEmpty": "Os trechos aparecem aqui enquanto você digita. Uma linha em branco começa um novo trecho.",
+    "previewMore": "+{{count}} a mais",
+    "chunkN": "Trecho {{n}}",
+    "create": "Salvar texto",
+    "save": "Salvar alterações",
+    "errors": {
+      "titleRequired": "Dê um título ao texto.",
+      "bodyRequired": "Adicione algum texto para memorizar.",
+      "bodyTooLarge": "Este texto passa do limite de {{max}} KB. Divida-o em vários textos."
+    }
+  },
+  "detail": {
+    "notFound": "Este texto não existe mais",
+    "ringsHelp": "Anel externo: o quanto você sabe. Anel interno: progresso no seu plano de revisões.",
+    "fullText": "Texto completo",
+    "edit": "Editar",
+    "stats": "Estatísticas",
+    "reminders": "Lembretes",
+    "noChunks": "Este texto não tem trechos para praticar.",
+    "whatToPractise": "O que praticar",
+    "share": "Compartilhar texto",
+    "delete": "Excluir este texto",
+    "deleteTitle": "Excluir este texto?",
+    "deleteBody": "“{{title}}”, o progresso, as sessões e as gravações serão excluídos deste celular. Isso não pode ser desfeito."
+  },
+  "selection": {
+    "all": "Texto inteiro",
+    "one": "Um trecho",
+    "range": "Intervalo",
+    "chunk": "Trecho",
+    "from": "Do trecho",
+    "to": "Até o trecho",
+    "speaker": "Praticar um só personagem",
+    "everyone": "Todos"
+  },
+  "groups": {
+    "practice": "Prática",
+    "practiceHelp": "Aprenda as palavras. Sem pontuação.",
+    "solidify": "Fixar",
+    "solidifyHelp": "Fixe o texto com jogos guiados.",
+    "evaluate": "Avaliar",
+    "evaluateHelp": "Teste-se sem ajuda."
+  },
+  "games": {
+    "nothingToPractise": "Nada para praticar aqui",
+    "nothingToPractiseBody": "Os trechos escolhidos não têm palavras para esta opção. Volte e mude a seleção.",
+    "chunkOne": "trecho {{n}}",
+    "chunkRange": "trechos {{from}}–{{to}}",
+    "tap-to-reveal": {
+      "name": "Toque para Revelar",
+      "blurb": "Revele uma expressão, frase ou palavra por vez"
+    },
+    "slider": {
+      "name": "Controle Deslizante",
+      "blurb": "Esconda cada vez mais palavras"
+    },
+    "listen": {
+      "name": "Ouvir",
+      "blurb": "Ouça o texto em voz alta e acompanhe na tela"
+    },
+    "my-recordings": {
+      "name": "Minhas Gravações",
+      "blurb": "Grave você mesmo lendo o texto"
+    },
+    "first-letter": {
+      "name": "Primeira Letra",
+      "blurb": "Digite a primeira letra de cada palavra"
+    },
+    "fill-in-the-blank": {
+      "name": "Preencher a Lacuna",
+      "blurb": "Escolha as palavras que faltam"
+    },
+    "sentence-scramble": {
+      "name": "Frases Embaralhadas",
+      "blurb": "Coloque em ordem as frases embaralhadas"
+    },
+    "type-it": {
+      "name": "Digite",
+      "blurb": "Digite o texto inteiro de memória"
+    },
+    "multiple-choice": {
+      "name": "Múltipla Escolha",
+      "blurb": "Escolha o que vem a seguir"
+    },
+    "speak": {
+      "name": "Falar",
+      "blurb": "Recite em voz alta e receba uma pontuação"
+    },
+    "run-scene": {
+      "name": "Ensaiar Cena",
+      "blurb": "Interprete seu papel enquanto o app lê os outros"
+    }
+  },
+  "result": {
+    "great": "Muito bem!",
+    "keepGoing": "Continue, você está chegando lá.",
+    "accuracy": "Precisão",
+    "coverage": "Parte do texto abrangida",
+    "weightedHelp": "Sua pontuação é a precisão multiplicada pela parte do texto inteiro que você praticou.",
+    "practiceOnly": "Isso foi prática. Só o primeiro jogo com pontuação de um dia de revisão faz seu plano avançar.",
+    "advanced": "Aprovado! Sua próxima revisão é em {{date}}.",
+    "planDone": "Aprovado! Você concluiu o plano de revisões deste texto.",
+    "retry": "Ainda não chegou a {{pass}}%. Você pode tentar de novo amanhã, e a prática de hoje ainda ajuda.",
+    "playAgain": "Jogar de novo",
+    "backToText": "Voltar ao texto"
+  },
+  "diff": {
+    "missed": "Esquecida",
+    "wrong": "Palavra errada",
+    "extra": "Sobrando"
+  },
+  "tap": {
+    "mode": {
+      "phrase": "Expressões",
+      "sentence": "Frases",
+      "word": "Palavras"
+    },
+    "speak": "Ler em voz alta",
+    "start": "Toque para revelar a primeira parte",
+    "revealNext": "Revelar a próxima",
+    "undo": "Desfazer",
+    "reset": "Recomeçar",
+    "progress": "{{shown}} de {{total}} reveladas",
+    "done": "É só isso. Tente de novo desde o início."
+  },
+  "slider": {
+    "hidden": "Palavras escondidas",
+    "label": "Porcentagem de palavras escondidas",
+    "guided": "Leitura guiada",
+    "recall": "Memória total",
+    "reshuffle": "Escolher outras palavras",
+    "tapHint": "Toque numa palavra escondida para espiar."
+  },
+  "listen": {
+    "previous": "Linha anterior",
+    "next": "Próxima linha",
+    "back10": "Voltar 10 segundos",
+    "forward10": "Avançar 10 segundos",
+    "repeat": "Repetir",
+    "sourceVoice": "Voz",
+    "sourceRecording": "Minha gravação",
+    "recordingHelp": "Tocando sua gravação salva. Ela continua tocando com a tela desligada."
+  },
+  "firstLetter": {
+    "help": "Digite a primeira letra de cada palavra destacada. Uma letra errada vibra, mostra a palavra e segue em frente.",
+    "placeholder": "Digite uma letra",
+    "progress": "{{done}} de {{total}} palavras"
+  },
+  "fill": {
+    "chooseHelp": "Toque nas palavras para escolher quais serão escondidas. Sua escolha fica salva para este texto.",
+    "auto": "Esconder {{percent}}%",
+    "clear": "Limpar",
+    "count": "Palavras escondidas: {{count}}",
+    "start": "Começar",
+    "progress": "Lacuna {{done}} de {{total}}"
+  },
+  "scramble": {
+    "help": "Arraste a alça, ou use as setas, para colocar as frases na ordem certa. Depois toque em Pronto.",
+    "round": "Rodada {{n}} de {{total}}",
+    "drag": "Arraste para reordenar",
+    "up": "Mover para cima",
+    "down": "Mover para baixo",
+    "done": "Pronto",
+    "score": "No lugar certo: {{correct}} de {{total}}",
+    "correctOrder": "A ordem certa era:",
+    "next": "Próxima rodada",
+    "finish": "Ver resultado",
+    "tooShort": "Pouco para embaralhar",
+    "tooShortBody": "Esta seleção tem menos de duas frases ou expressões. Escolha mais trechos."
+  },
+  "typeIt": {
+    "help": "Digite o texto de memória. Palavras para lembrar: {{count}}.",
+    "placeholder": "Comece a digitar…",
+    "done": "Conferir minha resposta",
+    "review": "O que você digitou"
+  },
+  "choice": {
+    "progress": "Pergunta {{n}} de {{total}}",
+    "askPhrase": "O que vem a seguir?",
+    "askWord": "Qual palavra vem a seguir?",
+    "next": "Avançar",
+    "finish": "Ver resultado",
+    "tooShort": "Texto insuficiente para perguntas",
+    "tooShortBody": "Escolha mais trechos ou adicione mais texto."
+  },
+  "speak": {
+    "help": "Recite o texto em voz alta, de memória. Palavras para lembrar: {{count}}. O reconhecimento acontece no seu celular.",
+    "start": "Começar a falar",
+    "listening": "Ouvindo…",
+    "waiting": "Comece a falar quando quiser",
+    "done": "Terminei",
+    "heardNothing": "Não ouvi nada. Tente de novo um pouco mais perto do microfone.",
+    "error": "O reconhecimento de voz parou ({{code}}). Tente de novo.",
+    "review": "O que eu ouvi"
+  },
+  "speechIssue": {
+    "openSettings": "Abrir ajustes do app",
+    "openTtsSettings": "Abrir ajustes de voz",
+    "downloadPack": "Baixar o pacote de voz",
+    "retry": "Verificar de novo",
+    "permission": {
+      "title": "Microfone necessário",
+      "body": "O Linewise precisa do microfone para ouvir você recitar. Permita quando for solicitado e tente de novo."
+    },
+    "permission-blocked": {
+      "title": "O microfone está desativado",
+      "body": "O acesso ao microfone foi negado. Abra os ajustes do app, escolha Permissões, permita o Microfone e volte."
+    },
+    "unavailable": {
+      "title": "Nenhum reconhecedor de voz encontrado",
+      "body": "Este celular não tem um serviço de reconhecimento de voz. Instale ou ative os “Serviços de fala do Google” nos ajustes do celular e verifique de novo."
+    },
+    "no-on-device": {
+      "title": "Reconhecimento offline não suportado",
+      "body": "O Linewise só usa reconhecimento que roda no seu celular, e este aparelho não consegue. Versões recentes do Android com o app do Google atualizado geralmente conseguem."
+    },
+    "language-missing": {
+      "title": "Pacote de idioma não baixado",
+      "body": "O pacote de voz offline deste idioma ainda não está no seu celular. Baixe-o uma vez e verifique de novo."
+    },
+    "no-voice": {
+      "title": "Nenhuma voz para este idioma",
+      "body": "Seu celular não tem uma voz de síntese de fala para este idioma. Abra os ajustes de voz, escolha seu mecanismo de voz e instale os dados de voz."
+    }
+  },
+  "scene": {
+    "help": "Escolha seu papel. O app lê em voz alta os outros papéis e as rubricas, e escuta suas falas.",
+    "yourRole": "Seu papel",
+    "narrate": "Ler as rubricas em voz alta",
+    "voices": "Vozes dos outros papéis",
+    "narrator": "Narrador",
+    "defaultVoice": "Voz padrão",
+    "test": "Testar",
+    "noVoices": "Nenhuma voz encontrada para este idioma. Será usada a voz padrão do celular.",
+    "noRoles": "Este texto não tem personagens. Marque os nomes em letras maiúsculas e torne-o um roteiro.",
+    "start": "Começar a cena",
+    "progress": "Fala {{n}} de {{total}}",
+    "yourLine": "Sua fala. Diga de memória.",
+    "hint": "Mostrar a fala",
+    "heardNothing": "Não ouvi sua fala.",
+    "retry": "Tentar de novo",
+    "skip": "Pular",
+    "stop": "Parar",
+    "review": "Suas falas"
+  },
+  "recordings": {
+    "help": "Grave você mesmo lendo este texto. Você pode guardar até {{max}} gravações de até 10 minutos cada.",
+    "defaultName": "Take",
+    "record": "Gravar",
+    "stop": "Parar e salvar",
+    "empty": "Nenhuma gravação ainda",
+    "rename": "Renomear",
+    "useInListen": "Usar em Ouvir",
+    "usedInListen": "Usada em Ouvir",
+    "outOfDate": "Gravada antes da última alteração do texto, então pode não corresponder às palavras.",
+    "fullTitle": "Limite de gravações atingido",
+    "fullBody": "Exclua uma gravação antiga para abrir espaço para uma nova.",
+    "limitReachedTitle": "Dez minutos atingidos",
+    "limitReachedBody": "A gravação parou e foi salva.",
+    "deleteTitle": "Excluir esta gravação?",
+    "permissionTitle": "Microfone necessário",
+    "permissionBody": "Permita o acesso ao microfone para gravar."
+  },
+  "stats": {
+    "total": "Sessões com pontuação neste mês: {{count}}",
+    "tapHint": "Toque numa barra para ver aquele dia.",
+    "noSessions": "Nenhuma sessão com pontuação nesse dia."
+  },
+  "target": {
+    "title": "Data-alvo",
+    "help": "Escolha a data até a qual você quer saber o texto. Suas revisões são espaçadas para que a última caia nesse dia.",
+    "current": "Alvo atual: {{date}}",
+    "inDays": "Dias a partir de hoje: {{count}}",
+    "preview": "Seu cronograma",
+    "firstReview": "Próxima revisão",
+    "reviewN": "Revisão {{n}}",
+    "planComplete": "Nada mais para agendar. Você concluiu o plano.",
+    "save": "Salvar data-alvo",
+    "clear": "Remover data-alvo"
+  },
+  "reminders": {
+    "title": "Lembretes",
+    "next": "Próxima revisão: {{date}}",
+    "none": "Nenhuma revisão agendada ainda. Jogue um jogo com pontuação para começar seu plano.",
+    "on": "Os lembretes estão ativados. Você receberá uma notificação nos dias de revisão.",
+    "off": "Os lembretes estão desativados.",
+    "enable": "Ativar lembretes"
+  },
+  "notifications": {
+    "channel": "Lembretes de revisão",
+    "reviewTitle": "Hora de revisar",
+    "reviewBody": "“{{title}}” está com a revisão marcada para hoje.",
+    "backupTitle": "Faça backup do Linewise",
+    "backupBody": "Salve um arquivo de backup para poder restaurar seus textos e seu progresso depois."
+  },
+  "voices": {
+    "title": "Vozes",
+    "help": "Escolha a voz que lê cada idioma em voz alta. São as vozes instaladas no seu celular.",
+    "systemDefault": "Padrão do celular",
+    "systemDefaultHelp": "Usa a voz que o seu celular escolher.",
+    "use": "Usar",
+    "selected": "Selecionada",
+    "enhanced": "Aprimorada",
+    "sample": "Olá, é assim que eu soo.",
+    "noneTitle": "Nenhuma voz para este idioma",
+    "noneBody": "Abra os ajustes de voz, escolha seu mecanismo de voz e instale os dados de voz deste idioma. Depois volte e atualize.",
+    "refresh": "Atualizar",
+    "downloadHelp": "Quer outro sotaque ou mais qualidade? Instale mais vozes nos ajustes de voz do seu celular."
+  },
+  "backup": {
+    "title": "Backup e restauração",
+    "exportTitle": "Fazer backup",
+    "exportBody": "Salva seus textos, progresso, sessões e ajustes em um único arquivo. Envie para o Arquivos, o Google Drive ou onde você guarda coisas com segurança.",
+    "noRecordings": "As gravações não estão incluídas, para manter o arquivo pequeno.",
+    "last": "Último backup: {{date}}",
+    "never": "Você ainda não fez backup.",
+    "now": "Fazer backup agora",
+    "shareTitle": "Salve seu backup do Linewise",
+    "sharingUnavailable": "O compartilhamento não está disponível neste celular.",
+    "exportFailed": "Não foi possível criar o backup: {{error}}",
+    "restoreTitle": "Restaurar",
+    "restoreBody": "Escolha um arquivo de backup do Linewise. Você verá o que ele contém antes de qualquer alteração.",
+    "choose": "Escolher um arquivo de backup",
+    "readFailed": "Não foi possível ler o arquivo.",
+    "invalid": "Esse não é um arquivo de backup do Linewise.",
+    "unknownVersion": "Este backup foi feito por outra versão do Linewise (versão {{version}}) e não pode ser lido.",
+    "contains": "Este backup contém",
+    "containsBody": "Textos: {{texts}} · Sessões: {{sessions}} · Salvo em {{date}}",
+    "merge": "Mesclar com meus dados",
+    "mergeHelp": "Mantém tudo o que está neste celular. Para textos que existem nos dois lados, vale a edição mais recente.",
+    "replace": "Substituir todos os meus dados",
+    "replaceTitle": "Substituir tudo?",
+    "replaceBody": "Os textos que não estão no backup serão excluídos deste celular, junto com suas gravações.",
+    "restored": "Restaurado. Textos neste celular: {{count}}.",
+    "merged": "Mesclado. Adicionados: {{added}}, atualizados: {{updated}}, mantidos: {{kept}}.",
+    "monthly": "Lembrete mensal de backup",
+    "monthlyHelp": "Lembra você uma vez por mês de salvar um backup."
+  },
+  "camera": {
+    "help": "Aponte a câmera para um texto impresso ou escolha uma foto. O reconhecimento acontece no seu celular; nada é enviado.",
+    "script": "Sistema de escrita",
+    "scripts": {
+      "Latin": "Latino",
+      "Chinese": "Chinês",
+      "Devanagari": "Devanágari",
+      "Japanese": "Japonês",
+      "Korean": "Coreano"
+    },
+    "unsupported": "Escanear árabe e hebraico ainda não é suportado. Você pode digitar ou colar esses textos.",
+    "permissionBody": "O Linewise precisa da câmera para escanear uma página.",
+    "allow": "Permitir câmera",
+    "capture": "Tirar foto e ler",
+    "gallery": "Escolher uma foto",
+    "nothingFound": "Nenhum texto encontrado. Tente uma foto mais nítida e com mais luz.",
+    "failed": "O reconhecimento de texto falhou: {{error}}",
+    "reviewHelp": "Confira o texto e corrija os erros antes de continuar.",
+    "use": "Usar este texto",
+    "retake": "Escanear de novo",
+    "privacy": "As fotos são lidas no seu celular e não são guardadas pelo Linewise."
+  },
+  "settings": {
+    "language": "Idioma do app",
+    "system": "Igual ao celular",
+    "restartNote": "Feche e abra o Linewise de novo para trocar a direção do layout.",
+    "defaultLanguage": "Idioma dos novos textos",
+    "fontSize": "Tamanho do texto",
+    "fontPreview": "Vejo xá gritando que fez show pra quem já jogou biquíni em pó.",
+    "speech": "Fala",
+    "speechRate": "Velocidade da fala",
+    "testSpeech": "Testar a velocidade",
+    "testSentence": "É nessa velocidade que vou ler.",
+    "voices": "Escolher vozes",
+    "reviews": "Revisões",
+    "notifications": "Lembretes de revisão",
+    "notificationsHelp": "Uma notificação nos dias em que há revisão.",
+    "notificationsBlockedTitle": "As notificações estão desativadas",
+    "notificationsBlockedBody": "Permita as notificações do Linewise nos ajustes do celular para receber lembretes.",
+    "resetSolidify": "Redefinir as pontuações de Fixar a cada intervalo",
+    "resetSolidifyHelp": "Zera as pontuações de Fixar toda vez que você passa para um novo intervalo de revisão.",
+    "data": "Seus dados",
+    "backup": "Backup e restauração",
+    "offlineNote": "Tudo fica neste celular. O Linewise não tem contas e nunca se conecta à internet.",
+    "about": "Sobre",
+    "faq": "Perguntas e respostas",
+    "report": "Relatar um problema",
+    "reportNote": "Abre o GitHub no seu navegador. O Linewise em si não faz nenhuma conexão de rede.",
+    "replayIntro": "Rever a introdução"
+  },
+  "faq": {
+    "title": "Perguntas e respostas",
+    "items": {
+      "offline": {
+        "q": "O Linewise precisa de internet?",
+        "a": "Não. Tudo roda no seu celular, e o app nem pede permissão de internet. Funciona no modo avião."
+      },
+      "chunks": {
+        "q": "Como divido um texto em trechos?",
+        "a": "Deixe uma linha em branco entre os trechos ao adicionar ou editar o texto. As quebras de linha simples dentro de um trecho são mantidas, o que combina com poemas e letras de música."
+      },
+      "script": {
+        "q": "Como adiciono uma peça ou roteiro?",
+        "a": "Escolha “Roteiro” como tipo de texto. Escreva o nome de cada personagem em LETRAS MAIÚSCULAS numa linha própria, com as falas embaixo. As rubricas vão entre (parênteses) ou [colchetes]."
+      },
+      "review": {
+        "q": "Como funcionam as revisões?",
+        "a": "Depois do seu primeiro jogo com pontuação, as revisões são espaçadas em 1, 2, 4, 7, 14, 30 e 60 dias. Num dia de revisão, conta o seu primeiro jogo de Fixar ou Avaliar. Com 80% ou mais você passa para o próximo intervalo; senão, tente de novo amanhã."
+      },
+      "target": {
+        "q": "O que é uma data-alvo?",
+        "a": "É o dia até o qual você quer saber o texto. O Linewise comprime ou estica os intervalos de revisão para que a última caia nesse dia."
+      },
+      "score": {
+        "q": "Como minha pontuação é calculada?",
+        "a": "Precisão multiplicada pela abrangência. A abrangência é a parte do texto inteiro que você praticou naquele jogo, então uma rodada com o texto todo rende mais."
+      },
+      "speech": {
+        "q": "Falar e Ensaiar Cena não funcionam. Por quê?",
+        "a": "Eles precisam do microfone, de um reconhecedor de voz no aparelho e do pacote de voz offline do seu idioma. O Linewise diz o que está faltando e como resolver."
+      },
+      "voices": {
+        "q": "Como consigo uma voz melhor?",
+        "a": "Abra Ajustes, depois Escolher vozes e depois Abrir ajustes de voz. Escolha seu mecanismo de voz e instale vozes extras ou dados de voz de maior qualidade."
+      },
+      "backup": {
+        "q": "Como levo meus dados para um celular novo?",
+        "a": "Use Ajustes e depois Backup e restauração. Salve o arquivo de backup num lugar que você alcance do celular novo e restaure lá."
+      },
+      "recordings": {
+        "q": "Por que minhas gravações sumiram depois de restaurar?",
+        "a": "Os backups não incluem gravações, para manter o arquivo pequeno. Grave-as de novo no celular novo."
+      },
+      "share": {
+        "q": "Posso adicionar texto de outro app?",
+        "a": "Sim. Selecione texto em qualquer app, escolha Compartilhar e depois Linewise. A tela Adicionar abre com o texto já preenchido."
+      },
+      "camera": {
+        "q": "Por que não consigo escanear árabe ou hebraico?",
+        "a": "O reconhecimento de texto no aparelho usado pelo Linewise ainda não inclui esses idiomas. Você pode digitar ou colar."
+      }
+    }
+  },
+  "onboarding": {
+    "welcome": "Bem-vindo ao Linewise",
+    "tagline": "Aprenda de cor poemas, discursos, versículos e roteiros.",
+    "goalQuestion": "O que você quer memorizar?",
+    "goals": {
+      "poem": "Um poema",
+      "speech": "Um discurso",
+      "script": "Um roteiro",
+      "verse": "Um versículo ou oração",
+      "other": "Outra coisa"
+    },
+    "reminderQuestion": "Quer um lembrete nos dias de revisão?",
+    "reminderBody": "Revisões espaçadas são o que faz a memória durar. Um lembrete gentil ajuda você a não faltar.",
+    "tryDemo": "Experimente uma demo de um minuto",
+    "offline": "Sem conta. Sem internet. Seus textos nunca saem do seu celular."
+  },
+  "demo": {
+    "title": "Experimente Primeira Letra",
+    "help": "Digite de memória a primeira letra de cada palavra destacada. Sem problema se você ainda não sabe o texto.",
+    "doneBody": "É assim que funciona cada jogo. Escolha um, jogue, e suas revisões são agendadas para você.",
+    "score": "Você fez {{percent}}%",
+    "save": "Salvar este poema na minha lista",
+    "skip": "Continuar sem salvar",
+    "skipDemo": "Pular a demo"
+  }
+}

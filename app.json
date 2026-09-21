@@ -1,0 +1,95 @@
+{
+  "expo": {
+    "name": "Linewise",
+    "slug": "linewise",
+    "scheme": "linewise",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "android": {
+      "package": "app.linewise",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#0F3D3E",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.CAMERA",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.VIBRATE"
+      ],
+      "blockedPermissions": [
+        "android.permission.INTERNET",
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#0F3D3E"
+        }
+      ],
+      "expo-sqlite",
+      [
+        "expo-localization",
+        {
+          "supportsRtl": true
+        }
+      ],
+      "expo-audio",
+      "expo-image-picker",
+      "expo-document-picker",
+      "expo-sharing",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Linewise uses the camera to read text from a page you photograph."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/android-icon-monochrome.png",
+          "color": "#0F3D3E"
+        }
+      ],
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "Linewise listens to you recite so it can score what you say.",
+          "speechRecognitionPermission": "Linewise turns your recitation into text on your device."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": false
+          }
+        }
+      ],
+      [
+        "expo-share-intent",
+        {
+          "disableIOS": true,
+          "androidIntentFilters": ["text/*"]
+        }
+      ],
+      "./plugins/withReleaseSigning"
+    ]
+  }
+}

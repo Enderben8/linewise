@@ -1,0 +1,542 @@
+{
+  "common": {
+    "back": "Back",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "loading": "Loading…",
+    "next": "Next",
+    "no": "No",
+    "pause": "Pause",
+    "play": "Play",
+    "save": "Save",
+    "yes": "Yes"
+  },
+  "errors": {
+    "databaseTitle": "The app's data could not be opened"
+  },
+  "tabs": {
+    "memorizations": "Memorize",
+    "add": "Add",
+    "settings": "Settings"
+  },
+  "status": {
+    "new": "New",
+    "due": "Review today",
+    "inDays": "Next review in {{count}} d",
+    "done": "Plan complete"
+  },
+  "list": {
+    "search": "Search title, author or tag",
+    "allTags": "All",
+    "emptyTitle": "Nothing to memorize yet",
+    "emptyBody": "Add a poem, a speech, a verse or a script. Everything stays on your phone.",
+    "addFirst": "Add your first text",
+    "noMatches": "No texts match your search",
+    "backupNudgeTitle": "Time for a backup",
+    "backupNudgeBody": "It has been a month. A backup file lets you restore your texts and progress if you lose or reset this phone.",
+    "backupNow": "Back up now"
+  },
+  "add": {
+    "title": "Add a text",
+    "editTitle": "New text",
+    "cameraTitle": "Scan text",
+    "intro": "Choose how to bring your text in. You can split it into chunks and fix it up on the next screen.",
+    "typeTitle": "Type or paste",
+    "typeBody": "Write the text yourself or paste it from anywhere.",
+    "fileTitle": "Import a file",
+    "fileBody": "Pick a .txt or .md file from your phone.",
+    "cameraOptionTitle": "Scan from camera or photo",
+    "cameraOptionBody": "Read printed text from a page. Recognition happens on your phone.",
+    "shareHint": "Tip: in any other app, share text to Linewise and it opens here, ready to save.",
+    "fileTooLargeTitle": "That file is too large",
+    "fileTooLargeBody": "Choose a smaller text file. Texts can be up to 100 KB.",
+    "fileErrorTitle": "The file could not be read"
+  },
+  "editor": {
+    "body": "Text",
+    "bodyPlaceholder": "Paste or type the text. Leave a blank line between chunks.",
+    "size": "{{used}} KB of {{max}} KB",
+    "title": "Title",
+    "author": "Author (optional)",
+    "type": "Kind of text",
+    "typeText": "Text",
+    "typeScript": "Script",
+    "scriptHelp": "Put each speaker's name in CAPITAL LETTERS on its own line, with their lines below. Wrap stage directions in (brackets) or [square brackets].",
+    "scriptHelpNoCase": "This language has no capital letters, so end each speaker’s name with a colon instead.",
+    "language": "Language of the text",
+    "tags": "Tags",
+    "tagsHint": "Separate tags with commas",
+    "scriptWarnings": "Check your script",
+    "issues": {
+      "SPEAKER_NO_DIALOGUE": "Line {{line}}: a speaker name has no lines after it.",
+      "LOOKS_LIKE_SPEAKER": "Line {{line}}: this looks like a speaker name but is not in capital letters."
+    },
+    "editWarning": "Changing the words resets your Fill in the Blank choices, and older recordings will be flagged as out of date.",
+    "previewTitle": "Preview, chunks: {{count}}",
+    "previewEmpty": "Chunks appear here as you type. A blank line starts a new chunk.",
+    "previewMore": "+{{count}} more",
+    "chunkN": "Chunk {{n}}",
+    "create": "Save text",
+    "save": "Save changes",
+    "errors": {
+      "titleRequired": "Give the text a title.",
+      "bodyRequired": "Add some text to memorize.",
+      "bodyTooLarge": "This text is over the {{max}} KB limit. Split it into several texts."
+    }
+  },
+  "detail": {
+    "notFound": "This text no longer exists",
+    "ringsHelp": "Outer ring: how well you know it. Inner ring: progress through your review plan.",
+    "fullText": "Full text",
+    "edit": "Edit",
+    "stats": "Stats",
+    "reminders": "Reminders",
+    "noChunks": "This text has no chunks to practise.",
+    "whatToPractise": "What to practise",
+    "share": "Share text",
+    "delete": "Delete this text",
+    "deleteTitle": "Delete this text?",
+    "deleteBody": "“{{title}}”, its progress, sessions and recordings will be deleted from this phone. This cannot be undone."
+  },
+  "selection": {
+    "all": "Whole text",
+    "one": "One chunk",
+    "range": "Range",
+    "chunk": "Chunk",
+    "from": "From chunk",
+    "to": "To chunk",
+    "speaker": "Practise one speaker",
+    "everyone": "Everyone"
+  },
+  "groups": {
+    "practice": "Practice",
+    "practiceHelp": "Learn the words. Not scored.",
+    "solidify": "Solidify",
+    "solidifyHelp": "Lock it in with guided games.",
+    "evaluate": "Evaluate",
+    "evaluateHelp": "Test yourself without help."
+  },
+  "games": {
+    "nothingToPractise": "Nothing to practise here",
+    "nothingToPractiseBody": "The selected chunks have no words for this choice. Go back and change the selection.",
+    "chunkOne": "chunk {{n}}",
+    "chunkRange": "chunks {{from}}–{{to}}",
+    "tap-to-reveal": {
+      "name": "Tap to Reveal",
+      "blurb": "Reveal a phrase, sentence or word at a time"
+    },
+    "slider": {
+      "name": "Slider",
+      "blurb": "Hide more and more of the words"
+    },
+    "listen": {
+      "name": "Listen",
+      "blurb": "Hear it read aloud and follow along"
+    },
+    "my-recordings": {
+      "name": "My Recordings",
+      "blurb": "Record yourself reading it"
+    },
+    "first-letter": {
+      "name": "First Letter",
+      "blurb": "Type the first letter of every word"
+    },
+    "fill-in-the-blank": {
+      "name": "Fill in the Blank",
+      "blurb": "Pick the missing words"
+    },
+    "sentence-scramble": {
+      "name": "Sentence Scramble",
+      "blurb": "Put shuffled sentences back in order"
+    },
+    "type-it": {
+      "name": "Type It",
+      "blurb": "Type the whole text from memory"
+    },
+    "multiple-choice": {
+      "name": "Multiple Choice",
+      "blurb": "Choose what comes next"
+    },
+    "speak": {
+      "name": "Speak",
+      "blurb": "Recite it out loud and get scored"
+    },
+    "run-scene": {
+      "name": "Run Scene",
+      "blurb": "Play your part while the app reads the others"
+    }
+  },
+  "result": {
+    "great": "Well done!",
+    "keepGoing": "Keep going, you are getting there.",
+    "accuracy": "Accuracy",
+    "coverage": "Share of the text covered",
+    "weightedHelp": "Your score is accuracy multiplied by the share of the whole text you practised.",
+    "practiceOnly": "This was practice. Only the first scored game on a review day moves your plan forward.",
+    "advanced": "Passed! Your next review is on {{date}}.",
+    "planDone": "Passed! You have finished your review plan for this text.",
+    "retry": "Not quite {{pass}}% yet. You can try again tomorrow, and today's practice still helps.",
+    "playAgain": "Play again",
+    "backToText": "Back to the text"
+  },
+  "diff": {
+    "missed": "Missed",
+    "wrong": "Wrong word",
+    "extra": "Extra"
+  },
+  "tap": {
+    "mode": {
+      "phrase": "Phrases",
+      "sentence": "Sentences",
+      "word": "Words"
+    },
+    "speak": "Read aloud",
+    "start": "Tap to reveal the first part",
+    "revealNext": "Reveal next",
+    "undo": "Undo",
+    "reset": "Start over",
+    "progress": "{{shown}} of {{total}} revealed",
+    "done": "That is all of it. Try it again from the top."
+  },
+  "slider": {
+    "hidden": "Words hidden",
+    "label": "Percent of words hidden",
+    "guided": "Guided reading",
+    "recall": "Full recall",
+    "reshuffle": "Pick different words",
+    "tapHint": "Tap a hidden word to peek at it."
+  },
+  "listen": {
+    "previous": "Previous line",
+    "next": "Next line",
+    "back10": "Back 10 seconds",
+    "forward10": "Forward 10 seconds",
+    "repeat": "Repeat",
+    "sourceVoice": "Voice",
+    "sourceRecording": "My recording",
+    "recordingHelp": "Playing your saved recording. It keeps playing with the screen off."
+  },
+  "firstLetter": {
+    "help": "Type the first letter of each highlighted word. A wrong letter buzzes, shows the word and moves on.",
+    "placeholder": "Type a letter",
+    "progress": "{{done}} of {{total}} words"
+  },
+  "fill": {
+    "chooseHelp": "Tap words to choose which ones get hidden. Your choice is saved for this text.",
+    "auto": "Hide {{percent}}%",
+    "clear": "Clear",
+    "count": "Words hidden: {{count}}",
+    "start": "Start",
+    "progress": "Blank {{done}} of {{total}}"
+  },
+  "scramble": {
+    "help": "Drag the handle, or use the arrows, to put the sentences in the right order. Then tap Done.",
+    "round": "Round {{n}} of {{total}}",
+    "drag": "Drag to reorder",
+    "up": "Move up",
+    "down": "Move down",
+    "done": "Done",
+    "score": "In the right place: {{correct}} of {{total}}",
+    "correctOrder": "The right order was:",
+    "next": "Next round",
+    "finish": "See result",
+    "tooShort": "Not enough to scramble",
+    "tooShortBody": "This selection has fewer than two sentences or phrases. Choose more chunks."
+  },
+  "typeIt": {
+    "help": "Type the text from memory. Words to recall: {{count}}.",
+    "placeholder": "Start typing…",
+    "done": "Check my answer",
+    "review": "What you typed"
+  },
+  "choice": {
+    "progress": "Question {{n}} of {{total}}",
+    "askPhrase": "What comes next?",
+    "askWord": "Which word comes next?",
+    "next": "Next",
+    "finish": "See result",
+    "tooShort": "Not enough text for questions",
+    "tooShortBody": "Choose more chunks, or add more text."
+  },
+  "speak": {
+    "help": "Recite the text out loud from memory. Words to recall: {{count}}. Recognition runs on your phone.",
+    "start": "Start speaking",
+    "listening": "Listening…",
+    "waiting": "Start speaking whenever you are ready",
+    "done": "I'm done",
+    "heardNothing": "I didn't hear anything. Try again a little closer to the microphone.",
+    "error": "Speech recognition stopped ({{code}}). Try again.",
+    "review": "What I heard"
+  },
+  "speechIssue": {
+    "openSettings": "Open app settings",
+    "openTtsSettings": "Open voice settings",
+    "downloadPack": "Download the speech pack",
+    "retry": "Check again",
+    "permission": {
+      "title": "Microphone needed",
+      "body": "Linewise needs the microphone to hear you recite. Allow it when asked, then try again."
+    },
+    "permission-blocked": {
+      "title": "Microphone is turned off",
+      "body": "Microphone access was denied. Open the app settings, choose Permissions, allow Microphone, then come back."
+    },
+    "unavailable": {
+      "title": "No speech recogniser found",
+      "body": "This phone has no speech recognition service. Install or enable “Speech Recognition & Synthesis” from Google in your phone's settings, then check again."
+    },
+    "no-on-device": {
+      "title": "Offline recognition is not supported",
+      "body": "Linewise only uses recognition that runs on your phone, and this phone cannot do that. Newer Android versions with the Google app up to date usually can."
+    },
+    "language-missing": {
+      "title": "Language pack not downloaded",
+      "body": "The offline speech pack for this language is not on your phone yet. Download it once, then check again."
+    },
+    "no-voice": {
+      "title": "No voice for this language",
+      "body": "Your phone has no text-to-speech voice for this language. Open the voice settings, choose your speech engine and install the voice data."
+    }
+  },
+  "scene": {
+    "help": "Choose your role. The app reads the other roles and stage directions aloud and listens for your lines.",
+    "yourRole": "Your role",
+    "narrate": "Read stage directions aloud",
+    "voices": "Voices for the other roles",
+    "narrator": "Narrator",
+    "defaultVoice": "Default voice",
+    "test": "Test",
+    "noVoices": "No voices found for this language. The phone's default voice will be used.",
+    "noRoles": "This text has no speakers. Mark speakers in capital letters and make it a script.",
+    "start": "Start the scene",
+    "progress": "Line {{n}} of {{total}}",
+    "yourLine": "Your line. Say it from memory.",
+    "hint": "Show line",
+    "heardNothing": "I didn't hear your line.",
+    "retry": "Try again",
+    "skip": "Skip it",
+    "stop": "Stop",
+    "review": "Your lines"
+  },
+  "recordings": {
+    "help": "Record yourself reading this text. You can keep up to {{max}} recordings of up to 10 minutes each.",
+    "defaultName": "Take",
+    "record": "Record",
+    "stop": "Stop and save",
+    "empty": "No recordings yet",
+    "rename": "Rename",
+    "useInListen": "Use in Listen",
+    "usedInListen": "Used in Listen",
+    "outOfDate": "Recorded before the text last changed, so it may not match the words.",
+    "fullTitle": "Recording limit reached",
+    "fullBody": "Delete an old recording to make room for a new one.",
+    "limitReachedTitle": "Ten minutes reached",
+    "limitReachedBody": "The recording stopped and was saved.",
+    "deleteTitle": "Delete this recording?",
+    "permissionTitle": "Microphone needed",
+    "permissionBody": "Allow microphone access to record."
+  },
+  "stats": {
+    "total": "Scored sessions this month: {{count}}",
+    "tapHint": "Tap a bar to see that day.",
+    "noSessions": "No scored sessions that day."
+  },
+  "target": {
+    "title": "Target date",
+    "help": "Pick a date you want to know this by. Your reviews are spaced so the last one lands on that day.",
+    "current": "Current target: {{date}}",
+    "inDays": "Days from today: {{count}}",
+    "preview": "Your schedule",
+    "firstReview": "Next review",
+    "reviewN": "Review {{n}}",
+    "planComplete": "Nothing left to schedule. You have finished the plan.",
+    "save": "Save target date",
+    "clear": "Remove target date"
+  },
+  "reminders": {
+    "title": "Reminders",
+    "next": "Next review: {{date}}",
+    "none": "No review is scheduled yet. Play a scored game to start your plan.",
+    "on": "Reminders are on. You will get a notification on review days.",
+    "off": "Reminders are off.",
+    "enable": "Turn on reminders"
+  },
+  "notifications": {
+    "channel": "Review reminders",
+    "reviewTitle": "Time to review",
+    "reviewBody": "“{{title}}” is due for review today.",
+    "backupTitle": "Back up Linewise",
+    "backupBody": "Save a backup file so you can restore your texts and progress later."
+  },
+  "voices": {
+    "title": "Voices",
+    "help": "Choose the voice that reads each language aloud. These are the voices installed on your phone.",
+    "systemDefault": "Phone default",
+    "systemDefaultHelp": "Use whatever voice your phone picks.",
+    "use": "Use",
+    "selected": "Selected",
+    "enhanced": "Enhanced",
+    "sample": "Hello, this is how I sound.",
+    "noneTitle": "No voices for this language",
+    "noneBody": "Open the voice settings, pick your speech engine, and install the voice data for this language. Then come back and refresh.",
+    "refresh": "Refresh",
+    "downloadHelp": "Want a different accent or better quality? Install more voices in your phone's voice settings."
+  },
+  "backup": {
+    "title": "Back up and restore",
+    "exportTitle": "Back up",
+    "exportBody": "Saves your texts, progress, sessions and settings in one file. Send it to Files, Google Drive, or anywhere you keep things safe.",
+    "noRecordings": "Recordings are not included, to keep the file small.",
+    "last": "Last backup: {{date}}",
+    "never": "You have not backed up yet.",
+    "now": "Back up now",
+    "shareTitle": "Save your Linewise backup",
+    "sharingUnavailable": "Sharing is not available on this phone.",
+    "exportFailed": "The backup could not be created: {{error}}",
+    "restoreTitle": "Restore",
+    "restoreBody": "Choose a Linewise backup file. You will see what it contains before anything changes.",
+    "choose": "Choose a backup file",
+    "readFailed": "The file could not be read.",
+    "invalid": "That is not a Linewise backup file.",
+    "unknownVersion": "This backup was made by a different version of Linewise (version {{version}}) and cannot be read.",
+    "contains": "This backup contains",
+    "containsBody": "Texts: {{texts}} · Sessions: {{sessions}} · Saved on {{date}}",
+    "merge": "Merge with my data",
+    "mergeHelp": "Keeps everything on this phone. For texts that exist in both, the newer edit wins.",
+    "replace": "Replace all my data",
+    "replaceTitle": "Replace everything?",
+    "replaceBody": "Texts that are not in the backup will be deleted from this phone, along with their recordings.",
+    "restored": "Restored. Texts on this phone: {{count}}.",
+    "merged": "Merged. Added {{added}}, updated {{updated}}, kept {{kept}}.",
+    "monthly": "Monthly backup reminder",
+    "monthlyHelp": "Reminds you once a month to save a backup."
+  },
+  "camera": {
+    "help": "Point the camera at printed text, or choose a photo. Recognition runs on your phone; nothing is uploaded.",
+    "script": "Writing system",
+    "scripts": {
+      "Latin": "Latin",
+      "Chinese": "Chinese",
+      "Devanagari": "Devanagari",
+      "Japanese": "Japanese",
+      "Korean": "Korean"
+    },
+    "unsupported": "Scanning Arabic and Hebrew is not supported yet. You can type or paste those texts instead.",
+    "permissionBody": "Linewise needs the camera to scan a page.",
+    "allow": "Allow camera",
+    "capture": "Take photo and read it",
+    "gallery": "Choose a photo",
+    "nothingFound": "No text was found. Try a sharper photo with better light.",
+    "failed": "Text recognition failed: {{error}}",
+    "reviewHelp": "Check the text and fix any mistakes before you continue.",
+    "use": "Use this text",
+    "retake": "Scan again",
+    "privacy": "Photos are read on your phone and are not saved by Linewise."
+  },
+  "settings": {
+    "language": "App language",
+    "system": "Same as phone",
+    "restartNote": "Close and reopen Linewise to switch the layout direction.",
+    "defaultLanguage": "Language for new texts",
+    "fontSize": "Text size",
+    "fontPreview": "The quick brown fox jumps over the lazy dog.",
+    "speech": "Speech",
+    "speechRate": "Speaking speed",
+    "testSpeech": "Test speaking speed",
+    "testSentence": "This is how fast I will read.",
+    "voices": "Choose voices",
+    "reviews": "Reviews",
+    "notifications": "Review reminders",
+    "notificationsHelp": "A notification on the days a review is due.",
+    "notificationsBlockedTitle": "Notifications are off",
+    "notificationsBlockedBody": "Allow notifications for Linewise in your phone's settings to get reminders.",
+    "resetSolidify": "Reset Solidify scores each interval",
+    "resetSolidifyHelp": "Start Solidify scores fresh every time you move to a new review interval.",
+    "data": "Your data",
+    "backup": "Back up and restore",
+    "offlineNote": "Everything stays on this phone. Linewise has no accounts and never connects to the internet.",
+    "about": "About",
+    "faq": "Questions and answers",
+    "report": "Report a problem",
+    "reportNote": "Opens GitHub in your browser. Linewise itself makes no network connections.",
+    "replayIntro": "Replay the introduction"
+  },
+  "faq": {
+    "title": "Questions and answers",
+    "items": {
+      "offline": {
+        "q": "Does Linewise need the internet?",
+        "a": "No. Everything runs on your phone, and the app does not even ask for internet permission. It works in airplane mode."
+      },
+      "chunks": {
+        "q": "How do I split a text into chunks?",
+        "a": "Leave a blank line between chunks when you add or edit the text. Single line breaks inside a chunk are kept, which suits poems and lyrics."
+      },
+      "script": {
+        "q": "How do I add a play or script?",
+        "a": "Choose “Script” as the kind of text. Write each speaker's name in CAPITAL LETTERS on its own line, with their lines underneath. Stage directions go in (brackets) or [square brackets]."
+      },
+      "review": {
+        "q": "How do reviews work?",
+        "a": "After your first scored game, reviews are spaced 1, 2, 4, 7, 14, 30 and 60 days apart. On a review day, your first Solidify or Evaluate game counts. Score 80% or more to move to the next interval; otherwise try again tomorrow."
+      },
+      "target": {
+        "q": "What is a target date?",
+        "a": "It is the day you want to know the text by. Linewise squeezes or stretches your review gaps so the last review lands on that day."
+      },
+      "score": {
+        "q": "How is my score worked out?",
+        "a": "Accuracy multiplied by coverage. Coverage is the share of the whole text you practised in that game, so a full run of the whole text scores highest."
+      },
+      "speech": {
+        "q": "Speak and Run Scene do not work. Why?",
+        "a": "They need the microphone, an on-device speech recogniser and the offline speech pack for your language. Linewise tells you which one is missing and how to fix it."
+      },
+      "voices": {
+        "q": "How do I get a better voice?",
+        "a": "Open Settings, then Choose voices, then Open voice settings. Pick your speech engine and install extra voices or higher quality voice data."
+      },
+      "backup": {
+        "q": "How do I move my data to a new phone?",
+        "a": "Use Settings, then Back up and restore. Save the backup file somewhere you can reach from the new phone, then restore it there."
+      },
+      "recordings": {
+        "q": "Why are my recordings missing after a restore?",
+        "a": "Backups do not include recordings, to keep the file small. Record them again on the new phone."
+      },
+      "share": {
+        "q": "Can I add text from another app?",
+        "a": "Yes. Select text in any app, choose Share, and pick Linewise. The Add screen opens with the text filled in."
+      },
+      "camera": {
+        "q": "Why can't I scan Arabic or Hebrew?",
+        "a": "The on-device text recognition Linewise uses does not include those languages yet. You can type or paste them instead."
+      }
+    }
+  },
+  "onboarding": {
+    "welcome": "Welcome to Linewise",
+    "tagline": "Learn poems, speeches, verses and scripts by heart.",
+    "goalQuestion": "What do you want to memorize?",
+    "goals": {
+      "poem": "A poem",
+      "speech": "A speech",
+      "script": "A script",
+      "verse": "A verse or prayer",
+      "other": "Something else"
+    },
+    "reminderQuestion": "Want a nudge on review days?",
+    "reminderBody": "Spaced reviews are how memories last. A gentle reminder helps you show up.",
+    "tryDemo": "Try a one-minute demo",
+    "offline": "No account. No internet. Your texts never leave your phone."
+  },
+  "demo": {
+    "title": "Try First Letter",
+    "help": "Type the first letter of each highlighted word, from memory. Don't worry if you don't know it yet.",
+    "doneBody": "That is how every game works. Pick one, play, and your reviews are scheduled for you.",
+    "score": "You got {{percent}}%",
+    "save": "Save this poem to my list",
+    "skip": "Continue without saving",
+    "skipDemo": "Skip the demo"
+  }
+}
