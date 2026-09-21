@@ -31,7 +31,10 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - uses: android-actions/setup-android@v3
+      # The runner image already has the Android SDK (ANDROID_HOME); Gradle downloads any missing
+      # platform once the licenses are accepted.
+      - name: Accept Android SDK licenses
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
 
       - run: npm ci
 
