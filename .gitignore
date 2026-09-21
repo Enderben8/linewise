@@ -23,10 +23,6 @@ dist/
 web-build/
 coverage/
 
-# Supabase CLI local state
-supabase/.temp/
-supabase/.branches/
-supabase/.env
 
 # OS and editor
 .DS_Store
