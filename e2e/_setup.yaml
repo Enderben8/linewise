@@ -1,0 +1,17 @@
+# Fresh install, notifications allowed, onboarding skipped. Reused by the other flows.
+appId: app.linewise
+---
+- launchApp:
+    clearState: true
+    permissions:
+      notifications: allow
+      microphone: deny
+      camera: deny
+- tapOn:
+    id: onboarding-next
+- tapOn:
+    id: onboarding-demo
+- tapOn:
+    id: demo-skip
+- assertVisible:
+    id: tab-add

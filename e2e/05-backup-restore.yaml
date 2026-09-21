@@ -1,0 +1,32 @@
+# Back up (the Android share sheet opens), then restore a known backup file.
+# Before running, put the fixture where the system file picker can see it:
+#   adb push e2e/fixtures/linewise-backup-test.json /sdcard/Download/
+appId: app.linewise
+---
+- runFlow: _setup.yaml
+- runFlow: _add-poem.yaml
+- tapOn:
+    id: tab-settings
+- tapOn:
+    id: open-backup
+- tapOn:
+    id: backup-now
+- assertVisible: 'Save your Linewise backup'
+- back
+- assertVisible: 'Last backup.*'
+- tapOn:
+    id: restore-choose
+- tapOn: 'linewise-backup-test.json'
+- assertVisible: 'Texts: 1.*'
+- assertVisible: 'Fixture Poem'
+- tapOn:
+    id: restore-merge
+- assertVisible: 'Merged. Added 1.*'
+- back
+- back
+- tapOn:
+    id: tab-memorizations
+- assertVisible:
+    id: 'memorization-Fixture Poem'
+- assertVisible:
+    id: 'memorization-Rose Poem'

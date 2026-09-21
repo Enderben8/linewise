@@ -1,0 +1,45 @@
+# Type a text, see the chunk preview, save it, find it in the list, search and delete it.
+appId: app.linewise
+---
+- runFlow: _setup.yaml
+- tapOn:
+    id: tab-add
+- tapOn:
+    id: add-type
+- tapOn:
+    id: body-input
+- inputText: 'Roses are red,'
+- pressKey: Enter
+- inputText: 'Violets are blue.'
+- pressKey: Enter
+- pressKey: Enter
+- inputText: 'Sugar is sweet.'
+- hideKeyboard
+- assertVisible: 'Preview, chunks: 2'
+- tapOn:
+    id: title-input
+- inputText: 'Sweet Poem'
+- hideKeyboard
+- tapOn:
+    id: save-text
+- assertVisible: 'Sweet Poem'
+- back
+- tapOn:
+    id: tab-memorizations
+- assertVisible:
+    id: 'memorization-Sweet Poem'
+- tapOn:
+    id: search-input
+- inputText: 'zzzz'
+- assertVisible: 'No texts match your search'
+- eraseText: 4
+- hideKeyboard
+- tapOn:
+    id: 'memorization-Sweet Poem'
+- scrollUntilVisible:
+    element:
+      id: delete-memorization
+- tapOn:
+    id: delete-memorization
+- tapOn: 'Delete'
+- assertVisible: 'Nothing to memorize yet'

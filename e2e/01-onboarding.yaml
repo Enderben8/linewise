@@ -1,0 +1,48 @@
+# First launch: questions, then the one-minute First Letter demo, then the list.
+appId: app.linewise
+---
+- launchApp:
+    clearState: true
+    permissions:
+      notifications: allow
+- assertVisible: 'Welcome to Linewise'
+- tapOn:
+    id: goal-poem
+- tapOn:
+    id: onboarding-next
+- tapOn:
+    id: onboarding-demo
+# "Twinkle, twinkle, little star, / How I wonder what you are! / Up above the world so high, / Like a diamond in the sky."
+- tapOn:
+    id: demo-input
+- inputText: t
+- inputText: t
+- inputText: l
+- inputText: s
+- inputText: h
+- inputText: i
+- inputText: w
+- inputText: w
+- inputText: y
+- inputText: a
+- inputText: u
+- inputText: a
+- inputText: t
+- inputText: w
+- inputText: s
+- inputText: h
+- inputText: l
+- inputText: a
+- inputText: d
+- inputText: i
+- inputText: t
+- inputText: s
+- assertVisible:
+    id: demo-save
+- tapOn:
+    id: demo-save
+- assertVisible: 'Twinkle, Twinkle, Little Star'
+# A second launch goes straight to the tabs.
+- launchApp
+- assertVisible:
+    id: tab-add

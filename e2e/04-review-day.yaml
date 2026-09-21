@@ -1,0 +1,38 @@
+# A brand new text is due for review. A perfect scored game passes it and schedules the next review.
+appId: app.linewise
+---
+- runFlow: _setup.yaml
+- runFlow: _add-poem.yaml
+- assertVisible: 'Review today'
+- scrollUntilVisible:
+    element:
+      id: game-type-it
+- tapOn:
+    id: game-type-it
+- tapOn:
+    id: type-it-input
+- inputText: 'Roses are red. Violets are blue. Sugar is sweet. And so are you.'
+- hideKeyboard
+- tapOn:
+    id: type-it-done
+- assertVisible:
+    id: result-score
+- assertVisible: '100%'
+- assertVisible: 'Passed! Your next review is on.*'
+- tapOn:
+    id: play-again
+- assertVisible:
+    id: type-it-input
+# A second scored game on the same day is practice only.
+- tapOn:
+    id: type-it-input
+- inputText: 'Roses are red. Violets are blue. Sugar is sweet. And so are you.'
+- hideKeyboard
+- tapOn:
+    id: type-it-done
+- assertVisible: 'This was practice.*'
+- back
+- back
+- tapOn:
+    id: tab-memorizations
+- assertVisible: 'Next review in 1 d'

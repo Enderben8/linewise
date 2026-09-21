@@ -1,0 +1,117 @@
+# Opens every game once. Scored games are played to the result screen. Speech games only check
+# that they open, because an emulator has no microphone or speech pack to recite into.
+appId: app.linewise
+---
+- runFlow: _setup.yaml
+- runFlow: _add-poem.yaml
+
+# --- Practice ---
+- tapOn:
+    id: game-tap-to-reveal
+- tapOn:
+    id: reveal-area
+- assertVisible: 'Roses are red.'
+- back
+- tapOn:
+    id: game-slider
+- assertVisible:
+    id: slider-percent
+- back
+- tapOn:
+    id: game-listen
+- assertVisible:
+    id: listen-play
+- back
+- scrollUntilVisible:
+    element:
+      id: game-my-recordings
+- tapOn:
+    id: game-my-recordings
+- assertVisible:
+    id: recording-start
+- back
+
+# --- Solidify ---
+- scrollUntilVisible:
+    element:
+      id: game-first-letter
+- tapOn:
+    id: game-first-letter
+- tapOn:
+    id: first-letter-input
+# "Roses are red. Violets are blue. Sugar is sweet. And so are you."
+- inputText: r
+- inputText: a
+- inputText: r
+- inputText: v
+- inputText: a
+- inputText: b
+- inputText: s
+- inputText: i
+- inputText: s
+- inputText: a
+- inputText: s
+- inputText: a
+- inputText: y
+- assertVisible:
+    id: result-score
+- back
+- tapOn:
+    id: game-fill-in-the-blank
+- tapOn:
+    id: fill-start
+- repeat:
+    while:
+      notVisible:
+        id: result-score
+    commands:
+      - tapOn:
+          id: 'option-.*'
+- back
+- tapOn:
+    id: game-sentence-scramble
+- repeat:
+    while:
+      notVisible:
+        id: result-score
+    commands:
+      - tapOn:
+          id: scramble-done
+      - tapOn:
+          id: scramble-next
+- back
+
+# --- Evaluate ---
+- scrollUntilVisible:
+    element:
+      id: game-type-it
+- tapOn:
+    id: game-type-it
+- tapOn:
+    id: type-it-input
+- inputText: 'Roses are red. Violets are blue. Sugar is sweet. And so are you.'
+- hideKeyboard
+- tapOn:
+    id: type-it-done
+- assertVisible:
+    id: result-score
+- back
+- tapOn:
+    id: game-multiple-choice
+- repeat:
+    while:
+      notVisible:
+        id: result-score
+    commands:
+      - tapOn:
+          id: choice-0
+      - tapOn:
+          id: choice-next
+- back
+- scrollUntilVisible:
+    element:
+      id: game-speak
+- tapOn:
+    id: game-speak
+- assertVisible:
+    id: speak-start

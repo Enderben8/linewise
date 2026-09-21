@@ -193,49 +193,67 @@ Add a row when you change a default or make a call not covered here.
 | 2026-09-21 | App name Linewise, package `app.linewise` | Owner asked Claude to choose |
 | 2026-09-21 | Fully offline, no backend and no accounts. Dropped: sign-in, cloud sync, Library, groups, leaderboards, AI voices, PDF import | Owner does not want Supabase, Google Cloud or any paid service |
 | 2026-09-21 | Backup export/import to a JSON file replaces cloud backup | Otherwise a lost phone loses all data |
+| 2026-09-21 | A **review day** is a calendar day (local time). `nextReviewAt` is stored as the start of that day, so any time that day counts. Reminders fire at 09:00 local (`SCHEDULER_CONFIG.reminderHour`); an overdue review is nudged at the next 09:00 | §8 says `now >= nextReviewAt` but not what the time of day is |
+| 2026-09-21 | `intervalIndex` = number of passed reviews. A new text has `nextReviewAt = null` and is due immediately, so its first scored session counts. After the last interval the plan keeps using the last interval (60 days); with a target date the plan ends (`nextReviewAt = null`) after the last review | §8 leaves the ends of the plan open |
+| 2026-09-21 | **Headline score** = best Evaluate `weightedScore` since the last passed counting review. A passing Evaluate session seeds the new cycle with its score, a passing Solidify session leaves it unchanged, so the outer ring does not drop to 0 after every review | "Current cycle" was not defined |
+| 2026-09-21 | Every scored game counts **all words in the selection** as practised (including Fill in the Blank and Multiple Choice). `coverage` divides by the words of the whole text, or of the focus speaker's lines. So a session must cover at least 80% of the text (or of the speaker's lines) to reach the 80% pass mark | Keeps `coverage` simple and the same for all games |
+| 2026-09-21 | Accuracy for `align`-scored games (Type It, Speak, Run Scene) is `matched / (target words + extra words)` | §6 defines `align` but not the score |
+| 2026-09-21 | Target-date plan: remaining gaps are scaled so the last review lands on the target date, each at least 1 day; if the days do not fit, every gap is 1 day. Recomputed after each pass | §8 says "scale" without the method |
+| 2026-09-21 | `settings.default_voice` is a map `{ [language]: voiceId }` instead of a single value, because device voices belong to one language. Two settings were added: `backup_reminder_enabled`, `last_backup_at`. A restore never overwrites `default_voice` or `last_backup_at` (they describe this phone) | §9 lists one voice |
+| 2026-09-21 | The recording chosen for Listen is stored in `progress.voice_overrides.__listen_source`, not a new column | The `progress` columns are fixed by §9 |
+| 2026-09-21 | Migrations are written as TypeScript in `src/db/migrations.ts` (Drizzle's Expo migrator format) with no `drizzle-kit` or SQL bundler plugin. A test runs the SQL and compares it with `schema.ts` | Avoids a Metro/Babel SQL loader; keeps migrations unit-testable |
+| 2026-09-21 | Libraries added beyond §3: `@expo/vector-icons` (icons), `expo-share-intent` (receive text shared from other apps, the only way in Expo), `expo-haptics` (First Letter buzz), `expo-crypto` (UUIDs), `expo-intent-launcher` (open the Android voice settings), `expo-system-ui` (dark mode), `expo-splash-screen`, `expo-build-properties`, `react-dom` (peer of `expo`). Dev only: `better-sqlite3` (run the database code in Jest), `sharp` (draw the icons), `babel-preset-expo` | Each fills a gap the fixed stack does not cover; none touches the network |
+| 2026-09-21 | Extra routes: `onboarding/index`, `onboarding/demo`, `settings/voices`, `settings/backup`, `settings/faq` | §5 lists `onboarding/...` and one settings screen; these keep each screen small |
+| 2026-09-21 | In languages without capital letters (ar, he, hi, zh-Hans) a script speaker line must end with a colon (`هاملت:`, `哈姆雷特：`) instead of being ALL CAPS | ALL CAPS cannot exist in those scripts, so scripts in them would never parse |
+| 2026-09-21 | Number equivalence (`3` = `three`) covers single-word English numbers only (0-20, round tens, 100, 1000) | Multi-word numbers ("twenty one") would need token merging in `align` |
+| 2026-09-21 | Slider and the drag handle use no extra library: a small custom slider, and Sentence Scramble also has move up/down buttons | Accessibility, and one less dependency |
+| 2026-09-21 | UI strings that show a number are written as "label: {{count}}" (or show a date) instead of plural forms | Keeps 11 languages consistent without per-language plural rules |
+| 2026-09-21 | OCR supports Latin, Chinese, Devanagari, Japanese and Korean (ML Kit models bundled). Arabic and Hebrew are not supported by ML Kit; the screen says so | Library limit |
+| 2026-09-21 | Release signing reads `LINEWISE_KEYSTORE_FILE`, `LINEWISE_KEYSTORE_PASSWORD`, `LINEWISE_KEY_ALIAS`, `LINEWISE_KEY_PASSWORD` from the environment through `plugins/withReleaseSigning.js`. The release workflow refuses to publish an APK signed with the debug key. `versionCode` = major\*10000 + minor\*100 + patch from the tag | Keeps the keystore only in GitHub Actions secrets (§1 rule 4) |
+| 2026-09-21 | Also blocked in the manifest: `SYSTEM_ALERT_WINDOW`, `READ_EXTERNAL_STORAGE`, `WRITE_EXTERNAL_STORAGE`, besides `INTERNET` | The app uses none of them |
 
 ## 11. Build phases and status
 
 Do phases in order. Phases 3 and 4 may run in parallel after phase 2. A phase is done only when every checkbox is ticked, `npx tsc --noEmit` passes, and all tests pass.
 
 ### Phase 1 — Foundation
-- [ ] Expo project, TypeScript strict, ESLint, Prettier, Jest
-- [ ] GitHub Actions: typecheck, lint and Jest on every push
-- [ ] SQLite + Drizzle schema and migrations (§9)
-- [ ] Route shell for §5 with placeholder screens; 3 tabs
-- [ ] i18next with `en` complete and keys for all other languages; RTL layout works
-- [ ] Create, edit, delete memorizations (text and script) with chunk preview, script warnings, tags and search
+- [x] Expo project, TypeScript strict, ESLint, Prettier, Jest
+- [x] GitHub Actions: typecheck, lint and Jest on every push
+- [x] SQLite + Drizzle schema and migrations (§9)
+- [x] Route shell for §5 with placeholder screens; 3 tabs
+- [x] i18next with `en` complete and keys for all other languages; RTL layout works
+- [x] Create, edit, delete memorizations (text and script) with chunk preview, script warnings, tags and search
 
 ### Phase 2 — Core games
-- [ ] `src/engine` complete with tests (§6)
-- [ ] Chunk / range / all selector and focus-speaker filter
-- [ ] Tap to Reveal, Slider, First Letter, Fill in the Blank, Sentence Scramble, Type It, Multiple Choice
-- [ ] Session results screen, celebration, session saved
+- [x] `src/engine` complete with tests (§6)
+- [x] Chunk / range / all selector and focus-speaker filter
+- [x] Tap to Reveal, Slider, First Letter, Fill in the Blank, Sentence Scramble, Type It, Multiple Choice
+- [x] Session results screen, celebration, session saved
 
 ### Phase 3 — Review system
-- [ ] `src/scheduler` complete with tests (§8)
-- [ ] Target date step with schedule preview
-- [ ] Local notifications, rescheduled on app start
-- [ ] Progress rings, headline score, stats chart
+- [x] `src/scheduler` complete with tests (§8)
+- [x] Target date step with schedule preview
+- [x] Local notifications, rescheduled on app start
+- [x] Progress rings, headline score, stats chart
 
 ### Phase 4 — Voice
-- [ ] Device TTS voice picker (language, accent, speed) and help for downloading voices
-- [ ] Listen game
-- [ ] Speak game with availability checks, on-device recognition
-- [ ] Run Scene with per-role and narration voices
-- [ ] My Recordings (limits, out-of-date warning)
+- [x] Device TTS voice picker (language, accent, speed) and help for downloading voices
+- [x] Listen game
+- [x] Speak game with availability checks, on-device recognition
+- [x] Run Scene with per-role and narration voices
+- [x] My Recordings (limits, out-of-date warning)
 
 ### Phase 5 — Polish and release
-- [ ] Add from camera or photo with on-device OCR
-- [ ] Import `.txt` / `.md` files; share text to and from Linewise
-- [ ] Backup export and restore, with the monthly reminder
-- [ ] Onboarding questions and First Letter demo
-- [ ] Settings screen complete, FAQ, "report a problem" link to GitHub Issues (opens the browser; the app itself makes no network calls)
-- [ ] All 11 translations complete
-- [ ] Airplane-mode check: every feature works with no connection
-- [ ] Maestro flows: onboarding, add text, each game, review day, backup and restore
-- [ ] GitHub Actions release workflow: on a `v*` tag, build a signed release APK and attach it to a GitHub Release
-- [ ] README: what the app does, how to install the APK (allow installs from unknown sources), how to build it locally
+- [x] Add from camera or photo with on-device OCR
+- [x] Import `.txt` / `.md` files; share text to and from Linewise
+- [x] Backup export and restore, with the monthly reminder
+- [x] Onboarding questions and First Letter demo
+- [x] Settings screen complete, FAQ, "report a problem" link to GitHub Issues (opens the browser; the app itself makes no network calls)
+- [x] All 11 translations complete
+- [x] Airplane-mode check: every feature works with no connection
+- [x] Maestro flows: onboarding, add text, each game, review day, backup and restore
+- [x] GitHub Actions release workflow: on a `v*` tag, build a signed release APK and attach it to a GitHub Release
+- [x] README: what the app does, how to install the APK (allow installs from unknown sources), how to build it locally
 
 ## 12. Open questions for the owner
 
@@ -243,3 +261,14 @@ Use the defaults above until these are answered, then update §10.
 
 - Pass mark and interval list (§8).
 - Should backups include recordings (bigger files)?
+
+### Verification status (2026-09-21)
+
+Every box above is ticked because the feature is built. What has and has not been checked:
+
+- **Checked automatically:** `npx tsc --noEmit`, ESLint with zero warnings and all Jest tests (engine, scheduler, game logic, real SQLite migrations and repository, backup replace/merge, session and review flow, all 11 locales, offline guard, signing plugin, Maestro flow ids and texts).
+- **Built:** a signed release APK (arm64-v8a and x86_64) builds with Gradle. `aapt2` shows it has no `INTERNET` permission, and `apksigner` shows it is signed with the supplied key, not the debug key.
+- **Not run on a device or emulator** (none was available): no screen, speech recognition, text to speech, recording, camera/OCR, notification or share-intent path has been exercised at runtime. The airplane-mode item is covered by the manifest and code checks above, not by using the app offline.
+- **Maestro flows** are written and validated against the app's ids and strings, but have not been executed.
+- **GitHub Actions workflows** are written and their YAML parses, but have not run on GitHub. The release workflow needs the four signing secrets described in the README.
+- Translations were written for this project and are checked for structure and placeholders, not reviewed by native speakers.

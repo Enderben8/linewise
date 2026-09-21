@@ -1,0 +1,18 @@
+# Adds a short poem and opens it. Expects the app to be on any tab of a set-up install.
+appId: app.linewise
+---
+- tapOn:
+    id: tab-add
+- tapOn:
+    id: add-type
+- tapOn:
+    id: body-input
+- inputText: 'Roses are red. Violets are blue. Sugar is sweet. And so are you.'
+- hideKeyboard
+- tapOn:
+    id: title-input
+- inputText: 'Rose Poem'
+- hideKeyboard
+- tapOn:
+    id: save-text
+- assertVisible: 'Rose Poem'

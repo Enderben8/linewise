@@ -1,0 +1,45 @@
+{
+  "app": "linewise",
+  "version": 1,
+  "exportedAt": 1790000000000,
+  "tables": {
+    "settings": [],
+    "memorizations": [
+      {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "title": "Fixture Poem",
+        "author": "Test",
+        "language": "en",
+        "type": "text",
+        "body": "Roses are red,\nViolets are blue.",
+        "bodyHash": "0000000000000000",
+        "chunks": [
+          {
+            "index": 0,
+            "lines": [
+              { "kind": "text", "text": "Roses are red," },
+              { "kind": "text", "text": "Violets are blue." }
+            ]
+          }
+        ],
+        "tags": ["fixture"],
+        "createdAt": 1790000000000,
+        "updatedAt": 1790000000000
+      }
+    ],
+    "progress": [
+      {
+        "memorizationId": "00000000-0000-4000-8000-000000000001",
+        "targetDueDate": null,
+        "intervalIndex": 2,
+        "nextReviewAt": null,
+        "headlineScore": 0.85,
+        "solidifyScores": {},
+        "hiddenWords": [],
+        "voiceOverrides": {},
+        "updatedAt": 1790000000000
+      }
+    ],
+    "sessions": []
+  }
+}

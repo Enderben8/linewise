@@ -1,0 +1,123 @@
+# Linewise
+
+Learn poems, speeches, verses and scripts by heart. Linewise is a free, offline Android app: you add a
+text, split it into chunks, practise it with 11 games (including speech recognition), and get reminded to
+review it at spaced intervals. Everything stays on your phone.
+
+- **Free, no accounts, no ads.** There is no server, no sign-in and no analytics.
+- **Works in airplane mode.** The app does not even request the `INTERNET` permission.
+- **11 games:** Tap to Reveal, Slider, Listen, First Letter, Fill in the Blank, Sentence Scramble,
+  Type It, Multiple Choice, Speak, Run Scene (for scripts) and My Recordings.
+- **Spaced reviews** at 1, 2, 4, 7, 14, 30 and 60 days, with an optional target date and local reminders.
+- **Add text** by typing, pasting, importing `.txt` / `.md`, scanning a page with the camera (on-device OCR),
+  or sharing text to Linewise from another app.
+- **Back up and restore** to a single JSON file, since there is no cloud.
+- **11 languages:** English, Spanish, French, German, Filipino, Portuguese (Brazil), Dutch, Hindi, Arabic
+  (right to left), Simplified Chinese and Hebrew (right to left).
+
+The full product spec is in [SPEC.md](SPEC.md).
+
+## Install the APK
+
+Linewise is not in an app store. Install a signed release APK from the
+[Releases](../../releases) page:
+
+1. On your phone, open the newest release and download `linewise-vX.Y.Z.apk`.
+2. Open the file. Android will ask you to allow installs from this source (**Install unknown apps**);
+   allow it for your browser or file manager, then tap **Install**.
+3. To check the download, compare its SHA-256 with `linewise-vX.Y.Z.apk.sha256` from the same release.
+
+Updates ship as new APKs. Install a newer one over the old one; your data is kept.
+
+## Build it yourself
+
+You need Node 24, a JDK (17 or 21) and the Android SDK (`ANDROID_HOME` set).
+
+```bash
+npm ci
+npx expo prebuild --platform android   # generates the android/ folder (it is not committed)
+cd android
+./gradlew assembleRelease              # add -PreactNativeArchitectures=arm64-v8a to build one ABI faster
+```
+
+The APK is at `android/app/build/outputs/apk/release/app-release.apk`. Without the signing variables below
+it is signed with the debug key: fine for your own phone, not for sharing.
+
+## Develop
+
+```bash
+npm run typecheck      # tsc --noEmit
+npm run lint           # ESLint, no warnings allowed
+npm test               # Jest: engine, scheduler, games, database, backup, translations, offline guard
+npm run check:offline  # no network dependencies or calls, INTERNET permission blocked
+npm run i18n:keys      # prints every translation key used by the code
+npm run icons          # redraws the app icon set from the mascot (scripts/make-icons.js)
+```
+
+The interesting logic is plain TypeScript with tests:
+
+| Folder          | What is in it                                                           |
+| --------------- | ----------------------------------------------------------------------- |
+| `src/engine`    | text engine: chunks, scripts, words, sentences, phrases, word alignment |
+| `src/scheduler` | spaced-repetition maths, target-date scaling, reminders, stats          |
+| `src/games`     | selection and per-game logic, results                                   |
+| `src/db`        | Drizzle schema, migrations and queries on SQLite                        |
+| `src/features`  | backup, speech, notifications, recordings, import, OCR, settings        |
+| `src/store`     | Redux Toolkit slices                                                    |
+| `src/i18n`      | i18next setup and the 11 locale files                                   |
+| `app`           | expo-router screens                                                     |
+| `e2e`           | Maestro flows (see [e2e/README.md](e2e/README.md))                      |
+
+When you add UI text, add the key to `src/i18n/locales/en.json` and to all ten other locale files. The
+tests fail if a key is missing, unused, or loses a `{{placeholder}}`.
+
+### Changing the database
+
+Never edit an existing migration. Add a new entry to `src/db/migrations.ts` (SQL plus a journal entry with a
+larger `when`) and update `src/db/schema.ts`. The migration tests run the real SQL against SQLite and
+compare it with the Drizzle schema.
+
+## Releases and signing
+
+CI (`.github/workflows/ci.yml`) typechecks, lints and tests every push.
+
+Pushing a tag such as `v1.0.0` runs `.github/workflows/release.yml`, which builds a signed release APK and
+attaches it, with its SHA-256, to a GitHub Release. It fails on purpose if the signing key is missing, so an
+APK signed with the debug key is never published.
+
+One-time setup:
+
+1. Create a keystore and keep the file and passwords somewhere safe. **If you lose it, existing installs can
+   no longer be updated.**
+
+   ```bash
+   keytool -genkeypair -v -keystore linewise.jks -alias linewise -keyalg RSA -keysize 2048 -validity 10000
+   base64 -w0 linewise.jks > linewise.jks.base64      # on macOS: base64 -i linewise.jks
+   ```
+
+2. In the GitHub repository, add these Actions secrets (Settings, Secrets and variables, Actions):
+   `ANDROID_KEYSTORE_BASE64` (the base64 text), `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`,
+   `ANDROID_KEY_PASSWORD`.
+3. Tag and push: `git tag v1.0.0 && git push origin v1.0.0`.
+
+The keystore and its passwords exist only in those secrets; nothing secret is in the repository. The
+version name and code come from the tag (`v1.2.3` becomes name `1.2.3`, code `10203`).
+
+## Privacy
+
+Linewise never connects to the internet, and the release APK does not declare the `INTERNET` permission
+(`npm run check:offline -- --apk path/to.apk` checks a built file). Text recognition, speech recognition
+and text to speech all run on the phone. The only outbound action is **Settings, Report a problem**, which
+opens the GitHub Issues page in your browser.
+
+## Known limits
+
+- Android only. There is no iOS build.
+- Speech recognition needs a phone whose speech service supports on-device recognition and has the
+  language pack downloaded; the Speak and Run Scene screens tell you what is missing.
+- Scanning text is not available for Arabic or Hebrew (the on-device model does not include them). Type or
+  paste those texts instead.
+- Scripts in languages without capital letters (Arabic, Hebrew, Hindi, Chinese) mark speakers with a
+  trailing colon, for example `هاملت:`, instead of ALL CAPS.
+- Digits and number words are treated as equal in English only, and only for single-word numbers.
+- Backups do not include recordings.
