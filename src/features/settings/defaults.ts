@@ -40,6 +40,10 @@ export interface Settings {
   onboarding_done: boolean;
   backup_reminder_enabled: boolean;
   last_backup_at: number | null;
+  /** Ask GitHub for a newer release each time the app opens (Android). */
+  update_check_enabled: boolean;
+  /** The release the user chose not to download, so the app does not offer it again at start. */
+  update_dismissed_version: string;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -53,6 +57,8 @@ export const DEFAULT_SETTINGS: Settings = {
   onboarding_done: false,
   backup_reminder_enabled: true,
   last_backup_at: null,
+  update_check_enabled: true,
+  update_dismissed_version: '',
 };
 
 export const SETTING_KEYS = Object.keys(DEFAULT_SETTINGS) as (keyof Settings)[];

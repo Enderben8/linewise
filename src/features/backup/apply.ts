@@ -4,7 +4,7 @@ import { memorizations, progress, recordings, sessions, settings } from '../../d
 import type { BackupTables, MergePlan } from './backup';
 
 /** Settings that describe this phone rather than the user's preferences; a restore never overwrites them. */
-const DEVICE_SETTINGS = new Set(['default_voice', 'last_backup_at']);
+const DEVICE_SETTINGS = new Set(['default_voice', 'last_backup_at', 'update_dismissed_version']);
 
 const CHUNK = 50;
 

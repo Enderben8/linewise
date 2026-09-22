@@ -461,19 +461,34 @@
     "resetSolidifyHelp": "每次进入新的复习间隔时，重新开始计算“巩固”得分。",
     "data": "你的数据",
     "backup": "备份与恢复",
-    "offlineNote": "所有内容都保存在这台设备上。Linewise 没有账号，也从不连接互联网。",
+    "offlineNote": "所有内容都保存在这台设备上。Linewise 没有账号，只会为检查新版本而联网。",
     "about": "关于",
+    "updates": "检查更新",
+    "updatesHelp": "每次打开 Linewise 时，它会询问 GitHub 是否有新版本。不会发送任何关于你或你的文本的信息。",
+    "checkNow": "立即检查更新",
+    "webUpdates": "网页版会自动更新。新版本就绪后，会提示你重新加载页面。",
     "faq": "常见问题",
     "report": "报告问题",
-    "reportNote": "会在浏览器中打开 GitHub。Linewise 本身不进行任何网络连接。",
+    "reportNote": "会在浏览器中打开 GitHub。除了检查更新，Linewise 不进行任何网络连接。",
     "replayIntro": "重新观看介绍"
+  },
+  "updates": {
+    "availableTitle": "有可用更新",
+    "availableBody": "Linewise {{version}} 已发布。现在下载吗？Android 会请你确认安装。",
+    "download": "下载",
+    "notNow": "以后再说",
+    "upToDate": "你使用的已是最新版本的 Linewise。",
+    "failed": "无法检查更新。请检查网络连接后重试。",
+    "readyTitle": "Linewise 已更新",
+    "readyBody": "重新加载即可使用新版本。",
+    "reload": "重新加载"
   },
   "faq": {
     "title": "常见问题",
     "items": {
       "offline": {
         "q": "Linewise 需要联网吗？",
-        "a": "不需要。一切都在你的手机上运行，应用甚至不申请联网权限。它在飞行模式下也能使用。"
+        "a": "不需要。一切都在你的设备上运行，飞行模式下也能使用。Linewise 只会为检查是否有新版本而联网，不会发送任何关于你或你的文本的信息。在 Android 应用中，你可以在“设置”里关闭此功能。"
       },
       "chunks": {
         "q": "如何把文本分成段落？",

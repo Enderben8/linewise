@@ -461,19 +461,34 @@
     "resetSolidifyHelp": "Begin de Verstevigen-scores opnieuw elke keer dat je naar een nieuw herhaalinterval gaat.",
     "data": "Je gegevens",
     "backup": "Back-up en herstel",
-    "offlineNote": "Alles blijft op dit apparaat. Linewise heeft geen accounts en maakt nooit verbinding met internet.",
+    "offlineNote": "Alles blijft op dit apparaat. Linewise heeft geen accounts en gaat alleen online om te controleren of er een nieuwe versie is.",
     "about": "Over",
+    "updates": "Controleren op updates",
+    "updatesHelp": "Elke keer dat je Linewise opent, vraagt de app aan GitHub of er een nieuwe versie is. Er wordt niets over jou of je teksten verstuurd.",
+    "checkNow": "Nu controleren op updates",
+    "webUpdates": "De web-app werkt zichzelf bij. Als er een nieuwe versie klaarstaat, vraagt hij je de pagina opnieuw te laden.",
     "faq": "Vragen en antwoorden",
     "report": "Een probleem melden",
-    "reportNote": "Opent GitHub in je browser. Linewise zelf maakt geen netwerkverbindingen.",
+    "reportNote": "Opent GitHub in je browser. Behalve om op updates te controleren, maakt Linewise geen netwerkverbindingen.",
     "replayIntro": "Introductie opnieuw bekijken"
+  },
+  "updates": {
+    "availableTitle": "Update beschikbaar",
+    "availableBody": "Linewise {{version}} is uit. Nu downloaden? Android vraagt je de installatie te bevestigen.",
+    "download": "Downloaden",
+    "notNow": "Niet nu",
+    "upToDate": "Je hebt de nieuwste versie van Linewise.",
+    "failed": "Controleren op updates is mislukt. Controleer je internetverbinding en probeer het opnieuw.",
+    "readyTitle": "Linewise is bijgewerkt",
+    "readyBody": "Laad de pagina opnieuw om de nieuwe versie te gebruiken.",
+    "reload": "Opnieuw laden"
   },
   "faq": {
     "title": "Vragen en antwoorden",
     "items": {
       "offline": {
         "q": "Heeft Linewise internet nodig?",
-        "a": "Nee. Alles draait op je telefoon en de app vraagt niet eens om internetrechten. Hij werkt in vliegtuigmodus."
+        "a": "Nee. Alles draait op je apparaat en werkt ook in vliegtuigmodus. Linewise gaat alleen online om te controleren of er een nieuwe versie is, en stuurt niets over jou of je teksten. In de Android-app kun je dat uitzetten bij Instellingen."
       },
       "chunks": {
         "q": "Hoe verdeel ik een tekst in stukken?",
@@ -535,7 +550,7 @@
     "reminderQuestion": "Wil je een seintje op herhaaldagen?",
     "reminderBody": "Gespreide herhaling zorgt dat herinneringen blijven hangen. Een zachte herinnering helpt je om door te zetten.",
     "tryDemo": "Probeer een demo van een minuut",
-    "offline": "Geen account. Geen internet. Je teksten verlaten nooit je apparaat."
+    "offline": "Geen account. Geen internet nodig. Je teksten verlaten nooit je apparaat."
   },
   "demo": {
     "title": "Probeer Eerste letter",

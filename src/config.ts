@@ -28,4 +28,8 @@ export const BACKUP = {
 export const APP = {
   name: 'Linewise',
   issuesUrl: 'https://github.com/Enderben8/linewise/issues',
+  /** The Android app's update check reads the newest release here: its only network request. */
+  releasesApiUrl: 'https://api.github.com/repos/Enderben8/linewise/releases/latest',
+  /** Update downloads must come from this site. */
+  releasesSite: 'https://github.com/Enderben8/linewise/releases/',
 } as const;

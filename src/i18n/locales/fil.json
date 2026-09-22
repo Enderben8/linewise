@@ -461,19 +461,34 @@
     "resetSolidifyHelp": "Magsimulang muli ang mga marka sa Patatagin tuwing lilipat ka sa bagong interval ng balik-aral.",
     "data": "Ang iyong data",
     "backup": "Backup at pagbabalik",
-    "offlineNote": "Nananatili ang lahat sa device na ito. Walang account ang Linewise at hindi ito kailanman kumokonekta sa internet.",
+    "offlineNote": "Nananatili ang lahat sa device na ito. Walang account ang Linewise, at kumokonekta lang ito sa internet para tingnan kung may bagong bersyon.",
     "about": "Tungkol dito",
+    "updates": "Tingnan kung may update",
+    "updatesHelp": "Tuwing binubuksan mo ang Linewise, tinatanong nito sa GitHub kung may bagong bersyon. Walang ipinapadalang anuman tungkol sa iyo o sa iyong mga teksto.",
+    "checkNow": "Tingnan ngayon kung may update",
+    "webUpdates": "Kusang nag-a-update ang web app. Kapag handa na ang bagong bersyon, hihilingin nitong i-reload mo ang page.",
     "faq": "Mga tanong at sagot",
     "report": "Mag-ulat ng problema",
-    "reportNote": "Bubuksan ang GitHub sa iyong browser. Ang Linewise mismo ay hindi gumagawa ng anumang koneksyon sa network.",
+    "reportNote": "Bubuksan ang GitHub sa iyong browser. Maliban sa pagtingin kung may update, hindi gumagawa ng anumang koneksyon sa network ang Linewise.",
     "replayIntro": "Panoorin muli ang pagpapakilala"
+  },
+  "updates": {
+    "availableTitle": "May bagong update",
+    "availableBody": "Labas na ang Linewise {{version}}. I-download na ngayon? Hihilingin ng Android na kumpirmahin mo ang pag-install.",
+    "download": "I-download",
+    "notNow": "Hindi muna",
+    "upToDate": "Nasa pinakabagong bersyon ka ng Linewise.",
+    "failed": "Hindi matingnan kung may update. Suriin ang iyong koneksyon sa internet at subukang muli.",
+    "readyTitle": "Na-update na ang Linewise",
+    "readyBody": "I-reload para magamit ang bagong bersyon.",
+    "reload": "I-reload"
   },
   "faq": {
     "title": "Mga tanong at sagot",
     "items": {
       "offline": {
         "q": "Kailangan ba ng Linewise ang internet?",
-        "a": "Hindi. Lahat ay tumatakbo sa iyong telepono, at hindi man lang humihingi ng pahintulot sa internet ang app. Gumagana ito sa airplane mode."
+        "a": "Hindi. Lahat ay tumatakbo sa iyong device at gumagana kahit naka-airplane mode. Kumokonekta lang ang Linewise sa internet para tingnan kung may bagong bersyon, at walang ipinapadalang anuman tungkol sa iyo o sa iyong mga teksto. Sa Android app, puwede mo itong i-off sa Mga Setting."
       },
       "chunks": {
         "q": "Paano ko hahatiin ang teksto sa mga bahagi?",
@@ -535,7 +550,7 @@
     "reminderQuestion": "Gusto mo ba ng paalala sa mga araw ng balik-aral?",
     "reminderBody": "Ang mga may-pagitang balik-aral ang nagpapatagal ng alaala. Nakakatulong ang banayad na paalala para hindi ka makalimot.",
     "tryDemo": "Subukan ang isang-minutong demo",
-    "offline": "Walang account. Walang internet. Hindi umaalis sa device mo ang iyong mga teksto."
+    "offline": "Walang account. Hindi kailangan ng internet. Hindi umaalis sa device mo ang iyong mga teksto."
   },
   "demo": {
     "title": "Subukan ang Unang Titik",

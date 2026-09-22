@@ -5,7 +5,8 @@ text, split it into chunks, practise it with 11 games (including speech recognit
 review it at spaced intervals. Everything stays on your phone.
 
 - **Free, no accounts, no ads.** There is no server, no sign-in and no analytics.
-- **Works in airplane mode.** The app does not even request the `INTERNET` permission.
+- **Works in airplane mode.** The only thing Linewise does online is check whether a new version is out,
+  and you can turn that off.
 - **11 games:** Tap to Reveal, Slider, Listen, First Letter, Fill in the Blank, Sentence Scramble,
   Type It, Multiple Choice, Speak, Run Scene (for scripts) and My Recordings.
 - **Spaced reviews** at 1, 2, 4, 7, 14, 30 and 60 days, with an optional target date and local reminders.
@@ -57,6 +58,9 @@ npm run serve:web   # http://localhost:8081, with the same headers as Cloudflare
 
 ## Build it yourself
 
+[BUILDING.md](BUILDING.md) walks through both builds step by step, with the release process and what to do
+when something goes wrong. The short version:
+
 You need Node 24, a JDK (17 or 21) and the Android SDK (`ANDROID_HOME` set).
 
 ```bash
@@ -75,7 +79,7 @@ it is signed with the debug key: fine for your own phone, not for sharing.
 npm run typecheck      # tsc --noEmit
 npm run lint           # ESLint, no warnings allowed
 npm test               # Jest: engine, scheduler, games, database, backup, translations, offline guard
-npm run check:offline  # no network dependencies or calls, INTERNET permission blocked, web CSP same-site only
+npm run check:offline  # no network dependencies, no network calls but the update check, web CSP same-site only
 npm run i18n:keys      # prints every translation key used by the code
 npm run icons          # redraws the app icon set from the mascot (scripts/make-icons.js)
 ```
@@ -139,6 +143,11 @@ The same tag also builds the web app and deploys it to Cloudflare Pages. One-tim
 
 Until those secrets exist the web job still builds and checks the site, and skips the deploy.
 
+Optionally add `REPO_ADMIN_TOKEN`, a fine-grained GitHub token with _Administration: Read and write_ on
+this repository. Each release then points the repository's Website link at the live site, including a
+custom domain added later. GitHub's built-in Actions token cannot change repository settings, so without
+this secret the link is left alone.
+
 Do not turn on Cloudflare's own Git builds for the project. If the project is connected to this
 repository, keep automatic production and preview deployments off (Settings, Builds). A Git build has
 none of the workflow's steps, so it publishes the raw repository files over the site. To undo a bad
@@ -146,12 +155,19 @@ deploy, open the project's Deployments list and choose _Rollback_ on the last go
 
 ## Privacy
 
-Linewise never connects to the internet, and the release APK does not declare the `INTERNET` permission
-(`npm run check:offline -- --apk path/to.apk` checks a built file). The web app only downloads its own
-files from its own site; its Content-Security-Policy (`public/_headers`) makes the browser block any other
-request, and CI fails if that policy ever allows another host. Text recognition, speech recognition
-and text to speech all run on the phone. The only outbound action is **Settings, Report a problem**, which
-opens the GitHub Issues page in your browser.
+Your texts stay on your device. Linewise has no accounts and no server, and the only thing it uses the
+internet for is checking whether a newer version has been released.
+
+- **The Android app** asks GitHub for the latest release each time it opens, and offers the download if
+  there is one. The request sends nothing about you or your texts, and **Settings, About, Check for
+  updates** turns it off. That check is the only reason the app declares the `INTERNET` permission.
+- **The web app** never calls GitHub: it fetches new versions of itself from its own site and then offers
+  to reload. Its Content-Security-Policy (`public/_headers`) makes the browser block any request to another
+  host, and CI fails if that policy ever allows one.
+- Everything else, including text recognition, speech recognition and text to speech, runs on your device.
+  `npm run check:offline` fails if any code outside the update check can reach the network.
+
+**Settings, Report a problem** opens the GitHub Issues page in your browser; the app itself sends nothing.
 
 ## Known limits
 

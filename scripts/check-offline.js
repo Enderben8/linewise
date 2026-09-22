@@ -1,6 +1,7 @@
-// Guards SPEC.md §1 rule 3: the app is fully offline.
-//   node scripts/check-offline.js                 static checks on dependencies, source and app.json
-//   node scripts/check-offline.js --apk app.apk   also fails if the built APK requests INTERNET
+// Guards SPEC.md §1 rule 3: the app works offline, and its one network request is the update check
+// (SPEC.md §10).
+//   node scripts/check-offline.js                 static checks on dependencies and source
+//   node scripts/check-offline.js --apk app.apk   also lists the built APK's permissions
 //   node scripts/check-offline.js --web dist-web  also checks the web build and its Content-Security-Policy
 const crypto = require('crypto');
 const fs = require('fs');
@@ -48,6 +49,8 @@ const ALLOWED_URL_FILES = ['src/config.ts'];
 const ALLOWED_CODE = {
   // fetch() of the recorder's own blob: URL (checked in code) to store it in IndexedDB.
   'src/features/recordings/files.web.ts': ['fetch()'],
+  // The update check: one GET of GitHub's latest release (APP.releasesApiUrl), sending nothing else.
+  'src/features/updates/check.ts': ['fetch()'],
 };
 
 function walk(dir, out = []) {
@@ -85,15 +88,6 @@ function staticChecks() {
     if (!ALLOWED_URL_FILES.includes(rel) && /['"`]https?:\/\//.test(src)) {
       problems.push(`${rel}: contains a web address`);
     }
-  }
-
-  const app = JSON.parse(fs.readFileSync(path.join(root, 'app.json'), 'utf8')).expo;
-  const android = app.android || {};
-  if (!(android.blockedPermissions || []).includes('android.permission.INTERNET')) {
-    problems.push('app.json must list android.permission.INTERNET in android.blockedPermissions');
-  }
-  if ((android.permissions || []).includes('android.permission.INTERNET')) {
-    problems.push('app.json requests android.permission.INTERNET');
   }
   return problems;
 }
@@ -201,11 +195,9 @@ if (require.main === module) {
   const apkIndex = process.argv.indexOf('--apk');
   if (apkIndex !== -1) {
     const apk = process.argv[apkIndex + 1];
+    // INTERNET is expected: the update check needs it.
     const perms = apkPermissions(apk);
     console.log(`APK permissions (${perms.length}):\n  ${perms.join('\n  ')}`);
-    if (perms.includes('android.permission.INTERNET')) {
-      problems.push(`${apk} requests android.permission.INTERNET`);
-    }
   }
   problems.push(...cspChecks(fs.readFileSync(path.join(root, 'public', '_headers'), 'utf8')));
   const webIndex = process.argv.indexOf('--web');
@@ -214,5 +206,7 @@ if (require.main === module) {
     console.error('Offline check failed:\n - ' + problems.join('\n - '));
     process.exit(1);
   }
-  console.log('Offline check passed: no network dependencies, calls or INTERNET permission.');
+  console.log(
+    'Offline check passed: no network dependencies, and no network calls but the update check.',
+  );
 }

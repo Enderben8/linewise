@@ -1,4 +1,3 @@
-import Constants from 'expo-constants';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -6,7 +5,7 @@ import { Linking, Switch, View } from 'react-native';
 import { spacing } from '../../../src/components/theme';
 import { AppText, Button, Card, Chip, Row, Screen } from '../../../src/components/ui';
 import { APP } from '../../../src/config';
-import { confirmAction } from '../../../src/lib/dialog';
+import { confirmAction, notify } from '../../../src/lib/dialog';
 import { listMemorizations } from '../../../src/db/repo';
 import { LANGUAGES } from '../../../src/features/settings/defaults';
 import {
@@ -15,6 +14,8 @@ import {
   syncReminders,
 } from '../../../src/features/notifications/reminders';
 import { speakAsync } from '../../../src/features/speech/tts';
+import { checkForUpdate, UPDATE_CHECK_SUPPORTED } from '../../../src/features/updates/check';
+import { currentVersion, offerUpdate } from '../../../src/features/updates/offer';
 import { applyLocale } from '../../../src/i18n';
 import { useAppDispatch, useAppSelector } from '../../../src/store';
 import { updateSettings } from '../../../src/store/settingsSlice';
@@ -65,6 +66,21 @@ export default function SettingsScreen() {
   const dispatch = useAppDispatch();
   const settings = useAppSelector((s) => s.settings.values);
   const [restartNote, setRestartNote] = useState(false);
+  const [checking, setChecking] = useState(false);
+
+  // The one place the user asks for the update check; the launch check is in app/_layout.tsx.
+  const checkNow = async () => {
+    setChecking(true);
+    try {
+      const update = await checkForUpdate(currentVersion());
+      if (update) await offerUpdate(update);
+      else notify(t('updates.upToDate'));
+    } catch {
+      notify(t('updates.failed'));
+    } finally {
+      setChecking(false);
+    }
+  };
 
   const changeLocale = async (locale: string) => {
     dispatch(updateSettings({ locale }));
@@ -213,8 +229,30 @@ export default function SettingsScreen() {
 
       <Section title={t('settings.about')}>
         <AppText>
-          {APP.name} {Constants.expoConfig?.version ?? ''}
+          {APP.name} {currentVersion()}
         </AppText>
+        {UPDATE_CHECK_SUPPORTED ? (
+          <>
+            <ToggleRow
+              label={t('settings.updates')}
+              help={t('settings.updatesHelp')}
+              value={settings.update_check_enabled}
+              onChange={(v) => dispatch(updateSettings({ update_check_enabled: v }))}
+              testID="toggle-updates"
+            />
+            <Button
+              testID="check-updates"
+              variant="secondary"
+              label={t('settings.checkNow')}
+              loading={checking}
+              onPress={checkNow}
+            />
+          </>
+        ) : (
+          <AppText variant="caption" muted>
+            {t('settings.webUpdates')}
+          </AppText>
+        )}
         <Button
           variant="secondary"
           label={t('settings.faq')}

@@ -19,6 +19,7 @@
       },
       "predictiveBackGestureEnabled": false,
       "permissions": [
+        "android.permission.INTERNET",
         "android.permission.RECORD_AUDIO",
         "android.permission.CAMERA",
         "android.permission.POST_NOTIFICATIONS",
@@ -26,7 +27,6 @@
         "android.permission.VIBRATE"
       ],
       "blockedPermissions": [
-        "android.permission.INTERNET",
         "android.permission.SYSTEM_ALERT_WINDOW",
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE"
@@ -86,9 +86,7 @@
         "expo-share-intent",
         {
           "disableIOS": true,
-          "androidIntentFilters": [
-            "text/*"
-          ]
+          "androidIntentFilters": ["text/*"]
         }
       ],
       "./plugins/withReleaseSigning"

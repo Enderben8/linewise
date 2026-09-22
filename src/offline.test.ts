@@ -11,7 +11,7 @@ const { staticChecks, cspChecks } = require('../scripts/check-offline') as {
 };
 
 describe('offline guarantee (SPEC §1 rule 3)', () => {
-  it('has no network dependencies, network calls or INTERNET permission', () => {
+  it('has no network dependencies, and no network calls but the update check', () => {
     expect(staticChecks()).toEqual([]);
   });
 

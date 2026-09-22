@@ -14,12 +14,14 @@ import { db, initDatabase } from '../src/db/client';
 import { migrations } from '../src/db/migrations';
 import { syncReminders } from '../src/features/notifications/reminders';
 import { ShareProvider, useSharedText } from '../src/features/share/ShareBridge';
+import { checkForUpdate, UPDATE_CHECK_SUPPORTED } from '../src/features/updates/check';
+import { currentVersion, offerUpdate } from '../src/features/updates/offer';
 import i18n, { applyLocale } from '../src/i18n';
 import { registerServiceWorker } from '../src/lib/serviceWorker';
 import { store, useAppDispatch, useAppSelector } from '../src/store';
 import { draftActions } from '../src/store/draftSlice';
 import { reloadMemorizations } from '../src/store/memorizationsSlice';
-import { loadSettings } from '../src/store/settingsSlice';
+import { loadSettings, updateSettings } from '../src/store/settingsSlice';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
@@ -59,6 +61,24 @@ function Bootstrap() {
     // Only on first load and when relevant settings change, not on every list edit.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hydrated, loaded, settings.notifications_enabled, settings.backup_reminder_enabled]);
+
+  // Each launch, ask GitHub whether a newer release is out (Android; the web app updates itself).
+  // Development builds skip it: their version is not stamped from a release tag.
+  useEffect(() => {
+    if (__DEV__ || !hydrated || !UPDATE_CHECK_SUPPORTED) return;
+    if (!settings.update_check_enabled || !settings.onboarding_done) return;
+    checkForUpdate(currentVersion())
+      .then(async (update) => {
+        if (!update || update.version === settings.update_dismissed_version) return;
+        if (!(await offerUpdate(update))) {
+          dispatch(updateSettings({ update_dismissed_version: update.version }));
+        }
+      })
+      // Offline, or GitHub could not be reached: the next launch tries again.
+      .catch(() => {});
+    // Once per launch, when the settings have loaded.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hydrated]);
 
   useEffect(() => {
     if (!shared || !hydrated) return;

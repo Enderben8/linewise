@@ -461,19 +461,34 @@
     "resetSolidifyHelp": "Beginne die Festigen-Ergebnisse neu, sobald du in ein neues Wiederholungsintervall wechselst.",
     "data": "Deine Daten",
     "backup": "Sichern und wiederherstellen",
-    "offlineNote": "Alles bleibt auf diesem Gerät. Linewise hat keine Konten und verbindet sich nie mit dem Internet.",
+    "offlineNote": "Alles bleibt auf diesem Gerät. Linewise hat keine Konten und geht nur online, um nach einer neuen Version zu suchen.",
     "about": "Über",
+    "updates": "Nach Updates suchen",
+    "updatesHelp": "Bei jedem Start fragt Linewise bei GitHub nach, ob es eine neue Version gibt. Dabei wird nichts über dich oder deine Texte gesendet.",
+    "checkNow": "Jetzt nach Updates suchen",
+    "webUpdates": "Die Web-App aktualisiert sich selbst. Wenn eine neue Version bereit ist, bittet sie dich, die Seite neu zu laden.",
     "faq": "Fragen und Antworten",
     "report": "Problem melden",
-    "reportNote": "Öffnet GitHub im Browser. Linewise selbst stellt keine Netzwerkverbindungen her.",
+    "reportNote": "Öffnet GitHub im Browser. Abgesehen von der Suche nach Updates stellt Linewise keine Netzwerkverbindungen her.",
     "replayIntro": "Einführung erneut ansehen"
+  },
+  "updates": {
+    "availableTitle": "Update verfügbar",
+    "availableBody": "Linewise {{version}} ist da. Jetzt herunterladen? Android bittet dich, die Installation zu bestätigen.",
+    "download": "Herunterladen",
+    "notNow": "Nicht jetzt",
+    "upToDate": "Du hast die neueste Version von Linewise.",
+    "failed": "Die Suche nach Updates ist fehlgeschlagen. Prüfe deine Internetverbindung und versuche es noch einmal.",
+    "readyTitle": "Linewise wurde aktualisiert",
+    "readyBody": "Lade die Seite neu, um die neue Version zu verwenden.",
+    "reload": "Neu laden"
   },
   "faq": {
     "title": "Fragen und Antworten",
     "items": {
       "offline": {
         "q": "Braucht Linewise Internet?",
-        "a": "Nein. Alles läuft auf deinem Handy, und die App fragt nicht einmal nach der Internet-Berechtigung. Sie funktioniert im Flugmodus."
+        "a": "Nein. Alles läuft auf deinem Gerät, auch im Flugmodus. Linewise geht nur online, um nach einer neuen Version zu suchen, und sendet dabei nichts über dich oder deine Texte. In der Android-App kannst du das unter Einstellungen ausschalten."
       },
       "chunks": {
         "q": "Wie teile ich einen Text in Abschnitte?",
@@ -535,7 +550,7 @@
     "reminderQuestion": "Möchtest du an Wiederholungstagen erinnert werden?",
     "reminderBody": "Verteilte Wiederholungen sorgen dafür, dass Erinnerungen bleiben. Eine sanfte Erinnerung hilft dir, dranzubleiben.",
     "tryDemo": "Eine einminütige Demo ausprobieren",
-    "offline": "Kein Konto. Kein Internet. Deine Texte verlassen nie dein Gerät."
+    "offline": "Kein Konto. Kein Internet nötig. Deine Texte verlassen nie dein Gerät."
   },
   "demo": {
     "title": "Probiere Erster Buchstabe",

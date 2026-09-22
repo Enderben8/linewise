@@ -461,19 +461,34 @@
     "resetSolidifyHelp": "Start Solidify scores fresh every time you move to a new review interval.",
     "data": "Your data",
     "backup": "Back up and restore",
-    "offlineNote": "Everything stays on this device. Linewise has no accounts and never connects to the internet.",
+    "offlineNote": "Everything stays on this device. Linewise has no accounts, and it only goes online to check for a new version.",
     "about": "About",
+    "updates": "Check for updates",
+    "updatesHelp": "Each time Linewise opens, it asks GitHub whether a newer version is out. Nothing about you or your texts is sent.",
+    "checkNow": "Check for updates now",
+    "webUpdates": "The web app updates itself. When a new version is ready, it asks you to reload.",
     "faq": "Questions and answers",
     "report": "Report a problem",
-    "reportNote": "Opens GitHub in your browser. Linewise itself makes no network connections.",
+    "reportNote": "Opens GitHub in your browser. Apart from checking for updates, Linewise makes no network connections.",
     "replayIntro": "Replay the introduction"
+  },
+  "updates": {
+    "availableTitle": "Update available",
+    "availableBody": "Linewise {{version}} is out. Download it now? Android will ask you to confirm the install.",
+    "download": "Download",
+    "notNow": "Not now",
+    "upToDate": "You have the latest version of Linewise.",
+    "failed": "Could not check for updates. Check your internet connection and try again.",
+    "readyTitle": "Linewise has been updated",
+    "readyBody": "Reload to start using the new version.",
+    "reload": "Reload"
   },
   "faq": {
     "title": "Questions and answers",
     "items": {
       "offline": {
         "q": "Does Linewise need the internet?",
-        "a": "No. Everything runs on your phone, and the app does not even ask for internet permission. It works in airplane mode."
+        "a": "No. Everything runs on your device and works in airplane mode. The only time Linewise goes online is to check for a new version, and nothing about you or your texts is sent. In the Android app you can turn that off in Settings."
       },
       "chunks": {
         "q": "How do I split a text into chunks?",
@@ -535,7 +550,7 @@
     "reminderQuestion": "Want a nudge on review days?",
     "reminderBody": "Spaced reviews are how memories last. A gentle reminder helps you show up.",
     "tryDemo": "Try a one-minute demo",
-    "offline": "No account. No internet. Your texts never leave your device."
+    "offline": "No account. No internet needed. Your texts never leave your device."
   },
   "demo": {
     "title": "Try First Letter",

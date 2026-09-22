@@ -32,7 +32,7 @@ jobs:
       - name: Unit tests
         run: npm test -- --ci
 
-      - name: Offline guarantee (no network code, no INTERNET permission)
+      - name: Offline guarantee (no network code but the update check)
         run: npm run check:offline
 
       - name: JavaScript bundle builds
