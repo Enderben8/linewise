@@ -12,7 +12,9 @@
     "yes": "是"
   },
   "errors": {
-    "databaseTitle": "无法打开应用数据"
+    "databaseTitle": "无法打开应用数据",
+    "databaseBusyTitle": "Linewise 已在另一个标签页中打开",
+    "databaseBusyBody": "网页版把你的文本保存在一个数据库里，同一时间只能有一个标签页使用它。请关闭另一个标签页或窗口，然后重新加载本页面。"
   },
   "tabs": {
     "memorizations": "背诵",

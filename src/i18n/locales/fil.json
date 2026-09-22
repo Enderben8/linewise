@@ -12,7 +12,9 @@
     "yes": "Oo"
   },
   "errors": {
-    "databaseTitle": "Hindi mabuksan ang data ng app"
+    "databaseTitle": "Hindi mabuksan ang data ng app",
+    "databaseBusyTitle": "Bukas ang Linewise sa ibang tab",
+    "databaseBusyBody": "Iniimbak ng web app ang iyong mga teksto sa isang database na iisang tab lang ang puwedeng gumamit sa bawat pagkakataon. Isara ang kabilang tab o window, pagkatapos ay i-reload ang page na ito."
   },
   "tabs": {
     "memorizations": "Kabisaduhin",

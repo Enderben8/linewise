@@ -10,7 +10,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { AppText, Screen } from '../src/components/ui';
 import { useTheme } from '../src/components/theme';
-import { db, initDatabase } from '../src/db/client';
+import { db, initDatabase, isDatabaseBusy } from '../src/db/client';
 import { migrations } from '../src/db/migrations';
 import { syncReminders } from '../src/features/notifications/reminders';
 import { ShareProvider, useSharedText } from '../src/features/share/ShareBridge';
@@ -124,7 +124,7 @@ function Bootstrap() {
 export default function RootLayout() {
   // The web build opens its database asynchronously first (see src/db/client.web.ts).
   const [dbReady, setDbReady] = useState(Platform.OS !== 'web');
-  const [dbError, setDbError] = useState<string | null>(null);
+  const [dbError, setDbError] = useState<{ message: string; busy: boolean } | null>(null);
   useEffect(() => {
     if (dbReady) return;
     initDatabase()
@@ -134,15 +134,33 @@ export default function RootLayout() {
         registerServiceWorker();
         setDbReady(true);
       })
-      .catch((e: unknown) => setDbError(e instanceof Error ? e.message : String(e)));
+      .catch((e: unknown) =>
+        setDbError({
+          message: e instanceof Error ? e.message : String(e),
+          busy: isDatabaseBusy(e),
+        }),
+      );
   }, [dbReady]);
 
   if (dbError) {
     return (
       <View style={{ flex: 1, padding: 24, justifyContent: 'center' }}>
         {/* Plain Text: the Redux store that AppText reads is not mounted yet. */}
-        <Text style={{ fontSize: 22, fontWeight: '700' }}>{i18n.t('errors.databaseTitle')}</Text>
-        <Text style={{ marginTop: 8 }}>{dbError}</Text>
+        <Text style={{ fontSize: 22, fontWeight: '700' }}>
+          {dbError.busy ? i18n.t('errors.databaseBusyTitle') : i18n.t('errors.databaseTitle')}
+        </Text>
+        <Text style={{ marginTop: 8 }}>
+          {dbError.busy ? i18n.t('errors.databaseBusyBody') : dbError.message}
+        </Text>
+        {Platform.OS === 'web' ? (
+          <Text
+            accessibilityRole="button"
+            onPress={() => window.location.reload()}
+            style={{ marginTop: 20, fontSize: 18, fontWeight: '700', color: '#0F3D3E' }}
+          >
+            {i18n.t('updates.reload')}
+          </Text>
+        ) : null}
       </View>
     );
   }

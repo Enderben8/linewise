@@ -12,7 +12,9 @@
     "yes": "Oui"
   },
   "errors": {
-    "databaseTitle": "Les données de l'application n'ont pas pu être ouvertes"
+    "databaseTitle": "Les données de l'application n'ont pas pu être ouvertes",
+    "databaseBusyTitle": "Linewise est ouvert dans un autre onglet",
+    "databaseBusyBody": "L'appli web garde vos textes dans une base de données qu'un seul onglet peut utiliser à la fois. Fermez l'autre onglet ou fenêtre, puis rechargez cette page."
   },
   "tabs": {
     "memorizations": "Mémoriser",

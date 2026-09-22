@@ -12,7 +12,9 @@
     "yes": "Ja"
   },
   "errors": {
-    "databaseTitle": "Die Daten der App konnten nicht geöffnet werden"
+    "databaseTitle": "Die Daten der App konnten nicht geöffnet werden",
+    "databaseBusyTitle": "Linewise ist in einem anderen Tab geöffnet",
+    "databaseBusyBody": "Die Web-App speichert deine Texte in einer Datenbank, die immer nur ein Tab verwenden kann. Schließe den anderen Tab oder das andere Fenster und lade diese Seite neu."
   },
   "tabs": {
     "memorizations": "Lernen",

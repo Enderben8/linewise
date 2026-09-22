@@ -12,3 +12,8 @@ export type Db = typeof db;
 export function initDatabase(): Promise<void> {
   return Promise.resolve();
 }
+
+/** Only a browser can find the database held by another page; on Android it never is. */
+export function isDatabaseBusy(_error: unknown): boolean {
+  return false;
+}
