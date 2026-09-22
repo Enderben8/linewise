@@ -11,7 +11,7 @@ import {
   requestNotificationPermission,
   syncReminders,
 } from '../../../../src/features/notifications/reminders';
-import { addDays, daysBetween, previewSchedule } from '../../../../src/scheduler';
+import { addDays, daysBetween, previewSchedule, withTargetDate } from '../../../../src/scheduler';
 import { useAppDispatch, useAppSelector } from '../../../../src/store';
 import { reloadMemorizations } from '../../../../src/store/memorizationsSlice';
 import { updateSettings } from '../../../../src/store/settingsSlice';
@@ -37,7 +37,7 @@ export default function NotificationsScreen() {
   const state = mem ? rowToState(mem.progress) : null;
   const target = addDays(now, days);
   const plan = useMemo(
-    () => (state ? previewSchedule({ ...state, targetDueDate: target }, now) : []),
+    () => (state ? previewSchedule(withTargetDate(state, target, now), now) : []),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [state?.intervalIndex, state?.nextReviewAt, target],
   );
@@ -52,7 +52,7 @@ export default function NotificationsScreen() {
     });
 
   const persist = async (targetDueDate: number | null) => {
-    saveProgressState(mem.id, { ...state, targetDueDate });
+    saveProgressState(mem.id, withTargetDate(state, targetDueDate, now));
     dispatch(reloadMemorizations());
     await syncReminders(listMemorizations(), settings).catch(() => {});
   };
@@ -105,7 +105,6 @@ export default function NotificationsScreen() {
             </AppText>
           </Row>
         ))}
-        {plan.length <= 1 ? <AppText muted>{t('target.planComplete')}</AppText> : null}
       </View>
 
       <Button testID="save-target" label={t('target.save')} onPress={() => persist(target)} />
@@ -118,7 +117,9 @@ export default function NotificationsScreen() {
         <AppText muted>
           {mem.progress.nextReviewAt
             ? t('reminders.next', { date: fmt(mem.progress.nextReviewAt) })
-            : t('reminders.none')}
+            : mem.progress.intervalIndex > 0
+              ? t('target.planComplete')
+              : t('reminders.none')}
         </AppText>
         {!REMINDERS_SUPPORTED ? (
           <AppText muted>{t('reminders.web')}</AppText>

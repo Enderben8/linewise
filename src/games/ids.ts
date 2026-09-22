@@ -29,8 +29,6 @@ export const GAME_GROUP: Record<GameId, GameGroup> = {
   'run-scene': 'evaluate',
 };
 
-export const SCORED_GAMES = GAME_IDS.filter((g) => GAME_GROUP[g] !== 'practice');
-
 export function isScored(game: GameId): boolean {
   return GAME_GROUP[game] !== 'practice';
 }

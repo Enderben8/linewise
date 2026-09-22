@@ -285,7 +285,7 @@ export default function MyRecordings() {
   return (
     <Screen>
       <Stack.Screen options={{ title: t('games.my-recordings.name') }} />
-      <AppText muted>{t('recordings.help', { max: 10 })}</AppText>
+      <AppText muted>{t('recordings.help', { max: LIMITS.maxRecordingsPerMemorization })}</AppText>
 
       {recState.isRecording ? (
         <Card style={{ alignItems: 'center', gap: spacing.md }}>

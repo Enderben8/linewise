@@ -1,4 +1,4 @@
-import { BACKUP, SCHEDULER_CONFIG } from '../../config';
+import { BACKUP } from '../../config';
 import { daysBetween, isReviewDay, type ProgressState } from '../../scheduler';
 
 export type ReviewStatus =
@@ -21,10 +21,6 @@ export function backupDue(
   const since = opts.lastBackupAt ?? opts.oldestCreatedAt;
   if (since === null) return false;
   return now - since >= BACKUP.reminderDays * 86_400_000;
-}
-
-export function passPercent(): number {
-  return Math.round(SCHEDULER_CONFIG.passMark * 100);
 }
 
 /** Splits a comma or newline separated tag string into unique, trimmed tags. */

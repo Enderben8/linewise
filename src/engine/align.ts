@@ -1,6 +1,9 @@
 import type { AlignItem, Token } from './types';
 
+/** Largest table (in cells) filled in full. */
 const FULL_LIMIT = 4_000_000;
+/** How far a long alignment may stray from the diagonals between (0, 0) and (n, m). */
+const BAND_SLACK = 150;
 
 /**
  * Word-level Levenshtein alignment on `norm`.
@@ -34,17 +37,25 @@ function alignCore(target: Token[], attempt: Token[]): AlignItem[] {
   if (n === 0) return attempt.map((a) => ({ op: 'extra' as const, attempt: a }));
   if (m === 0) return target.map((t) => ({ op: 'missed' as const, target: t }));
 
-  const band = n * m <= FULL_LIMIT ? Math.max(n, m) : Math.abs(n - m) + 150;
-  const width = 2 * band + 1;
-  const INF = 1 << 28;
-  const dp = new Int32Array((n + 1) * width).fill(INF);
-  const at = (i: number, j: number) => i * width + (j - i + band);
-  const inBand = (i: number, j: number) => Math.abs(j - i) <= band;
+  // Row i keeps columns rowStart(i) .. rowStart(i) + width - 1. A short input keeps every column,
+  // so the alignment is exact. A long one keeps only the diagonals (j - i) between the start (0)
+  // and the end (m - n), plus some slack, unless every column takes less room than that band.
+  const lowest = Math.min(0, m - n) - BAND_SLACK;
+  const bandWidth = Math.abs(m - n) + 2 * BAND_SLACK + 1;
+  const full = (n + 1) * (m + 1) <= FULL_LIMIT || m + 1 <= bandWidth;
+  const width = full ? m + 1 : bandWidth;
+  const rowStart = (i: number) => (full ? 0 : i + lowest);
+  const at = (i: number, j: number) => i * width + (j - rowStart(i));
+  const inBand = (i: number, j: number) => j - rowStart(i) >= 0 && j - rowStart(i) < width;
+  // A cost never exceeds n + m, so 16-bit cells are enough for any text Linewise accepts.
+  const INF = n + m + 1;
+  const size = (n + 1) * width;
+  const dp = INF < 0xffff ? new Uint16Array(size).fill(INF) : new Int32Array(size).fill(INF);
 
   dp[at(0, 0)] = 0;
   for (let i = 0; i <= n; i++) {
-    const jMin = Math.max(0, i - band);
-    const jMax = Math.min(m, i + band);
+    const jMin = Math.max(0, rowStart(i));
+    const jMax = Math.min(m, rowStart(i) + width - 1);
     for (let j = jMin; j <= jMax; j++) {
       if (i === 0 && j === 0) continue;
       let best = INF;

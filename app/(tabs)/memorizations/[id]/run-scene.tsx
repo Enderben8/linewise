@@ -23,6 +23,7 @@ import {
   voiceFor,
   type SceneStep,
 } from '../../../../src/games/scene';
+import { totalWords, trimPunctuation } from '../../../../src/games/setup';
 import type { GameSetup } from '../../../../src/games/useGameSetup';
 import { useScoredGame } from '../../../../src/games/useScoredGame';
 import { useAppDispatch, useAppSelector } from '../../../../src/store';
@@ -122,7 +123,7 @@ function Body({ setup }: { setup: GameSetup }) {
     (step: SceneStep) =>
       new Promise<string>((resolve) => {
         pendingTranscript.current = resolve;
-        rec.start(Array.from(new Set(words(step.text, setup.lang).map((w) => w.text))));
+        rec.start([...new Set(words(step.text, setup.lang).map((w) => trimPunctuation(w.text)))]);
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [setup.lang, rec.start],
@@ -174,12 +175,13 @@ function Body({ setup }: { setup: GameSetup }) {
     setRunning(false);
     const combined = collected.flatMap((r) => r.items);
     const accuracy = scoreAlignment(combined).accuracy;
+    // The user practised their role's lines, so coverage compares with that role in the whole text.
     finish(
       makeResult(
         'run-scene',
         accuracy,
         roleWordCount(steps, role, setup.lang),
-        setup.totalWords,
+        totalWords(setup.mem.chunks, setup.lang, role),
         setup.range,
       ),
     );

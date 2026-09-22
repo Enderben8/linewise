@@ -131,13 +131,42 @@ export function previewSchedule(
   return steps;
 }
 
+/**
+ * Sets (or removes) the target date, and keeps the plan able to reach it:
+ * - A plan with no intervals left (a finished target plan, or one past its last interval) starts
+ *   over with a review today, so there are reviews leading up to the new date.
+ * - A next review later than the scaled plan allows is brought forward.
+ * - Removing the target from a finished target plan makes the text due today, so reviews go on at
+ *   the regular intervals instead of stopping for good.
+ */
+export function withTargetDate(
+  state: ProgressState,
+  targetDueDate: number | null,
+  now: number,
+  config: SchedulerConfig = SCHEDULER_CONFIG,
+): ProgressState {
+  const today = startOfDay(now);
+  const next: ProgressState = { ...state, targetDueDate };
+  if (targetDueDate === null) {
+    if (state.nextReviewAt === null && state.intervalIndex > 0) next.nextReviewAt = today;
+    return next;
+  }
+  if (state.intervalIndex >= config.intervalsDays.length) {
+    return { ...next, intervalIndex: 0, nextReviewAt: today };
+  }
+  if (state.nextReviewAt !== null && state.nextReviewAt > today) {
+    // The plan as it would run from today: the gap to the next review, then the gaps after it.
+    const gaps = config.intervalsDays.slice(Math.max(0, state.intervalIndex - 1));
+    const available = daysBetween(today, targetDueDate);
+    const first = scaleIntervals(gaps, available, config.minIntervalDays)[0];
+    next.nextReviewAt = Math.min(state.nextReviewAt, addDays(today, first));
+  }
+  return next;
+}
+
 export function isReviewDay(state: ProgressState, now: number): boolean {
   if (state.nextReviewAt === null) return state.intervalIndex === 0;
   return now >= state.nextReviewAt;
-}
-
-export function countsForReview(game: GameId): boolean {
-  return GAME_GROUP[game] !== 'practice';
 }
 
 export interface ApplyOptions {

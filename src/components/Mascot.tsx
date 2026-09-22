@@ -1,6 +1,6 @@
 import Svg, { Circle, Ellipse, G, Path } from 'react-native-svg';
 
-export type MascotMood = 'happy' | 'cheer' | 'think' | 'sad';
+export type MascotMood = 'happy' | 'cheer' | 'sad';
 
 /**
  * Wren, the Linewise mascot: a round little bird holding a pencil-shaped feather.
@@ -77,18 +77,8 @@ export function Mascot({ mood = 'happy', size = 120 }: { mood?: MascotMood; size
         <>
           <Circle cx="46" cy="55" r="6" fill="#FFFFFF" />
           <Circle cx="74" cy="55" r="6" fill="#FFFFFF" />
-          <Circle
-            cx={mood === 'think' ? 48 : 46}
-            cy={mood === 'think' ? 52 : 56}
-            r="3.2"
-            fill={dark}
-          />
-          <Circle
-            cx={mood === 'think' ? 76 : 74}
-            cy={mood === 'think' ? 52 : 56}
-            r="3.2"
-            fill={dark}
-          />
+          <Circle cx="46" cy="56" r="3.2" fill={dark} />
+          <Circle cx="74" cy="56" r="3.2" fill={dark} />
         </>
       )}
       {/* beak */}

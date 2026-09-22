@@ -133,6 +133,26 @@ That starts `.github/workflows/release.yml`, which runs two jobs at once.
 repository. GitHub's built-in Actions token deliberately cannot change repository settings, so without this
 one the Website link has to be set by hand.
 
+### Setting up the secrets
+
+Add them under the repository's Settings, Secrets and variables, Actions (or with `gh secret set`).
+
+1. **The signing key.** Create a keystore once, and keep the file and its passwords somewhere safe:
+
+   ```bash
+   keytool -genkeypair -v -keystore linewise.jks -alias linewise -keyalg RSA -keysize 2048 -validity 10000
+   base64 -w0 linewise.jks > linewise.jks.base64      # on macOS: base64 -i linewise.jks
+   ```
+
+   The base64 text is `ANDROID_KEYSTORE_BASE64`; the passwords and the alias are the other three
+   `ANDROID_*` secrets. The keystore exists only there and wherever you keep your copy; nothing secret is
+   in the repository.
+
+2. **Cloudflare** (free plan). Create a Pages project named `linewise` with _Direct Upload_ (upload any
+   placeholder file; the first release replaces it). Then create an API token with the _Cloudflare
+   Pages: Edit_ permission, and add it and your account ID as `CLOUDFLARE_API_TOKEN` and
+   `CLOUDFLARE_ACCOUNT_ID`.
+
 ## Cloudflare Pages
 
 The project is `linewise`; the site is <https://linewise-5ds.pages.dev/>. The release workflow uploads the

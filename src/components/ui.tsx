@@ -61,7 +61,7 @@ export function AppText({
 interface ButtonProps {
   label: string;
   onPress: () => void;
-  variant?: 'primary' | 'secondary' | 'danger' | 'ghost' | 'accent';
+  variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
   disabled?: boolean;
   loading?: boolean;
   icon?: ReactNode;
@@ -82,7 +82,6 @@ export function Button({
   const { palette } = useTheme();
   const colors = {
     primary: { bg: palette.primary, fg: palette.onPrimary, border: palette.primary },
-    accent: { bg: palette.accent, fg: palette.onAccent, border: palette.accent },
     secondary: { bg: 'transparent', fg: palette.primary, border: palette.primary },
     danger: { bg: 'transparent', fg: palette.danger, border: palette.danger },
     ghost: { bg: 'transparent', fg: palette.primary, border: 'transparent' },
@@ -124,21 +123,18 @@ export function IconButton({
   label,
   onPress,
   testID,
-  disabled,
 }: {
   icon: ReactNode;
   /** Read out by screen readers; there is no visible text. */
   label: string;
   onPress: () => void;
   testID?: string;
-  disabled?: boolean;
 }) {
   return (
     <Pressable
       testID={testID}
       accessibilityRole="button"
       accessibilityLabel={label}
-      disabled={disabled}
       onPress={onPress}
       hitSlop={8}
       style={({ pressed }) => ({
@@ -146,7 +142,7 @@ export function IconButton({
         minHeight: 48,
         alignItems: 'center',
         justifyContent: 'center',
-        opacity: disabled ? 0.4 : pressed ? 0.7 : 1,
+        opacity: pressed ? 0.7 : 1,
       })}
     >
       {icon}
@@ -258,13 +254,9 @@ export function Field({
 /** Scrollable screen body with safe-area padding. */
 export function Screen({
   children,
-  scroll = true,
-  style,
   edges = ['bottom'],
 }: {
   children: ReactNode;
-  scroll?: boolean;
-  style?: StyleProp<ViewStyle>;
   edges?: ('top' | 'bottom')[];
 }) {
   const { palette } = useTheme();
@@ -273,15 +265,10 @@ export function Screen({
     paddingTop: edges.includes('top') ? insets.top : 0,
     paddingBottom: edges.includes('bottom') ? insets.bottom : 0,
   };
-  if (!scroll) {
-    return (
-      <View style={[styles.flex, { backgroundColor: palette.bg }, pad, style]}>{children}</View>
-    );
-  }
   return (
     <ScrollView
       style={[styles.flex, { backgroundColor: palette.bg }]}
-      contentContainerStyle={[styles.content, pad, style]}
+      contentContainerStyle={[styles.content, pad]}
       keyboardShouldPersistTaps="handled"
     >
       {children}

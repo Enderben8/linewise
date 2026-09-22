@@ -10,6 +10,7 @@ import { GameGate } from '../../../../src/games/GameGate';
 import { makeResult } from '../../../../src/games/ids';
 import { MaskedLines } from '../../../../src/games/MaskedLines';
 import { ResultView } from '../../../../src/games/ResultView';
+import { trimPunctuation } from '../../../../src/games/setup';
 import type { GameSetup } from '../../../../src/games/useGameSetup';
 import { useScoredGame } from '../../../../src/games/useScoredGame';
 import { useAppDispatch } from '../../../../src/store';
@@ -74,13 +75,10 @@ function Body({ setup }: { setup: GameSetup }) {
     setPhase('play');
   };
 
-  const isCorrect = (option: string) =>
-    option.toLowerCase() ===
-    tokens[currentIdx].text.replace(/^[\p{P}\p{S}\s]+|[\p{P}\p{S}\s]+$/gu, '').toLowerCase();
-
   const answer = (option: string) => {
     if (!current) return;
-    const ok = isCorrect(option);
+    // blankOptions offers the right word exactly as trimmed here.
+    const ok = option === trimPunctuation(tokens[currentIdx].text);
     if (!ok) Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
     const next = [...answers, ok ? ('ok' as const) : ('wrong' as const)];
     setAnswers(next);

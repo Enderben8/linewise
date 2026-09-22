@@ -88,6 +88,22 @@ describe('multiple choice', () => {
     const tiny = buildUnits(parseBody('Hi there', 'text'), { mode: 'all', from: 0, to: 0 });
     expect(buildQuestions(tiny, 'en')).toEqual([]);
   });
+
+  it('never offers two options that differ only in case or punctuation', () => {
+    const raven = buildUnits(
+      parseBody(
+        'Nevermore.\nQuoth the raven, nevermore!\nOnce upon a midnight, dreary;\nNevermore, and more.',
+        'text',
+      ),
+      { mode: 'all', from: 0, to: 0 },
+    );
+    const key = (s: string) => s.toLowerCase().replace(/[\p{P}\p{S}]/gu, '');
+    for (let seed = 0; seed < 10; seed++) {
+      for (const q of buildQuestions(raven, 'en', seededRandom(seed))) {
+        expect(new Set(q.options.map(key)).size).toBe(q.options.length);
+      }
+    }
+  });
 });
 
 describe('sentence scramble', () => {
@@ -114,14 +130,24 @@ describe('sentence scramble', () => {
 
   it('never returns the solved order and scores positions', () => {
     for (let n = 2; n < 8; n++) {
+      const items = Array.from({ length: n }, (_, i) => `s${i}`);
       for (let seed = 0; seed < 10; seed++) {
-        const order = scrambleOrder(n, seededRandom(seed));
+        const order = scrambleOrder(items, seededRandom(seed));
         expect([...order].sort((a, b) => a - b)).toEqual(Array.from({ length: n }, (_, i) => i));
-        expect(correctPositions(order)).toBeLessThan(n);
+        expect(correctPositions(order, items)).toBeLessThan(n);
       }
     }
-    expect(correctPositions([0, 1, 2])).toBe(3);
-    expect(correctPositions([1, 0, 2])).toBe(1);
+    expect(correctPositions([0, 1, 2], ['a', 'b', 'c'])).toBe(3);
+    expect(correctPositions([1, 0, 2], ['a', 'b', 'c'])).toBe(1);
+  });
+
+  it('treats a repeated sentence as right in either of its places', () => {
+    const items = ['Row, row.', 'Row your boat.', 'Row, row.'];
+    expect(correctPositions([2, 1, 0], items)).toBe(3);
+    for (let seed = 0; seed < 20; seed++) {
+      expect(correctPositions(scrambleOrder(items, seededRandom(seed)), items)).toBeLessThan(3);
+    }
+    expect(scrambleOrder(['Again.', 'Again.'])).toEqual([0, 1]);
   });
 });
 

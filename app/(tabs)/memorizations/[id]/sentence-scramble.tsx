@@ -8,7 +8,7 @@ import DraggableFlatList, {
 } from 'react-native-draggable-flatlist';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { spacing, useTheme } from '../../../../src/components/theme';
-import { AppText, Button, EmptyState, Row } from '../../../../src/components/ui';
+import { AppText, Button, EmptyState } from '../../../../src/components/ui';
 import { GameGate } from '../../../../src/games/GameGate';
 import { makeResult } from '../../../../src/games/ids';
 import { ResultView } from '../../../../src/games/ResultView';
@@ -28,7 +28,7 @@ interface Item {
 }
 
 function makeRound(texts: string[]): Item[] {
-  return scrambleOrder(texts.length).map((id) => ({ id, text: texts[id] }));
+  return scrambleOrder(texts).map((id) => ({ id, text: texts[id] }));
 }
 
 function Body({ setup }: { setup: GameSetup }) {
@@ -61,6 +61,12 @@ function Body({ setup }: { setup: GameSetup }) {
     return <EmptyState title={t('scramble.tooShort')} body={t('scramble.tooShortBody')} />;
   }
 
+  const round = rounds[roundIndex];
+  const correctNow = correctPositions(
+    items.map((i) => i.id),
+    round,
+  );
+
   const move = (index: number, delta: number) => {
     const target = index + delta;
     if (checked || target < 0 || target >= items.length) return;
@@ -71,8 +77,7 @@ function Body({ setup }: { setup: GameSetup }) {
 
   const check = () => setChecked(true);
   const next = () => {
-    const correct = correctPositions(items.map((i) => i.id));
-    const nextTally = { correct: tally.correct + correct, total: tally.total + items.length };
+    const nextTally = { correct: tally.correct + correctNow, total: tally.total + items.length };
     if (roundIndex + 1 < rounds.length) {
       setTally(nextTally);
       setRoundIndex(roundIndex + 1);
@@ -94,8 +99,9 @@ function Body({ setup }: { setup: GameSetup }) {
 
   const renderItem = ({ item, drag, isActive, getIndex }: RenderItemParams<Item>) => {
     const index = getIndex() ?? 0;
-    const right = checked && item.id === index;
-    const wrong = checked && item.id !== index;
+    // A repeated sentence is right in either of its places.
+    const right = checked && item.text === round[index];
+    const wrong = checked && !right;
     return (
       <ScaleDecorator>
         <View
@@ -149,7 +155,6 @@ function Body({ setup }: { setup: GameSetup }) {
     );
   };
 
-  const correctNow = correctPositions(items.map((i) => i.id));
   return (
     <View style={{ flex: 1, backgroundColor: palette.bg, paddingBottom: insets.bottom }}>
       <DraggableFlatList
@@ -173,22 +178,18 @@ function Body({ setup }: { setup: GameSetup }) {
                 <AppText variant="label" style={{ textAlign: 'center' }}>
                   {t('scramble.score', { correct: correctNow, total: items.length })}
                 </AppText>
-                <Row style={{ flexDirection: 'column', alignItems: 'stretch' }}>
-                  {items.some((i, idx) => i.id !== idx) ? (
+                {correctNow < items.length ? (
+                  <View style={{ gap: spacing.xs }}>
                     <AppText variant="caption" muted>
                       {t('scramble.correctOrder')}
                     </AppText>
-                  ) : null}
-                  {items.some((i, idx) => i.id !== idx)
-                    ? [...items]
-                        .sort((a, b) => a.id - b.id)
-                        .map((i) => (
-                          <AppText key={i.id} variant="caption">
-                            {i.id + 1}. {i.text}
-                          </AppText>
-                        ))
-                    : null}
-                </Row>
+                    {round.map((text, i) => (
+                      <AppText key={i} variant="caption">
+                        {i + 1}. {text}
+                      </AppText>
+                    ))}
+                  </View>
+                ) : null}
                 <Button
                   testID="scramble-next"
                   label={roundIndex + 1 < rounds.length ? t('scramble.next') : t('scramble.finish')}

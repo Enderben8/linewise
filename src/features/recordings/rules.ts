@@ -12,10 +12,6 @@ export function isOutOfDate(recordingBodyHash: string, currentBodyHash: string):
   return recordingBodyHash !== currentBodyHash;
 }
 
-export function overLimit(seconds: number): boolean {
-  return seconds >= LIMITS.maxRecordingSeconds;
-}
-
 export function defaultRecordingName(existingNames: string[], base: string): string {
   let n = existingNames.length + 1;
   let name = `${base} ${n}`;

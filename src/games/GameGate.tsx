@@ -11,7 +11,7 @@ interface Props {
   title: string;
   /** The game this screen runs. Games not offered on this platform show a message instead. */
   game?: GameId;
-  /** Games that cannot score an empty selection (e.g. only action lines) show a message instead. */
+  /** Renders the game. Not called when the selection has no words (e.g. only action lines). */
   children: (setup: GameSetup) => ReactNode;
   /** Render inside a non-scrolling container (for screens that own a list). */
   scroll?: boolean;

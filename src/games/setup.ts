@@ -92,6 +92,43 @@ export function shuffle<T>(items: readonly T[], rand: () => number = Math.random
   return out;
 }
 
+/** Removes punctuation, symbols and spaces from both ends: `"Sweet,"` becomes `Sweet`. */
+export function trimPunctuation(text: string): string {
+  return text.replace(/^[\p{P}\p{S}\s]+|[\p{P}\p{S}\s]+$/gu, '');
+}
+
+/** Answers that differ only in case or punctuation read as the same answer. */
+function answerKey(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[\p{P}\p{S}]/gu, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Up to `n` wrong answers taken from `pool`, preferring ones of a similar length, which read as fair
+ * alternatives. None reads the same as `correct` or as another pick.
+ */
+export function pickDistractors(
+  correct: string,
+  pool: readonly string[],
+  rand: () => number,
+  n: number,
+): string[] {
+  const seen = new Set([answerKey(correct)]);
+  const unique: string[] = [];
+  for (const p of pool) {
+    const key = answerKey(p);
+    if (key && !seen.has(key)) {
+      seen.add(key);
+      unique.push(p);
+    }
+  }
+  unique.sort((a, b) => Math.abs(a.length - correct.length) - Math.abs(b.length - correct.length));
+  return shuffle(unique.slice(0, n * 3), rand).slice(0, n);
+}
+
 /** Which of `total` words are hidden at `percent` (0-100). Raising percent only ever hides more. */
 export function hiddenIndexes(total: number, percent: number, seed: number): Set<number> {
   const order = shuffle(

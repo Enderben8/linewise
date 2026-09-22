@@ -1,5 +1,5 @@
 import { phrases, sentences } from '../engine';
-import type { GameUnit } from './setup';
+import { shuffle, type GameUnit } from './setup';
 import { unitAsChunk } from './tokens';
 
 /** Sentences of the selection; falls back to phrases when there are fewer than two sentences. */
@@ -20,22 +20,25 @@ export function buildRounds(items: string[], size = 6): string[][] {
   return rounds;
 }
 
-/** A shuffled order of 0..n-1 that is never the correct order (for n >= 2). */
-export function scrambleOrder(n: number, rand: () => number = Math.random): number[] {
-  const identity = Array.from({ length: n }, (_, i) => i);
-  if (n < 2) return identity;
-  for (let attempt = 0; attempt < 20; attempt++) {
-    const order = [...identity];
-    for (let i = order.length - 1; i > 0; i--) {
-      const j = Math.floor(rand() * (i + 1));
-      [order[i], order[j]] = [order[j], order[i]];
-    }
-    if (order.some((v, i) => v !== i)) return order;
-  }
-  return [...identity.slice(1), identity[0]];
+/**
+ * How many items of `order` (indexes into `items`) are in a right place. Repeated items, such as a
+ * refrain, are interchangeable.
+ */
+export function correctPositions(order: readonly number[], items: readonly string[]): number {
+  return order.filter((v, i) => items[v] === items[i]).length;
 }
 
-/** Number of items already in their correct position. */
-export function correctPositions(order: number[]): number {
-  return order.filter((v, i) => v === i).length;
+/** A shuffled order of `items` that does not already read in the right order (unless all are the same). */
+export function scrambleOrder(
+  items: readonly string[],
+  rand: () => number = Math.random,
+): number[] {
+  const identity = items.map((_, i) => i);
+  if (new Set(items).size < 2) return identity;
+  for (let attempt = 0; attempt < 20; attempt++) {
+    const order = shuffle(identity, rand);
+    if (correctPositions(order, items) < items.length) return order;
+  }
+  // Moving the first item to the end changes how the items read unless they are all the same.
+  return [...identity.slice(1), identity[0]];
 }

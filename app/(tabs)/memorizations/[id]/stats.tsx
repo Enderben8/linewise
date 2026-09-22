@@ -1,7 +1,7 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, useWindowDimensions } from 'react-native';
+import { View } from 'react-native';
 import Svg, { G, Rect, Text as SvgText } from 'react-native-svg';
 import { spacing, useTheme } from '../../../../src/components/theme';
 import { AppText, Button, Card, EmptyState, Row, Screen } from '../../../../src/components/ui';
@@ -12,12 +12,13 @@ import { useAppSelector } from '../../../../src/store';
 export default function StatsScreen() {
   const { t, i18n } = useTranslation();
   const { palette } = useTheme();
-  const { width } = useWindowDimensions();
   const { id } = useLocalSearchParams<{ id: string }>();
   const mem = useAppSelector((s) => s.memorizations.items.find((m) => m.id === id));
   const today = new Date();
   const [cursor, setCursor] = useState({ year: today.getFullYear(), month: today.getMonth() });
   const [selected, setSelected] = useState<number | null>(today.getDate());
+  // Measured rather than taken from the window: on the web the app sits in a narrower column.
+  const [chartW, setChartW] = useState(0);
 
   // A cheap local query; reading it on each render keeps the chart current after a new session.
   const sessions = id ? listSessions(id) : [];
@@ -34,7 +35,6 @@ export default function StatsScreen() {
     setSelected(null);
   };
 
-  const chartW = width - spacing.lg * 2 - spacing.lg * 2;
   const chartH = 140;
   const barGap = 2;
   const barW = Math.max(3, chartW / days.length - barGap);
@@ -52,46 +52,51 @@ export default function StatsScreen() {
       </Row>
       <Card>
         <AppText muted>{t('stats.total', { count: total })}</AppText>
-        <Svg width={chartW} height={chartH + 20}>
-          {days.map((d, i) => {
-            const h = d.count === 0 ? 2 : Math.max(8, (d.count / maxCount) * chartH);
-            const x = i * (barW + barGap);
-            const isSel = selected === d.day;
-            return (
-              <G key={d.day}>
-                <Rect
-                  x={x}
-                  y={chartH - h}
-                  width={barW}
-                  height={h}
-                  rx={2}
-                  fill={
-                    d.count === 0 ? palette.surfaceAlt : isSel ? palette.accent : palette.primary
-                  }
-                />
-                <Rect
-                  x={x - barGap / 2}
-                  y={0}
-                  width={barW + barGap}
-                  height={chartH + 20}
-                  fill="transparent"
-                  onPress={() => setSelected(d.day)}
-                />
-                {d.day === 1 || d.day % 5 === 0 ? (
-                  <SvgText
-                    x={x + barW / 2}
-                    y={chartH + 14}
-                    fontSize={10}
-                    fill={palette.muted}
-                    textAnchor="middle"
-                  >
-                    {d.day}
-                  </SvgText>
-                ) : null}
-              </G>
-            );
-          })}
-        </Svg>
+        <View
+          style={{ height: chartH + 20 }}
+          onLayout={(e) => setChartW(e.nativeEvent.layout.width)}
+        >
+          <Svg width={chartW} height={chartH + 20}>
+            {days.map((d, i) => {
+              const h = d.count === 0 ? 2 : Math.max(8, (d.count / maxCount) * chartH);
+              const x = i * (barW + barGap);
+              const isSel = selected === d.day;
+              return (
+                <G key={d.day}>
+                  <Rect
+                    x={x}
+                    y={chartH - h}
+                    width={barW}
+                    height={h}
+                    rx={2}
+                    fill={
+                      d.count === 0 ? palette.surfaceAlt : isSel ? palette.accent : palette.primary
+                    }
+                  />
+                  <Rect
+                    x={x - barGap / 2}
+                    y={0}
+                    width={barW + barGap}
+                    height={chartH + 20}
+                    fill="transparent"
+                    onPress={() => setSelected(d.day)}
+                  />
+                  {d.day === 1 || d.day % 5 === 0 ? (
+                    <SvgText
+                      x={x + barW / 2}
+                      y={chartH + 14}
+                      fontSize={10}
+                      fill={palette.muted}
+                      textAnchor="middle"
+                    >
+                      {d.day}
+                    </SvgText>
+                  ) : null}
+                </G>
+              );
+            })}
+          </Svg>
+        </View>
         <AppText variant="caption" muted>
           {t('stats.tapHint')}
         </AppText>

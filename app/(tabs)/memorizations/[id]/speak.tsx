@@ -11,7 +11,7 @@ import { DiffView } from '../../../../src/games/DiffView';
 import { GameGate } from '../../../../src/games/GameGate';
 import { makeResult } from '../../../../src/games/ids';
 import { ResultView } from '../../../../src/games/ResultView';
-import { unitsText } from '../../../../src/games/setup';
+import { trimPunctuation, unitsText } from '../../../../src/games/setup';
 import type { GameSetup } from '../../../../src/games/useGameSetup';
 import { useScoredGame } from '../../../../src/games/useScoredGame';
 
@@ -54,7 +54,7 @@ function Body({ setup }: { setup: GameSetup }) {
     setHeardNothing(false);
     if (!(await gate.check())) return;
     // Bias recognition toward the words of the text; the engine caps the list.
-    rec.start(Array.from(new Set(target.map((x) => x.text))).slice(0, 100));
+    rec.start([...new Set(target.map((x) => trimPunctuation(x.text)))].slice(0, 100));
   };
   const done = () => {
     rec.stop();

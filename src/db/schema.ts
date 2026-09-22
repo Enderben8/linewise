@@ -73,7 +73,6 @@ export const recordings = sqliteTable('recordings', {
 });
 
 export type Memorization = typeof memorizations.$inferSelect;
-export type NewMemorization = typeof memorizations.$inferInsert;
 export type ProgressRow = typeof progress.$inferSelect;
 export type SessionRow = typeof sessions.$inferSelect;
 export type RecordingRow = typeof recordings.$inferSelect;

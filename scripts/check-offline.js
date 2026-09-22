@@ -42,7 +42,8 @@ const DENIED_CODE = [
   { re: /\bdownloadAsync\b|\buploadAsync\b/, why: 'file download/upload' },
 ];
 
-// The one place a web address is allowed: the "report a problem" link, opened in the user's browser.
+// The one place web addresses are allowed: the "report a problem" link, opened in the user's
+// browser, and the addresses the update check reads (SPEC.md §10).
 const ALLOWED_URL_FILES = ['src/config.ts'];
 
 // Reviewed exceptions: file -> rule it may use, and why that use stays on the device.

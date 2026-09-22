@@ -2,9 +2,19 @@ const expo = require('eslint-config-expo/flat');
 
 module.exports = [
   ...expo,
-  { ignores: ['dist/*', 'dist-web/*', 'android/*', 'node_modules/*', 'coverage/*', '.expo/*'] },
   {
-    files: ['**/*.test.ts', '**/*.test.tsx', 'jest.setup.ts'],
+    ignores: [
+      'dist/*',
+      'dist-check/*',
+      'dist-web/*',
+      'android/*',
+      'node_modules/*',
+      'coverage/*',
+      '.expo/*',
+    ],
+  },
+  {
+    files: ['**/*.test.ts', '**/*.test.tsx'],
     languageOptions: { globals: { jest: 'readonly' } },
   },
   {

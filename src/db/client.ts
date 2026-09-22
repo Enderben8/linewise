@@ -6,7 +6,6 @@ const sqlite = openDatabaseSync('linewise.db');
 sqlite.execSync('PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON;');
 
 export const db = drizzle(sqlite, { schema });
-export type Db = typeof db;
 
 /** On Android the database opens synchronously at import. The web version needs a warm-up; see client.web.ts. */
 export function initDatabase(): Promise<void> {

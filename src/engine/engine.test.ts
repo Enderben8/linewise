@@ -8,7 +8,6 @@ import {
   scoreAlignment,
   sentences,
   validateScript,
-  wordCount,
   words,
 } from './index';
 
@@ -177,6 +176,13 @@ describe('sentences and phrases', () => {
     expect(sentences(c)).toEqual(['你好。', '今天怎么样？', '很好！']);
   });
 
+  it('ends Hindi sentences at a danda and Arabic ones at an Arabic question mark', () => {
+    const hi = parseBody('लोमड़ी कूदती है। वह भागती है॥ फिर?', 'text')[0];
+    expect(sentences(hi)).toEqual(['लोमड़ी कूदती है।', 'वह भागती है॥', 'फिर?']);
+    const ar = parseBody('أين الثعلب؟ إنه هنا.', 'text')[0];
+    expect(sentences(ar)).toEqual(['أين الثعلب؟', 'إنه هنا.']);
+  });
+
   it('ignores speaker and action lines', () => {
     const c = parseBody('ROMEO\nHi there.\n(He waves.)', 'script')[0];
     expect(sentences(c)).toEqual(['Hi there.']);
@@ -205,10 +211,6 @@ describe('words and normalize', () => {
     expect(norms('I have 3 apples')).toEqual(['i', 'have', 'three', 'apples']);
     expect(normalize('three')).toBe('three');
     expect(normalize('3', 'fr')).toBe('3');
-  });
-
-  it('counts words in a chunk', () => {
-    expect(wordCount(parseBody('a b c\nd', 'text')[0])).toBe(4);
   });
 
   it('hashes bodies deterministically', () => {
@@ -315,5 +317,25 @@ describe('align', () => {
     expect(s.missed).toBe(60);
     expect(s.matched).toBe(2940);
     expect(s.extra).toBe(0);
+  });
+
+  it('aligns a short attempt at a long text exactly', () => {
+    const base = Array.from({ length: 4000 }, (_, i) => `w${i}`);
+    const attempt = [...base.slice(0, 400), 'oops', ...base.slice(400, 600)];
+    const s = scoreAlignment(align(words(base.join(' ')), words(attempt.join(' '))));
+    expect(s).toMatchObject({ matched: 600, missed: 3400, extra: 1, wrong: 0 });
+  });
+
+  it('finds every kind of edit in the band used for long inputs', () => {
+    // Long enough that align() fills only a band of the table.
+    const target = Array.from({ length: 2200 }, (_, i) => `w${i}`);
+    const attempt: string[] = [];
+    target.forEach((w, i) => {
+      if (i % 20 === 3) return; // missed
+      attempt.push(i % 20 === 10 ? 'x' : w); // wrong
+      if (i % 20 === 16) attempt.push('y'); // extra
+    });
+    const s = scoreAlignment(align(words(target.join(' ')), words(attempt.join(' '))));
+    expect(s).toMatchObject({ matched: 1980, missed: 110, wrong: 110, extra: 110 });
   });
 });

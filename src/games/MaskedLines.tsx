@@ -14,7 +14,7 @@ interface Props {
   lang: string;
   state: (index: number) => WordState;
   onPressWord?: (index: number) => void;
-  /** Text to show in place of a hidden word (defaults to the word itself, made invisible). */
+  /** Font size before the user's text scale is applied. */
   size?: number;
 }
 

@@ -38,8 +38,6 @@ export async function requestNotificationPermission(): Promise<boolean> {
   return next.granted;
 }
 
-export { planReminders, type ReminderPlanItem } from './plan';
-
 /** Reminders are an Android feature; screens hide their controls when this is false. */
 export const REMINDERS_SUPPORTED = true;
 

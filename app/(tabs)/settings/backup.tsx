@@ -67,11 +67,21 @@ export default function BackupScreen() {
     setPending(res.backup);
   };
 
-  const finish = async (text: string) => {
-    dispatch(loadSettings());
+  /** Writes the backup into the database, then reloads everything from it. */
+  const restore = async (write: () => string) => {
+    let text: string;
+    try {
+      text = write();
+    } catch {
+      // The write runs in one transaction, so a file that breaks it changes nothing.
+      setPending(null);
+      setMessage({ text: t('backup.invalid'), ok: false });
+      return;
+    }
+    // The restored settings, not the ones this screen rendered with, decide the reminders.
+    const restored = dispatch(loadSettings());
     dispatch(reloadMemorizations());
-    const latest = { ...settings };
-    await syncReminders(listMemorizations(), latest).catch(() => {});
+    await syncReminders(listMemorizations(), restored).catch(() => {});
     setPending(null);
     setMessage({ text, ok: true });
   };
@@ -86,16 +96,19 @@ export default function BackupScreen() {
       destructive: true,
     });
     if (!ok) return;
-    const files = replaceAll(pending.tables);
-    deleteAudioFiles(files);
-    await finish(t('backup.restored', { count: pending.tables.memorizations.length }));
+    await restore(() => {
+      deleteAudioFiles(replaceAll(pending.tables));
+      return t('backup.restored', { count: pending.tables.memorizations.length });
+    });
   };
 
   const doMerge = async () => {
     if (!pending) return;
-    const plan = planMerge(readAllTables(), pending.tables);
-    applyMerge(plan);
-    await finish(t('backup.merged', { added: plan.added, updated: plan.updated, kept: plan.kept }));
+    await restore(() => {
+      const plan = planMerge(readAllTables(), pending.tables);
+      applyMerge(plan);
+      return t('backup.merged', { added: plan.added, updated: plan.updated, kept: plan.kept });
+    });
   };
 
   const summary = pending ? summarize(pending) : null;

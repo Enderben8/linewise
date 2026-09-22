@@ -3,8 +3,6 @@
 // shows in the list instead. These keep the same exports as reminders.ts and do nothing.
 import type { MemorizationWithProgress } from '../../db/repo';
 
-export { planReminders, type ReminderPlanItem } from './plan';
-
 /** Reminders are an Android feature; screens hide their controls when this is false. */
 export const REMINDERS_SUPPORTED = false;
 

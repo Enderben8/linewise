@@ -72,6 +72,8 @@ export default function MemorizationDetail() {
     Share.share({
       title: mem.title,
       message: `${mem.title}${mem.author ? ` - ${mem.author}` : ''}\n\n${mem.body}`,
+    }).catch(() => {
+      // Closing the browser's share sheet rejects; there is nothing to report.
     });
 
   const noChunks = chunkCount === 0;

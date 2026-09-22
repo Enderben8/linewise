@@ -24,11 +24,14 @@ const slice = createSlice({
 });
 
 export const settingsReducer = slice.reducer;
-export const settingsActions = slice.actions;
 
+/** Reads the settings from SQLite into the store, and returns them. */
 export const loadSettings =
-  () => (dispatch: (a: ReturnType<typeof slice.actions.hydrate>) => void) => {
-    dispatch(slice.actions.hydrate(mergeSettings(loadSettingsRows())));
+  () =>
+  (dispatch: (a: ReturnType<typeof slice.actions.hydrate>) => void): Settings => {
+    const values = mergeSettings(loadSettingsRows());
+    dispatch(slice.actions.hydrate(values));
+    return values;
   };
 
 /** Updates the store and writes each key to SQLite. */

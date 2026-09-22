@@ -1,9 +1,9 @@
-import { desc, eq, inArray } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import { hashBody, parseBody } from '../engine';
 import type { BodyType } from '../engine';
 import { newId } from '../lib/uuid';
 import { newProgress, type ProgressState } from '../scheduler';
-import { db, type Db } from './client';
+import { db } from './client';
 import {
   memorizations,
   progress,
@@ -58,10 +58,10 @@ function emptyProgressRow(memorizationId: string, now: number): ProgressRow {
 
 /* ---------- memorizations ---------- */
 
-export function listMemorizations(database: Db = db): MemorizationWithProgress[] {
-  const mems = database.select().from(memorizations).orderBy(desc(memorizations.updatedAt)).all();
+export function listMemorizations(): MemorizationWithProgress[] {
+  const mems = db.select().from(memorizations).orderBy(desc(memorizations.updatedAt)).all();
   const progresses = new Map(
-    database
+    db
       .select()
       .from(progress)
       .all()
@@ -73,10 +73,10 @@ export function listMemorizations(database: Db = db): MemorizationWithProgress[]
   }));
 }
 
-export function getMemorization(id: string, database: Db = db): MemorizationWithProgress | null {
-  const m = database.select().from(memorizations).where(eq(memorizations.id, id)).get();
+export function getMemorization(id: string): MemorizationWithProgress | null {
+  const m = db.select().from(memorizations).where(eq(memorizations.id, id)).get();
   if (!m) return null;
-  const p = database.select().from(progress).where(eq(progress.memorizationId, id)).get();
+  const p = db.select().from(progress).where(eq(progress.memorizationId, id)).get();
   return { ...m, progress: p ?? emptyProgressRow(id, m.updatedAt) };
 }
 
@@ -228,10 +228,6 @@ export function deleteRecording(id: string): string | null {
   if (!row) return null;
   db.delete(recordings).where(eq(recordings.id, id)).run();
   return row.fileUri;
-}
-
-export function getRecordings(ids: string[]): RecordingRow[] {
-  return ids.length ? db.select().from(recordings).where(inArray(recordings.id, ids)).all() : [];
 }
 
 /* ---------- settings ---------- */

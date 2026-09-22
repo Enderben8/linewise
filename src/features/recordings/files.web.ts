@@ -48,7 +48,7 @@ export async function persistRecording(tempUri: string, id: string): Promise<str
   if (!tempUri.startsWith('blob:')) throw new Error('Expected a blob: URL from the recorder');
   const blob = await (await fetch(tempUri)).blob();
   await run('readwrite', (s) => s.put(blob, id));
-  if (tempUri.startsWith('blob:')) URL.revokeObjectURL(tempUri);
+  URL.revokeObjectURL(tempUri);
   return PREFIX + id;
 }
 

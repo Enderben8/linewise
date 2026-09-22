@@ -1,7 +1,8 @@
 import type { Chunk } from './types';
 import { chunkLines } from './words';
 
-const SENTENCE_END = /[.!?…。！？]/;
+// Includes the Arabic question mark and the Devanagari danda, which end sentences in ar and hi.
+const SENTENCE_END = /[.!?…。！？؟।॥]/;
 const CLOSERS = /["'”’)\]»」』]/;
 const PHRASE_DELIMS = /[,;:，；：、،؛]/;
 

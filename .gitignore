@@ -21,15 +21,17 @@ ios/
 .expo/
 dist/
 dist-check/
+dist-web/
 web-build/
 coverage/
 expo-env.d.ts
 *.log
-
 
 # OS and editor
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-dist-web/
+
+# Personal notes
+TODO.txt

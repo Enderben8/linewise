@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Linking, Switch, View } from 'react-native';
-import { spacing } from '../../../src/components/theme';
+import { spacing, useTheme } from '../../../src/components/theme';
 import { AppText, Button, Card, Chip, Row, Screen } from '../../../src/components/ui';
 import { APP } from '../../../src/config';
 import { confirmAction, notify } from '../../../src/lib/dialog';
@@ -61,7 +61,8 @@ function ToggleRow({
 }
 
 export default function SettingsScreen() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { palette } = useTheme();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const settings = useAppSelector((s) => s.settings.values);
@@ -128,7 +129,7 @@ export default function SettingsScreen() {
           ))}
         </Row>
         {restartNote ? (
-          <AppText color="#A66A00" testID="restart-note">
+          <AppText color={palette.warning} testID="restart-note">
             {t('settings.restartNote')}
           </AppText>
         ) : null}
@@ -180,8 +181,9 @@ export default function SettingsScreen() {
           variant="secondary"
           label={t('settings.testSpeech')}
           onPress={() =>
+            // The sentence is in the app's language, so read it in that language.
             speakAsync(t('settings.testSentence'), {
-              lang: settings.locale === 'system' ? 'en' : settings.locale,
+              lang: i18n.language,
               rate: settings.speech_rate,
             })
           }

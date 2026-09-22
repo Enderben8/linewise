@@ -2,9 +2,11 @@ import { words, type Chunk } from '../engine';
 import {
   hiddenIndexes,
   memorisable,
+  pickDistractors,
   seededRandom,
   shuffle,
   selectionRange,
+  trimPunctuation,
   type ChunkSelection,
 } from './setup';
 import type { TokenLine } from './tokens';
@@ -56,24 +58,13 @@ export function autoHide(keys: string[], percent: number, seed: number): string[
   return keys.filter((_, i) => chosen.has(i));
 }
 
-const strip = (s: string) => s.replace(/^[\p{P}\p{S}\s]+|[\p{P}\p{S}\s]+$/gu, '');
-
-/** Answer choices for one blank: the right word plus look-alike words from the same text. */
+/**
+ * Answer choices for one blank: the right word (without its punctuation) plus look-alike words from
+ * the same text.
+ */
 export function blankOptions(correct: string, pool: string[], seed: number, count = 4): string[] {
   const rand = seededRandom(seed);
-  const right = strip(correct);
-  const seen = new Set([right.toLowerCase()]);
-  const others: string[] = [];
-  for (const w of pool.map(strip)) {
-    const k = w.toLowerCase();
-    if (w && !seen.has(k)) {
-      seen.add(k);
-      others.push(w);
-    }
-  }
-  const near = others.sort(
-    (a, b) => Math.abs(a.length - right.length) - Math.abs(b.length - right.length),
-  );
-  const distractors = shuffle(near.slice(0, (count - 1) * 3), rand).slice(0, count - 1);
+  const right = trimPunctuation(correct);
+  const distractors = pickDistractors(right, pool.map(trimPunctuation), rand, count - 1);
   return shuffle([right, ...distractors], rand);
 }

@@ -3,8 +3,7 @@
   "compilerOptions": {
     "strict": true,
     "types": ["jest"],
-    "noUncheckedIndexedAccess": false,
-    "paths": { "@/*": ["./src/*"] }
+    "noUncheckedIndexedAccess": false
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
   "exclude": ["node_modules", "android", "ios"]

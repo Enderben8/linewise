@@ -36,7 +36,7 @@ function SpeedChips({ speed, onChange }: { speed: number; onChange: (s: number) 
 
 function TtsListen({ setup }: { setup: GameSetup }) {
   const { t } = useTranslation();
-  const { palette } = useTheme();
+  const { palette, fontScale } = useTheme();
   const insets = useSafeAreaInsets();
   const baseRate = useAppSelector((s) => s.settings.values.speech_rate);
   const voice = useAppSelector((s) => defaultVoiceFor(s.settings.values.default_voice, setup.lang));
@@ -122,9 +122,10 @@ function TtsListen({ setup }: { setup: GameSetup }) {
             style={{ marginTop: seg.chunkStart && i > 0 ? spacing.md : 0 }}
           >
             <AppText
+              scale={false}
               style={{
-                fontSize: 19 * 1,
-                lineHeight: 30,
+                fontSize: 19 * fontScale,
+                lineHeight: 19 * fontScale * 1.6,
                 backgroundColor: i === index && playing ? palette.accent : 'transparent',
                 color: i === index && playing ? palette.onAccent : palette.text,
                 borderRadius: 6,

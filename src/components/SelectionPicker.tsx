@@ -8,12 +8,14 @@ import { AppText, Chip, Row } from './ui';
 function Stepper({
   label,
   value,
+  min = 0,
   max,
   onChange,
   testID,
 }: {
   label: string;
   value: number;
+  min?: number;
   max: number;
   onChange: (v: number) => void;
   testID: string;
@@ -43,7 +45,7 @@ function Stepper({
     <Row style={{ justifyContent: 'space-between' }}>
       <AppText>{label}</AppText>
       <Row>
-        {btn('remove', -1, value <= 0)}
+        {btn('remove', -1, value <= min)}
         <AppText style={{ minWidth: 34, textAlign: 'center', fontWeight: '700' }}>
           {value + 1}
         </AppText>
@@ -106,6 +108,7 @@ export function SelectionPicker({ value, chunkCount, speakers, onChange }: Props
             testID="to"
             label={t('selection.to')}
             value={value.to}
+            min={value.from}
             max={last}
             onChange={(v) => set({ to: v })}
           />

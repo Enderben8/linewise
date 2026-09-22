@@ -6,15 +6,12 @@ import {
   formatDuration,
   isOutOfDate,
   listenSource,
-  overLimit,
 } from './rules';
 
 describe('recording rules', () => {
-  it('limits recordings per memorization and length', () => {
+  it('limits recordings per memorization', () => {
     expect(canAddRecording(LIMITS.maxRecordingsPerMemorization - 1)).toBe(true);
     expect(canAddRecording(LIMITS.maxRecordingsPerMemorization)).toBe(false);
-    expect(overLimit(LIMITS.maxRecordingSeconds - 1)).toBe(false);
-    expect(overLimit(LIMITS.maxRecordingSeconds)).toBe(true);
   });
 
   it('flags recordings made before the text changed', () => {

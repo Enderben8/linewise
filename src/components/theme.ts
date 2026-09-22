@@ -55,8 +55,7 @@ const dark: Palette = {
 export function useTheme() {
   const scheme = useColorScheme();
   const fontScale = useAppSelector((s) => s.settings.values.font_size);
-  const palette = scheme === 'dark' ? dark : light;
-  return { palette, dark: scheme === 'dark', fontScale };
+  return { palette: scheme === 'dark' ? dark : light, fontScale };
 }
 
 export const spacing = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 } as const;

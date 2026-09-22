@@ -20,7 +20,7 @@ function open() {
   return drizzle(sqlite, { schema });
 }
 
-export type Db = ReturnType<typeof open>;
+type Db = ReturnType<typeof open>;
 
 export let db: Db = undefined as unknown as Db;
 

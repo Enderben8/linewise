@@ -13,6 +13,7 @@ import {
   reminderDate,
   scaleIntervals,
   startOfDay,
+  withTargetDate,
   type ProgressState,
 } from './index';
 
@@ -196,6 +197,84 @@ describe('target date', () => {
   it('without a target uses the default intervals', () => {
     const plan = previewSchedule(newProgress(), now);
     expect(plan.map((s) => s.gapDays)).toEqual([0, 1, 2, 4, 7, 14, 30, 60]);
+  });
+});
+
+describe('withTargetDate', () => {
+  const now = at(2026, 5, 10);
+  const target = addDays(now, 10);
+
+  it('brings forward a next review that falls after the target', () => {
+    const state: ProgressState = {
+      ...newProgress(),
+      intervalIndex: 5,
+      nextReviewAt: addDays(now, 30),
+    };
+    const out = withTargetDate(state, target, now);
+    expect(out.targetDueDate).toBe(target);
+    expect(out.nextReviewAt!).toBeLessThan(target);
+    const plan = previewSchedule(out, now);
+    expect(plan[plan.length - 1].date).toBe(target);
+  });
+
+  it('keeps a next review that is already early enough', () => {
+    const state: ProgressState = {
+      ...newProgress(),
+      intervalIndex: 1,
+      nextReviewAt: addDays(now, 1),
+    };
+    expect(withTargetDate(state, addDays(now, 60), now)).toEqual({
+      ...state,
+      targetDueDate: addDays(now, 60),
+    });
+  });
+
+  it('starts a new plan when the old one has no intervals left', () => {
+    const finished: ProgressState = {
+      ...newProgress(),
+      intervalIndex: 7,
+      nextReviewAt: null,
+      targetDueDate: addDays(now, -3),
+      headlineScore: 0.9,
+    };
+    const out = withTargetDate(finished, target, now);
+    expect(out).toMatchObject({
+      intervalIndex: 0,
+      nextReviewAt: startOfDay(now),
+      headlineScore: 0.9,
+    });
+    expect(isReviewDay(out, now)).toBe(true);
+    const plan = previewSchedule(out, now);
+    expect(plan).toHaveLength(8);
+    expect(plan[plan.length - 1].date).toBe(target);
+
+    const pastTheEnd: ProgressState = {
+      ...finished,
+      nextReviewAt: addDays(now, 50),
+      targetDueDate: null,
+    };
+    expect(withTargetDate(pastTheEnd, target, now).intervalIndex).toBe(0);
+  });
+
+  it('keeps reviewing at the regular intervals when a finished target is removed', () => {
+    const finished: ProgressState = {
+      ...newProgress(),
+      intervalIndex: 7,
+      nextReviewAt: null,
+      targetDueDate: addDays(now, -3),
+    };
+    const out = withTargetDate(finished, null, now);
+    expect(out).toMatchObject({ targetDueDate: null, nextReviewAt: startOfDay(now) });
+    const passed = applySession(out, result('type-it', 1), now);
+    expect(passed.state.nextReviewAt).toBe(addDays(now, 60));
+
+    const ongoing: ProgressState = {
+      ...newProgress(),
+      intervalIndex: 2,
+      nextReviewAt: target,
+      targetDueDate: target,
+    };
+    expect(withTargetDate(ongoing, null, now)).toEqual({ ...ongoing, targetDueDate: null });
   });
 });
 

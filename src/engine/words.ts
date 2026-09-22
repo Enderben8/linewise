@@ -153,11 +153,3 @@ export function words(text: string, lang = 'en'): Token[] {
 export function chunkLines(chunk: Chunk): string[] {
   return chunk.lines.filter((l) => l.kind === 'text' || l.kind === 'dialogue').map((l) => l.text);
 }
-
-export function chunkText(chunk: Chunk): string {
-  return chunkLines(chunk).join('\n');
-}
-
-export function wordCount(chunk: Chunk, lang = 'en'): number {
-  return chunkLines(chunk).reduce((n, line) => n + words(line, lang).length, 0);
-}

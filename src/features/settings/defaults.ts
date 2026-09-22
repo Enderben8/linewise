@@ -12,8 +12,6 @@ export const LANGUAGES = [
   { code: 'he', name: 'עברית', rtl: true },
 ] as const;
 
-export type LanguageCode = (typeof LANGUAGES)[number]['code'];
-
 /** Arabic, Hebrew, Hindi and Chinese have no capital letters, so scripts mark speakers with a colon instead. */
 export function hasCapitals(code: string): boolean {
   return !['ar', 'he', 'hi', 'zh-Hans'].includes(code);
@@ -29,7 +27,7 @@ export interface Settings {
   locale: string;
   /** Language new memorizations start with. */
   default_language: string;
-  /** Text scale, 0.8 to 1.6. */
+  /** Text scale, 0.85 to 1.5 (the choices in Settings). */
   font_size: number;
   /** Speech rate for text to speech, 0.5 to 2. */
   speech_rate: number;

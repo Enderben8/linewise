@@ -3,6 +3,8 @@ android
 ios
 .expo
 coverage
+dist
+dist-check
+dist-web
 package-lock.json
 SPEC.md
-dist-web

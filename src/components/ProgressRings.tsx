@@ -9,7 +9,6 @@ interface Props {
   /** Progress through the review plan, 0..1. */
   inner: number;
   size?: number;
-  showLabel?: boolean;
 }
 
 function ring(radius: number, fraction: number) {
@@ -18,7 +17,7 @@ function ring(radius: number, fraction: number) {
   return { circumference, offset: circumference * (1 - f) };
 }
 
-export function ProgressRings({ outer, inner, size = 64, showLabel = true }: Props) {
+export function ProgressRings({ outer, inner, size = 64 }: Props) {
   const { palette } = useTheme();
   const stroke = Math.max(4, size / 11);
   const rOuter = (size - stroke) / 2;
@@ -72,24 +71,18 @@ export function ProgressRings({ outer, inner, size = 64, showLabel = true }: Pro
           strokeDashoffset={i.offset}
         />
       </Svg>
-      {showLabel ? (
-        <View
-          style={{
-            position: 'absolute',
-            inset: 0,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <AppText
-            variant="caption"
-            scale={false}
-            style={{ fontWeight: '700', fontSize: size / 5 }}
-          >
-            {Math.round(outer * 100)}%
-          </AppText>
-        </View>
-      ) : null}
+      <View
+        style={{
+          position: 'absolute',
+          inset: 0,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <AppText variant="caption" scale={false} style={{ fontWeight: '700', fontSize: size / 5 }}>
+          {Math.round(outer * 100)}%
+        </AppText>
+      </View>
     </View>
   );
 }
