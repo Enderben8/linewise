@@ -139,6 +139,11 @@ The same tag also builds the web app and deploys it to Cloudflare Pages. One-tim
 
 Until those secrets exist the web job still builds and checks the site, and skips the deploy.
 
+Do not turn on Cloudflare's own Git builds for the project. If the project is connected to this
+repository, keep automatic production and preview deployments off (Settings, Builds). A Git build has
+none of the workflow's steps, so it publishes the raw repository files over the site. To undo a bad
+deploy, open the project's Deployments list and choose _Rollback_ on the last good one.
+
 ## Privacy
 
 Linewise never connects to the internet, and the release APK does not declare the `INTERNET` permission

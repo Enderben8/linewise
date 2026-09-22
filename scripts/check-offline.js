@@ -2,6 +2,7 @@
 //   node scripts/check-offline.js                 static checks on dependencies, source and app.json
 //   node scripts/check-offline.js --apk app.apk   also fails if the built APK requests INTERNET
 //   node scripts/check-offline.js --web dist-web  also checks the web build and its Content-Security-Policy
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
@@ -154,16 +155,31 @@ function cspChecks(headersText) {
   return problems;
 }
 
-/** Checks the web build: every file will be uploaded, and nothing is loaded from a CDN. */
+/**
+ * Checks the web build: every file will be uploaded, a cached bundle is never stale, and nothing is
+ * loaded from a CDN.
+ */
 function webBuildChecks(dist) {
   const problems = [];
-  // Cloudflare Pages skips node_modules folders, so a file there would be missing on the live site.
-  const skipped = fs
+  const files = fs
     .readdirSync(dist, { recursive: true })
-    .map((f) => String(f).split(path.sep).join('/'))
-    .filter((f) => f.split('/').includes('node_modules'));
+    .map((f) => String(f).split(path.sep).join('/'));
+  // Cloudflare Pages skips node_modules folders, so a file there would be missing on the live site.
+  const skipped = files.filter((f) => f.split('/').includes('node_modules'));
   if (skipped.length) {
     problems.push(`${skipped[0]} is under node_modules, which Cloudflare Pages does not upload`);
+  }
+  // Bundles are cached as immutable under their md5, so an edited bundle needs a new name.
+  for (const f of files) {
+    const m = /^_expo\/.+-([0-9a-f]{32})\.(js|css)$/.exec(f);
+    if (!m) continue;
+    const md5 = crypto
+      .createHash('md5')
+      .update(fs.readFileSync(path.join(dist, f)))
+      .digest('hex');
+    if (md5 !== m[1]) {
+      problems.push(`${f} was edited after export but kept its name; browsers keep the old copy`);
+    }
   }
   const sw = path.join(dist, 'sw.js');
   if (!fs.existsSync(sw)) {
@@ -178,7 +194,7 @@ function webBuildChecks(dist) {
   return problems;
 }
 
-module.exports = { staticChecks, apkPermissions, cspChecks };
+module.exports = { staticChecks, apkPermissions, cspChecks, webBuildChecks };
 
 if (require.main === module) {
   const problems = staticChecks();
