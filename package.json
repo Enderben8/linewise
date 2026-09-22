@@ -13,7 +13,7 @@
     "check:offline": "node scripts/check-offline.js",
     "icons": "node scripts/make-icons.js",
     "i18n:keys": "node scripts/extract-keys.js",
-    "build:web": "expo export --platform web --output-dir dist-web && node scripts/copy-ocr-assets.js dist-web && workbox generateSW workbox-config.js && node scripts/check-offline.js --web dist-web",
+    "build:web": "expo export --platform web --output-dir dist-web && node scripts/fix-web-assets.js dist-web && node scripts/copy-ocr-assets.js dist-web && workbox generateSW workbox-config.js && node scripts/check-offline.js --web dist-web",
     "serve:web": "node scripts/serve-web.js dist-web 8081",
     "postinstall": "patch-package"
   },

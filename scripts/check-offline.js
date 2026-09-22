@@ -154,12 +154,21 @@ function cspChecks(headersText) {
   return problems;
 }
 
-/** The built service worker must not pull Workbox (or anything else) from a CDN. */
+/** Checks the web build: every file will be uploaded, and nothing is loaded from a CDN. */
 function webBuildChecks(dist) {
   const problems = [];
+  // Cloudflare Pages skips node_modules folders, so a file there would be missing on the live site.
+  const skipped = fs
+    .readdirSync(dist, { recursive: true })
+    .map((f) => String(f).split(path.sep).join('/'))
+    .filter((f) => f.split('/').includes('node_modules'));
+  if (skipped.length) {
+    problems.push(`${skipped[0]} is under node_modules, which Cloudflare Pages does not upload`);
+  }
   const sw = path.join(dist, 'sw.js');
-  if (!fs.existsSync(sw)) return [`${sw} is missing; run workbox generateSW`];
-  if (/importScripts\([^)]*https?:/.test(fs.readFileSync(sw, 'utf8'))) {
+  if (!fs.existsSync(sw)) {
+    problems.push(`${sw} is missing; run workbox generateSW`);
+  } else if (/importScripts\([^)]*https?:/.test(fs.readFileSync(sw, 'utf8'))) {
     problems.push('sw.js imports a script from another site');
   }
   const html = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
