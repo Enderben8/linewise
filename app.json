@@ -86,10 +86,21 @@
         "expo-share-intent",
         {
           "disableIOS": true,
-          "androidIntentFilters": ["text/*"]
+          "androidIntentFilters": [
+            "text/*"
+          ]
         }
       ],
       "./plugins/withReleaseSigning"
-    ]
+    ],
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "name": "Linewise",
+      "shortName": "Linewise",
+      "themeColor": "#0F3D3E",
+      "backgroundColor": "#0F3D3E",
+      "favicon": "./assets/favicon.png"
+    }
   }
 }

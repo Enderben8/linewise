@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import type { Ionicons } from '@expo/vector-icons';
 import type { ComponentProps } from 'react';
 import { GAME_GROUP, type GameGroup, type GameId } from './ids';
@@ -36,6 +37,16 @@ export const GAMES: GameInfo[] = [
 
 export const GROUP_ORDER: GameGroup[] = ['practice', 'solidify', 'evaluate'];
 
-export function gamesFor(type: 'text' | 'script'): GameInfo[] {
-  return GAMES.filter((g) => !g.scriptOnly || type === 'script');
+/**
+ * Games that need on-device speech recognition. Browsers send recognition audio to the browser
+ * maker's servers, so these are Android only (SPEC §10).
+ */
+export const SPEECH_RECOGNITION_GAMES: GameId[] = ['speak', 'run-scene'];
+
+export function isAvailableOn(game: GameId, platform: string): boolean {
+  return platform !== 'web' || !SPEECH_RECOGNITION_GAMES.includes(game);
+}
+
+export function gamesFor(type: 'text' | 'script', platform: string = Platform.OS): GameInfo[] {
+  return GAMES.filter((g) => (!g.scriptOnly || type === 'script') && isAvailableOn(g.id, platform));
 }

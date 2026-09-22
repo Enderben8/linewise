@@ -1,11 +1,16 @@
 import { Stack, useRouter } from 'expo-router';
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Platform } from 'react-native';
 import { AppText, Button, EmptyState, Screen } from '../components/ui';
+import type { GameId } from './ids';
+import { isAvailableOn } from './registry';
 import { useGameSetup, type GameSetup } from './useGameSetup';
 
 interface Props {
   title: string;
+  /** The game this screen runs. Games not offered on this platform show a message instead. */
+  game?: GameId;
   /** Games that cannot score an empty selection (e.g. only action lines) show a message instead. */
   children: (setup: GameSetup) => ReactNode;
   /** Render inside a non-scrolling container (for screens that own a list). */
@@ -13,10 +18,19 @@ interface Props {
 }
 
 /** Loads the memorization and selection from the route and handles the missing / empty cases. */
-export function GameGate({ title, children, scroll = true }: Props) {
+export function GameGate({ title, game, children, scroll = true }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
   const setup = useGameSetup();
+  if (game && !isAvailableOn(game, Platform.OS)) {
+    return (
+      <Screen>
+        <Stack.Screen options={{ title }} />
+        <EmptyState title={t('games.androidOnly')} body={t('games.androidOnlyBody')} />
+        <Button label={t('common.back')} onPress={() => router.back()} />
+      </Screen>
+    );
+  }
   if (!setup) {
     return (
       <Screen>

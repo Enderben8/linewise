@@ -15,6 +15,8 @@ review it at spaced intervals. Everything stays on your phone.
 - **11 languages:** English, Spanish, French, German, Filipino, Portuguese (Brazil), Dutch, Hindi, Arabic
   (right to left), Simplified Chinese and Hebrew (right to left).
 
+It also runs in the browser as an installable web app that works offline (see [Use it in the browser](#use-it-in-the-browser)).
+
 The full product spec is in [SPEC.md](SPEC.md).
 
 ## Install the APK
@@ -28,6 +30,30 @@ Linewise is not in an app store. Install a signed release APK from the
 3. To check the download, compare its SHA-256 with `linewise-vX.Y.Z.apk.sha256` from the same release.
 
 Updates ship as new APKs. Install a newer one over the old one; your data is kept.
+
+## Use it in the browser
+
+The web app is the same Linewise, published to Cloudflare Pages by the release workflow.
+
+- **Install it:** in Chrome or Edge use _Install app_ in the address bar or menu; on Android Chrome use
+  _Add to Home screen_; in Safari on iPhone use _Share, Add to Home Screen_. After the first visit it opens
+  with no connection.
+- **Your data stays in that browser** on that device. Clearing site data deletes it, and it does not move
+  to another browser or to the Android app. Use **Settings, Back up and restore** to save a backup file and to
+  move texts between devices.
+- **Differences from the Android app:** Speak and Run Scene are not available (browsers send speech to a
+  server for recognition), there are no review reminders (review days still show in the list), and text
+  shared from other apps cannot be received. Scanning a photo runs Tesseract in the browser; the language
+  files (about 3 to 10 MB each) are fetched from the site the first time you scan and kept for offline use.
+
+To build and try it locally:
+
+```bash
+npm run build:web   # export to dist-web, copy the OCR files, generate the service worker, run the offline check
+npm run serve:web   # http://localhost:8081, with the same headers as Cloudflare (public/_headers)
+```
+
+`npx expo start --web` also works for development (the service worker is only registered in a build).
 
 ## Build it yourself
 
@@ -49,7 +75,7 @@ it is signed with the debug key: fine for your own phone, not for sharing.
 npm run typecheck      # tsc --noEmit
 npm run lint           # ESLint, no warnings allowed
 npm test               # Jest: engine, scheduler, games, database, backup, translations, offline guard
-npm run check:offline  # no network dependencies or calls, INTERNET permission blocked
+npm run check:offline  # no network dependencies or calls, INTERNET permission blocked, web CSP same-site only
 npm run i18n:keys      # prints every translation key used by the code
 npm run icons          # redraws the app icon set from the mascot (scripts/make-icons.js)
 ```
@@ -79,7 +105,8 @@ compare it with the Drizzle schema.
 
 ## Releases and signing
 
-CI (`.github/workflows/ci.yml`) typechecks, lints and tests every push.
+CI (`.github/workflows/ci.yml`) typechecks, lints, tests and builds the Android bundle and the web app on
+every push.
 
 Pushing a tag such as `v1.0.0` runs `.github/workflows/release.yml`, which builds a signed release APK and
 attaches it, with its SHA-256, to a GitHub Release. It fails on purpose if the signing key is missing, so an
@@ -103,16 +130,27 @@ One-time setup:
 The keystore and its passwords exist only in those secrets; nothing secret is in the repository. The
 version name and code come from the tag (`v1.2.3` becomes name `1.2.3`, code `10203`).
 
+The same tag also builds the web app and deploys it to Cloudflare Pages. One-time setup (free plan):
+
+1. In the Cloudflare dashboard, create a Pages project named `linewise` using _Direct Upload_ (upload any
+   placeholder file; the workflow replaces it).
+2. Create an API token with the _Cloudflare Pages: Edit_ permission, and note your account ID.
+3. Add the Actions secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+
+Until those secrets exist the web job still builds and checks the site, and skips the deploy.
+
 ## Privacy
 
 Linewise never connects to the internet, and the release APK does not declare the `INTERNET` permission
-(`npm run check:offline -- --apk path/to.apk` checks a built file). Text recognition, speech recognition
+(`npm run check:offline -- --apk path/to.apk` checks a built file). The web app only downloads its own
+files from its own site; its Content-Security-Policy (`public/_headers`) makes the browser block any other
+request, and CI fails if that policy ever allows another host. Text recognition, speech recognition
 and text to speech all run on the phone. The only outbound action is **Settings, Report a problem**, which
 opens the GitHub Issues page in your browser.
 
 ## Known limits
 
-- Android only. There is no iOS build.
+- Android and the web. There is no iOS build (the web app can be added to an iPhone home screen).
 - Speech recognition needs a phone whose speech service supports on-device recognition and has the
   language pack downloaded; the Speak and Run Scene screens tell you what is missing.
 - Scanning text is not available for Arabic or Hebrew (the on-device model does not include them). Type or

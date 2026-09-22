@@ -1,7 +1,7 @@
 /* eslint-disable import/no-named-as-default-member */
 import { getLocales } from 'expo-localization';
 import i18n from 'i18next';
-import { I18nManager } from 'react-native';
+import { I18nManager, Platform } from 'react-native';
 import { initReactI18next } from 'react-i18next';
 import { isRtl, LANGUAGES } from '../features/settings/defaults';
 import ar from './locales/ar.json';
@@ -69,6 +69,11 @@ export async function applyLocale(
   const code = resolveLocale(setting);
   await i18n.changeLanguage(code);
   const wantRtl = isRtl(code);
+  if (Platform.OS === 'web') {
+    document.documentElement.lang = code;
+    document.documentElement.dir = wantRtl ? 'rtl' : 'ltr';
+    return { code, needsRestart: false };
+  }
   I18nManager.allowRTL(true);
   let needsRestart = false;
   if (I18nManager.isRTL !== wantRtl) {

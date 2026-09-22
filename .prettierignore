@@ -5,3 +5,4 @@ ios
 coverage
 package-lock.json
 SPEC.md
+dist-web

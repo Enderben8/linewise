@@ -5,7 +5,10 @@ import { View } from 'react-native';
 import { Mascot } from '../../src/components/Mascot';
 import { spacing } from '../../src/components/theme';
 import { AppText, Button, Chip, Row, Screen } from '../../src/components/ui';
-import { requestNotificationPermission } from '../../src/features/notifications/reminders';
+import {
+  REMINDERS_SUPPORTED,
+  requestNotificationPermission,
+} from '../../src/features/notifications/reminders';
 import { useAppDispatch } from '../../src/store';
 import { updateSettings } from '../../src/store/settingsSlice';
 
@@ -20,8 +23,8 @@ export default function Onboarding() {
   const [reminders, setReminders] = useState(true);
 
   const finish = async () => {
-    let enabled = reminders;
-    if (reminders) enabled = await requestNotificationPermission();
+    let enabled = reminders && REMINDERS_SUPPORTED;
+    if (enabled) enabled = await requestNotificationPermission();
     dispatch(updateSettings({ notifications_enabled: enabled }));
     router.push({ pathname: '/onboarding/demo', params: { goal } });
   };
@@ -52,7 +55,12 @@ export default function Onboarding() {
               />
             ))}
           </Row>
-          <Button testID="onboarding-next" label={t('common.next')} onPress={() => setStep(1)} />
+          {/* Browsers cannot deliver reminders (see reminders.web.ts), so the web app skips that question. */}
+          <Button
+            testID="onboarding-next"
+            label={REMINDERS_SUPPORTED ? t('common.next') : t('onboarding.tryDemo')}
+            onPress={() => (REMINDERS_SUPPORTED ? setStep(1) : finish())}
+          />
         </View>
       ) : null}
 

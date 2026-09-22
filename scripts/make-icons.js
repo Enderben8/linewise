@@ -4,6 +4,7 @@ const path = require('path');
 const sharp = require('sharp');
 
 const OUT = path.join(__dirname, '..', 'assets');
+const PUBLIC = path.join(__dirname, '..', 'public');
 const TEAL = '#0F3D3E';
 
 const BODY = '#E9A93A';
@@ -54,8 +55,8 @@ function placed(size, fraction, options) {
   return `<g transform="translate(${offset} ${offset}) scale(${scale})">${wren(options)}</g>`;
 }
 
-async function write(name, size, inner) {
-  await sharp(svg(size, inner)).png().toFile(path.join(OUT, name));
+async function write(name, size, inner, dir = OUT) {
+  await sharp(svg(size, inner)).png().toFile(path.join(dir, name));
   console.log('wrote', name);
 }
 
@@ -69,6 +70,11 @@ async function main() {
   await write('android-icon-monochrome.png', 1024, placed(1024, 0.6, { mono: true }));
   await write('splash-icon.png', 1024, placed(1024, 0.9));
   await write('favicon.png', 256, bg(256) + placed(256, 0.8));
+  // Web app icons (public/manifest.webmanifest). Maskable icons keep the bird inside the 80% safe zone.
+  await write('icon-192.png', 192, bg(192) + placed(192, 0.75), PUBLIC);
+  await write('icon-512.png', 512, bg(512) + placed(512, 0.75), PUBLIC);
+  await write('icon-maskable-512.png', 512, bg(512) + placed(512, 0.6), PUBLIC);
+  await write('apple-touch-icon.png', 180, bg(180) + placed(180, 0.7), PUBLIC);
 }
 
 main().catch((e) => {

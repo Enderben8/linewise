@@ -29,7 +29,7 @@
     "search": "Titel, Autor oder Tag suchen",
     "allTags": "Alle",
     "emptyTitle": "Noch nichts zum Auswendiglernen",
-    "emptyBody": "Füge ein Gedicht, eine Rede, einen Vers oder ein Skript hinzu. Alles bleibt auf deinem Handy.",
+    "emptyBody": "Füge ein Gedicht, eine Rede, einen Vers oder ein Skript hinzu. Alles bleibt auf deinem Gerät.",
     "addFirst": "Ersten Text hinzufügen",
     "noMatches": "Kein Text passt zu deiner Suche",
     "backupNudgeTitle": "Zeit für eine Sicherung",
@@ -44,9 +44,9 @@
     "typeTitle": "Eintippen oder einfügen",
     "typeBody": "Schreibe den Text selbst oder füge ihn von irgendwoher ein.",
     "fileTitle": "Datei importieren",
-    "fileBody": "Wähle eine .txt- oder .md-Datei von deinem Handy.",
+    "fileBody": "Wähle eine .txt- oder .md-Datei von deinem Gerät.",
     "cameraOptionTitle": "Mit Kamera oder Foto scannen",
-    "cameraOptionBody": "Lies gedruckten Text von einer Seite ab. Die Erkennung läuft auf deinem Handy.",
+    "cameraOptionBody": "Lies gedruckten Text von einer Seite ab. Die Erkennung läuft auf deinem Gerät.",
     "shareHint": "Tipp: Teile in einer beliebigen anderen App Text mit Linewise, dann öffnet er sich hier und ist bereit zum Speichern.",
     "fileTooLargeTitle": "Die Datei ist zu groß",
     "fileTooLargeBody": "Wähle eine kleinere Textdatei. Texte dürfen bis zu 100 KB groß sein.",
@@ -164,7 +164,9 @@
     "run-scene": {
       "name": "Szene spielen",
       "blurb": "Spiele deine Rolle, während die App die anderen liest"
-    }
+    },
+    "androidOnly": "Nur in der Android-App",
+    "androidOnlyBody": "Lautes Vortragen braucht Spracherkennung, die auf dem Gerät läuft. Browser schicken deine Stimme an ihre Server, deshalb gibt es dieses Spiel nur in der Android-App."
   },
   "result": {
     "great": "Gut gemacht!",
@@ -359,7 +361,8 @@
     "none": "Es ist noch keine Wiederholung geplant. Spiele ein bewertetes Spiel, um deinen Plan zu starten.",
     "on": "Erinnerungen sind aktiviert. An Wiederholungstagen bekommst du eine Benachrichtigung.",
     "off": "Erinnerungen sind aus.",
-    "enable": "Erinnerungen aktivieren"
+    "enable": "Erinnerungen aktivieren",
+    "web": "Erinnerungen gibt es nur in der Android-App. Im Web zeigen fällige Texte „Heute wiederholen“ in deiner Liste."
   },
   "notifications": {
     "channel": "Wiederholungserinnerungen",
@@ -380,7 +383,8 @@
     "noneTitle": "Keine Stimmen für diese Sprache",
     "noneBody": "Öffne die Spracheinstellungen, wähle deine Sprach-Engine und installiere die Sprachdaten für diese Sprache. Komm dann zurück und aktualisiere.",
     "refresh": "Aktualisieren",
-    "downloadHelp": "Du möchtest einen anderen Akzent oder bessere Qualität? Installiere weitere Stimmen in den Spracheinstellungen deines Handys."
+    "downloadHelp": "Du möchtest einen anderen Akzent oder bessere Qualität? Installiere weitere Stimmen in den Spracheinstellungen deines Handys.",
+    "webHelp": "Dein Browser nutzt die Stimmen, die auf diesem Computer oder Handy installiert sind. Füge in den Sprach- oder Spracherkennungseinstellungen des Systems weitere hinzu und lade die Seite neu."
   },
   "backup": {
     "title": "Sichern und wiederherstellen",
@@ -409,7 +413,8 @@
     "restored": "Wiederhergestellt. Texte auf diesem Handy: {{count}}.",
     "merged": "Zusammengeführt. Hinzugefügt: {{added}}, aktualisiert: {{updated}}, behalten: {{kept}}.",
     "monthly": "Monatliche Sicherungserinnerung",
-    "monthlyHelp": "Erinnert dich einmal im Monat daran, eine Sicherung zu speichern."
+    "monthlyHelp": "Erinnert dich einmal im Monat daran, eine Sicherung zu speichern.",
+    "exportBodyWeb": "Speichert deine Texte, deinen Fortschritt, deine Sitzungen und Einstellungen in einer Datei in deinem Download-Ordner. Bewahre eine Kopie sicher auf: Der Speicher des Browsers kann gelöscht werden."
   },
   "camera": {
     "help": "Richte die Kamera auf gedruckten Text oder wähle ein Foto. Die Erkennung läuft auf deinem Handy; nichts wird hochgeladen.",
@@ -431,7 +436,9 @@
     "reviewHelp": "Prüfe den Text und korrigiere Fehler, bevor du fortfährst.",
     "use": "Diesen Text verwenden",
     "retake": "Erneut scannen",
-    "privacy": "Fotos werden auf deinem Handy gelesen und von Linewise nicht gespeichert."
+    "privacy": "Fotos werden auf deinem Gerät gelesen und von Linewise nicht gespeichert.",
+    "webHelp": "Mache oder wähle ein Foto von gedrucktem Text. Die Erkennung läuft in deinem Browser; nichts wird hochgeladen.",
+    "loadingModel": "Texterkennung wird vorbereitet …"
   },
   "settings": {
     "language": "App-Sprache",
@@ -454,7 +461,7 @@
     "resetSolidifyHelp": "Beginne die Festigen-Ergebnisse neu, sobald du in ein neues Wiederholungsintervall wechselst.",
     "data": "Deine Daten",
     "backup": "Sichern und wiederherstellen",
-    "offlineNote": "Alles bleibt auf diesem Handy. Linewise hat keine Konten und verbindet sich nie mit dem Internet.",
+    "offlineNote": "Alles bleibt auf diesem Gerät. Linewise hat keine Konten und verbindet sich nie mit dem Internet.",
     "about": "Über",
     "faq": "Fragen und Antworten",
     "report": "Problem melden",
@@ -528,7 +535,7 @@
     "reminderQuestion": "Möchtest du an Wiederholungstagen erinnert werden?",
     "reminderBody": "Verteilte Wiederholungen sorgen dafür, dass Erinnerungen bleiben. Eine sanfte Erinnerung hilft dir, dranzubleiben.",
     "tryDemo": "Eine einminütige Demo ausprobieren",
-    "offline": "Kein Konto. Kein Internet. Deine Texte verlassen nie dein Handy."
+    "offline": "Kein Konto. Kein Internet. Deine Texte verlassen nie dein Gerät."
   },
   "demo": {
     "title": "Probiere Erster Buchstabe",

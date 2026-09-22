@@ -37,3 +37,6 @@ jobs:
 
       - name: JavaScript bundle builds
         run: npx expo export --platform android --output-dir dist-check
+
+      - name: Web app builds (with service worker and offline check)
+        run: npm run build:web

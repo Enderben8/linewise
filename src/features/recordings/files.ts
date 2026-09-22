@@ -13,7 +13,7 @@ export function deleteAudioFiles(uris: string[]): void {
 }
 
 /** Moves a finished recording from the cache into the app's document folder so it survives cache clean-ups. */
-export function persistRecording(tempUri: string, id: string): string {
+export async function persistRecording(tempUri: string, id: string): Promise<string> {
   const dir = new Directory(Paths.document, 'recordings');
   dir.create({ intermediates: true, idempotent: true });
   const dest = new File(dir, `${id}.m4a`);
@@ -29,4 +29,9 @@ export function persistRecording(tempUri: string, id: string): string {
     }
   }
   return dest.uri;
+}
+
+/** A URI the audio player can load for a stored recording. On Android the file path is used as is. */
+export function usePlayableUri(storedUri: string): string | null {
+  return storedUri;
 }

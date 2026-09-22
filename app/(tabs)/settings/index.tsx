@@ -2,13 +2,15 @@ import Constants from 'expo-constants';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Linking, Switch, View } from 'react-native';
+import { Linking, Switch, View } from 'react-native';
 import { spacing } from '../../../src/components/theme';
 import { AppText, Button, Card, Chip, Row, Screen } from '../../../src/components/ui';
 import { APP } from '../../../src/config';
+import { confirmAction } from '../../../src/lib/dialog';
 import { listMemorizations } from '../../../src/db/repo';
 import { LANGUAGES } from '../../../src/features/settings/defaults';
 import {
+  REMINDERS_SUPPORTED,
   requestNotificationPermission,
   syncReminders,
 } from '../../../src/features/notifications/reminders';
@@ -74,14 +76,13 @@ export default function SettingsScreen() {
     if (on) {
       const ok = await requestNotificationPermission();
       if (!ok) {
-        Alert.alert(
-          t('settings.notificationsBlockedTitle'),
-          t('settings.notificationsBlockedBody'),
-          [
-            { text: t('common.cancel'), style: 'cancel' },
-            { text: t('speechIssue.openSettings'), onPress: () => Linking.openSettings() },
-          ],
-        );
+        const open = await confirmAction({
+          title: t('settings.notificationsBlockedTitle'),
+          message: t('settings.notificationsBlockedBody'),
+          confirmLabel: t('speechIssue.openSettings'),
+          cancelLabel: t('common.cancel'),
+        });
+        if (open) Linking.openSettings();
         return;
       }
     }
@@ -177,13 +178,19 @@ export default function SettingsScreen() {
       </Section>
 
       <Section title={t('settings.reviews')}>
-        <ToggleRow
-          label={t('settings.notifications')}
-          help={t('settings.notificationsHelp')}
-          value={settings.notifications_enabled}
-          onChange={toggleNotifications}
-          testID="toggle-notifications"
-        />
+        {REMINDERS_SUPPORTED ? (
+          <ToggleRow
+            label={t('settings.notifications')}
+            help={t('settings.notificationsHelp')}
+            value={settings.notifications_enabled}
+            onChange={toggleNotifications}
+            testID="toggle-notifications"
+          />
+        ) : (
+          <AppText variant="caption" muted>
+            {t('reminders.web')}
+          </AppText>
+        )}
         <ToggleRow
           label={t('settings.resetSolidify')}
           help={t('settings.resetSolidifyHelp')}

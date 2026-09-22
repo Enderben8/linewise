@@ -1,12 +1,10 @@
 import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
-import { BACKUP } from '../../config';
 import type { MemorizationWithProgress } from '../../db/repo';
 import i18n from '../../i18n';
-import { reminderDate } from '../../scheduler';
+import { planReminders } from './plan';
 
 const CHANNEL_ID = 'reviews';
-const BACKUP_ID = 'backup-reminder';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -40,51 +38,10 @@ export async function requestNotificationPermission(): Promise<boolean> {
   return next.granted;
 }
 
-export interface ReminderPlanItem {
-  identifier: string;
-  title: string;
-  body: string;
-  date: Date;
-  memorizationId?: string;
-}
+export { planReminders, type ReminderPlanItem } from './plan';
 
-/** Pure planning step so the schedule can be tested without the native module. */
-export function planReminders(
-  items: Pick<MemorizationWithProgress, 'id' | 'title' | 'progress'>[],
-  opts: {
-    now: number;
-    lastBackupAt: number | null;
-    backupReminder: boolean;
-    t: (key: string, o?: Record<string, unknown>) => string;
-  },
-): ReminderPlanItem[] {
-  const plan: ReminderPlanItem[] = [];
-  for (const m of items) {
-    const date = reminderDate(m.progress.nextReviewAt, opts.now);
-    if (!date) continue;
-    plan.push({
-      identifier: `review-${m.id}`,
-      title: opts.t('notifications.reviewTitle'),
-      body: opts.t('notifications.reviewBody', { title: m.title }),
-      date,
-      memorizationId: m.id,
-    });
-  }
-  if (opts.backupReminder) {
-    const base = opts.lastBackupAt ?? opts.now;
-    const due = base + BACKUP.reminderDays * 86_400_000;
-    const date = new Date(Math.max(due, opts.now + 60_000));
-    date.setHours(10, 0, 0, 0);
-    if (date.getTime() <= opts.now) date.setDate(date.getDate() + 1);
-    plan.push({
-      identifier: BACKUP_ID,
-      title: opts.t('notifications.backupTitle'),
-      body: opts.t('notifications.backupBody'),
-      date,
-    });
-  }
-  return plan;
-}
+/** Reminders are an Android feature; screens hide their controls when this is false. */
+export const REMINDERS_SUPPORTED = true;
 
 /**
  * Cancels every scheduled reminder and schedules a fresh set. Cheap enough to run on

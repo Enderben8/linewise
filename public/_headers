@@ -1,0 +1,23 @@
+# Cloudflare Pages response headers. scripts/serve-web.js applies the same file for local testing.
+#
+# Every page:
+# - COOP and COEP: expo-sqlite runs SQLite in a worker and needs SharedArrayBuffer, which requires
+#   cross-origin isolation.
+# - Content-Security-Policy: Linewise is offline by design, so the browser may only load from and
+#   connect to this site itself. 'wasm-unsafe-eval' lets SQLite and text recognition compile their
+#   WebAssembly. scripts/check-offline.js fails the build if any source allows another host.
+/*
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' blob:; worker-src 'self' blob:; connect-src 'self' blob: data:; img-src 'self' data: blob:; media-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
+  Referrer-Policy: no-referrer
+  X-Content-Type-Options: nosniff
+  Permissions-Policy: microphone=(self), camera=(self), geolocation=(), payment=()
+
+# Hashed bundles never change, so they can be cached forever.
+/_expo/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# The service worker must be checked for updates on every visit.
+/sw.js
+  Cache-Control: no-cache

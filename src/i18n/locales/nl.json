@@ -29,7 +29,7 @@
     "search": "Zoek op titel, auteur of tag",
     "allTags": "Alle",
     "emptyTitle": "Nog niets om uit je hoofd te leren",
-    "emptyBody": "Voeg een gedicht, toespraak, vers of script toe. Alles blijft op je telefoon.",
+    "emptyBody": "Voeg een gedicht, toespraak, vers of script toe. Alles blijft op je apparaat.",
     "addFirst": "Voeg je eerste tekst toe",
     "noMatches": "Geen teksten gevonden voor je zoekopdracht",
     "backupNudgeTitle": "Tijd voor een back-up",
@@ -44,9 +44,9 @@
     "typeTitle": "Typen of plakken",
     "typeBody": "Schrijf de tekst zelf of plak hem van ergens anders.",
     "fileTitle": "Bestand importeren",
-    "fileBody": "Kies een .txt- of .md-bestand van je telefoon.",
+    "fileBody": "Kies een .txt- of .md-bestand van je apparaat.",
     "cameraOptionTitle": "Scannen met camera of foto",
-    "cameraOptionBody": "Lees gedrukte tekst van een pagina. De herkenning gebeurt op je telefoon.",
+    "cameraOptionBody": "Lees gedrukte tekst van een pagina. De herkenning gebeurt op je apparaat.",
     "shareHint": "Tip: deel in een andere app tekst met Linewise en hij opent hier, klaar om op te slaan.",
     "fileTooLargeTitle": "Dat bestand is te groot",
     "fileTooLargeBody": "Kies een kleiner tekstbestand. Teksten mogen tot 100 KB groot zijn.",
@@ -164,7 +164,9 @@
     "run-scene": {
       "name": "Scène spelen",
       "blurb": "Speel je rol terwijl de app de anderen voorleest"
-    }
+    },
+    "androidOnly": "Alleen in de Android-app",
+    "androidOnlyBody": "Hardop voordragen vraagt spraakherkenning die op het apparaat draait. Browsers sturen je stem naar hun servers, daarom zit dit spel alleen in de Android-app."
   },
   "result": {
     "great": "Goed gedaan!",
@@ -359,7 +361,8 @@
     "none": "Er is nog geen herhaling gepland. Speel een spel met score om je plan te starten.",
     "on": "Herinneringen staan aan. Op herhaaldagen krijg je een melding.",
     "off": "Herinneringen staan uit.",
-    "enable": "Herinneringen aanzetten"
+    "enable": "Herinneringen aanzetten",
+    "web": "Herinneringen zitten alleen in de Android-app. Op het web tonen teksten die aan de beurt zijn “Vandaag herhalen” in je lijst."
   },
   "notifications": {
     "channel": "Herhaalherinneringen",
@@ -380,7 +383,8 @@
     "noneTitle": "Geen stemmen voor deze taal",
     "noneBody": "Open de spraakinstellingen, kies je spraakengine en installeer de stemgegevens voor deze taal. Kom daarna terug en vernieuw.",
     "refresh": "Vernieuwen",
-    "downloadHelp": "Wil je een ander accent of betere kwaliteit? Installeer meer stemmen in de spraakinstellingen van je telefoon."
+    "downloadHelp": "Wil je een ander accent of betere kwaliteit? Installeer meer stemmen in de spraakinstellingen van je telefoon.",
+    "webHelp": "Je browser gebruikt de stemmen die op deze computer of telefoon staan. Voeg er meer toe in de spraak- of taalinstellingen van je systeem en laad de pagina opnieuw."
   },
   "backup": {
     "title": "Back-up en herstel",
@@ -409,7 +413,8 @@
     "restored": "Hersteld. Teksten op deze telefoon: {{count}}.",
     "merged": "Samengevoegd. Toegevoegd: {{added}}, bijgewerkt: {{updated}}, behouden: {{kept}}.",
     "monthly": "Maandelijkse back-upherinnering",
-    "monthlyHelp": "Herinnert je er één keer per maand aan een back-up op te slaan."
+    "monthlyHelp": "Herinnert je er één keer per maand aan een back-up op te slaan.",
+    "exportBodyWeb": "Slaat je teksten, voortgang, sessies en instellingen op in één bestand in je map Downloads. Bewaar een kopie op een veilige plek: de opslag van de browser kan worden gewist."
   },
   "camera": {
     "help": "Richt de camera op gedrukte tekst of kies een foto. De herkenning gebeurt op je telefoon; er wordt niets geüpload.",
@@ -431,7 +436,9 @@
     "reviewHelp": "Controleer de tekst en verbeter fouten voordat je verdergaat.",
     "use": "Deze tekst gebruiken",
     "retake": "Opnieuw scannen",
-    "privacy": "Foto's worden op je telefoon gelezen en niet door Linewise bewaard."
+    "privacy": "Foto's worden op je apparaat gelezen en niet door Linewise bewaard.",
+    "webHelp": "Maak of kies een foto van gedrukte tekst. De herkenning gebeurt in je browser; er wordt niets geüpload.",
+    "loadingModel": "Tekstherkenning wordt voorbereid…"
   },
   "settings": {
     "language": "Taal van de app",
@@ -454,7 +461,7 @@
     "resetSolidifyHelp": "Begin de Verstevigen-scores opnieuw elke keer dat je naar een nieuw herhaalinterval gaat.",
     "data": "Je gegevens",
     "backup": "Back-up en herstel",
-    "offlineNote": "Alles blijft op deze telefoon. Linewise heeft geen accounts en maakt nooit verbinding met internet.",
+    "offlineNote": "Alles blijft op dit apparaat. Linewise heeft geen accounts en maakt nooit verbinding met internet.",
     "about": "Over",
     "faq": "Vragen en antwoorden",
     "report": "Een probleem melden",
@@ -528,7 +535,7 @@
     "reminderQuestion": "Wil je een seintje op herhaaldagen?",
     "reminderBody": "Gespreide herhaling zorgt dat herinneringen blijven hangen. Een zachte herinnering helpt je om door te zetten.",
     "tryDemo": "Probeer een demo van een minuut",
-    "offline": "Geen account. Geen internet. Je teksten verlaten nooit je telefoon."
+    "offline": "Geen account. Geen internet. Je teksten verlaten nooit je apparaat."
   },
   "demo": {
     "title": "Probeer Eerste letter",

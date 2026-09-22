@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Share, View } from 'react-native';
+import { Platform, Share, View } from 'react-native';
 import { ProgressRings } from '../../../../src/components/ProgressRings';
 import { ReviewBadge } from '../../../../src/components/ReviewBadge';
 import { SelectionPicker } from '../../../../src/components/SelectionPicker';
@@ -17,6 +17,7 @@ import {
   Screen,
 } from '../../../../src/components/ui';
 import { rowToState } from '../../../../src/db/repo';
+import { confirmAction } from '../../../../src/lib/dialog';
 import { GROUP_ORDER, gamesFor } from '../../../../src/games/registry';
 import { clampSelection, speakersOf, type ChunkSelection } from '../../../../src/games/setup';
 import { selectionToParams } from '../../../../src/games/useGameSetup';
@@ -54,18 +55,18 @@ export default function MemorizationDetail() {
       params: usesSelection ? selectionToParams(mem.id, sel) : { id: mem.id },
     });
 
-  const confirmDelete = () =>
-    Alert.alert(t('detail.deleteTitle'), t('detail.deleteBody', { title: mem.title }), [
-      { text: t('common.cancel'), style: 'cancel' },
-      {
-        text: t('common.delete'),
-        style: 'destructive',
-        onPress: () => {
-          dispatch(removeMemorization(mem.id));
-          router.back();
-        },
-      },
-    ]);
+  const confirmDelete = async () => {
+    const ok = await confirmAction({
+      title: t('detail.deleteTitle'),
+      message: t('detail.deleteBody', { title: mem.title }),
+      confirmLabel: t('common.delete'),
+      cancelLabel: t('common.cancel'),
+      destructive: true,
+    });
+    if (!ok) return;
+    dispatch(removeMemorization(mem.id));
+    router.back();
+  };
 
   const shareText = () =>
     Share.share({
@@ -74,6 +75,8 @@ export default function MemorizationDetail() {
     });
 
   const noChunks = chunkCount === 0;
+  // On the web, Share needs the browser's share sheet, which many desktop browsers lack.
+  const canShare = Platform.OS !== 'web' || typeof navigator.share === 'function';
 
   return (
     <Screen>
@@ -168,7 +171,7 @@ export default function MemorizationDetail() {
         </>
       )}
 
-      <Button variant="ghost" label={t('detail.share')} onPress={shareText} />
+      {canShare ? <Button variant="ghost" label={t('detail.share')} onPress={shareText} /> : null}
       <Button
         variant="danger"
         testID="delete-memorization"

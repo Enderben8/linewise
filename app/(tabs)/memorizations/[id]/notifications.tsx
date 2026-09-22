@@ -6,6 +6,7 @@ import { spacing, useTheme } from '../../../../src/components/theme';
 import { AppText, Button, Card, EmptyState, Row, Screen } from '../../../../src/components/ui';
 import { rowToState, saveProgressState, listMemorizations } from '../../../../src/db/repo';
 import {
+  REMINDERS_SUPPORTED,
   hasNotificationPermission,
   requestNotificationPermission,
   syncReminders,
@@ -119,7 +120,9 @@ export default function NotificationsScreen() {
             ? t('reminders.next', { date: fmt(mem.progress.nextReviewAt) })
             : t('reminders.none')}
         </AppText>
-        {settings.notifications_enabled && permission ? (
+        {!REMINDERS_SUPPORTED ? (
+          <AppText muted>{t('reminders.web')}</AppText>
+        ) : settings.notifications_enabled && permission ? (
           <AppText color={palette.success}>{t('reminders.on')}</AppText>
         ) : (
           <>

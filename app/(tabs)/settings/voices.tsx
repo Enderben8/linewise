@@ -1,7 +1,7 @@
 import type { Voice } from 'expo-speech';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { spacing, useTheme } from '../../../src/components/theme';
 import { AppText, Button, Card, Chip, Row, Screen } from '../../../src/components/ui';
 import { LANGUAGES } from '../../../src/features/settings/defaults';
@@ -114,9 +114,17 @@ export default function VoicesScreen() {
         <Card style={{ gap: spacing.sm }}>
           <AppText variant="heading">{t('voices.noneTitle')}</AppText>
           <AppText>{t('voices.noneBody')}</AppText>
-          <Button label={t('speechIssue.openTtsSettings')} onPress={() => openTtsSettings()} />
+          {Platform.OS === 'web' ? (
+            <AppText muted>{t('voices.webHelp')}</AppText>
+          ) : (
+            <Button label={t('speechIssue.openTtsSettings')} onPress={() => openTtsSettings()} />
+          )}
           <Button variant="secondary" label={t('voices.refresh')} onPress={load} />
         </Card>
+      ) : Platform.OS === 'web' ? (
+        <AppText variant="caption" muted>
+          {t('voices.webHelp')}
+        </AppText>
       ) : (
         <View style={{ gap: spacing.sm }}>
           <AppText variant="caption" muted>

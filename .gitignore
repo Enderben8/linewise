@@ -32,3 +32,4 @@ expo-env.d.ts
 Thumbs.db
 .vscode/
 .idea/
+dist-web/

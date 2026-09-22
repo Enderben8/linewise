@@ -29,7 +29,7 @@
     "search": "Maghanap ng pamagat, may-akda o tag",
     "allTags": "Lahat",
     "emptyTitle": "Wala pang kakabisaduhin",
-    "emptyBody": "Magdagdag ng tula, talumpati, talata o iskrip. Nananatili ang lahat sa iyong telepono.",
+    "emptyBody": "Magdagdag ng tula, talumpati, talata o iskrip. Nananatili ang lahat sa iyong device.",
     "addFirst": "Idagdag ang una mong teksto",
     "noMatches": "Walang tekstong tumutugma sa hinahanap mo",
     "backupNudgeTitle": "Oras na para mag-backup",
@@ -44,9 +44,9 @@
     "typeTitle": "I-type o i-paste",
     "typeBody": "Isulat mismo ang teksto o i-paste mula sa kahit saan.",
     "fileTitle": "Mag-import ng file",
-    "fileBody": "Pumili ng .txt o .md na file mula sa iyong telepono.",
+    "fileBody": "Pumili ng .txt o .md na file mula sa iyong device.",
     "cameraOptionTitle": "I-scan gamit ang camera o larawan",
-    "cameraOptionBody": "Basahin ang nakalimbag na teksto sa isang pahina. Sa iyong telepono ginagawa ang pagkilala.",
+    "cameraOptionBody": "Basahin ang nakalimbag na teksto sa isang pahina. Sa iyong device ginagawa ang pagkilala.",
     "shareHint": "Tip: sa kahit anong ibang app, i-share ang teksto sa Linewise at bubukas ito rito, handa nang i-save.",
     "fileTooLargeTitle": "Masyadong malaki ang file",
     "fileTooLargeBody": "Pumili ng mas maliit na text file. Hanggang 100 KB ang puwedeng laki ng teksto.",
@@ -164,7 +164,9 @@
     "run-scene": {
       "name": "Isadula ang Eksena",
       "blurb": "Gampanan ang papel mo habang binabasa ng app ang iba"
-    }
+    },
+    "androidOnly": "Sa Android app lang",
+    "androidOnlyBody": "Kailangan ng pagbigkas nang malakas ang pagkilala ng boses na tumatakbo sa device. Ipinapadala ng mga browser ang boses mo sa kanilang mga server, kaya nasa Android app lang ang larong ito."
   },
   "result": {
     "great": "Magaling!",
@@ -359,7 +361,8 @@
     "none": "Wala pang naka-iskedyul na balik-aral. Maglaro ng larong may marka para simulan ang plano mo.",
     "on": "Naka-on ang mga paalala. Makakatanggap ka ng notification sa mga araw ng balik-aral.",
     "off": "Naka-off ang mga paalala.",
-    "enable": "I-on ang mga paalala"
+    "enable": "I-on ang mga paalala",
+    "web": "Nasa Android app lang ang mga paalala. Sa web, ang mga tekstong dapat balikan ay may “Balik-aral ngayon” sa listahan mo."
   },
   "notifications": {
     "channel": "Mga paalala ng balik-aral",
@@ -380,7 +383,8 @@
     "noneTitle": "Walang boses para sa wikang ito",
     "noneBody": "Buksan ang mga setting ng boses, piliin ang speech engine mo at i-install ang voice data para sa wikang ito. Pagkatapos ay bumalik at i-refresh.",
     "refresh": "I-refresh",
-    "downloadHelp": "Gusto ng ibang punto o mas magandang kalidad? Mag-install ng mas maraming boses sa mga setting ng boses ng iyong telepono."
+    "downloadHelp": "Gusto ng ibang punto o mas magandang kalidad? Mag-install ng mas maraming boses sa mga setting ng boses ng iyong telepono.",
+    "webHelp": "Ginagamit ng browser mo ang mga boses na naka-install sa computer o teleponong ito. Magdagdag pa sa mga setting ng boses o wika ng system, pagkatapos ay i-reload."
   },
   "backup": {
     "title": "Backup at pagbabalik",
@@ -409,7 +413,8 @@
     "restored": "Naibalik na. Mga teksto sa teleponong ito: {{count}}.",
     "merged": "Naisama na. Idinagdag: {{added}}, in-update: {{updated}}, pinanatili: {{kept}}.",
     "monthly": "Buwanang paalala sa backup",
-    "monthlyHelp": "Ipinapaalala minsan sa isang buwan na mag-save ng backup."
+    "monthlyHelp": "Ipinapaalala minsan sa isang buwan na mag-save ng backup.",
+    "exportBodyWeb": "Sine-save ang iyong mga teksto, progreso, sesyon at setting sa isang file sa iyong Downloads folder. Magtabi ng kopya sa ligtas na lugar: puwedeng mabura ang storage ng browser."
   },
   "camera": {
     "help": "Itutok ang camera sa nakalimbag na teksto, o pumili ng larawan. Sa iyong telepono ginagawa ang pagkilala; walang ina-upload.",
@@ -431,7 +436,9 @@
     "reviewHelp": "Suriin ang teksto at ayusin ang mga mali bago magpatuloy.",
     "use": "Gamitin ang tekstong ito",
     "retake": "I-scan muli",
-    "privacy": "Sa iyong telepono binabasa ang mga larawan at hindi sine-save ng Linewise."
+    "privacy": "Sa iyong device binabasa ang mga larawan at hindi sine-save ng Linewise.",
+    "webHelp": "Kumuha o pumili ng larawan ng nakalimbag na teksto. Sa browser mo ginagawa ang pagkilala; walang ina-upload.",
+    "loadingModel": "Inihahanda ang pagkilala ng teksto…"
   },
   "settings": {
     "language": "Wika ng app",
@@ -454,7 +461,7 @@
     "resetSolidifyHelp": "Magsimulang muli ang mga marka sa Patatagin tuwing lilipat ka sa bagong interval ng balik-aral.",
     "data": "Ang iyong data",
     "backup": "Backup at pagbabalik",
-    "offlineNote": "Nananatili ang lahat sa teleponong ito. Walang account ang Linewise at hindi ito kailanman kumokonekta sa internet.",
+    "offlineNote": "Nananatili ang lahat sa device na ito. Walang account ang Linewise at hindi ito kailanman kumokonekta sa internet.",
     "about": "Tungkol dito",
     "faq": "Mga tanong at sagot",
     "report": "Mag-ulat ng problema",
@@ -528,7 +535,7 @@
     "reminderQuestion": "Gusto mo ba ng paalala sa mga araw ng balik-aral?",
     "reminderBody": "Ang mga may-pagitang balik-aral ang nagpapatagal ng alaala. Nakakatulong ang banayad na paalala para hindi ka makalimot.",
     "tryDemo": "Subukan ang isang-minutong demo",
-    "offline": "Walang account. Walang internet. Hindi umaalis sa telepono mo ang iyong mga teksto."
+    "offline": "Walang account. Walang internet. Hindi umaalis sa device mo ang iyong mga teksto."
   },
   "demo": {
     "title": "Subukan ang Unang Titik",

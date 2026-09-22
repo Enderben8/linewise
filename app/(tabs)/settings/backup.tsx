@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Switch, View } from 'react-native';
+import { Platform, Switch, View } from 'react-native';
 import { spacing, useTheme } from '../../../src/components/theme';
 import { AppText, Button, Card, Row, Screen } from '../../../src/components/ui';
 import { listMemorizations } from '../../../src/db/repo';
@@ -9,6 +9,7 @@ import { planMerge, summarize, type BackupFile } from '../../../src/features/bac
 import { exportBackup, pickBackup } from '../../../src/features/backup/service';
 import { syncReminders } from '../../../src/features/notifications/reminders';
 import { deleteAudioFiles } from '../../../src/features/recordings/files';
+import { confirmAction } from '../../../src/lib/dialog';
 import { useAppDispatch, useAppSelector } from '../../../src/store';
 import { reloadMemorizations } from '../../../src/store/memorizationsSlice';
 import { loadSettings, updateSettings } from '../../../src/store/settingsSlice';
@@ -75,20 +76,20 @@ export default function BackupScreen() {
     setMessage({ text, ok: true });
   };
 
-  const doReplace = () =>
-    Alert.alert(t('backup.replaceTitle'), t('backup.replaceBody'), [
-      { text: t('common.cancel'), style: 'cancel' },
-      {
-        text: t('backup.replace'),
-        style: 'destructive',
-        onPress: async () => {
-          if (!pending) return;
-          const files = replaceAll(pending.tables);
-          deleteAudioFiles(files);
-          await finish(t('backup.restored', { count: pending.tables.memorizations.length }));
-        },
-      },
-    ]);
+  const doReplace = async () => {
+    if (!pending) return;
+    const ok = await confirmAction({
+      title: t('backup.replaceTitle'),
+      message: t('backup.replaceBody'),
+      confirmLabel: t('backup.replace'),
+      cancelLabel: t('common.cancel'),
+      destructive: true,
+    });
+    if (!ok) return;
+    const files = replaceAll(pending.tables);
+    deleteAudioFiles(files);
+    await finish(t('backup.restored', { count: pending.tables.memorizations.length }));
+  };
 
   const doMerge = async () => {
     if (!pending) return;
@@ -103,7 +104,9 @@ export default function BackupScreen() {
     <Screen>
       <Card>
         <AppText variant="heading">{t('backup.exportTitle')}</AppText>
-        <AppText>{t('backup.exportBody')}</AppText>
+        <AppText>
+          {Platform.OS === 'web' ? t('backup.exportBodyWeb') : t('backup.exportBody')}
+        </AppText>
         <AppText color={palette.warning}>{t('backup.noRecordings')}</AppText>
         <AppText variant="caption" muted>
           {settings.last_backup_at

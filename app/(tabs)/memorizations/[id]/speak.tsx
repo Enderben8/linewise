@@ -114,5 +114,9 @@ function Body({ setup }: { setup: GameSetup }) {
 
 export default function Speak() {
   const { t } = useTranslation();
-  return <GameGate title={t('games.speak.name')}>{(setup) => <Body setup={setup} />}</GameGate>;
+  return (
+    <GameGate title={t('games.speak.name')} game="speak">
+      {(setup) => <Body setup={setup} />}
+    </GameGate>
+  );
 }

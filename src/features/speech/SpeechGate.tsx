@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Linking } from 'react-native';
+import { Linking, Platform } from 'react-native';
 import { AppText, Button, Card } from '../../components/ui';
+import { notify } from '../../lib/dialog';
 import { checkSpeechReady, downloadLanguagePack, type SpeechProblem } from './recognition';
 import { checkTts, openTtsSettings } from './tts';
 
@@ -71,12 +72,16 @@ export function SpeechIssueCard({
         <Button
           label={t('speechIssue.downloadPack')}
           onPress={async () =>
-            Alert.alert(t('speechIssue.downloadPack'), await downloadLanguagePack(lang))
+            notify(t('speechIssue.downloadPack'), await downloadLanguagePack(lang))
           }
         />
       ) : null}
       {issue === 'no-voice' ? (
-        <Button label={t('speechIssue.openTtsSettings')} onPress={() => openTtsSettings()} />
+        Platform.OS === 'web' ? (
+          <AppText muted>{t('voices.webHelp')}</AppText>
+        ) : (
+          <Button label={t('speechIssue.openTtsSettings')} onPress={() => openTtsSettings()} />
+        )
       ) : null}
       <Button variant="secondary" label={t('speechIssue.retry')} onPress={onRetry} />
     </Card>

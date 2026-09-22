@@ -1,26 +1,29 @@
 import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
 import * as Notifications from 'expo-notifications';
 import { Stack, useRouter } from 'expo-router';
-import { ShareIntentProvider, useShareIntentContext } from 'expo-share-intent';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import { View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Platform, Text, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { AppText, Screen } from '../src/components/ui';
 import { useTheme } from '../src/components/theme';
-import { db } from '../src/db/client';
+import { db, initDatabase } from '../src/db/client';
 import { migrations } from '../src/db/migrations';
 import { syncReminders } from '../src/features/notifications/reminders';
+import { ShareProvider, useSharedText } from '../src/features/share/ShareBridge';
 import i18n, { applyLocale } from '../src/i18n';
+import { registerServiceWorker } from '../src/lib/serviceWorker';
 import { store, useAppDispatch, useAppSelector } from '../src/store';
 import { draftActions } from '../src/store/draftSlice';
 import { reloadMemorizations } from '../src/store/memorizationsSlice';
 import { loadSettings } from '../src/store/settingsSlice';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
+
+const WEB_COLUMN = { flex: 1, width: '100%', maxWidth: 720, alignSelf: 'center' } as const;
 
 function Bootstrap() {
   const dispatch = useAppDispatch();
@@ -31,7 +34,7 @@ function Bootstrap() {
   const settings = useAppSelector((s) => s.settings.values);
   const items = useAppSelector((s) => s.memorizations.items);
   const loaded = useAppSelector((s) => s.memorizations.loaded);
-  const { hasShareIntent, shareIntent, resetShareIntent } = useShareIntentContext();
+  const { shared, clear: clearShared } = useSharedText();
 
   // If the database cannot be opened, show the error screen instead of leaving the splash up.
   useEffect(() => {
@@ -58,16 +61,14 @@ function Bootstrap() {
   }, [hydrated, loaded, settings.notifications_enabled, settings.backup_reminder_enabled]);
 
   useEffect(() => {
-    if (!hasShareIntent || !hydrated) return;
-    const text = shareIntent.text ?? '';
-    if (text) {
-      dispatch(draftActions.setDraft({ body: text, title: shareIntent.meta?.title ?? '' }));
-      router.push('/add/edit-text');
-    }
-    resetShareIntent();
-  }, [hasShareIntent, hydrated, shareIntent, dispatch, router, resetShareIntent]);
+    if (!shared || !hydrated) return;
+    dispatch(draftActions.setDraft({ body: shared.text, title: shared.title }));
+    router.push('/add/edit-text');
+    clearShared();
+  }, [shared, hydrated, dispatch, router, clearShared]);
 
   useEffect(() => {
+    if (Platform.OS === 'web') return;
     const sub = Notifications.addNotificationResponseReceivedListener((response) => {
       const id = response.notification.request.content.data?.memorizationId;
       if (typeof id === 'string') router.push(`/memorizations/${id}`);
@@ -86,18 +87,49 @@ function Bootstrap() {
   if (!success || !hydrated) return <View style={{ flex: 1, backgroundColor: palette.bg }} />;
 
   return (
-    <>
-      <StatusBar style="auto" />
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: palette.bg } }}>
-        <Stack.Screen name="onboarding" options={{ gestureEnabled: false }} />
-      </Stack>
-    </>
+    // On a wide browser window the app sits in a centred, phone-to-tablet sized column.
+    <View style={{ flex: 1, backgroundColor: palette.bg }}>
+      <View style={Platform.OS === 'web' ? WEB_COLUMN : { flex: 1 }}>
+        <StatusBar style="auto" />
+        <Stack
+          screenOptions={{ headerShown: false, contentStyle: { backgroundColor: palette.bg } }}
+        >
+          <Stack.Screen name="onboarding" options={{ gestureEnabled: false }} />
+        </Stack>
+      </View>
+    </View>
   );
 }
 
 export default function RootLayout() {
+  // The web build opens its database asynchronously first (see src/db/client.web.ts).
+  const [dbReady, setDbReady] = useState(Platform.OS !== 'web');
+  const [dbError, setDbError] = useState<string | null>(null);
+  useEffect(() => {
+    if (dbReady) return;
+    initDatabase()
+      .then(() => {
+        // Ask the browser not to clear Linewise's storage when disk space runs low.
+        navigator.storage?.persist?.().catch(() => {});
+        registerServiceWorker();
+        setDbReady(true);
+      })
+      .catch((e: unknown) => setDbError(e instanceof Error ? e.message : String(e)));
+  }, [dbReady]);
+
+  if (dbError) {
+    return (
+      <View style={{ flex: 1, padding: 24, justifyContent: 'center' }}>
+        {/* Plain Text: the Redux store that AppText reads is not mounted yet. */}
+        <Text style={{ fontSize: 22, fontWeight: '700' }}>{i18n.t('errors.databaseTitle')}</Text>
+        <Text style={{ marginTop: 8 }}>{dbError}</Text>
+      </View>
+    );
+  }
+  if (!dbReady) return <View style={{ flex: 1, backgroundColor: '#0F3D3E' }} />;
+
   return (
-    <ShareIntentProvider>
+    <ShareProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaProvider>
           <Provider store={store}>
@@ -105,6 +137,6 @@ export default function RootLayout() {
           </Provider>
         </SafeAreaProvider>
       </GestureHandlerRootView>
-    </ShareIntentProvider>
+    </ShareProvider>
   );
 }

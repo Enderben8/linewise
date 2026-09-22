@@ -2,10 +2,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { spacing, useTheme } from '../../../src/components/theme';
 import { AppText, Card, Row, Screen } from '../../../src/components/ui';
 import { pickTextFile } from '../../../src/features/import/pickFile';
+import { notify } from '../../../src/lib/dialog';
 import { useAppDispatch } from '../../../src/store';
 import { draftActions } from '../../../src/store/draftSlice';
 
@@ -51,9 +52,9 @@ export default function AddScreen() {
       dispatch(draftActions.setDraft({ title: res.title, body: res.body }));
       router.push('/add/edit-text');
     } else if (res.status === 'too-large') {
-      Alert.alert(t('add.fileTooLargeTitle'), t('add.fileTooLargeBody'));
+      notify(t('add.fileTooLargeTitle'), t('add.fileTooLargeBody'));
     } else if (res.status === 'error') {
-      Alert.alert(t('add.fileErrorTitle'), res.message);
+      notify(t('add.fileErrorTitle'), res.message);
     }
   };
 
@@ -84,9 +85,12 @@ export default function AddScreen() {
         body={t('add.cameraOptionBody')}
         onPress={() => router.push('/add/camera-recognition')}
       />
-      <AppText variant="caption" muted>
-        {t('add.shareHint')}
-      </AppText>
+      {/* Browsers cannot receive text shared from other apps. */}
+      {Platform.OS !== 'web' ? (
+        <AppText variant="caption" muted>
+          {t('add.shareHint')}
+        </AppText>
+      ) : null}
     </Screen>
   );
 }

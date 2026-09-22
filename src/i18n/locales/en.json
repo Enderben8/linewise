@@ -29,7 +29,7 @@
     "search": "Search title, author or tag",
     "allTags": "All",
     "emptyTitle": "Nothing to memorize yet",
-    "emptyBody": "Add a poem, a speech, a verse or a script. Everything stays on your phone.",
+    "emptyBody": "Add a poem, a speech, a verse or a script. Everything stays on your device.",
     "addFirst": "Add your first text",
     "noMatches": "No texts match your search",
     "backupNudgeTitle": "Time for a backup",
@@ -44,9 +44,9 @@
     "typeTitle": "Type or paste",
     "typeBody": "Write the text yourself or paste it from anywhere.",
     "fileTitle": "Import a file",
-    "fileBody": "Pick a .txt or .md file from your phone.",
+    "fileBody": "Pick a .txt or .md file from your device.",
     "cameraOptionTitle": "Scan from camera or photo",
-    "cameraOptionBody": "Read printed text from a page. Recognition happens on your phone.",
+    "cameraOptionBody": "Read printed text from a page. Recognition happens on your device.",
     "shareHint": "Tip: in any other app, share text to Linewise and it opens here, ready to save.",
     "fileTooLargeTitle": "That file is too large",
     "fileTooLargeBody": "Choose a smaller text file. Texts can be up to 100 KB.",
@@ -164,7 +164,9 @@
     "run-scene": {
       "name": "Run Scene",
       "blurb": "Play your part while the app reads the others"
-    }
+    },
+    "androidOnly": "Only in the Android app",
+    "androidOnlyBody": "Reciting out loud needs speech recognition that runs on the device. Browsers send your voice to their servers instead, so this game is only in the Android app."
   },
   "result": {
     "great": "Well done!",
@@ -359,7 +361,8 @@
     "none": "No review is scheduled yet. Play a scored game to start your plan.",
     "on": "Reminders are on. You will get a notification on review days.",
     "off": "Reminders are off.",
-    "enable": "Turn on reminders"
+    "enable": "Turn on reminders",
+    "web": "Reminders are only in the Android app. On the web, texts due for review show “Review today” in your list."
   },
   "notifications": {
     "channel": "Review reminders",
@@ -380,7 +383,8 @@
     "noneTitle": "No voices for this language",
     "noneBody": "Open the voice settings, pick your speech engine, and install the voice data for this language. Then come back and refresh.",
     "refresh": "Refresh",
-    "downloadHelp": "Want a different accent or better quality? Install more voices in your phone's voice settings."
+    "downloadHelp": "Want a different accent or better quality? Install more voices in your phone's voice settings.",
+    "webHelp": "Your browser uses the voices installed on this computer or phone. Add more in your system’s speech or language settings, then reload."
   },
   "backup": {
     "title": "Back up and restore",
@@ -409,7 +413,8 @@
     "restored": "Restored. Texts on this phone: {{count}}.",
     "merged": "Merged. Added {{added}}, updated {{updated}}, kept {{kept}}.",
     "monthly": "Monthly backup reminder",
-    "monthlyHelp": "Reminds you once a month to save a backup."
+    "monthlyHelp": "Reminds you once a month to save a backup.",
+    "exportBodyWeb": "Saves your texts, progress, sessions and settings in one file in your Downloads folder. Keep a copy somewhere safe: this browser’s storage can be cleared."
   },
   "camera": {
     "help": "Point the camera at printed text, or choose a photo. Recognition runs on your phone; nothing is uploaded.",
@@ -431,7 +436,9 @@
     "reviewHelp": "Check the text and fix any mistakes before you continue.",
     "use": "Use this text",
     "retake": "Scan again",
-    "privacy": "Photos are read on your phone and are not saved by Linewise."
+    "privacy": "Photos are read on your device and are not saved by Linewise.",
+    "webHelp": "Take or choose a photo of printed text. Recognition runs in your browser; nothing is uploaded.",
+    "loadingModel": "Preparing text recognition…"
   },
   "settings": {
     "language": "App language",
@@ -454,7 +461,7 @@
     "resetSolidifyHelp": "Start Solidify scores fresh every time you move to a new review interval.",
     "data": "Your data",
     "backup": "Back up and restore",
-    "offlineNote": "Everything stays on this phone. Linewise has no accounts and never connects to the internet.",
+    "offlineNote": "Everything stays on this device. Linewise has no accounts and never connects to the internet.",
     "about": "About",
     "faq": "Questions and answers",
     "report": "Report a problem",
@@ -528,7 +535,7 @@
     "reminderQuestion": "Want a nudge on review days?",
     "reminderBody": "Spaced reviews are how memories last. A gentle reminder helps you show up.",
     "tryDemo": "Try a one-minute demo",
-    "offline": "No account. No internet. Your texts never leave your phone."
+    "offline": "No account. No internet. Your texts never leave your device."
   },
   "demo": {
     "title": "Try First Letter",

@@ -17,6 +17,22 @@ export function scriptForLanguage(lang: string): OcrScript {
   return 'Latin';
 }
 
+/**
+ * Tesseract language data bundled with the web app, for each scannable Linewise language.
+ * Must match LANGS in scripts/copy-ocr-assets.js.
+ */
+export const TESSERACT_LANG: Record<string, string> = {
+  en: 'eng',
+  es: 'spa',
+  fr: 'fra',
+  de: 'deu',
+  fil: 'tgl',
+  'pt-BR': 'por',
+  nl: 'nld',
+  hi: 'hin',
+  'zh-Hans': 'chi_sim',
+};
+
 interface BlockLike {
   text: string;
   lines: { text: string }[];

@@ -11,7 +11,7 @@ import {
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Linking, View } from 'react-native';
+import { Linking, Platform, View } from 'react-native';
 import { spacing, useTheme } from '../../../../src/components/theme';
 import {
   AppText,
@@ -31,7 +31,11 @@ import {
   setVoiceOverrides,
 } from '../../../../src/db/repo';
 import type { RecordingRow } from '../../../../src/db/schema';
-import { deleteAudioFiles, persistRecording } from '../../../../src/features/recordings/files';
+import {
+  deleteAudioFiles,
+  persistRecording,
+  usePlayableUri,
+} from '../../../../src/features/recordings/files';
 import {
   LISTEN_SOURCE_KEY,
   canAddRecording,
@@ -43,6 +47,7 @@ import { LIMITS } from '../../../../src/config';
 import { useAppDispatch, useAppSelector } from '../../../../src/store';
 import { reloadMemorizations } from '../../../../src/store/memorizationsSlice';
 import { newId } from '../../../../src/lib/uuid';
+import { confirmAction, notify } from '../../../../src/lib/dialog';
 
 interface RowProps {
   rec: RecordingRow;
@@ -69,7 +74,7 @@ function RecordingItem({
 }: RowProps) {
   const { t, i18n } = useTranslation();
   const { palette } = useTheme();
-  const player = useAudioPlayer(rec.fileUri);
+  const player = useAudioPlayer(usePlayableUri(rec.fileUri));
   const status = useAudioPlayerStatus(player);
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(rec.name);
@@ -189,7 +194,7 @@ export default function MyRecordings() {
       await setAudioModeAsync({ allowsRecording: false });
       if (!temp) return;
       const recId = newId();
-      const uri = persistRecording(temp, recId);
+      const uri = await persistRecording(temp, recId);
       insertRecording({
         memorizationId: id,
         name: defaultRecordingName(
@@ -218,15 +223,23 @@ export default function MyRecordings() {
 
   const startRecording = async () => {
     if (!canAddRecording(recordings.length)) {
-      Alert.alert(t('recordings.fullTitle'), t('recordings.fullBody'));
+      notify(t('recordings.fullTitle'), t('recordings.fullBody'));
       return;
     }
     const perm = await requestRecordingPermissionsAsync();
     if (!perm.granted) {
-      Alert.alert(t('recordings.permissionTitle'), t('recordings.permissionBody'), [
-        { text: t('common.cancel'), style: 'cancel' },
-        { text: t('speechIssue.openSettings'), onPress: () => Linking.openSettings() },
-      ]);
+      if (Platform.OS === 'web') {
+        notify(t('recordings.permissionTitle'), t('recordings.permissionBody'));
+      } else if (
+        await confirmAction({
+          title: t('recordings.permissionTitle'),
+          message: t('recordings.permissionBody'),
+          confirmLabel: t('speechIssue.openSettings'),
+          cancelLabel: t('common.cancel'),
+        })
+      ) {
+        Linking.openSettings();
+      }
       return;
     }
     setPlayingId(null);
@@ -235,30 +248,30 @@ export default function MyRecordings() {
     recorder.record();
     clearLimitTimer();
     limitTimer.current = setTimeout(() => {
-      Alert.alert(t('recordings.limitReachedTitle'), t('recordings.limitReachedBody'));
+      notify(t('recordings.limitReachedTitle'), t('recordings.limitReachedBody'));
       stopRef.current();
     }, LIMITS.maxRecordingSeconds * 1000);
   };
 
-  const remove = (rec: RecordingRow) =>
-    Alert.alert(t('recordings.deleteTitle'), rec.name, [
-      { text: t('common.cancel'), style: 'cancel' },
-      {
-        text: t('common.delete'),
-        style: 'destructive',
-        onPress: () => {
-          const uri = deleteRecording(rec.id);
-          if (uri) deleteAudioFiles([uri]);
-          if (mem.progress.voiceOverrides[LISTEN_SOURCE_KEY] === rec.id) {
-            const next = { ...mem.progress.voiceOverrides };
-            delete next[LISTEN_SOURCE_KEY];
-            setVoiceOverrides(mem.id, next);
-            dispatch(reloadMemorizations());
-          }
-          refresh();
-        },
-      },
-    ]);
+  const remove = async (rec: RecordingRow) => {
+    const ok = await confirmAction({
+      title: t('recordings.deleteTitle'),
+      message: rec.name,
+      confirmLabel: t('common.delete'),
+      cancelLabel: t('common.cancel'),
+      destructive: true,
+    });
+    if (!ok) return;
+    const uri = deleteRecording(rec.id);
+    if (uri) deleteAudioFiles([uri]);
+    if (mem.progress.voiceOverrides[LISTEN_SOURCE_KEY] === rec.id) {
+      const next = { ...mem.progress.voiceOverrides };
+      delete next[LISTEN_SOURCE_KEY];
+      setVoiceOverrides(mem.id, next);
+      dispatch(reloadMemorizations());
+    }
+    refresh();
+  };
 
   const toggleListenSource = (rec: RecordingRow) => {
     const current = mem.progress.voiceOverrides;

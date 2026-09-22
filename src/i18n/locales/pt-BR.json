@@ -29,7 +29,7 @@
     "search": "Buscar título, autor ou tag",
     "allTags": "Todas",
     "emptyTitle": "Nada para memorizar ainda",
-    "emptyBody": "Adicione um poema, um discurso, um versículo ou um roteiro. Tudo fica no seu celular.",
+    "emptyBody": "Adicione um poema, um discurso, um versículo ou um roteiro. Tudo fica no seu dispositivo.",
     "addFirst": "Adicione seu primeiro texto",
     "noMatches": "Nenhum texto corresponde à sua busca",
     "backupNudgeTitle": "Hora de fazer um backup",
@@ -44,9 +44,9 @@
     "typeTitle": "Digitar ou colar",
     "typeBody": "Escreva o texto você mesmo ou cole de qualquer lugar.",
     "fileTitle": "Importar um arquivo",
-    "fileBody": "Escolha um arquivo .txt ou .md do seu celular.",
+    "fileBody": "Escolha um arquivo .txt ou .md do seu dispositivo.",
     "cameraOptionTitle": "Escanear com a câmera ou uma foto",
-    "cameraOptionBody": "Leia texto impresso de uma página. O reconhecimento acontece no seu celular.",
+    "cameraOptionBody": "Leia texto impresso de uma página. O reconhecimento acontece no seu dispositivo.",
     "shareHint": "Dica: em qualquer outro app, compartilhe texto com o Linewise e ele abre aqui, pronto para salvar.",
     "fileTooLargeTitle": "Esse arquivo é grande demais",
     "fileTooLargeBody": "Escolha um arquivo de texto menor. Os textos podem ter até 100 KB.",
@@ -164,7 +164,9 @@
     "run-scene": {
       "name": "Ensaiar Cena",
       "blurb": "Interprete seu papel enquanto o app lê os outros"
-    }
+    },
+    "androidOnly": "Só no app Android",
+    "androidOnlyBody": "Recitar em voz alta precisa de reconhecimento de voz que rode no aparelho. Os navegadores enviam sua voz para os servidores deles, então este jogo só está no app Android."
   },
   "result": {
     "great": "Muito bem!",
@@ -359,7 +361,8 @@
     "none": "Nenhuma revisão agendada ainda. Jogue um jogo com pontuação para começar seu plano.",
     "on": "Os lembretes estão ativados. Você receberá uma notificação nos dias de revisão.",
     "off": "Os lembretes estão desativados.",
-    "enable": "Ativar lembretes"
+    "enable": "Ativar lembretes",
+    "web": "Os lembretes só existem no app Android. Na web, os textos com revisão marcada mostram “Revisar hoje” na sua lista."
   },
   "notifications": {
     "channel": "Lembretes de revisão",
@@ -380,7 +383,8 @@
     "noneTitle": "Nenhuma voz para este idioma",
     "noneBody": "Abra os ajustes de voz, escolha seu mecanismo de voz e instale os dados de voz deste idioma. Depois volte e atualize.",
     "refresh": "Atualizar",
-    "downloadHelp": "Quer outro sotaque ou mais qualidade? Instale mais vozes nos ajustes de voz do seu celular."
+    "downloadHelp": "Quer outro sotaque ou mais qualidade? Instale mais vozes nos ajustes de voz do seu celular.",
+    "webHelp": "Seu navegador usa as vozes instaladas neste computador ou celular. Adicione mais nos ajustes de voz ou idioma do sistema e recarregue a página."
   },
   "backup": {
     "title": "Backup e restauração",
@@ -409,7 +413,8 @@
     "restored": "Restaurado. Textos neste celular: {{count}}.",
     "merged": "Mesclado. Adicionados: {{added}}, atualizados: {{updated}}, mantidos: {{kept}}.",
     "monthly": "Lembrete mensal de backup",
-    "monthlyHelp": "Lembra você uma vez por mês de salvar um backup."
+    "monthlyHelp": "Lembra você uma vez por mês de salvar um backup.",
+    "exportBodyWeb": "Salva seus textos, progresso, sessões e ajustes em um arquivo na sua pasta Downloads. Guarde uma cópia em um lugar seguro: o armazenamento do navegador pode ser apagado."
   },
   "camera": {
     "help": "Aponte a câmera para um texto impresso ou escolha uma foto. O reconhecimento acontece no seu celular; nada é enviado.",
@@ -431,7 +436,9 @@
     "reviewHelp": "Confira o texto e corrija os erros antes de continuar.",
     "use": "Usar este texto",
     "retake": "Escanear de novo",
-    "privacy": "As fotos são lidas no seu celular e não são guardadas pelo Linewise."
+    "privacy": "As fotos são lidas no seu dispositivo e não são guardadas pelo Linewise.",
+    "webHelp": "Tire ou escolha uma foto de texto impresso. O reconhecimento acontece no seu navegador; nada é enviado.",
+    "loadingModel": "Preparando o reconhecimento de texto…"
   },
   "settings": {
     "language": "Idioma do app",
@@ -454,7 +461,7 @@
     "resetSolidifyHelp": "Zera as pontuações de Fixar toda vez que você passa para um novo intervalo de revisão.",
     "data": "Seus dados",
     "backup": "Backup e restauração",
-    "offlineNote": "Tudo fica neste celular. O Linewise não tem contas e nunca se conecta à internet.",
+    "offlineNote": "Tudo fica neste dispositivo. O Linewise não tem contas e nunca se conecta à internet.",
     "about": "Sobre",
     "faq": "Perguntas e respostas",
     "report": "Relatar um problema",
@@ -528,7 +535,7 @@
     "reminderQuestion": "Quer um lembrete nos dias de revisão?",
     "reminderBody": "Revisões espaçadas são o que faz a memória durar. Um lembrete gentil ajuda você a não faltar.",
     "tryDemo": "Experimente uma demo de um minuto",
-    "offline": "Sem conta. Sem internet. Seus textos nunca saem do seu celular."
+    "offline": "Sem conta. Sem internet. Seus textos nunca saem do seu dispositivo."
   },
   "demo": {
     "title": "Experimente Primeira Letra",

@@ -11,6 +11,7 @@ import type { RecordingRow } from '../../../../src/db/schema';
 import { SpeechIssueCard, useSpeechGate } from '../../../../src/features/speech/SpeechGate';
 import { defaultVoiceFor } from '../../../../src/features/speech/locales';
 import { speakAsync, stopSpeaking } from '../../../../src/features/speech/tts';
+import { usePlayableUri } from '../../../../src/features/recordings/files';
 import { formatDuration, listenSource } from '../../../../src/features/recordings/rules';
 import { GameGate } from '../../../../src/games/GameGate';
 import { buildSegments, effectiveRate, SPEEDS } from '../../../../src/games/listen';
@@ -179,7 +180,7 @@ function RecordingListen({ setup, recording }: { setup: GameSetup; recording: Re
   const { t } = useTranslation();
   const { palette } = useTheme();
   const insets = useSafeAreaInsets();
-  const player = useAudioPlayer(recording.fileUri);
+  const player = useAudioPlayer(usePlayableUri(recording.fileUri));
   const status = useAudioPlayerStatus(player);
   const [speed, setSpeed] = useState<number>(1);
   const [repeat, setRepeat] = useState(false);

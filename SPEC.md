@@ -20,7 +20,9 @@ Status tracking is at the bottom (§11). Update it when you finish a task.
 
 Users add a text (a poem, verse, speech or play script) and split it into chunks. They practise with 11 game modes, including speech recognition. Reviews come at spaced-repetition intervals, with reminders toward an optional target date. All data stays on the phone. Every feature is free.
 
-**Platform and distribution:** Android only. The app is not published to any app store. Signed release APKs are built by GitHub Actions and attached to GitHub Releases, and users install them directly. Do not add iOS-only work, app store listings or store review prompts. Keep the code cross-platform where it costs nothing, but test and ship Android only.
+**Platform and distribution:** Android only. The app is not published to any app store. Signed release APKs are built by GitHub Actions and attached to GitHub Releases, and users install them directly. Do not add iOS-only work, app store listings or store review prompts. Keep the code cross-platform where it costs nothing.
+
+**Web app** (added 2026-09-22, see §10): the same code also ships as an installable, offline web app (PWA) on Cloudflare Pages. Data stays in that browser. Speak and Run Scene are Android only, and the web app has no reminders; everything else works the same.
 
 **Left out on purpose** (they need a server): accounts and sign-in, cloud backup and sync, the public Library, groups, leaderboards, AI voices, PDF import. Backup export/import (§9) replaces cloud backup. Do not build any of the others.
 
@@ -188,7 +190,7 @@ Add a row when you change a default or make a call not covered here.
 | Date | Decision | Why |
 | --- | --- | --- |
 | 2026-09-21 | All features free. No Premium tier, paywall or in-app purchases | Owner's decision |
-| 2026-09-21 | Mobile only. No web app | Owner's decision |
+| 2026-09-21 | ~~Mobile only. No web app~~ Replaced on 2026-09-22 by the web app rows below | Owner's decision |
 | 2026-09-21 | Android only, distributed as APKs on GitHub Releases. No iOS, no app stores | Owner's decision |
 | 2026-09-21 | App name Linewise, package `app.linewise` | Owner asked Claude to choose |
 | 2026-09-21 | Fully offline, no backend and no accounts. Dropped: sign-in, cloud sync, Library, groups, leaderboards, AI voices, PDF import | Owner does not want Supabase, Google Cloud or any paid service |
@@ -211,6 +213,17 @@ Add a row when you change a default or make a call not covered here.
 | 2026-09-21 | OCR supports Latin, Chinese, Devanagari, Japanese and Korean (ML Kit models bundled). Arabic and Hebrew are not supported by ML Kit; the screen says so | Library limit |
 | 2026-09-21 | Release signing reads `LINEWISE_KEYSTORE_FILE`, `LINEWISE_KEYSTORE_PASSWORD`, `LINEWISE_KEY_ALIAS`, `LINEWISE_KEY_PASSWORD` from the environment through `plugins/withReleaseSigning.js`. The release workflow refuses to publish an APK signed with the debug key. `versionCode` = major\*10000 + minor\*100 + patch from the tag | Keeps the keystore only in GitHub Actions secrets (§1 rule 4) |
 | 2026-09-21 | Also blocked in the manifest: `SYSTEM_ALERT_WINDOW`, `READ_EXTERNAL_STORAGE`, `WRITE_EXTERNAL_STORAGE`, besides `INTERNET` | The app uses none of them |
+| 2026-09-22 | Linewise also ships as a web app: an installable PWA that works offline after the first visit, built from the same code with `*.web.ts(x)` twins for the phone-only modules | Owner's decision |
+| 2026-09-22 | Hosted on Cloudflare Pages (free), deployed by the `web` job of the release workflow. The repo stays private | Owner's decision |
+| 2026-09-22 | Speak and Run Scene are hidden on the web (`gamesFor`, `GameGate` shows "Android app only") | Browser speech recognition sends audio to Google or Microsoft servers, which breaks §1 rule 3 |
+| 2026-09-22 | No reminders on the web: the toggle and onboarding question are hidden, and "review today" badges and the in-app backup nudge remain | A browser cannot show a notification on a later day without a push server |
+| 2026-09-22 | Offline on the web is enforced by a strict Content-Security-Policy in `public/_headers` (only `'self'`, `blob:` and `data:`), checked by `scripts/check-offline.js`, instead of scanning the built bundle for URLs | Third-party libraries contain many harmless URL strings; the CSP makes the browser itself refuse any outside request |
+| 2026-09-22 | Web OCR uses Tesseract.js (Apache-2.0) with its worker, cores and 9 language models copied into the site under `/ocr` by `scripts/copy-ocr-assets.js`, loaded only when the scan screen is used and cached by the service worker | ML Kit is Android only; nothing may load from a CDN |
+| 2026-09-22 | Web storage: SQLite through expo-sqlite's web build (needs COOP/COEP headers), opened asynchronously once before the sync API is used; recordings are blobs in IndexedDB (`fileUri` = `idb:<id>`); the app asks for persistent storage | Keeps `src/db/repo.ts` synchronous and shared with Android |
+| 2026-09-22 | `patches/expo-sqlite+57.0.3.patch` (applied by `patch-package` on install) fixes expo-sqlite's web worker writing only the low byte of a result's length, which cut off any synchronous result longer than 255 bytes | Upstream bug; saving a text failed on the web without it |
+| 2026-09-22 | Libraries added for the web: `react-native-web`, `@expo/metro-runtime`, `tesseract.js`. Dev only: `workbox-cli` (service worker), `patch-package`, the `@tesseract.js-data/*` language packages | Needed for the web build; none talks to the network at run time |
+| 2026-09-22 | Dialogs go through `src/lib/dialog.ts` (`notify`, `confirmAction`) instead of `Alert.alert` | `Alert.alert` does nothing in react-native-web |
+| 2026-09-22 | UI copy says "device" instead of "phone" where the web app shows the same string (privacy notes, file and scan hints, empty list) | The text is shown in browsers on computers too |
 
 ## 11. Build phases and status
 
@@ -255,6 +268,15 @@ Do phases in order. Phases 3 and 4 may run in parallel after phase 2. A phase is
 - [x] GitHub Actions release workflow: on a `v*` tag, build a signed release APK and attach it to a GitHub Release
 - [x] README: what the app does, how to install the APK (allow installs from unknown sources), how to build it locally
 
+### Phase 6 — Web
+- [x] Web build (Metro, single-page output) with web twins for the database, recordings, backup, file import, reminders, share intent and OCR
+- [x] Speak and Run Scene hidden on the web with an "Android app only" message
+- [x] RTL and language switching without a restart on the web
+- [x] PWA: manifest, icons, service worker (Workbox) precaching the app shell; OCR files cached on first use
+- [x] `public/_headers`: cross-origin isolation and a same-site-only Content-Security-Policy, checked in CI
+- [x] CI builds the web app; the release workflow deploys it to Cloudflare Pages
+- [ ] Owner: create the Cloudflare Pages project `linewise` and add the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets
+
 ## 12. Open questions for the owner
 
 Use the defaults above until these are answered, then update §10.
@@ -272,4 +294,5 @@ Every box above is ticked because the feature is built. What has and has not bee
 - **Not yet run on a device:** the remaining games (First Letter, Fill in the Blank, Sentence Scramble, Multiple Choice, Listen, Run Scene, My Recordings), speech recognition and text to speech end to end, camera/OCR, notifications, and share-intent. The airplane-mode item is covered by the manifest and code checks above, not by using the app offline.
 - **Maestro flows** are written and validated against the app's ids and strings, but have not been executed.
 - **GitHub Actions workflows** are written and their YAML parses, but have not run on GitHub. The release workflow needs the four signing secrets described in the README.
+- **Web app** (2026-09-22, headless Chrome against `scripts/serve-web.js` with the real `_headers`): the page is cross-origin isolated under the CSP, the service worker installs and the app reloads with the network off, and no request leaves the site. Onboarding, adding a text, Type It (100% result), the backup screen, Arabic (RTL), and photo OCR of printed English (read correctly in under 2 s) all work. Not yet checked: Firefox and Safari, installing the PWA, backup download and restore, recordings, and the Cloudflare deploy itself.
 - Translations were written for this project and are checked for structure and placeholders, not reviewed by native speakers.

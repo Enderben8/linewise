@@ -29,7 +29,7 @@
     "search": "Rechercher un titre, un auteur ou une étiquette",
     "allTags": "Toutes",
     "emptyTitle": "Rien à mémoriser pour l'instant",
-    "emptyBody": "Ajoutez un poème, un discours, un verset ou un script. Tout reste sur votre téléphone.",
+    "emptyBody": "Ajoutez un poème, un discours, un verset ou un script. Tout reste sur votre appareil.",
     "addFirst": "Ajouter votre premier texte",
     "noMatches": "Aucun texte ne correspond à votre recherche",
     "backupNudgeTitle": "C'est l'heure d'une sauvegarde",
@@ -44,9 +44,9 @@
     "typeTitle": "Saisir ou coller",
     "typeBody": "Écrivez le texte vous-même ou collez-le depuis n'importe où.",
     "fileTitle": "Importer un fichier",
-    "fileBody": "Choisissez un fichier .txt ou .md sur votre téléphone.",
+    "fileBody": "Choisissez un fichier .txt ou .md sur votre appareil.",
     "cameraOptionTitle": "Scanner avec l'appareil photo ou une photo",
-    "cameraOptionBody": "Lisez du texte imprimé sur une page. La reconnaissance se fait sur votre téléphone.",
+    "cameraOptionBody": "Lisez du texte imprimé sur une page. La reconnaissance se fait sur votre appareil.",
     "shareHint": "Astuce : dans n'importe quelle autre appli, partagez du texte vers Linewise et il s'ouvre ici, prêt à être enregistré.",
     "fileTooLargeTitle": "Ce fichier est trop volumineux",
     "fileTooLargeBody": "Choisissez un fichier texte plus petit. Les textes peuvent faire jusqu'à 100 Ko.",
@@ -164,7 +164,9 @@
     "run-scene": {
       "name": "Jouer la scène",
       "blurb": "Jouez votre rôle pendant que l'appli lit les autres"
-    }
+    },
+    "androidOnly": "Uniquement dans l’appli Android",
+    "androidOnlyBody": "Réciter à voix haute nécessite une reconnaissance vocale sur l’appareil. Les navigateurs envoient votre voix à leurs serveurs : ce jeu n’est donc disponible que dans l’appli Android."
   },
   "result": {
     "great": "Bravo !",
@@ -359,7 +361,8 @@
     "none": "Aucune révision n'est planifiée. Jouez à un jeu noté pour démarrer votre plan.",
     "on": "Les rappels sont activés. Vous recevrez une notification les jours de révision.",
     "off": "Les rappels sont désactivés.",
-    "enable": "Activer les rappels"
+    "enable": "Activer les rappels",
+    "web": "Les rappels n’existent que dans l’appli Android. Sur le web, les textes à réviser affichent « À revoir aujourd’hui » dans votre liste."
   },
   "notifications": {
     "channel": "Rappels de révision",
@@ -380,7 +383,8 @@
     "noneTitle": "Aucune voix pour cette langue",
     "noneBody": "Ouvrez les réglages vocaux, choisissez votre moteur vocal et installez les données de voix de cette langue. Revenez ensuite actualiser.",
     "refresh": "Actualiser",
-    "downloadHelp": "Envie d'un autre accent ou d'une meilleure qualité ? Installez d'autres voix dans les réglages vocaux de votre téléphone."
+    "downloadHelp": "Envie d'un autre accent ou d'une meilleure qualité ? Installez d'autres voix dans les réglages vocaux de votre téléphone.",
+    "webHelp": "Votre navigateur utilise les voix installées sur cet ordinateur ou ce téléphone. Ajoutez-en dans les réglages de voix ou de langue du système, puis rechargez la page."
   },
   "backup": {
     "title": "Sauvegarde et restauration",
@@ -409,7 +413,8 @@
     "restored": "Restauré. Textes sur ce téléphone : {{count}}.",
     "merged": "Fusionné. Ajoutés : {{added}}, mis à jour : {{updated}}, conservés : {{kept}}.",
     "monthly": "Rappel de sauvegarde mensuel",
-    "monthlyHelp": "Vous rappelle une fois par mois d'enregistrer une sauvegarde."
+    "monthlyHelp": "Vous rappelle une fois par mois d'enregistrer une sauvegarde.",
+    "exportBodyWeb": "Enregistre vos textes, votre progression, vos séances et vos réglages dans un fichier de votre dossier Téléchargements. Gardez-en une copie en lieu sûr : le stockage du navigateur peut être effacé."
   },
   "camera": {
     "help": "Pointez l'appareil photo sur du texte imprimé, ou choisissez une photo. La reconnaissance se fait sur votre téléphone ; rien n'est envoyé.",
@@ -431,7 +436,9 @@
     "reviewHelp": "Vérifiez le texte et corrigez les erreurs avant de continuer.",
     "use": "Utiliser ce texte",
     "retake": "Scanner à nouveau",
-    "privacy": "Les photos sont lues sur votre téléphone et ne sont pas conservées par Linewise."
+    "privacy": "Les photos sont lues sur votre appareil et ne sont pas conservées par Linewise.",
+    "webHelp": "Prenez ou choisissez une photo de texte imprimé. La reconnaissance se fait dans votre navigateur ; rien n’est envoyé.",
+    "loadingModel": "Préparation de la reconnaissance de texte…"
   },
   "settings": {
     "language": "Langue de l'appli",
@@ -454,7 +461,7 @@
     "resetSolidifyHelp": "Repart de zéro pour les scores de Consolider chaque fois que vous passez à un nouvel intervalle.",
     "data": "Vos données",
     "backup": "Sauvegarde et restauration",
-    "offlineNote": "Tout reste sur ce téléphone. Linewise n'a pas de comptes et ne se connecte jamais à internet.",
+    "offlineNote": "Tout reste sur cet appareil. Linewise n'a pas de comptes et ne se connecte jamais à internet.",
     "about": "À propos",
     "faq": "Questions et réponses",
     "report": "Signaler un problème",
@@ -528,7 +535,7 @@
     "reminderQuestion": "Un petit rappel les jours de révision ?",
     "reminderBody": "Les révisions espacées sont ce qui fait durer les souvenirs. Un rappel discret vous aide à rester régulier.",
     "tryDemo": "Essayer une démo d'une minute",
-    "offline": "Pas de compte. Pas d'internet. Vos textes ne quittent jamais votre téléphone."
+    "offline": "Pas de compte. Pas d'internet. Vos textes ne quittent jamais votre appareil."
   },
   "demo": {
     "title": "Essayez Première lettre",

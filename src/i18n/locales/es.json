@@ -29,7 +29,7 @@
     "search": "Buscar por título, autor o etiqueta",
     "allTags": "Todas",
     "emptyTitle": "Aún no hay nada que memorizar",
-    "emptyBody": "Añade un poema, un discurso, un versículo o un guion. Todo se queda en tu teléfono.",
+    "emptyBody": "Añade un poema, un discurso, un versículo o un guion. Todo se queda en tu dispositivo.",
     "addFirst": "Añade tu primer texto",
     "noMatches": "Ningún texto coincide con tu búsqueda",
     "backupNudgeTitle": "Es hora de una copia de seguridad",
@@ -44,9 +44,9 @@
     "typeTitle": "Escribir o pegar",
     "typeBody": "Escribe el texto tú mismo o pégalo desde cualquier sitio.",
     "fileTitle": "Importar un archivo",
-    "fileBody": "Elige un archivo .txt o .md de tu teléfono.",
+    "fileBody": "Elige un archivo .txt o .md de tu dispositivo.",
     "cameraOptionTitle": "Escanear con la cámara o una foto",
-    "cameraOptionBody": "Lee texto impreso de una página. El reconocimiento se hace en tu teléfono.",
+    "cameraOptionBody": "Lee texto impreso de una página. El reconocimiento se hace en tu dispositivo.",
     "shareHint": "Consejo: en cualquier otra app, comparte texto con Linewise y se abrirá aquí, listo para guardar.",
     "fileTooLargeTitle": "El archivo es demasiado grande",
     "fileTooLargeBody": "Elige un archivo de texto más pequeño. Los textos pueden tener hasta 100 KB.",
@@ -164,7 +164,9 @@
     "run-scene": {
       "name": "Ensayar escena",
       "blurb": "Interpreta tu papel mientras la app lee los demás"
-    }
+    },
+    "androidOnly": "Solo en la app de Android",
+    "androidOnlyBody": "Recitar en voz alta necesita reconocimiento de voz que funcione en el dispositivo. Los navegadores envían tu voz a sus servidores, así que este juego solo está en la app de Android."
   },
   "result": {
     "great": "¡Muy bien!",
@@ -359,7 +361,8 @@
     "none": "Aún no hay ningún repaso programado. Juega un juego con puntuación para empezar tu plan.",
     "on": "Los recordatorios están activados. Recibirás una notificación los días de repaso.",
     "off": "Los recordatorios están desactivados.",
-    "enable": "Activar recordatorios"
+    "enable": "Activar recordatorios",
+    "web": "Los recordatorios solo están en la app de Android. En la web, los textos pendientes de repaso muestran «Repaso hoy» en tu lista."
   },
   "notifications": {
     "channel": "Recordatorios de repaso",
@@ -380,7 +383,8 @@
     "noneTitle": "No hay voces para este idioma",
     "noneBody": "Abre los ajustes de voz, elige tu motor de voz e instala los datos de voz de este idioma. Después vuelve y actualiza.",
     "refresh": "Actualizar",
-    "downloadHelp": "¿Quieres otro acento o mejor calidad? Instala más voces en los ajustes de voz de tu teléfono."
+    "downloadHelp": "¿Quieres otro acento o mejor calidad? Instala más voces en los ajustes de voz de tu teléfono.",
+    "webHelp": "Tu navegador usa las voces instaladas en este ordenador o teléfono. Añade más en los ajustes de voz o idioma del sistema y vuelve a cargar la página."
   },
   "backup": {
     "title": "Copia y restauración",
@@ -409,7 +413,8 @@
     "restored": "Restaurado. Textos en este teléfono: {{count}}.",
     "merged": "Combinado. Añadidos {{added}}, actualizados {{updated}}, conservados {{kept}}.",
     "monthly": "Recordatorio mensual de copia",
-    "monthlyHelp": "Te recuerda una vez al mes que guardes una copia."
+    "monthlyHelp": "Te recuerda una vez al mes que guardes una copia.",
+    "exportBodyWeb": "Guarda tus textos, progreso, sesiones y ajustes en un archivo en tu carpeta de Descargas. Guarda una copia en un lugar seguro: el almacenamiento del navegador se puede borrar."
   },
   "camera": {
     "help": "Apunta la cámara a texto impreso o elige una foto. El reconocimiento se hace en tu teléfono; no se sube nada.",
@@ -431,7 +436,9 @@
     "reviewHelp": "Revisa el texto y corrige los errores antes de continuar.",
     "use": "Usar este texto",
     "retake": "Escanear de nuevo",
-    "privacy": "Las fotos se leen en tu teléfono y Linewise no las guarda."
+    "privacy": "Las fotos se leen en tu dispositivo y Linewise no las guarda.",
+    "webHelp": "Haz o elige una foto de texto impreso. El reconocimiento se hace en tu navegador; no se sube nada.",
+    "loadingModel": "Preparando el reconocimiento de texto…"
   },
   "settings": {
     "language": "Idioma de la app",
@@ -454,7 +461,7 @@
     "resetSolidifyHelp": "Empieza de cero las puntuaciones de Afianzar cada vez que pasas a un nuevo intervalo.",
     "data": "Tus datos",
     "backup": "Copia y restauración",
-    "offlineNote": "Todo se queda en este teléfono. Linewise no tiene cuentas y nunca se conecta a internet.",
+    "offlineNote": "Todo se queda en este dispositivo. Linewise no tiene cuentas y nunca se conecta a internet.",
     "about": "Acerca de",
     "faq": "Preguntas y respuestas",
     "report": "Informar de un problema",
@@ -528,7 +535,7 @@
     "reminderQuestion": "¿Quieres un aviso los días de repaso?",
     "reminderBody": "Los repasos espaciados son lo que hace que los recuerdos duren. Un recordatorio amable te ayuda a no faltar.",
     "tryDemo": "Prueba una demo de un minuto",
-    "offline": "Sin cuenta. Sin internet. Tus textos nunca salen de tu teléfono."
+    "offline": "Sin cuenta. Sin internet. Tus textos nunca salen de tu dispositivo."
   },
   "demo": {
     "title": "Prueba Primera letra",

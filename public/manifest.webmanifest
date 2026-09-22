@@ -1,0 +1,20 @@
+{
+  "name": "Linewise",
+  "short_name": "Linewise",
+  "description": "Learn poems, speeches and scripts by heart. Works offline; your texts stay in this browser.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0F3D3E",
+  "theme_color": "#0F3D3E",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -362,5 +362,9 @@ function Body({ setup }: { setup: GameSetup }) {
 
 export default function RunScene() {
   const { t } = useTranslation();
-  return <GameGate title={t('games.run-scene.name')}>{(setup) => <Body setup={setup} />}</GameGate>;
+  return (
+    <GameGate title={t('games.run-scene.name')} game="run-scene">
+      {(setup) => <Body setup={setup} />}
+    </GameGate>
+  );
 }
