@@ -32,6 +32,9 @@ export default function MemorizationDetail() {
   const { palette } = useTheme();
   const { id } = useLocalSearchParams<{ id: string }>();
   const mem = useAppSelector((s) => s.memorizations.items.find((m) => m.id === id));
+  const folderName = useAppSelector(
+    (s) => s.memorizations.folders.find((f) => f.id === mem?.folderId)?.name,
+  );
   const chunkCount = mem?.chunks.length ?? 0;
   const [selection, setSelection] = useState<ChunkSelection>({ mode: 'all', from: 0, to: 0 });
   const speakers = useMemo(() => (mem?.type === 'script' ? speakersOf(mem.chunks) : []), [mem]);
@@ -91,6 +94,14 @@ export default function MemorizationDetail() {
               {mem.title}
             </AppText>
             {mem.author ? <AppText muted>{mem.author}</AppText> : null}
+            {folderName ? (
+              <Row style={{ gap: 4 }}>
+                <Ionicons name="folder-outline" size={16} color={palette.muted} />
+                <AppText muted numberOfLines={1} style={{ flexShrink: 1 }}>
+                  {folderName}
+                </AppText>
+              </Row>
+            ) : null}
             <ReviewBadge progress={mem.progress} />
           </View>
         </Row>
@@ -118,6 +129,12 @@ export default function MemorizationDetail() {
           variant="secondary"
           label={t('detail.reminders')}
           onPress={() => open('notifications')}
+        />
+        <Button
+          testID="choose-folder"
+          variant="secondary"
+          label={t('detail.folder')}
+          onPress={() => open('folder')}
         />
       </Row>
 

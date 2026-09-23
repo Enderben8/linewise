@@ -9,6 +9,14 @@ export const settings = sqliteTable('settings', {
   value: text('value', { mode: 'json' }).$type<unknown>().notNull(),
 });
 
+/** One level of folders for grouping texts (SPEC §10). A text is in at most one folder. */
+export const folders = sqliteTable('folders', {
+  id: text('id').primaryKey(),
+  name: text('name').notNull(),
+  createdAt: integer('created_at').notNull(),
+  updatedAt: integer('updated_at').notNull(),
+});
+
 export const memorizations = sqliteTable('memorizations', {
   id: text('id').primaryKey(),
   title: text('title').notNull(),
@@ -23,6 +31,8 @@ export const memorizations = sqliteTable('memorizations', {
   tags: text('tags', { mode: 'json' }).$type<string[]>().notNull(),
   createdAt: integer('created_at').notNull(),
   updatedAt: integer('updated_at').notNull(),
+  /** `null` when the text is in no folder. Deleting a folder leaves its texts in no folder. */
+  folderId: text('folder_id').references(() => folders.id, { onDelete: 'set null' }),
 });
 
 export const progress = sqliteTable('progress', {
@@ -72,9 +82,10 @@ export const recordings = sqliteTable('recordings', {
   createdAt: integer('created_at').notNull(),
 });
 
+export type FolderRow = typeof folders.$inferSelect;
 export type Memorization = typeof memorizations.$inferSelect;
 export type ProgressRow = typeof progress.$inferSelect;
 export type SessionRow = typeof sessions.$inferSelect;
 export type RecordingRow = typeof recordings.$inferSelect;
 
-export const schema = { settings, memorizations, progress, sessions, recordings };
+export const schema = { settings, folders, memorizations, progress, sessions, recordings };

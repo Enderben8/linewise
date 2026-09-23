@@ -8,6 +8,7 @@ export const FAQ_ITEMS = [
   'score',
   'speech',
   'voices',
+  'folders',
   'backup',
   'recordings',
   'share',

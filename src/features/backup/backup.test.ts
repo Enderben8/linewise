@@ -1,5 +1,5 @@
 import { BACKUP } from '../../config';
-import type { Memorization, ProgressRow, SessionRow } from '../../db/schema';
+import type { FolderRow, Memorization, ProgressRow, SessionRow } from '../../db/schema';
 import {
   backupFileName,
   buildBackup,
@@ -9,7 +9,12 @@ import {
   type BackupTables,
 } from './backup';
 
-const mem = (id: string, updatedAt: number, title = id): Memorization => ({
+const mem = (
+  id: string,
+  updatedAt: number,
+  title = id,
+  folderId: string | null = null,
+): Memorization => ({
   id,
   title,
   author: '',
@@ -19,6 +24,13 @@ const mem = (id: string, updatedAt: number, title = id): Memorization => ({
   bodyHash: 'h',
   chunks: [{ index: 0, lines: [{ kind: 'text', text: 'a b c' }] }],
   tags: [],
+  createdAt: 1,
+  updatedAt,
+  folderId,
+});
+const folder = (id: string, updatedAt: number, name = id): FolderRow => ({
+  id,
+  name,
   createdAt: 1,
   updatedAt,
 });
@@ -47,6 +59,7 @@ const sess = (id: string, memorizationId: string): SessionRow => ({
 });
 const tables = (over: Partial<BackupTables> = {}): BackupTables => ({
   settings: [{ key: 'font_size', value: 1.2 }],
+  folders: [],
   memorizations: [mem('a', 10), mem('b', 10)],
   progress: [prog('a'), prog('b')],
   sessions: [sess('s1', 'a')],
@@ -71,6 +84,7 @@ describe('backup file', () => {
 
   it('excludes recordings by construction', () => {
     expect(Object.keys(buildBackup(tables(), 1).tables).sort()).toEqual([
+      'folders',
       'memorizations',
       'progress',
       'sessions',
@@ -93,6 +107,48 @@ describe('backup file', () => {
     });
     const broken = { ...file, tables: { ...file.tables, memorizations: [{ id: 1 }] } };
     expect(parseBackup(JSON.stringify(broken))).toEqual({ ok: false, reason: 'invalid' });
+  });
+
+  it('keeps folders and the folder of each text', () => {
+    const file = buildBackup(
+      tables({ folders: [folder('f1', 3, 'Poems')], memorizations: [mem('a', 10, 'a', 'f1')] }),
+      1,
+    );
+    const parsed = parseBackup(JSON.stringify(file));
+    expect(parsed.ok && parsed.backup.tables.folders).toEqual([folder('f1', 3, 'Poems')]);
+    expect(parsed.ok && parsed.backup.tables.memorizations[0].folderId).toBe('f1');
+  });
+
+  it('puts a text whose folder is missing from the file in no folder', () => {
+    const file = buildBackup(tables({ memorizations: [mem('a', 10, 'a', 'gone')] }), 1);
+    const parsed = parseBackup(JSON.stringify(file));
+    expect(parsed.ok && parsed.backup.tables.memorizations[0].folderId).toBeNull();
+  });
+
+  it('reads version 1 files, made before folders, with every text in no folder', () => {
+    const { folders: _folders, ...v1Tables } = tables();
+    const v1 = {
+      ...buildBackup(tables(), 1),
+      version: 1,
+      tables: {
+        ...v1Tables,
+        memorizations: v1Tables.memorizations.map(({ folderId: _f, ...m }) => m),
+      },
+    };
+    const parsed = parseBackup(JSON.stringify(v1));
+    expect(parsed.ok).toBe(true);
+    if (parsed.ok) {
+      expect(parsed.backup.tables.folders).toEqual([]);
+      expect(parsed.backup.tables.memorizations.map((m) => m.folderId)).toEqual([null, null]);
+    }
+  });
+
+  it('rejects broken folders', () => {
+    const file = buildBackup(tables(), 1);
+    const broken = { ...file, tables: { ...file.tables, folders: [{ id: 'f', name: 3 }] } };
+    expect(parseBackup(JSON.stringify(broken))).toEqual({ ok: false, reason: 'invalid' });
+    const missing = { ...file, tables: { ...file.tables, folders: undefined } };
+    expect(parseBackup(JSON.stringify(missing))).toEqual({ ok: false, reason: 'invalid' });
   });
 
   it('names the file by date', () => {
@@ -131,10 +187,19 @@ describe('planMerge', () => {
     expect(plan.sessions.map((s) => s.id).sort()).toEqual(['s2', 's3', 's4']);
   });
 
+  it('adds new folders, takes newer names and keeps newer ones on the phone', () => {
+    const existing = tables({ folders: [folder('f1', 10, 'Old'), folder('f2', 50, 'Phone')] });
+    const incoming = tables({
+      folders: [folder('f1', 20, 'New'), folder('f2', 40, 'Stale'), folder('f3', 1, 'Added')],
+    });
+    expect(planMerge(existing, incoming).folders.map((f) => f.name)).toEqual(['New', 'Added']);
+  });
+
   it('is a no-op when nothing is newer', () => {
     const t = tables();
     const plan = planMerge(t, t);
     expect(plan).toMatchObject({ added: 0, updated: 0, kept: 2 });
+    expect(plan.folders).toEqual([]);
     expect(plan.memorizations).toEqual([]);
     expect(plan.sessions).toEqual([]);
   });

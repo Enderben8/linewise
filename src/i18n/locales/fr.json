@@ -98,7 +98,8 @@
     "share": "Partager le texte",
     "delete": "Supprimer ce texte",
     "deleteTitle": "Supprimer ce texte ?",
-    "deleteBody": "« {{title}} », sa progression, ses séances et ses enregistrements seront supprimés de ce téléphone. Cette action est irréversible."
+    "deleteBody": "« {{title}} », sa progression, ses séances et ses enregistrements seront supprimés de ce téléphone. Cette action est irréversible.",
+    "folder": "Dossier"
   },
   "selection": {
     "all": "Tout le texte",
@@ -535,6 +536,10 @@
       "camera": {
         "q": "Pourquoi ne puis-je pas scanner l'arabe ou l'hébreu ?",
         "a": "La reconnaissance de texte sur l'appareil qu'utilise Linewise n'inclut pas encore ces langues. Vous pouvez les saisir ou les coller."
+      },
+      "folders": {
+        "q": "Comment regrouper des textes dans des dossiers ?",
+        "a": "Dans l'onglet Mémoriser, touchez « Nouveau dossier », donnez-lui un nom, puis cochez les textes qui y vont. Vous pouvez aussi ouvrir un texte et toucher « Dossier ». Un texte n'est que dans un dossier à la fois. Supprimer un dossier conserve ses textes. La recherche et les étiquettes parcourent tous les dossiers."
       }
     }
   },
@@ -562,5 +567,32 @@
     "save": "Enregistrer ce poème dans ma liste",
     "skip": "Continuer sans enregistrer",
     "skipDemo": "Passer la démo"
+  },
+  "folders": {
+    "new": "Nouveau dossier",
+    "create": "Créer le dossier",
+    "name": "Nom du dossier",
+    "namePlaceholder": "Par exemple : Poèmes pour la classe",
+    "renameTitle": "Renommer le dossier",
+    "rename": "Renommer",
+    "issueEmpty": "Donnez un nom au dossier.",
+    "issueTooLong": "Utilisez {{max}} caractères au maximum.",
+    "issueDuplicate": "Vous avez déjà un dossier portant ce nom.",
+    "textCount": "Textes : {{count}}",
+    "dueCount": "À revoir aujourd'hui : {{count}}",
+    "notFound": "Ce dossier n'existe plus",
+    "empty": "Ce dossier est vide",
+    "emptyBody": "Touchez « Choisir des textes » pour y mettre des textes.",
+    "chooseTexts": "Choisir des textes",
+    "pickHelp": "Cochez les textes qui vont dans « {{name}} ». Un texte n'est que dans un dossier à la fois : cocher un texte d'un autre dossier le déplace ici.",
+    "picked": "Sélectionné",
+    "notPicked": "Non sélectionné",
+    "inFolder": "Actuellement dans : {{name}}",
+    "savePicked": "Enregistrer (sélectionnés : {{count}})",
+    "none": "Aucun dossier",
+    "chooseHelp": "Choisissez un dossier pour « {{title}} ».",
+    "delete": "Supprimer le dossier",
+    "deleteTitle": "Supprimer ce dossier ?",
+    "deleteBody": "Le dossier « {{name}} » sera supprimé. Ses textes sont conservés, hors dossier."
   }
 }

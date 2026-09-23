@@ -98,7 +98,8 @@
     "share": "I-share ang teksto",
     "delete": "Burahin ang tekstong ito",
     "deleteTitle": "Burahin ang tekstong ito?",
-    "deleteBody": "Buburahin sa teleponong ito ang “{{title}}”, ang progreso, mga sesyon at mga recording nito. Hindi na ito mababawi."
+    "deleteBody": "Buburahin sa teleponong ito ang “{{title}}”, ang progreso, mga sesyon at mga recording nito. Hindi na ito mababawi.",
+    "folder": "Folder"
   },
   "selection": {
     "all": "Buong teksto",
@@ -535,6 +536,10 @@
       "camera": {
         "q": "Bakit hindi ako makapag-scan ng Arabic o Hebrew?",
         "a": "Hindi pa kasama ang mga wikang iyon sa on-device na pagkilala ng teksto na ginagamit ng Linewise. Puwede mo na lang silang i-type o i-paste."
+      },
+      "folders": {
+        "q": "Paano ko ipapangkat ang mga teksto sa mga folder?",
+        "a": "Sa tab na Kabisaduhin, i-tap ang “Bagong folder”, bigyan ito ng pangalan, at lagyan ng tsek ang mga tekstong kabilang dito. Puwede ka ring magbukas ng teksto at i-tap ang “Folder”. Isang folder lang ang kinalalagyan ng isang teksto. Kapag binura ang folder, maiiwan ang mga teksto nito. Hinahanap ng paghahanap at mga tag ang lahat ng folder."
       }
     }
   },
@@ -562,5 +567,32 @@
     "save": "I-save ang tulang ito sa aking listahan",
     "skip": "Magpatuloy nang hindi nagse-save",
     "skipDemo": "Laktawan ang demo"
+  },
+  "folders": {
+    "new": "Bagong folder",
+    "create": "Gumawa ng folder",
+    "name": "Pangalan ng folder",
+    "namePlaceholder": "Halimbawa: Mga tula para sa klase",
+    "renameTitle": "Palitan ang pangalan ng folder",
+    "rename": "Palitan ang pangalan",
+    "issueEmpty": "Bigyan ng pangalan ang folder.",
+    "issueTooLong": "Gumamit ng {{max}} na character o mas kaunti.",
+    "issueDuplicate": "May folder ka na na ganito ang pangalan.",
+    "textCount": "Mga teksto: {{count}}",
+    "dueCount": "Balik-aral ngayon: {{count}}",
+    "notFound": "Wala na ang folder na ito",
+    "empty": "Walang laman ang folder na ito",
+    "emptyBody": "I-tap ang “Pumili ng teksto” para maglagay ng teksto rito.",
+    "chooseTexts": "Pumili ng teksto",
+    "pickHelp": "Lagyan ng tsek ang mga tekstong kabilang sa “{{name}}”. Isang folder lang ang puwedeng kinalalagyan ng isang teksto, kaya malilipat dito ang tekstong galing sa ibang folder.",
+    "picked": "Napili",
+    "notPicked": "Hindi napili",
+    "inFolder": "Nasa: {{name}}",
+    "savePicked": "I-save (napili: {{count}})",
+    "none": "Walang folder",
+    "chooseHelp": "Pumili ng folder para sa “{{title}}”.",
+    "delete": "Burahin ang folder",
+    "deleteTitle": "Burahin ang folder na ito?",
+    "deleteBody": "Buburahin ang folder na “{{name}}”. Maiiwan ang mga teksto nito, nang walang folder."
   }
 }

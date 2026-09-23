@@ -1,6 +1,6 @@
 import { notInArray } from 'drizzle-orm';
 import { db } from '../../db/client';
-import { memorizations, progress, recordings, sessions, settings } from '../../db/schema';
+import { folders, memorizations, progress, recordings, sessions, settings } from '../../db/schema';
 import type { BackupTables, MergePlan } from './backup';
 
 /** Settings that describe this phone rather than the user's preferences; a restore never overwrites them. */
@@ -15,10 +15,21 @@ function inChunks<T>(rows: T[], fn: (part: T[]) => void): void {
 export function readAllTables(): BackupTables {
   return {
     settings: db.select().from(settings).all(),
+    folders: db.select().from(folders).all(),
     memorizations: db.select().from(memorizations).all(),
     progress: db.select().from(progress).all(),
     sessions: db.select().from(sessions).all(),
   };
+}
+
+function upsertFolders(
+  tx: Parameters<Parameters<typeof db.transaction>[0]>[0],
+  rows: BackupTables['folders'],
+) {
+  for (const f of rows) {
+    const { id: _id, ...rest } = f;
+    tx.insert(folders).values(f).onConflictDoUpdate({ target: folders.id, set: rest }).run();
+  }
 }
 
 function upsertMemorizations(
@@ -48,7 +59,7 @@ function upsertProgress(
 }
 
 /**
- * Makes this phone match the backup. Texts not in the backup are removed.
+ * Makes this phone match the backup. Texts and folders not in the backup are removed.
  * Returns audio files that belonged to removed texts, for the caller to delete.
  */
 export function replaceAll(incoming: BackupTables): string[] {
@@ -70,7 +81,11 @@ export function replaceAll(incoming: BackupTables): string[] {
         tx.delete(memorizations).where(notInArray(memorizations.id, keepIds)).run();
       else tx.delete(memorizations).run();
     }
+    upsertFolders(tx, incoming.folders);
     upsertMemorizations(tx, incoming.memorizations);
+    const keepFolderIds = incoming.folders.map((f) => f.id);
+    if (keepFolderIds.length) tx.delete(folders).where(notInArray(folders.id, keepFolderIds)).run();
+    else tx.delete(folders).run();
     upsertProgress(tx, incoming.progress);
     tx.delete(sessions).run();
     inChunks(incoming.sessions, (part) => tx.insert(sessions).values(part).run());
@@ -88,6 +103,7 @@ export function replaceAll(incoming: BackupTables): string[] {
 /** Applies a merge plan computed by `planMerge`. Nothing on the phone is deleted. */
 export function applyMerge(plan: MergePlan): void {
   db.transaction((tx) => {
+    upsertFolders(tx, plan.folders);
     upsertMemorizations(tx, plan.memorizations);
     upsertProgress(tx, plan.progress);
     inChunks(plan.sessions, (part) => tx.insert(sessions).values(part).onConflictDoNothing().run());

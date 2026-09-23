@@ -98,7 +98,8 @@
     "share": "Compartir texto",
     "delete": "Eliminar este texto",
     "deleteTitle": "¿Eliminar este texto?",
-    "deleteBody": "«{{title}}», su progreso, sesiones y grabaciones se borrarán de este teléfono. No se puede deshacer."
+    "deleteBody": "«{{title}}», su progreso, sesiones y grabaciones se borrarán de este teléfono. No se puede deshacer.",
+    "folder": "Carpeta"
   },
   "selection": {
     "all": "Todo el texto",
@@ -535,6 +536,10 @@
       "camera": {
         "q": "¿Por qué no puedo escanear árabe ni hebreo?",
         "a": "El reconocimiento de texto en el dispositivo que usa Linewise aún no incluye esos idiomas. Puedes escribirlos o pegarlos."
+      },
+      "folders": {
+        "q": "¿Cómo agrupo textos en carpetas?",
+        "a": "En la pestaña Memorizar, toca «Nueva carpeta», ponle un nombre y marca los textos que van en ella. También puedes abrir un texto y tocar «Carpeta». Un texto solo puede estar en una carpeta. Al eliminar una carpeta, sus textos se conservan. La búsqueda y las etiquetas miran en todas las carpetas."
       }
     }
   },
@@ -562,5 +567,32 @@
     "save": "Guardar este poema en mi lista",
     "skip": "Continuar sin guardar",
     "skipDemo": "Saltar la demo"
+  },
+  "folders": {
+    "new": "Nueva carpeta",
+    "create": "Crear carpeta",
+    "name": "Nombre de la carpeta",
+    "namePlaceholder": "Por ejemplo: Poemas para clase",
+    "renameTitle": "Cambiar nombre de la carpeta",
+    "rename": "Cambiar nombre",
+    "issueEmpty": "Ponle un nombre a la carpeta.",
+    "issueTooLong": "Usa {{max}} caracteres o menos.",
+    "issueDuplicate": "Ya tienes una carpeta con este nombre.",
+    "textCount": "Textos: {{count}}",
+    "dueCount": "Para repasar hoy: {{count}}",
+    "notFound": "Esta carpeta ya no existe",
+    "empty": "Esta carpeta está vacía",
+    "emptyBody": "Toca «Elegir textos» para añadir textos.",
+    "chooseTexts": "Elegir textos",
+    "pickHelp": "Marca los textos que van en «{{name}}». Un texto solo puede estar en una carpeta, así que marcar uno de otra carpeta lo mueve aquí.",
+    "picked": "Seleccionado",
+    "notPicked": "No seleccionado",
+    "inFolder": "Ahora en: {{name}}",
+    "savePicked": "Guardar (seleccionados: {{count}})",
+    "none": "Sin carpeta",
+    "chooseHelp": "Elige una carpeta para «{{title}}».",
+    "delete": "Eliminar carpeta",
+    "deleteTitle": "¿Eliminar esta carpeta?",
+    "deleteBody": "Se eliminará la carpeta «{{name}}». Sus textos se conservan, sin carpeta."
   }
 }

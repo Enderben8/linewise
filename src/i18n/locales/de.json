@@ -98,7 +98,8 @@
     "share": "Text teilen",
     "delete": "Diesen Text löschen",
     "deleteTitle": "Diesen Text löschen?",
-    "deleteBody": "„{{title}}“, sein Fortschritt, seine Sitzungen und Aufnahmen werden von diesem Handy gelöscht. Das lässt sich nicht rückgängig machen."
+    "deleteBody": "„{{title}}“, sein Fortschritt, seine Sitzungen und Aufnahmen werden von diesem Handy gelöscht. Das lässt sich nicht rückgängig machen.",
+    "folder": "Ordner"
   },
   "selection": {
     "all": "Ganzer Text",
@@ -535,6 +536,10 @@
       "camera": {
         "q": "Warum kann ich kein Arabisch oder Hebräisch scannen?",
         "a": "Die Texterkennung auf dem Gerät, die Linewise nutzt, enthält diese Sprachen noch nicht. Du kannst sie stattdessen eintippen oder einfügen."
+      },
+      "folders": {
+        "q": "Wie ordne ich Texte in Ordner?",
+        "a": "Tippe im Tab Lernen auf „Neuer Ordner“, gib ihm einen Namen und hake dann die Texte ab, die hineingehören. Du kannst auch einen Text öffnen und auf „Ordner“ tippen. Ein Text liegt immer nur in einem Ordner. Wenn du einen Ordner löschst, bleiben seine Texte erhalten. Suche und Tags durchsuchen alle Ordner."
       }
     }
   },
@@ -562,5 +567,32 @@
     "save": "Dieses Gedicht in meiner Liste speichern",
     "skip": "Ohne Speichern fortfahren",
     "skipDemo": "Demo überspringen"
+  },
+  "folders": {
+    "new": "Neuer Ordner",
+    "create": "Ordner erstellen",
+    "name": "Ordnername",
+    "namePlaceholder": "Zum Beispiel: Gedichte für die Schule",
+    "renameTitle": "Ordner umbenennen",
+    "rename": "Umbenennen",
+    "issueEmpty": "Gib dem Ordner einen Namen.",
+    "issueTooLong": "Verwende höchstens {{max}} Zeichen.",
+    "issueDuplicate": "Du hast schon einen Ordner mit diesem Namen.",
+    "textCount": "Texte: {{count}}",
+    "dueCount": "Heute fällig: {{count}}",
+    "notFound": "Diesen Ordner gibt es nicht mehr",
+    "empty": "Dieser Ordner ist leer",
+    "emptyBody": "Tippe auf „Texte auswählen“, um Texte hineinzulegen.",
+    "chooseTexts": "Texte auswählen",
+    "pickHelp": "Hake die Texte ab, die in „{{name}}“ gehören. Ein Text liegt immer nur in einem Ordner, ein Text aus einem anderen Ordner wird also hierher verschoben.",
+    "picked": "Ausgewählt",
+    "notPicked": "Nicht ausgewählt",
+    "inFolder": "Jetzt in: {{name}}",
+    "savePicked": "Speichern (ausgewählt: {{count}})",
+    "none": "Kein Ordner",
+    "chooseHelp": "Wähle einen Ordner für „{{title}}“.",
+    "delete": "Ordner löschen",
+    "deleteTitle": "Diesen Ordner löschen?",
+    "deleteBody": "Der Ordner „{{name}}“ wird gelöscht. Seine Texte bleiben erhalten, ohne Ordner."
   }
 }

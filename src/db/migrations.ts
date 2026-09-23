@@ -65,11 +65,26 @@ CREATE TABLE \`recordings\` (
 --> statement-breakpoint
 CREATE INDEX \`recordings_memorization_idx\` ON \`recordings\` (\`memorization_id\`);`;
 
+const m0001 = `CREATE TABLE \`folders\` (
+	\`id\` text PRIMARY KEY NOT NULL,
+	\`name\` text NOT NULL,
+	\`created_at\` integer NOT NULL,
+	\`updated_at\` integer NOT NULL
+);
+--> statement-breakpoint
+ALTER TABLE \`memorizations\` ADD \`folder_id\` text REFERENCES folders(id) ON DELETE set null;
+--> statement-breakpoint
+CREATE INDEX \`memorizations_folder_idx\` ON \`memorizations\` (\`folder_id\`);`;
+
 export const migrations = {
   journal: {
-    entries: [{ idx: 0, when: 1790000000000, tag: '0000_init', breakpoints: true }],
+    entries: [
+      { idx: 0, when: 1790000000000, tag: '0000_init', breakpoints: true },
+      { idx: 1, when: 1790100000000, tag: '0001_folders', breakpoints: true },
+    ],
   },
   migrations: {
     m0000,
+    m0001,
   },
 };

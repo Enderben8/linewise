@@ -1,15 +1,17 @@
-import { desc, eq } from 'drizzle-orm';
+import { and, asc, desc, eq, inArray, isNotNull, isNull, ne, or } from 'drizzle-orm';
 import { hashBody, parseBody } from '../engine';
 import type { BodyType } from '../engine';
 import { newId } from '../lib/uuid';
 import { newProgress, type ProgressState } from '../scheduler';
 import { db } from './client';
 import {
+  folders,
   memorizations,
   progress,
   recordings,
   sessions,
   settings,
+  type FolderRow,
   type Memorization,
   type ProgressRow,
   type RecordingRow,
@@ -23,6 +25,8 @@ export interface MemorizationInput {
   type: BodyType;
   body: string;
   tags: string[];
+  /** Only used when creating. Leave out when editing: the folder is changed with `moveToFolder`. */
+  folderId?: string | null;
 }
 
 export interface MemorizationWithProgress extends Memorization {
@@ -96,6 +100,7 @@ export function createMemorization(input: MemorizationInput, now = Date.now()): 
         tags: input.tags,
         createdAt: now,
         updatedAt: now,
+        folderId: input.folderId ?? null,
       })
       .run();
     tx.insert(progress).values(emptyProgressRow(id, now)).run();
@@ -145,6 +150,58 @@ export function deleteMemorization(id: string): string[] {
     tx.delete(memorizations).where(eq(memorizations.id, id)).run();
   });
   return uris;
+}
+
+/* ---------- folders ---------- */
+
+/** Folders in alphabetical order for the current language. */
+export function listFolders(): FolderRow[] {
+  return db
+    .select()
+    .from(folders)
+    .orderBy(asc(folders.createdAt))
+    .all()
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+export function createFolder(name: string, now = Date.now()): string {
+  const id = newId();
+  db.insert(folders).values({ id, name, createdAt: now, updatedAt: now }).run();
+  return id;
+}
+
+export function renameFolder(id: string, name: string, now = Date.now()): void {
+  db.update(folders).set({ name, updatedAt: now }).where(eq(folders.id, id)).run();
+}
+
+/**
+ * Deletes a folder. Its texts are kept and end up in no folder. They count as edited, so a
+ * backup merge carries the change like any other edit.
+ */
+export function deleteFolder(id: string, now = Date.now()): void {
+  db.transaction((tx) => {
+    tx.update(memorizations)
+      .set({ folderId: null, updatedAt: now })
+      .where(eq(memorizations.folderId, id))
+      .run();
+    tx.delete(folders).where(eq(folders.id, id)).run();
+  });
+}
+
+/**
+ * Puts texts into a folder, or into no folder with `null`. Texts already there are left alone.
+ * A move counts as an edit (`updatedAt`), so a backup merge carries it.
+ */
+export function moveToFolder(ids: string[], folderId: string | null, now = Date.now()): void {
+  if (ids.length === 0) return;
+  const elsewhere =
+    folderId === null
+      ? isNotNull(memorizations.folderId)
+      : or(isNull(memorizations.folderId), ne(memorizations.folderId, folderId));
+  db.update(memorizations)
+    .set({ folderId, updatedAt: now })
+    .where(and(inArray(memorizations.id, ids), elsewhere))
+    .run();
 }
 
 /* ---------- progress ---------- */

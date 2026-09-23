@@ -3,7 +3,15 @@
  */
 import { getMemorization, listSessions, rowToState } from '../db/repo';
 import { makeResult } from '../games/ids';
-import { addMemorization, editMemorization, removeMemorization } from './memorizationsSlice';
+import {
+  addFolder,
+  addMemorization,
+  editFolderName,
+  editMemorization,
+  moveMemorizations,
+  removeFolder,
+  removeMemorization,
+} from './memorizationsSlice';
 import { completeSession } from './sessionThunks';
 import { loadSettings, updateSettings } from './settingsSlice';
 import { store } from './index';
@@ -46,6 +54,31 @@ describe('memorization thunks', () => {
     store.dispatch(removeMemorization(id));
     expect(store.getState().memorizations.items).toEqual([]);
     expect(deleteAudioFiles).toHaveBeenCalledWith([]);
+  });
+
+  it('adds, renames and removes folders, and moves texts between them', () => {
+    const a = store.dispatch(addMemorization({ ...input, title: 'A' })) as unknown as string;
+    const b = store.dispatch(addMemorization({ ...input, title: 'B' })) as unknown as string;
+    const f = store.dispatch(addFolder('Poems')) as unknown as string;
+    expect(store.getState().memorizations.folders.map((x) => x.name)).toEqual(['Poems']);
+
+    store.dispatch(moveMemorizations([a, b], f));
+    const folderOf = () =>
+      Object.fromEntries(store.getState().memorizations.items.map((m) => [m.title, m.folderId]));
+    expect(folderOf()).toEqual({ A: f, B: f });
+
+    store.dispatch(editFolderName(f, 'Verses'));
+    expect(store.getState().memorizations.folders.map((x) => x.name)).toEqual(['Verses']);
+
+    store.dispatch(moveMemorizations([a], null));
+    expect(folderOf()).toEqual({ A: null, B: f });
+
+    store.dispatch(removeFolder(f));
+    expect(store.getState().memorizations.folders).toEqual([]);
+    expect(folderOf()).toEqual({ A: null, B: null });
+
+    store.dispatch(removeMemorization(a));
+    store.dispatch(removeMemorization(b));
   });
 });
 

@@ -98,7 +98,8 @@
     "share": "Compartilhar texto",
     "delete": "Excluir este texto",
     "deleteTitle": "Excluir este texto?",
-    "deleteBody": "“{{title}}”, o progresso, as sessões e as gravações serão excluídos deste celular. Isso não pode ser desfeito."
+    "deleteBody": "“{{title}}”, o progresso, as sessões e as gravações serão excluídos deste celular. Isso não pode ser desfeito.",
+    "folder": "Pasta"
   },
   "selection": {
     "all": "Texto inteiro",
@@ -535,6 +536,10 @@
       "camera": {
         "q": "Por que não consigo escanear árabe ou hebraico?",
         "a": "O reconhecimento de texto no aparelho usado pelo Linewise ainda não inclui esses idiomas. Você pode digitar ou colar."
+      },
+      "folders": {
+        "q": "Como agrupo textos em pastas?",
+        "a": "Na aba Memorizar, toque em “Nova pasta”, dê um nome a ela e marque os textos que ficam nela. Você também pode abrir um texto e tocar em “Pasta”. Um texto fica em uma pasta por vez. Excluir uma pasta mantém os textos dela. A busca e as tags procuram em todas as pastas."
       }
     }
   },
@@ -562,5 +567,32 @@
     "save": "Salvar este poema na minha lista",
     "skip": "Continuar sem salvar",
     "skipDemo": "Pular a demo"
+  },
+  "folders": {
+    "new": "Nova pasta",
+    "create": "Criar pasta",
+    "name": "Nome da pasta",
+    "namePlaceholder": "Por exemplo: Poemas para a aula",
+    "renameTitle": "Renomear pasta",
+    "rename": "Renomear",
+    "issueEmpty": "Dê um nome à pasta.",
+    "issueTooLong": "Use no máximo {{max}} caracteres.",
+    "issueDuplicate": "Você já tem uma pasta com este nome.",
+    "textCount": "Textos: {{count}}",
+    "dueCount": "Para revisar hoje: {{count}}",
+    "notFound": "Esta pasta não existe mais",
+    "empty": "Esta pasta está vazia",
+    "emptyBody": "Toque em “Escolher textos” para colocar textos nela.",
+    "chooseTexts": "Escolher textos",
+    "pickHelp": "Marque os textos que ficam em “{{name}}”. Um texto fica em uma pasta por vez, então marcar um texto de outra pasta o move para cá.",
+    "picked": "Selecionado",
+    "notPicked": "Não selecionado",
+    "inFolder": "Agora em: {{name}}",
+    "savePicked": "Salvar (selecionados: {{count}})",
+    "none": "Sem pasta",
+    "chooseHelp": "Escolha uma pasta para “{{title}}”.",
+    "delete": "Excluir pasta",
+    "deleteTitle": "Excluir esta pasta?",
+    "deleteBody": "A pasta “{{name}}” será excluída. Os textos dela são mantidos, sem pasta."
   }
 }

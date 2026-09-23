@@ -3,13 +3,11 @@ import { useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
-import { ProgressRings } from '../../../src/components/ProgressRings';
-import { ReviewBadge } from '../../../src/components/ReviewBadge';
+import { FolderCard, MemorizationCard } from '../../../src/components/MemorizationCard';
 import { spacing, useTheme } from '../../../src/components/theme';
 import { AppText, Button, Card, Chip, EmptyState, Field, Row } from '../../../src/components/ui';
-import { rowToState } from '../../../src/db/repo';
-import { backupDue, matchesSearch } from '../../../src/features/memorizations/status';
-import { innerRing, outerRing } from '../../../src/scheduler';
+import { listRows } from '../../../src/features/memorizations/folders';
+import { backupDue } from '../../../src/features/memorizations/status';
 import { useAppSelector } from '../../../src/store';
 
 export default function MemorizationsScreen() {
@@ -17,6 +15,7 @@ export default function MemorizationsScreen() {
   const router = useRouter();
   const { palette } = useTheme();
   const items = useAppSelector((s) => s.memorizations.items);
+  const folders = useAppSelector((s) => s.memorizations.folders);
   const settings = useAppSelector((s) => s.settings.values);
   const [query, setQuery] = useState('');
   const [tag, setTag] = useState<string | null>(null);
@@ -26,10 +25,12 @@ export default function MemorizationsScreen() {
     () => [...new Set(items.flatMap((m) => m.tags))].sort((a, b) => a.localeCompare(b)),
     [items],
   );
-  const filtered = useMemo(
-    () => items.filter((m) => matchesSearch(m, query) && (!tag || m.tags.includes(tag))),
-    [items, query, tag],
+  const rows = useMemo(
+    () => listRows(items, folders, { query, tag, now }),
+    [items, folders, query, tag, now],
   );
+  const folderNames = useMemo(() => new Map(folders.map((f) => [f.id, f.name])), [folders]);
+  const filtering = query.trim() !== '' || tag !== null;
   const showBackupNudge = backupDue(
     {
       enabled: settings.backup_reminder_enabled,
@@ -52,15 +53,25 @@ export default function MemorizationsScreen() {
           />
         </Card>
       ) : null}
-      {items.length > 0 ? (
-        <Field
-          testID="search-input"
-          placeholder={t('list.search')}
-          value={query}
-          onChangeText={setQuery}
-          autoCapitalize="none"
-          returnKeyType="search"
-        />
+      {items.length > 0 || folders.length > 0 ? (
+        <Row>
+          <View style={{ flex: 1 }}>
+            <Field
+              testID="search-input"
+              placeholder={t('list.search')}
+              value={query}
+              onChangeText={setQuery}
+              autoCapitalize="none"
+              returnKeyType="search"
+            />
+          </View>
+          <Button
+            testID="new-folder"
+            variant="secondary"
+            label={t('folders.new')}
+            onPress={() => router.push('/memorizations/folders/edit')}
+          />
+        </Row>
       ) : null}
       {allTags.length > 0 ? (
         <Row style={{ flexWrap: 'wrap' }}>
@@ -81,12 +92,13 @@ export default function MemorizationsScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: palette.bg }}>
       <FlashList
-        data={filtered}
-        keyExtractor={(m) => m.id}
+        data={rows}
+        keyExtractor={(row) => row.key}
+        getItemType={(row) => row.kind}
         ListHeaderComponent={header}
         contentContainerStyle={{ paddingBottom: spacing.xxl }}
         ListEmptyComponent={
-          items.length === 0 ? (
+          items.length === 0 && folders.length === 0 ? (
             <View style={{ gap: spacing.lg, alignItems: 'center' }}>
               <EmptyState title={t('list.emptyTitle')} body={t('list.emptyBody')} />
               <Button
@@ -99,39 +111,30 @@ export default function MemorizationsScreen() {
             <EmptyState title={t('list.noMatches')} />
           )
         }
-        renderItem={({ item }) => {
-          const state = rowToState(item.progress);
-          return (
-            <View style={{ paddingHorizontal: spacing.lg, paddingBottom: spacing.md }}>
-              <Card
-                testID={`memorization-${item.title}`}
-                onPress={() => router.push(`/memorizations/${item.id}`)}
-              >
-                <Row style={{ gap: spacing.lg }}>
-                  <ProgressRings outer={outerRing(state)} inner={innerRing(state)} />
-                  <View style={{ flex: 1, gap: 4 }}>
-                    <AppText variant="heading" numberOfLines={2}>
-                      {item.title}
-                    </AppText>
-                    {item.author ? (
-                      <AppText muted numberOfLines={1}>
-                        {item.author}
-                      </AppText>
-                    ) : null}
-                    <ReviewBadge progress={item.progress} />
-                  </View>
-                </Row>
-                {item.tags.length > 0 ? (
-                  <Row style={{ flexWrap: 'wrap' }}>
-                    {item.tags.map((name) => (
-                      <Chip key={name} label={name} />
-                    ))}
-                  </Row>
-                ) : null}
-              </Card>
-            </View>
-          );
-        }}
+        renderItem={({ item: row }) => (
+          <View style={{ paddingHorizontal: spacing.lg, paddingBottom: spacing.md }}>
+            {row.kind === 'folder' ? (
+              <FolderCard
+                name={row.summary.folder.name}
+                count={row.summary.count}
+                due={row.summary.due}
+                onPress={() =>
+                  router.push({
+                    pathname: '/memorizations/folders/[folderId]',
+                    params: { folderId: row.summary.folder.id },
+                  })
+                }
+              />
+            ) : (
+              <MemorizationCard
+                item={row.item}
+                folderName={
+                  filtering && row.item.folderId ? folderNames.get(row.item.folderId) : undefined
+                }
+              />
+            )}
+          </View>
+        )}
       />
     </View>
   );

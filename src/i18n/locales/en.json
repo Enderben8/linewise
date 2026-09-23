@@ -98,7 +98,8 @@
     "share": "Share text",
     "delete": "Delete this text",
     "deleteTitle": "Delete this text?",
-    "deleteBody": "“{{title}}”, its progress, sessions and recordings will be deleted from this phone. This cannot be undone."
+    "deleteBody": "“{{title}}”, its progress, sessions and recordings will be deleted from this phone. This cannot be undone.",
+    "folder": "Folder"
   },
   "selection": {
     "all": "Whole text",
@@ -535,6 +536,10 @@
       "camera": {
         "q": "Why can't I scan Arabic or Hebrew?",
         "a": "The on-device text recognition Linewise uses does not include those languages yet. You can type or paste them instead."
+      },
+      "folders": {
+        "q": "How do I group texts into folders?",
+        "a": "On the Memorize tab, tap “New folder”, give it a name, then tick the texts that belong in it. You can also open a text and tap “Folder”. A text is in one folder at a time. Deleting a folder keeps its texts. Search and tags look through every folder."
       }
     }
   },
@@ -562,5 +567,32 @@
     "save": "Save this poem to my list",
     "skip": "Continue without saving",
     "skipDemo": "Skip the demo"
+  },
+  "folders": {
+    "new": "New folder",
+    "create": "Create folder",
+    "name": "Folder name",
+    "namePlaceholder": "For example: Poems for class",
+    "renameTitle": "Rename folder",
+    "rename": "Rename",
+    "issueEmpty": "Give the folder a name.",
+    "issueTooLong": "Use {{max}} characters or fewer.",
+    "issueDuplicate": "You already have a folder with this name.",
+    "textCount": "Texts: {{count}}",
+    "dueCount": "Due today: {{count}}",
+    "notFound": "This folder no longer exists",
+    "empty": "This folder is empty",
+    "emptyBody": "Tap “Choose texts” to put texts in it.",
+    "chooseTexts": "Choose texts",
+    "pickHelp": "Tick the texts that belong in “{{name}}”. A text is in one folder at a time, so ticking a text from another folder moves it here.",
+    "picked": "Selected",
+    "notPicked": "Not selected",
+    "inFolder": "Now in: {{name}}",
+    "savePicked": "Save (selected: {{count}})",
+    "none": "No folder",
+    "chooseHelp": "Choose a folder for “{{title}}”.",
+    "delete": "Delete folder",
+    "deleteTitle": "Delete this folder?",
+    "deleteBody": "The folder “{{name}}” will be deleted. Its texts are kept, with no folder."
   }
 }

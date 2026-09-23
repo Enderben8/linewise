@@ -3,16 +3,21 @@
  */
 import { db } from './client';
 import {
+  createFolder,
   createMemorization,
+  deleteFolder,
   deleteMemorization,
   deleteRecording,
   getMemorization,
   insertRecording,
   insertSession,
+  listFolders,
   listMemorizations,
   listRecordings,
   listSessions,
   loadSettingsRows,
+  moveToFolder,
+  renameFolder,
   renameRecording,
   rowToState,
   saveProgressState,
@@ -22,7 +27,7 @@ import {
   updateMemorization,
   type MemorizationInput,
 } from './repo';
-import { memorizations, progress, recordings, sessions, settings } from './schema';
+import { folders, memorizations, progress, recordings, sessions, settings } from './schema';
 
 jest.mock('./client', () => {
   const { createTestDb } = jest.requireActual('./testDb');
@@ -42,6 +47,7 @@ const input = (over: Partial<MemorizationInput> = {}): MemorizationInput => ({
 
 beforeEach(() => {
   db.delete(memorizations).run();
+  db.delete(folders).run();
   db.delete(settings).run();
 });
 
@@ -88,6 +94,68 @@ describe('memorizations', () => {
 
   it('returns null for a missing id', () => {
     expect(getMemorization('nope')).toBeNull();
+  });
+});
+
+describe('folders', () => {
+  it('creates, renames and lists folders in alphabetical order', () => {
+    const b = createFolder('bible verses', 1);
+    createFolder('Acting', 2);
+    createFolder('Zulu', 3);
+    expect(listFolders().map((f) => f.name)).toEqual(['Acting', 'bible verses', 'Zulu']);
+    renameFolder(b, 'Verses', 4);
+    const renamed = listFolders().find((f) => f.id === b)!;
+    expect(renamed).toMatchObject({ name: 'Verses', createdAt: 1, updatedAt: 4 });
+  });
+
+  it('starts a text in no folder, or in the folder it was created in', () => {
+    const f = createFolder('Poems', 1);
+    expect(getMemorization(createMemorization(input(), 1))!.folderId).toBeNull();
+    expect(getMemorization(createMemorization(input({ folderId: f }), 1))!.folderId).toBe(f);
+  });
+
+  it('moves several texts at once and counts only real moves as edits', () => {
+    const f = createFolder('Poems', 1);
+    const a = createMemorization(input({ title: 'A' }), 1);
+    const b = createMemorization(input({ title: 'B' }), 1);
+    const c = createMemorization(input({ title: 'C' }), 1);
+    moveToFolder([a, b], f, 5);
+    expect([a, b, c].map((id) => getMemorization(id)!.folderId)).toEqual([f, f, null]);
+    expect(getMemorization(a)!.updatedAt).toBe(5);
+    expect(getMemorization(c)!.updatedAt).toBe(1);
+
+    // Already there: nothing changes, not even the edit time.
+    moveToFolder([a], f, 9);
+    expect(getMemorization(a)!.updatedAt).toBe(5);
+
+    moveToFolder([b], null, 10);
+    expect(getMemorization(b)).toMatchObject({ folderId: null, updatedAt: 10 });
+    moveToFolder([c], null, 11);
+    expect(getMemorization(c)!.updatedAt).toBe(1);
+  });
+
+  it('keeps editing a text from changing its folder', () => {
+    const f = createFolder('Poems', 1);
+    const id = createMemorization(input({ folderId: f }), 1);
+    updateMemorization(id, input({ title: 'Renamed' }), 2);
+    expect(getMemorization(id)!.folderId).toBe(f);
+  });
+
+  it('deleting a folder keeps its texts, in no folder', () => {
+    const f = createFolder('Poems', 1);
+    const other = createFolder('Other', 1);
+    const a = createMemorization(input({ folderId: f }), 1);
+    const b = createMemorization(input({ folderId: other }), 1);
+    deleteFolder(f, 7);
+    expect(listFolders().map((x) => x.id)).toEqual([other]);
+    expect(getMemorization(a)).toMatchObject({ folderId: null, updatedAt: 7 });
+    expect(getMemorization(b)).toMatchObject({ folderId: other, updatedAt: 1 });
+  });
+
+  it('deleting a text leaves its folder in place', () => {
+    const f = createFolder('Poems', 1);
+    deleteMemorization(createMemorization(input({ folderId: f }), 1));
+    expect(listFolders().map((x) => x.id)).toEqual([f]);
   });
 });
 

@@ -1,5 +1,5 @@
 import { BACKUP } from '../../config';
-import type { Memorization, ProgressRow, SessionRow } from '../../db/schema';
+import type { FolderRow, Memorization, ProgressRow, SessionRow } from '../../db/schema';
 
 export interface SettingRow {
   key: string;
@@ -9,6 +9,7 @@ export interface SettingRow {
 /** Every table except recordings (audio files stay on the phone). */
 export interface BackupTables {
   settings: SettingRow[];
+  folders: FolderRow[];
   memorizations: Memorization[];
   progress: ProgressRow[];
   sessions: SessionRow[];
@@ -39,9 +40,14 @@ const isObj = (v: unknown): v is Record<string, unknown> => typeof v === 'object
 const isStr = (v: unknown): v is string => typeof v === 'string';
 const isNum = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
 
+function validFolder(f: unknown): boolean {
+  return isObj(f) && isStr(f.id) && isStr(f.name) && isNum(f.createdAt) && isNum(f.updatedAt);
+}
+
 function validMemorization(m: unknown): boolean {
   return (
     isObj(m) &&
+    (m.folderId === undefined || m.folderId === null || isStr(m.folderId)) &&
     isStr(m.id) &&
     isStr(m.title) &&
     isStr(m.body) &&
@@ -77,7 +83,11 @@ function validSession(s: unknown): boolean {
   );
 }
 
-/** Reads a backup file. Rejects anything that is not a Linewise backup of a known version. */
+/**
+ * Reads a backup file. Rejects anything that is not a Linewise backup of a known version.
+ * Version 1 files have no folders; their texts come back in no folder. A text whose folder is not
+ * in the file also comes back in no folder, so the restore never points at a missing folder.
+ */
 export function parseBackup(text: string): ParseResult {
   let raw: unknown;
   try {
@@ -88,7 +98,7 @@ export function parseBackup(text: string): ParseResult {
   if (!isObj(raw) || raw.app !== 'linewise' || !isObj(raw.tables)) {
     return { ok: false, reason: 'invalid' };
   }
-  if (raw.version !== BACKUP.version) {
+  if (!(BACKUP.readableVersions as readonly unknown[]).includes(raw.version)) {
     return {
       ok: false,
       reason: 'unknown-version',
@@ -96,7 +106,10 @@ export function parseBackup(text: string): ParseResult {
     };
   }
   const t = raw.tables;
+  if (raw.version === 1) t.folders = [];
   if (
+    !Array.isArray(t.folders) ||
+    !t.folders.every(validFolder) ||
     !Array.isArray(t.settings) ||
     !Array.isArray(t.memorizations) ||
     !Array.isArray(t.progress) ||
@@ -108,7 +121,13 @@ export function parseBackup(text: string): ParseResult {
   ) {
     return { ok: false, reason: 'invalid' };
   }
-  return { ok: true, backup: raw as unknown as BackupFile };
+  const tables = t as unknown as BackupTables;
+  const folderIds = new Set(tables.folders.map((f) => f.id));
+  tables.memorizations = tables.memorizations.map((m) => ({
+    ...m,
+    folderId: m.folderId && folderIds.has(m.folderId) ? m.folderId : null,
+  }));
+  return { ok: true, backup: { ...(raw as unknown as BackupFile), tables } };
 }
 
 export interface BackupSummary {
@@ -128,6 +147,8 @@ export function summarize(backup: BackupFile): BackupSummary {
 }
 
 export interface MergePlan {
+  /** Incoming folders that are new, or renamed more recently than the copy on this phone. */
+  folders: FolderRow[];
   /** Incoming memorizations that are new, or newer than the copy on this phone. */
   memorizations: Memorization[];
   /** Progress rows that go with the memorizations above. */
@@ -139,8 +160,17 @@ export interface MergePlan {
   kept: number;
 }
 
-/** Merge rule from SPEC §9: same id, newer `updatedAt` wins. Nothing already on the phone is deleted. */
+/**
+ * Merge rule from SPEC §9: same id, newer `updatedAt` wins. Nothing already on the phone is deleted.
+ * Folders follow the same rule. Every incoming folder that is not on the phone is added, so the
+ * incoming texts that use it have it.
+ */
 export function planMerge(existing: BackupTables, incoming: BackupTables): MergePlan {
+  const haveFolders = new Map(existing.folders.map((f) => [f.id, f]));
+  const folders = incoming.folders.filter((f) => {
+    const current = haveFolders.get(f.id);
+    return !current || f.updatedAt > current.updatedAt;
+  });
   const have = new Map(existing.memorizations.map((m) => [m.id, m]));
   const taken: Memorization[] = [];
   let added = 0;
@@ -162,6 +192,7 @@ export function planMerge(existing: BackupTables, incoming: BackupTables): Merge
   const knownIds = new Set([...have.keys(), ...takenIds]);
   const haveSessions = new Set(existing.sessions.map((s) => s.id));
   return {
+    folders,
     memorizations: taken,
     progress: incoming.progress.filter((p) => takenIds.has(p.memorizationId)),
     sessions: incoming.sessions.filter(

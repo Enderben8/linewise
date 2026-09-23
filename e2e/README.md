@@ -11,6 +11,7 @@ a phone or emulator set to English.
 | `03-games.yaml` | opens all 11 games; plays the scored ones to the result screen |
 | `04-review-day.yaml` | a new text is due, a perfect scored game advances the plan, a second game is practice only |
 | `05-backup-restore.yaml` | back up, then merge a known backup file |
+| `06-folders.yaml` | make a folder, put a text in it, search, move the text out, delete the folder |
 
 `_setup.yaml` and `_add-poem.yaml` are helpers the other flows call.
 

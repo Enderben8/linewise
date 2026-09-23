@@ -21,7 +21,9 @@ export const LIMITS = {
 
 export const BACKUP = {
   /** Bump when the backup file layout changes. Older versions are rejected unless migrated. */
-  version: 1,
+  version: 2,
+  /** Versions `parseBackup` can read. Version 1 predates folders. */
+  readableVersions: [1, 2],
   reminderDays: 30,
 } as const;
 

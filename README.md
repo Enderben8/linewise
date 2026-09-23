@@ -6,6 +6,7 @@ and keeps everything on your device. It is an Android app and an installable web
 
 - **11 games:** Tap to Reveal, Slider, Listen, First Letter, Fill in the Blank, Sentence Scramble,
   Type It, Multiple Choice, Speak, Run Scene (for scripts) and My Recordings.
+- **Folders** to group your texts, for example by class, show or subject.
 - **Spaced reviews** at 1, 2, 4, 7, 14, 30 and 60 days, with an optional target date and reminders.
 - **Add text** by typing or pasting, importing a `.txt` or `.md` file, scanning a page, or sharing text
   to Linewise from another app.

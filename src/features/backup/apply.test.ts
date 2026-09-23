@@ -4,8 +4,11 @@
 import { eq } from 'drizzle-orm';
 import { db } from '../../db/client';
 import {
+  createFolder,
   createMemorization,
+  deleteFolder,
   getMemorization,
+  listFolders,
   insertRecording,
   insertSession,
   listMemorizations,
@@ -13,8 +16,10 @@ import {
   saveProgressState,
   saveSetting,
   loadSettingsRows,
+  moveToFolder,
+  renameFolder,
 } from '../../db/repo';
-import { memorizations, settings } from '../../db/schema';
+import { folders, memorizations, settings } from '../../db/schema';
 import { newProgress } from '../../scheduler';
 import { applyMerge, readAllTables, replaceAll } from './apply';
 import { buildBackup, parseBackup, planMerge } from './backup';
@@ -47,6 +52,7 @@ const session = (memorizationId: string, createdAt: number) => ({
 
 beforeEach(() => {
   db.delete(memorizations).run();
+  db.delete(folders).run();
   db.delete(settings).run();
 });
 
@@ -140,6 +146,24 @@ describe('replaceAll', () => {
     });
   });
 
+  it('restores folders and which text is in which, and removes folders not in the backup', () => {
+    const poems = createFolder('Poems', 1);
+    const a = createMemorization(text('A'), 1);
+    const b = createMemorization(text('B'), 1);
+    moveToFolder([a], poems, 2);
+    const backup = roundTrip();
+
+    moveToFolder([a], null, 3);
+    const extra = createFolder('Only on phone', 3);
+    moveToFolder([b], extra, 4);
+    deleteFolder(poems, 5);
+
+    replaceAll(backup.tables);
+    expect(listFolders().map((f) => [f.id, f.name])).toEqual([[poems, 'Poems']]);
+    expect(getMemorization(a)!.folderId).toBe(poems);
+    expect(getMemorization(b)!.folderId).toBeNull();
+  });
+
   it('can restore an empty backup, clearing all texts', () => {
     createMemorization(text('A'), 1);
     const empty = { ...roundTrip().tables, memorizations: [], progress: [], sessions: [] };
@@ -181,6 +205,38 @@ describe('applyMerge', () => {
     expect(titles[c]).toBe('C only here'); // untouched
     expect(titles['d-new']).toBe('D'); // added
     expect(getMemorization('d-new')!.progress.intervalIndex).toBe(0);
+  });
+
+  it('adds folders from the backup with their texts, and keeps folders only on the phone', () => {
+    const shared = createFolder('Shared', 10);
+    const a = createMemorization(text('A'), 10);
+    moveToFolder([a], shared, 20);
+    const backup = roundTrip();
+
+    // Start again on a "new phone" that has a folder of its own.
+    db.delete(memorizations).run();
+    db.delete(folders).run();
+    const mine = createFolder('Mine', 30);
+    const c = createMemorization(text('C'), 30);
+    moveToFolder([c], mine, 31);
+
+    applyMerge(planMerge(readAllTables(), backup.tables));
+    expect(listFolders().map((f) => f.name)).toEqual(['Mine', 'Shared']);
+    expect(getMemorization(a)!.folderId).toBe(shared);
+    expect(getMemorization(c)!.folderId).toBe(mine);
+  });
+
+  it('takes the newer folder name', () => {
+    const f = createFolder('Before', 10);
+    const backup = roundTrip();
+    backup.tables.folders = backup.tables.folders.map((x) => ({
+      ...x,
+      name: 'After',
+      updatedAt: 99,
+    }));
+    renameFolder(f, 'Phone name', 50);
+    applyMerge(planMerge(readAllTables(), backup.tables));
+    expect(listFolders().map((x) => x.name)).toEqual(['After']);
   });
 
   it('is safe to apply twice', () => {

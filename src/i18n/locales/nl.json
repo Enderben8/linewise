@@ -98,7 +98,8 @@
     "share": "Tekst delen",
     "delete": "Deze tekst verwijderen",
     "deleteTitle": "Deze tekst verwijderen?",
-    "deleteBody": "“{{title}}”, de voortgang, sessies en opnames worden van deze telefoon verwijderd. Dit kan niet ongedaan worden gemaakt."
+    "deleteBody": "“{{title}}”, de voortgang, sessies en opnames worden van deze telefoon verwijderd. Dit kan niet ongedaan worden gemaakt.",
+    "folder": "Map"
   },
   "selection": {
     "all": "Hele tekst",
@@ -535,6 +536,10 @@
       "camera": {
         "q": "Waarom kan ik geen Arabisch of Hebreeuws scannen?",
         "a": "De tekstherkenning op het apparaat die Linewise gebruikt, bevat die talen nog niet. Je kunt ze typen of plakken."
+      },
+      "folders": {
+        "q": "Hoe groepeer ik teksten in mappen?",
+        "a": "Tik op het tabblad Leren op ‘Nieuwe map’, geef hem een naam en vink de teksten aan die erin horen. Je kunt ook een tekst openen en op ‘Map’ tikken. Een tekst zit steeds in één map. Als je een map verwijdert, blijven de teksten bewaard. Zoeken en tags kijken in alle mappen."
       }
     }
   },
@@ -562,5 +567,32 @@
     "save": "Dit gedicht opslaan in mijn lijst",
     "skip": "Doorgaan zonder opslaan",
     "skipDemo": "Demo overslaan"
+  },
+  "folders": {
+    "new": "Nieuwe map",
+    "create": "Map maken",
+    "name": "Naam van de map",
+    "namePlaceholder": "Bijvoorbeeld: Gedichten voor school",
+    "renameTitle": "Map hernoemen",
+    "rename": "Hernoemen",
+    "issueEmpty": "Geef de map een naam.",
+    "issueTooLong": "Gebruik maximaal {{max}} tekens.",
+    "issueDuplicate": "Je hebt al een map met deze naam.",
+    "textCount": "Teksten: {{count}}",
+    "dueCount": "Vandaag herhalen: {{count}}",
+    "notFound": "Deze map bestaat niet meer",
+    "empty": "Deze map is leeg",
+    "emptyBody": "Tik op ‘Teksten kiezen’ om er teksten in te zetten.",
+    "chooseTexts": "Teksten kiezen",
+    "pickHelp": "Vink de teksten aan die in ‘{{name}}’ horen. Een tekst zit steeds in één map, dus een tekst uit een andere map wordt hierheen verplaatst.",
+    "picked": "Geselecteerd",
+    "notPicked": "Niet geselecteerd",
+    "inFolder": "Nu in: {{name}}",
+    "savePicked": "Opslaan (geselecteerd: {{count}})",
+    "none": "Geen map",
+    "chooseHelp": "Kies een map voor ‘{{title}}’.",
+    "delete": "Map verwijderen",
+    "deleteTitle": "Deze map verwijderen?",
+    "deleteBody": "De map ‘{{name}}’ wordt verwijderd. De teksten erin blijven bewaard, zonder map."
   }
 }

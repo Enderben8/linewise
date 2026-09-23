@@ -1,0 +1,60 @@
+# Make a folder, put a text in it, find it by search, move it out from the text, then delete the folder.
+appId: app.linewise
+---
+- runFlow: _setup.yaml
+- runFlow: _add-poem.yaml
+- back
+- tapOn:
+    id: tab-memorizations
+- tapOn:
+    id: new-folder
+- tapOn:
+    id: save-folder
+- assertVisible: 'Give the folder a name.'
+- tapOn:
+    id: folder-name-input
+- inputText: 'Class Poems'
+- hideKeyboard
+- tapOn:
+    id: save-folder
+- tapOn:
+    id: 'pick-Rose Poem'
+- tapOn:
+    id: save-picked
+- tapOn:
+    id: tab-memorizations
+- assertVisible:
+    id: 'folder-Class Poems'
+- assertNotVisible:
+    id: 'memorization-Rose Poem'
+- tapOn:
+    id: search-input
+- inputText: 'rose'
+- assertVisible:
+    id: 'memorization-Rose Poem'
+- eraseText: 4
+- hideKeyboard
+- tapOn:
+    id: 'folder-Class Poems'
+- tapOn:
+    id: 'memorization-Rose Poem'
+- tapOn:
+    id: choose-folder
+- tapOn:
+    id: choose-folder-none
+- back
+- back
+- tapOn:
+    id: tab-memorizations
+- assertVisible:
+    id: 'memorization-Rose Poem'
+- tapOn:
+    id: 'folder-Class Poems'
+- assertVisible: 'This folder is empty'
+- tapOn:
+    id: delete-folder
+- tapOn: 'Delete'
+- assertNotVisible:
+    id: 'folder-Class Poems'
+- assertVisible:
+    id: 'memorization-Rose Poem'

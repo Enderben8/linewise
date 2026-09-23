@@ -71,10 +71,11 @@ app/_layout.tsx
 app/index.tsx                         redirect: onboarding (first launch) or tabs
 app/onboarding/...                    questions + one-minute First Letter demo
 app/(tabs)/_layout.tsx                3 tabs: Memorizations, Add, Settings
-app/(tabs)/memorizations/index.tsx    list with progress rings, search, tag filter
+app/(tabs)/memorizations/index.tsx    list with progress rings, search, tag filter, folders
+app/(tabs)/memorizations/folders/{edit,[folderId]/index,[folderId]/pick}.tsx   name a folder, open it, choose its texts
 app/(tabs)/memorizations/[id]/index.tsx       detail + game picker
 app/(tabs)/memorizations/[id]/{tap-to-reveal,slider,listen,first-letter,fill-in-the-blank,sentence-scramble,type-it,multiple-choice,speak,run-scene,my-recordings}.tsx
-app/(tabs)/memorizations/[id]/{stats,notifications,see-full-text,edit-text}.tsx
+app/(tabs)/memorizations/[id]/{stats,notifications,see-full-text,edit-text,folder}.tsx
 app/(tabs)/add/{index,edit-text,camera-recognition}.tsx
 app/(tabs)/settings/index.tsx         language, font size, speech rate, voices, notifications, backup, about
 ```
@@ -155,19 +156,20 @@ All ids are UUIDs. Use Drizzle migrations for every schema change, so updating t
 | Table | Columns |
 | --- | --- |
 | `settings` | key, value (JSON): locale, default_language, font_size, speech_rate, default_voice, notifications_enabled, reset_solidify_each_interval, onboarding_done |
-| `memorizations` | id, title, author, language, type (`text`/`script`), body, body_hash, chunks (JSON), tags (JSON array), created_at, updated_at |
+| `folders` | id, name, created_at, updated_at (added 2026-09-23, see §10) |
+| `memorizations` | id, title, author, language, type (`text`/`script`), body, body_hash, chunks (JSON), tags (JSON array), created_at, updated_at, folder_id (nullable, `folders.id`, set to null when the folder is deleted) |
 | `progress` | memorization_id (primary key), target_due_date, interval_index, next_review_at, headline_score, solidify_scores (JSON), hidden_words (JSON), voice_overrides (JSON), updated_at |
 | `sessions` | id, memorization_id, game, chunk_start, chunk_end, accuracy, coverage, weighted_score, counted_for_review, created_at |
 | `recordings` | id, memorization_id, name, file_uri, duration_sec, body_hash, created_at |
 
-Deleting a memorization deletes its progress, sessions, recordings and their audio files.
+Deleting a memorization deletes its progress, sessions, recordings and their audio files. Deleting a folder keeps its texts, in no folder.
 
 ### Backup and restore
 
 Because there is no cloud backup, a lost or reset phone loses everything unless the user has a backup file.
 
 - **Export:** Settings → Back up. Writes one `linewise-backup-YYYY-MM-DD.json` file containing a `version` number and every table except recordings, then opens the Android share sheet so the user can save it to Files or Google Drive, or send it.
-- **Import:** Settings → Restore. Pick a backup file, show what it contains, then either replace all data or merge (memorizations with the same id: newer `updated_at` wins). Reject files with an unknown `version`.
+- **Import:** Settings → Restore. Pick a backup file, show what it contains, then either replace all data or merge (memorizations with the same id: newer `updated_at` wins). Reject files with an unknown `version`. Backups are version 2 since folders were added; version 1 files still restore, with every text in no folder.
 - Recordings are not in the backup *(default)*, to keep the file small. Say so on the export screen.
 - Remind the user to back up once a month (a setting, on by default).
 
@@ -232,6 +234,9 @@ Add a row when you change a default or make a call not covered here.
 | 2026-09-22 | Setting or removing a target date goes through `withTargetDate`: a next review later than the scaled plan allows is brought forward; a plan with no intervals left (a finished target plan, or one past its last interval) starts again from the first interval with a review today; removing the target from a finished target plan makes the text due today, so it goes back to the regular intervals | A finished target plan could never become due again, even after a new target date or removing it, and a target earlier than the next review left reviews after the target date |
 | 2026-09-22 | Run Scene's `coverage` divides by the words of the chosen role's lines in the whole text | The role is that game's focus speaker. Dividing by every speaker's words capped the score at that role's share of the text, so most scenes could never reach the pass mark |
 | 2026-09-22 | Answers that differ only in case or punctuation are the same answer: Multiple Choice and Fill in the Blank never offer two of them, and a repeated sentence in Sentence Scramble is right in either of its places | With a refrain, two options could read the same while only one counted as right |
+| 2026-09-23 | **Folders** (owner's request). One level, no folders inside folders; a text is in at most one folder (`memorizations.folder_id`, migration `0001_folders`). Folder names are trimmed, 1 to 60 characters, and unique ignoring case. The list shows folders (with their text count and how many are due today), then the texts in no folder; a search or tag looks through every text and shows each one's folder, and a search also finds folders by name. Several texts are moved at once from a folder's "Choose texts" checklist; one text is moved from its own screen ("Folder"). Deleting a folder keeps its texts. New texts start in no folder | Grouping many texts. One level keeps the screens and the backup simple |
+| 2026-09-23 | Moving a text between folders, or deleting its folder, counts as an edit (`updated_at` changes), so it moves the text up the list and a backup merge carries it. Folders merge like texts: same id, newer `updated_at` wins, and a folder that is only on the phone is kept | The merge rule in §9 works on `updated_at`; without this a merge would undo moves |
+| 2026-09-23 | Backup `version` 2 adds a `folders` table and `folderId` on each text. `parseBackup` reads versions 1 and 2 (`BACKUP.readableVersions`); a version 1 file, or a text whose folder is not in the file, restores in no folder. A replace also removes folders that are not in the backup | Old backup files must keep working |
 
 ## 11. Build phases and status
 
@@ -285,6 +290,14 @@ Do phases in order. Phases 3 and 4 may run in parallel after phase 2. A phase is
 - [x] CI builds the web app; the release workflow deploys it to Cloudflare Pages
 - [x] Owner: create the Cloudflare Pages project `linewise` and add the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets
 
+### Phase 7 — Folders (added 2026-09-23)
+- [x] `folders` table and `memorizations.folder_id`, with a migration that keeps existing data
+- [x] Folders in the list, a folder screen, create, rename and delete (texts are kept)
+- [x] Put several texts in a folder at once; move one text from its own screen
+- [x] Search and tags look inside folders
+- [x] Backups carry folders (version 2) and version 1 files still restore
+- [x] Strings in all 11 languages, a FAQ entry, unit tests and a Maestro flow
+
 ## 12. Open questions for the owner
 
 Use the defaults above until these are answered, then update §10.
@@ -305,4 +318,5 @@ Every box above is ticked because the feature is built. What has and has not bee
 - **Update check** (2026-09-22): tests cover the version comparison, GitHub's reply, the choice of the APK asset, and refusing a download from anywhere but the releases page. The web app shows "the web app updates itself" in Settings and asks GitHub for nothing. Not yet run on a device: the prompt at launch, the download link, and the toggle in Settings.
 - **Web app** (2026-09-22, headless Chrome against `scripts/serve-web.js` with the real `_headers`): the page is cross-origin isolated under the CSP, the service worker installs and the app reloads with the network off, and no request leaves the site. Onboarding, adding a text, Type It (100% result), the backup screen, Arabic (RTL), and photo OCR of printed English (read correctly in under 2 s) all work. Not yet checked: Firefox and Safari, installing the PWA, backup download and restore, and recordings. The first Cloudflare deploy (v1.1.0) failed to open the database because its WebAssembly file was not uploaded. v1.1.1 uploaded it, but browsers that had opened v1.1.0 kept their cached copy of the old SQLite worker and still failed; fixed in v1.1.2, checked by serving a v1.1.0-style build and then the new build to the same Chrome profile. On the live site (v1.1.1, headless Chrome) a first visit opens the database and the service worker installs and takes control. Loading the same URL again in the same tab used to fail with `NoModificationAllowedError`; the page now reloads itself once and opens, and a second tab says Linewise is open in another tab and offers a reload (both checked in headless Chrome against the built site).
 - **Review pass** (2026-09-22): fixed target dates, Run Scene coverage and look-alike answers (the last three rows of §10), Hindi and Arabic sentence ends, the alignment table's memory use on long texts, the stats chart on wide screens, the Settings voice test in the system language, and failed restores. The logic changes have unit tests; the screen changes were checked by the typecheck, lint and the web build, not yet on a device or in a browser.
+- **Folders** (2026-09-23): unit tests cover the migration (including upgrading a database made before folders), the repository, the Redux thunks, the list rules and backup and restore of folders, including version 1 files. In headless Chrome against the built web app: creating, renaming and deleting folders, choosing several texts, search inside folders, the folder chooser on a text, and data surviving a reload. A database made by the v1.2.1 web build kept its text after the new build loaded, and the text could then be put in a folder. Not yet run on an Android device, and the new Maestro flow has not been executed.
 - Translations were written for this project and are checked for structure and placeholders, not reviewed by native speakers.
